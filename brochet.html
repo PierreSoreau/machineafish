@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <!--lien vers le site supabase-->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <!--lien vers le site algolia qui permet de faire des recherches dans la barre de recherche-->
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>    
+    <!--lien vers le site Font Awesome d'icône-->
+    <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
+    <!--lien entre css et html-->
+    <link rel="stylesheet" href="visuel.css"> 
+    <!--liens écritures-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brochet</title>
+    <meta name="description" content="page de description du brochet(morphologie, habitats, alimentation, reproduction)">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.css">
+    <script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.js"></script>
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+    <main id="page_brochet">
+    <div id="pres_brochet">
+        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_vu_morpho.webp" alt="brochet" class="broc">
+    </div>
+
+    <div class="navig_poisson">
+        <a href="#morphologie">Morphologie</a>
+        <a href="#habitats">Habitats</a>
+        <a href="#alimentation">Alimentation</a>
+        <a href="#reproduction">Reproduction</a>
+
+    </div>
+
+
+    <div class="sous_partie">
+    <div class="morphologie">
+        <h3 id="morphologie">MORPHOLOGIE</h3>
+        <div id="taille_brochet">
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/taille_brochet.webp" alt="taille_brochet">
+        </div>
+        <div id="morpho_container">
+        <button id="resetBtn" onclick="resetmorpho()" style="display:none">Revenir à toutes les photos</button>
+        <div class="photo_morpho" onclick="afficher(this)" >
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/dents_brochet.webp" alt="dents_brochet" class="morpho">
+            <p class="description">La bouche d'un brochet compte en moyenne 700 dents. Les dents situées sur la voûte/palais et le plancher servent à diriger la proie vers l'estomac. Les dents sur la machoire agrippent la proie au moment de l'attaque. Il est donc nécessaire de porter des gants quand on veut sortir de l'eau un brochet qu'on vient de pêcher car ses dents sont très tranchantes. De même pour éviter que ses dents tranchantes coupent le fil, il est presque indispensable d'avoir un petit bas de ligne renforcé.</p>
+        </div>  
+        <div class="photo_morpho" onclick="afficher(this)" >
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/yeux_brochet.webp" alt="yeux_brochet" class="morpho">
+            <p class="description">Un brochet a une vision binoculaire. La disposition de ses yeux sur les faces latérales de sa tête lui permet de voir en vision grand angle 70°C pour chacun des yeux. Cependant ses yeux sont sur le haut de sa tête donc il ne voit pas en dessous de lui. Il est donc toujours important de présenter uniquement son leurre devant ou au dessus du brochet.</p>
+        </div>
+        <div class="photo_morpho" onclick="afficher(this)" >
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/robe_brochet.webp" alt="robe_brochet" class="morpho">
+            <p class="description">Sa robe présente des tâches vertes claires et vertes foncées qui lui permet de se camoufler très facilement dans son habitat (herbiers, nénuphars...) comme une tenue de militaire. Il peut donc rester caché et foncer sur sa proie quand elle sera au plus proche. Pêcher à la lisière des herbiers, nénuphars... ou même dedans est donc très interessant pour faire sortir le brochet de sa cachette.</p>
+        </div>
+        <div class="photo_morpho" onclick="afficher(this)">
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ligne_laterale_brochet.webp" alt="ligne_laterale_brochet" class="morpho">
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/pores_cephaliques_brochet.webp" alt="pores_cephaliques_brochet" class="morpho">
+            <p class="description">Le brochet ne se sert pas uniquement de ses yeux pour traquer ses proies. il utilise également sa ligne latérale présente sur son flanc et ses pores céphaliques présents sur le dessus et le dessous de sa tête. Ils lui servent à détecter les vibrations présentes dans l'eau dont les vibrations du mouvement de ses proies. Plus la proie se rapproche plus il va ressentir de vibration. Pêcher avec des leurres qui font de fortes vibrations dans l'eau est donc une très bonne solution.</p>
+        </div>
+        <div class="photo_morpho" onclick="afficher(this)">
+             <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/nageoires_brochet.webp" alt="nageoires_brochet" class="morpho">
+             <p class="description">La majorité des nageoires du brochet sont présentes sur la moitié inférieure de son corps (pelviennes, annales, dorsales, caudales ) ce qui lui permet d'atteindre des vitesses ahurissantes dans l'eau en pleine attaque pouvant atteindre les 50km/h parfois. Il faut donc toujours être toujours concentré sur les touches de son leurre même jusqu'au bord parce que les attaques du brochet sont fulgurantes</p>
+        </div>
+        </div>         
+    </div>
+    <div id="synthese">
+        <div id="titre_synthese">
+        <i class="fa-solid fa-clipboard-list fa-xl" style="color: white"></i>        
+        <p>Synthèse pêche:</p>
+        </div>
+        <div id="contenu_synthese">
+            <div id="contenu_synthese_1">
+                <div class="ligne_contenu">
+                    <i class="fa-solid fa-check fa-xl" style="color: #63E6BE;"></i>                    
+                    <p>porter des gants quand on veut sortir de l'eau un brochet</p>
+                </div>
+                <div class="ligne_contenu">
+                    <i class="fa-solid fa-check fa-xl" style="color: #63E6BE;"></i>                    
+                    <p>Avoir un petit bas de ligne renforcé, pour éviter que ses dents tranchantes ne coupent le fil</p>
+                </div>        
+                <div class="ligne_contenu">
+                    <i class="fa-solid fa-check fa-xl" style="color: #63E6BE;"></i>
+                    <p>présenter son leurre devant ou au-dessus du brochet mais jamais en dessous</p>            
+                </div>
+            </div>
+            <div id="contenu_synthese_2">   
+                <div class="ligne_contenu">
+                    <i class="fa-solid fa-check fa-xl" style="color: #63E6BE;"></i>
+                    <p>pêcher en lisière des herbiers, nénuphars... ou même dedans pour se rapprocher le plus possible de la cachette du brochet</p>
+                </div>
+                <div class="ligne_contenu">
+                    <i class="fa-solid fa-check fa-xl" style="color: #63E6BE;"></i>
+                    <p>utiliser pendant une cession de pêche des leurres vibrants</p>
+            </div>
+                <div class="ligne_contenu">
+                    <i class="fa-solid fa-check fa-xl" style="color: #63E6BE;"></i>
+                    <p>être toujours concentré sur les touches de son leurre même jusqu'au bord parce que les attaques du brochet sont fulgurantes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="sous_partie">        
+        <h3 id="habitats">HABITATS</h3>
+        <br>
+        <div class="titre">
+            <i class="fa-solid fa-water"></i>    
+            <h4>MILIEU AQUATIQUE</h4>                    
+        </div>
+        <div id="milieu_aquatique">
+            <div class="type_eau1">
+                <div class="type_eau2">
+                    <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fleuve.webp" alt="Fleuve">                
+                </div>
+                <p>Fleuve</p>
+            </div>
+            <div class="type_eau1">
+                <div class="type_eau2">
+                    <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/riviere.webp" alt="Riviere">                
+                </div>
+                <p>Rivière</p>
+            </div>
+            <div class="type_eau1">
+                <div class="type_eau2">
+                    <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/lac.webp" alt="Lac">                
+                </div>
+                <p>Lac</p>
+            </div>
+            <div class="type_eau1">
+                <div class="type_eau2">
+                    <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/etang.webp" alt="Etang">                
+                </div>
+                <p>Etang</p>
+            </div>
+            <div class="type_eau1">
+                <div class="type_eau2">
+                    <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/canal.webp" alt="Canal">                
+                </div>
+                <p>Canal</p>
+            </div>
+        </div>
+        <br>
+        <div class="titre">
+            <i class="fa-solid fa-wind"></i>
+            <h4>INTENSITE COURANT</h4>            
+        </div>
+        <div id="courant">
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Jauge_faible.webp" alt="jauge_faible">
+        </div>
+        <br>
+        <div class="titre">
+            <i class="fa-solid fa-temperature-three-quarters"></i>
+            <h4>TEMPERATURE</h4>            
+        </div>
+        <div id="temperature">
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/jauge_temperature.webp" alt="jauge_temperature">
+        </div>
+        <br>
+        <div class="titre">
+            <i class="fa-solid fa-location-dot"></i>
+            <h4>SPOTS DE PECHE</h4>            
+        </div>
+        
+        
+        <select id="saisonselect" onchange="changerVisuel()">
+            <option value="">-- Sélectionner --</option>
+            <option value="printemps_ete_automne">Printemps/Eté/Automne</option>
+            <option value="Hiver">Hiver</option>
+        </select>
+
+        <div id="visuelspot">
+            <div id="visuelspotpea">
+                <div class="spot1">
+                    <div class="spot2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fosse.webp" alt="fosse">
+                    </div>
+                    <p>Fosse</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cassant.webp" alt="cassant">
+                    </div>
+                    <p>Cassant</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/nenuphar.webp" alt="nenuphar">
+                    </div>
+                    <p>Nénuphar</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/branche_immergee_v3.webp" alt="branche_immergee">
+                    </div>
+                    <p>Branche immergée</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/lisiere_herbiers.webp" alt="lisiere_herbiers">
+                    </div>
+                    <p>Lisière herbiers</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/bras_mort.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvYnJhc19tb3J0Lm1wNCIsImlhdCI6MTc1OTQ0MjgwMywiZXhwIjoxNzkwOTc4ODAzfQ.wSkEsDwfr-zvev-OFy731ixVgGwsK2YEuN41ibsMn4I" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Bras mort</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/chute_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvY2h1dGVfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTQ0Mjg1MywiZXhwIjoxNzkwOTc4ODUzfQ.tYiUFwJBgaOyd90BC0riJopgoO9DJtny3zZwgZIEQxM" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Chute d'eau</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="vidéos/pierre_surface_eau_V2.mp4" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Obstacle pierre en surface</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/pierre_surface_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvcGllcnJlX3N1cmZhY2VfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTQ0Mjg3NywiZXhwIjoxNzkwOTc4ODc3fQ.FI-De4iUsJjL8Tpq-dOXcyQd3E48nhdfU0gcf4tI9Og" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Obstacle immergé</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/croisement_riviere_V3.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvY3JvaXNlbWVudF9yaXZpZXJlX1YzLm1wNCIsImlhdCI6MTc1OTQ0MjkwMCwiZXhwIjoxNzkwOTc4OTAwfQ.Lhr_dTXlTIz7yjKOTQ9xtPUc7dxolsCgFkvE970tBLI" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Rivière affluente</p>
+                </div>
+                <div class="spot1">                    
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/pont.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvcG9udC5tcDQiLCJpYXQiOjE3NTk0NDI5MTgsImV4cCI6MTc5MDk3ODkxOH0.q6f449r4CxUN0utJXmGA3fM14LwfJ6K3Kq63RNq2e00" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Pont</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/arbres_surface_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvYXJicmVzX3N1cmZhY2VfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTQ0Mjk0MSwiZXhwIjoxNzkwOTc4OTQxfQ.AI-QNY3SpMwKYa-kW9E0N0SzDatde766A7dK0AUiYoE" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Arbres en surface de l'eau</p>
+                </div>            
+            </div>
+
+            <div id="visuelspoth">
+                <div class="spot1">
+                    <div class="spot2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fosse.webp" alt="fosse">
+                    </div>
+                    <p>Fosse</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cassant.webp" alt="cassant">
+                    </div>
+                    <p>Cassant</p>
+                </div>
+                <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/bras_mort.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvYnJhc19tb3J0Lm1wNCIsImlhdCI6MTc1OTQ0Mjk3NSwiZXhwIjoxNzkwOTc4OTc1fQ.2ukOWVhrRydVjJIyOlZeavMzuGR-P57Zj24MnURy7Ls" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Bras mort profond</p>
+                </div>
+                <div class="spot1">                    
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/pont.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvcG9udC5tcDQiLCJpYXQiOjE3NTk0NDI5OTAsImV4cCI6MTc5MDk3ODk5MH0.3Ne9StmfQrEZgwG9a7IzmBkVW9slpJ0iHD6LgqWHF98" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Pont</p>
+                </div>
+               <div class="spot1">
+                    <div class="spot2">
+                        <video autoplay muted loop playsinline preload="auto">
+                            <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/pierre_dans_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvcGllcnJlX2RhbnNfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTQ0MzAxMCwiZXhwIjoxNzkwOTc5MDEwfQ.G75D6w8Ps6BhHDNkuDtWy4qoQ-LM9N_xsCfZUmug9v0" type="video/mp4"/>
+                            Votre navigateur ne supporte pas la vidéo
+                        </video>
+                    </div>
+                    <p>Obstacle immergé</p>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="sous_partie">
+        <h3 id="alimentation">ALIMENTATION</h3>
+        <br>
+        <div id="video_alimentation">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/z-aweXLYwrA?si=jK9rNO54SHtHHJrq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div id="visuel_animaux">
+            <div class="famille">
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ablette.webp" alt="ablette">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/carpe.webp" alt="carpe">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/gardon.webp" alt="gardon">                                
+                    </div>
+                    <p>Poissons blancs (ablette, carpe, gardon, brème, rotengle...)</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                    <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet.webp" alt="brochet">                                             
+                    </div>
+                    <p>Cannibalisme du brochet</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ecrevisse.webp" alt="ecrevisse">                                             
+                    </div>
+                    <p>Ecrevisse</p>
+                </div>
+            </div>
+            <div class="famille">
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/grenouille.webp" alt="grenouille">                                             
+                    </div>
+                    <p>Grenouille</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/caneton.webp" alt="caneton">                                             
+                    </div>
+                    <p>Caneton</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/campagnol.webp" alt="campagnol"> 
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/souris.webp" alt="souris">                                           
+                    </div>
+                    <p>Rongeurs (souris, campagnol...)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sous_partie">
+        <h3 id="reproduction">REPRODUCTION</h3>       
+        
+        <div class="circle-container">
+
+            <div class="cycle">
+                <!--svg est une div spéciale qui sert à accueillir des formes type cercle, courbe...-->
+                <svg width="800" height="800">
+                    <!--cx="400" ça veut dire que le centre du cercle est en position horizontale 400px du svg et même chose pour le vertical pour cy-->
+                    <circle class="track" cx="400" cy="400" r="260" /> <!--cercle blanc-->
+                    <circle class="progress" cx="400" cy="400" r="260" /><!--cercle vert-->
+                </svg>
+            </div>
+
+            <div class="commentaires">            
+                <div class="info-box" id="infoBox">
+                    Cliquez sur une bulle pour découvrir les étapes de reproduction.
+                </div>
+                <button onclick="undoStep()" class="undo-button">Revenir à la bulle précédente</button>
+                <button onclick="return_to_step1()" class="undo-button">Revenir à la confuguration de base</button>                
+            </div>
+
+        </div>
+        <div id="video_reproduction">
+            <lite-youtube class="ma-video" videoid="FgGtz5AB8I8"></lite-youtube>
+            <p>Vidéo de la reproduction du brochet</p>
+            <!--<a href="https://www.youtube.com/watch?v=FgGtz5AB8I8" alt="lien_vidéo_youtube_reproduction_brochet" target="_blank">
+                <p><strong>LIEN VIDEO YOUTUBE REPRODUCTION BROCHET</strong></p>
+            </a>-->  
+        </div>
+    <!--<div class="sous_partie">
+        <h3>LEURRES POUR BROCHET</h3>
+
+        <select id="profondeur">
+            <option value="">--Sélectionner une profondeur--</option>            
+            <option value="surface">Suface</option>
+            <option value="proche surface">Proche de la surface</option>
+            <option value="eau intermédiaire">eau intermédiaire</option>
+            <option value="fond">Fond</option>
+        </select>        
+        <select id="saison">
+            <option value="">--Sélectionner une saison--</option>
+            <option value="printemps">Printemps</option>
+            <option value="été">Eté</option>
+            <option value="automne">Automne</option>
+            <option value="hiver">Hiver</option>            
+        </select>
+        
+        <button onclick="filtre()">Filtrer</button>
+
+        <div id="filtre_leurre">
+           
+        </div>
+
+    </div>-->
+
+    
+    </main>
+
+    
+    <div id="footer-placeholder"></div>
+
+    <!--<div id="cookies_background" class="hidden cookies">
+    <div id="cookies">        
+    </div> 
+    </div>   
+
+    lien vers le script js qui gère les cookies google analytics
+    <script src="script_gestion_cookies.js"></script>-->
+
+    <script src="script_nav_footer_barrederecherche.js"></script>
+
+
+    <script src="script_page_brochet.js"></script>
+
+</body>
+    
+</html>

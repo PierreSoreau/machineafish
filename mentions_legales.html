@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--lien vers la bibliotheque de supabase-->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <!--lien vers le site Font Awesome d'icône-->
+    <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
+    <!--lien entre css et html-->
+    <link rel="stylesheet" href="visuel.css">
+    <!--liens écritures-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+        rel="stylesheet">
+    <!--permet à ce que le visuel du site suive la largeur de l'écran, quelque soit la taille de l'écran-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions légales</title>
+    <meta name="description" content="page des mentions légales du site">
+</head>
+
+<body>
+    <div id="nav-placeholder"></div>
+    <main id="page_mentions_legales">
+
+        <section id="mentions-legales" class="mentions">
+            <h2>Mentions légales</h2><br>
+            <p>Nom du site : machine@fish</p>
+            <p>Propriétaire : Pierre SOREAU</p>
+            <p>Contact : <a href="mailto:machineafish@gmail.com">machineafish@gmail.com</a></p>
+            <p>Hébergeur : [Nom de ton hébergeur, adresse, téléphone]</p>
+            <p>Responsable de publication : Pierre SOREAU</p>
+        </section>
+
+        <section id="cookies1" class="mentions">
+            <h2>Cookies et traceurs</h2><br>
+            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site et pour des statistiques
+                anonymes.</p>
+            <p>Vous pouvez accepter ou refuser les cookies via le bandeau affiché à l'ouverture du site ou dans les paramètres de votre
+                navigateur.</p>            
+        </section>
+
+        <script>
+            function acceptCookies() {
+                document.cookie = "cookies_accepted=true; path=/; max-age=" + 60 * 60 * 24 * 365;
+                document.getElementById('cookies').style.display = 'none'; // ferme le bandeau
+            }
+
+            function declineCookies() {
+                document.cookie = "cookies_accepted=false; path=/; max-age=" + 60 * 60 * 24 * 365;
+                document.getElementById('cookies').style.display = 'none'; // ferme le bandeau
+            }
+        </script>
+
+        <section id="protection-donnees" class="mentions">
+            <h2>Protection des données personnelles</h2><br>
+            <p>Conformément au RGPD, nous collectons uniquement les données nécessaires pour :</p>
+            <ul>
+                <li>Répondre à vos messages via le formulaire de contact</li>
+                <li>Gérer votre compte utilisateur : nom, email, mot de passe et préférences associées</li>
+            </ul><br>
+            <p>Vos données de compte sont stockées en toute sécurité et utilisées uniquement pour vous permettre de vous
+                connecter et profiter des fonctionnalités du site.</p>
+            <p>Vous pouvez à tout moment :</p>
+            <ul>
+                <li>Modifier vos informations personnelles depuis votre compte</li>
+                <li>Supprimer votre compte et toutes vos données associées</li>
+            </ul><br>
+
+            <p>Pour toute demande de modification ou de suppression, contactez-nous à <a href="mailto:machineafish@gmail.com">machineafish@gmail.com</a>.</p>
+        </section>
+
+
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!--<div id="cookies_background">
+    <div id="cookies">        
+    </div> 
+    </div>    
+
+    <!--lien vers le script js qui gère les cookies google analytics-->
+    <!--<script src="script_gestion_cookies.js"></script>-->
+
+    <script src="script_nav_footer_barrederecherche.js"></script>
+
+</body>
+
+</html>

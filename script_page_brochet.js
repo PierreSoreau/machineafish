@@ -1,0 +1,282 @@
+//--------AFFICHER DETAILS EXPLICATION PHOTO MORPHOLOGIE AU CLIQUE SUR L'IMAGE------
+
+//Cette fonction permet d'afficher le détail de l'explication d'une morpho au clique sur l'image et fait disparaître les autres 
+function afficher(element) {
+  const items = document.querySelectorAll('.morphologie .photo_morpho');
+  const resetBtn = document.getElementById('resetBtn');
+  items.forEach(item => {
+    if (item !== element) {
+      item.classList.add('cache');
+      item.classList.remove('active');
+    }
+
+    else {
+      item.classList.add('active');
+      item.classList.remove('cache');
+    }
+  });
+  resetBtn.style.display = 'block';
+}
+
+//Cette fonction permet de revenir à l'affichage de toute les photos en appuyant sur le bouton revenir à toutes les photos 
+function resetmorpho() {
+  const items = document.querySelectorAll('.morphologie .photo_morpho');
+  const resetBtn = document.getElementById('resetBtn');
+  items.forEach(item => {
+    item.classList.remove('active');
+    item.classList.remove('cache');
+  });
+  resetBtn.style.display = 'none';
+}
+
+//---------------------------------------------------------------------------------
+
+//--------AFFICHER LES PHOTOS DES SPOTS DE PECHE EN FONCTION DU VOLET DEROULANT CHOISI------
+
+function changerVisuel() {
+  const saison = document.getElementById("saisonselect").value;
+  const visuelspotpea = document.getElementById("visuelspotpea");
+  const visuelspoth = document.getElementById("visuelspoth");
+
+  //Par défaut le visuel des spots sont masqués
+  visuelspotpea.style.display = "none";
+  visuelspoth.style.display = "none";
+
+  //Si le volet déroulant choisi est printemps_ete_automne alors on affiche les photos des spots associés à printemps été automne
+  //Les autres restent masqués. Même chose pour les visuels hiver 
+  if (saison === "printemps_ete_automne") {
+    visuelspotpea.style.display = "flex";
+  }
+
+  else if (saison === "Hiver") {
+    visuelspoth.style.display = "flex";
+  }
+}
+
+//----------------------------------------------------------------------------------------
+
+//--------AFFICHER VISUELS ET CONTENU ECRITS DES ETAPES DE REPRODUCTION-------------------
+
+const stepsHistory = [];
+const infos = [
+  "1. Entre février et avril, les mâles et les femelles à maturité sexuelle migrent vers les zones de frai.",
+  "2. Accouplement – le mâle suit la femelle et libère sa laitance.",
+  "3. Ponte des œufs à 7°C-11°C. Les œufs se collent sur la végétation.",
+  "4. Incubation – développement des œufs pendant 10-15 jours, naissance d'alevins avec ventouse.",
+  "5. Après 10 jours, l'alevin se décroche et peut nager.",
+  "6. En mai, le brocheton migre vers des zones calmes et végétalisées.",
+  "7. Croissance rapide : 20-30 cm en 1 an, maturité à 1-3 ans."
+];
+
+let stepsDone = 0;
+const totalSteps = infos.length;
+const circle = document.querySelector(".progress");
+const infoBox = document.getElementById("infoBox");
+
+function clickBubble(index, element) {
+  //Si l'élément de la fonction a été cliqué dans ce cas on fait rien si c'est de nouveau cliqué
+  //Sinon s'il a jamais été cliqué et qu'on clique dessus alors il est noté cliqué et on ajoute le paragraphe associé à la photo
+  //et on fait avancer le cercle vert
+
+  if (element.classList.contains("clicked")) return;
+
+  if (index > 0 && !bubbles[index - 1].classList.contains("clicked")) return;
+
+  element.classList.add("clicked");
+
+  if (stepsDone === 0) infoBox.textContent = '';
+
+  //Ajoute au fur et à mesure les paragraphes de description des étapes de repro associées aux images 
+  const paragraph = document.createElement("p");
+  paragraph.textContent = infos[index];
+  infoBox.appendChild(paragraph);
+  stepsHistory.push(element);
+  stepsDone++;
+
+  //Fait avancer le visuel du cercle vert au fur et à mesure des clics
+  //strokeDashoffset est une fonction css pour justement faire avancée le cercle vert
+  //Plus sa valeur est élevée plus il est masqué
+  const progressPercent = stepsDone / totalSteps;
+  const totalLength = 1633;
+  const offset = totalLength * (1 - progressPercent);
+  circle.style.strokeDashoffset = offset;
+}
+
+const container = document.querySelector('.cycle');
+const radius = 260;
+const centerX = 400;
+const centerY = 400;
+const images = [
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/migration_vers_frayere.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/reproduction_brochet_frayere.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_brochets.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Alevin_accroche_avec_vesicule_vitelline.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Brocheton.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/herbiers.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_cycle.webp'
+];
+
+const picturenumber=[1,2,3,4,5,6,7]
+//Pour chaque image du tableau image situé juste au dessus on leur associe une position sur le cercle (x,y)
+//On les mets dans le html brochet
+//On leur demande les fonctionnalités de clickbubble au click via setattribute 
+images.forEach((src, i) => {
+  const angle = (2 * Math.PI / images.length) * i - Math.PI / 2;
+  const x = centerX + radius * Math.cos(angle);
+  const y = centerY + radius * Math.sin(angle);  
+
+  //création de la div bubble
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  //les trois lignes qui suivent permettent de positionner précisément la bulle sur le cercle
+  bubble.style.left = `${x}px`;
+  bubble.style.top = `${y}px`;
+  bubble.style.transform = 'translate(-50%, -50%)';
+  bubble.setAttribute('onclick', `clickBubble(${i}, this)`);
+  //crée l'image
+  const img = document.createElement('img');
+  const p= document.createElement('p');
+  p.textContent=picturenumber[i];
+  img.src = src;
+  img.alt = `etape_${i}`;
+  //met la div img dans bubble
+  bubble.appendChild(img);
+  bubble.appendChild(p);
+  //met la div bubble dans container
+  container.appendChild(bubble);
+});
+
+const bubbles = document.querySelectorAll('.bubble')
+//fonction qui permet de faire l'inverse de clickbubble, c'est à dire retirer le paragraphe de la dernière étape
+//faire reculer le cercle vert
+//Ces étapes fonctionnent en cliquant sur le bouton qui s'appelle revenir à l'étape précédente
+function undoStep() {
+  if (stepsDone === 0) return;
+  //pop retire le dernier paragraphe du tableau stepHistory 
+  const lastElement = stepsHistory.pop();
+  //Retrait de la class clicked du dernier élément pour qu'il puisse être recliqué après
+  lastElement.classList.remove("clicked");
+  stepsDone--;
+
+  //Retrait du dernier paragraphe du html
+  const lastParagraph = infoBox.querySelector('p:last-child');
+  if (lastParagraph) lastParagraph.remove();
+
+  if (stepsDone === 0) {
+    infoBox.textContent = "Cliquez sur une bulle pour découvrir les étapes de reproduction.";
+  }
+
+  //Fait reculer étapes par étapes le cercle vert
+  //Le calcul est le même que clickbubble, la seule différence c'est que stepsDone est de plus en plus négatif
+  //au lieu de plus en plus positif dans clickbubble du coup on part de 1633 et après ça augmente 
+  const progressPercent = stepsDone / totalSteps;
+  const totalLength = 1633;
+  const offset = totalLength * (1 - progressPercent);
+  circle.style.strokeDashoffset = offset;
+}
+
+function return_to_step1() {
+  const bubbles = document.getElementsByClassName('bubble');
+  const paragraph = infoBox.querySelectorAll('p');
+
+
+  Array.from(bubbles).forEach((el) => {
+    if (!el.classList.contains("clicked")) return;
+    el.classList.remove("clicked")
+  });
+
+  Array.from(paragraph).forEach((p) => {
+    p.remove();   
+
+  });
+
+  infoBox.textContent="Cliquez sur une bulle pour découvrir les étapes de reproduction.";
+
+  stepsDone = 0;
+  stepsHistory = [];
+  circle.style.strokeDashoffset = 1633
+
+}
+
+//--------FILTRER LE VISUEL LEURRES/ANIMATIONS EN FONCTION DE LA SAISON ET DE LA PROFONDEUR-------------------
+
+
+
+const supabaseClient = supabase.createClient(
+  "https://dbaqpiukoronlivotpcl.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRiYXFwaXVrb3Jvbmxpdm90cGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA4Nzc1NDEsImV4cCI6MjA2NjQ1MzU0MX0.7kXwZJDAOHZ5Ov9fehi3ORm5nqVDfE_xWfQY_C1FYro"
+);//Fait le lien entre mon projet supabase et les codes
+
+console.log("Client Supabase initialisé :", supabaseClient);
+
+//Fonction qui permet d'afficher le visuel des leurres 
+function afficherleurres(leurres) {
+  const div = document.getElementById('filtre_leurre');
+  if (!div) return;
+  div.innerHTML = '';
+  //Pour chaque ligne du tableau leurre on affiche les div suivantes présentes dans la div filtre leurre
+  leurres.forEach(l => {
+    div.innerHTML += `
+      <div class="Leurre">
+        <h3>${l.nom}</h3>
+        <div class="visuel_animation_leurre">
+          <div class="leurre" style="background-image: url('${l.image}');">
+            <h3>Visuel du leurre</h3>
+          </div>
+          <div class="leurre">
+            <video autoplay muted loop playsinline preload="auto" class="animation">
+              <source src="${l.video_animation_leurre}" type="video/mp4"/>
+              Votre navigateur ne supporte pas la vidéo
+            </video>
+            <h3>Animation du leurre: ${l.animation}</h3>
+          </div>
+          <div class="leurre">
+            <video autoplay muted loop playsinline preload="auto" class="animation">
+              <source src="${l.video_animation_canne}" type="video/mp4"/>
+              Votre navigateur ne supporte pas la vidéo
+            </video>
+            <h3>Animation de la canne: ${l.animation}</h3>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+//Fonction qui permet de relever les données de saison et profondeur filtrées sur le site et de prendre les données supabase associées à ces filtres
+//puis d'afficher le visuel/animation des leurres via la fonction afficherleurres()
+async function filtre() {
+  const profondeur = document.getElementById('profondeur').value;
+  const saison = document.getElementById('saison').value;
+  if (!profondeur) return;
+  if (!saison) return;
+
+  let query = supabaseClient.from('leurres_brochet').select('*');
+
+  if (profondeur) {
+    query = query.contains('profondeur', [profondeur])//Les lignes de ma table supabase contenant la valeur surface par ex présente dans la colonne profondeur de supabase
+    //'profondeur' c'est le nom de la colonne dans supabase et [profondeur] c'est le contenu de la colonne
+  };
+  if (saison) {
+    query = query.contains('saison', [saison])//Les lignes de ma table supabase contenant la valeur saison filtrée présente dans la colonne saison
+  };
+
+  const { data, error } = await query; //Là on a un await pour le query parce que si on a pas cette donnée on pourra pas lancer afficherleurres correctement donc faut être sûr d'avoir data avat de lancer la fonction
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  //Fonction qui permet d'afficher le visuel/animation des leurres représentant les lignes data
+  afficherleurres(data);
+}
+
+
+
+
+
+
+
+
+

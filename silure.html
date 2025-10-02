@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--lien vers le site Font Awesome d'icône-->
+    <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
+    <!--lien entre css et html-->
+    <link rel="stylesheet" href="visuel.css">
+    <!--liens écritures-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silure</title>
+    <meta name="description" content="page de description du silure(morphologie, habitats, alimentation, reproduction)">
+</head>
+
+<body>
+
+    <div id="nav-placeholder"></div>
+
+
+    <main id="page_silure">
+
+        <div id="pres_silure">
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/silure.webp"
+                alt="silure">
+        </div>
+
+        <div class="navig_poisson">
+            <a href="#morphologie">Morphologie</a>
+            <a href="#habitats">Habitats</a>
+            <a href="#alimentation">Alimentation</a>
+            <a href="#reproduction">Reproduction</a>
+
+        </div>
+
+        <div class="sous_partie">
+            <h3 id="morphologie">MORPHOLOGIE</h3>
+            <div id="taille_silure">
+                <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/taille_silure.webp" alt="taille_silure">
+            </div>
+            <div id="morpholo">                
+                <img class="image_silure" id="dents" onclick="morphodescriptiontext('dents',0)" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/dents_silure.webp" alt="dents">
+                <img class="image_silure" id="barbillons" onclick="morphodescriptiontext('barbillons',1)"src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/barbillon_silure.webp" alt="barbillons">
+                <img class="image_silure" id="bouche" onclick="morphodescriptiontext('bouche',2)" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/bouche_silure.webp" alt="bouche">
+                <img class="image_silure" id="ligne_laterale" onclick="morphodescriptiontext('ligne_laterale',3)" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ligne_laterale_silure.webp" alt="ligne latérale">
+                <img class="image_silure" id="narines" onclick="morphodescriptiontext('narines',4)" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/narines_silure.webp" alt="narines">                
+                
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script_nav_footer_barrederecherche.js"></script>
+    <script src="script_page_silure.js"></script>
+
+
+
+
+
+</body>
+
+</html>

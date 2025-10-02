@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--lien vers la bibliotheque de supabase-->  
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>     
+    <!--lien vers le site Font Awesome d'icône-->
+    <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
+    <!--lien entre css et html-->
+    <link rel="stylesheet" href="visuel.css"> 
+    <!--liens écritures-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <!--permet à ce que le visuel du site suive la largeur de l'écran, quelque soit la taille de l'écran--> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matériel</title>
+    <meta name="description" content="page de description du matériel à utiliser pour bien commencer la pêche du carnassier au leurre du bord">
+</head>
+<body>   
+    <div id="nav-placeholder"></div>
+    <main id="page_materiel">
+         <div id="questionnaire"></div>
+
+    </main>
+
+    <div id="footer-placeholder"></div>   
+    
+    <!--<div id="cookies_background">
+    <div id="cookies">        
+    </div> 
+    </div>    
+
+    <!--lien vers le script js qui gère les cookies google analytics-->
+    <!--<script src="script_gestion_cookies.js"></script>-->
+
+    <script src="script_nav_footer_barrederecherche.js"></script>
+
+   
+
+    <script src="script_page_materiel.js"></script>
+
+    <!--lien vers le site supabase-->
+    
+
+    <!--<script>
+        //Connection à supabase
+        //const supabaseUrl = "https://dbaqpiukoronlivotpcl.supabase.co";
+        //const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRiYXFwaXVrb3Jvbmxpdm90cGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA4Nzc1NDEsImV4cCI6MjA2NjQ1MzU0MX0.7kXwZJDAOHZ5Ov9fehi3ORm5nqVDfE_xWfQY_C1FYro"; // ta clé anon publique
+        //const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        /*console.log("Connexion Supabase OK :", supabaseClient);
+
+        async function get_questions(){
+            let {data: questions, error}=await supabaseClient 
+            .from('questions')
+            .select ('*')
+            .order('id', { ascending: true });
+
+            if (error){
+                console.error(error);
+                return[];
+            }
+            return questions;
+        } 
+
+        let currentindex=0;
+        let questions=[];
+
+        async function start_questionnaire(){
+            questions=await get_questions();
+            showquestion(currentindex);
+        }
+
+        function showquestion(index){
+
+            if (index>=questions.length){
+                showresult();
+                return;
+            }
+
+            let container=document.getElementById('questionnaire');
+            container.innerHTML='';
+
+            let q=questions[index];
+
+            let questionaffiche=document.createElement('h2');
+            questionaffiche.textContent=q.contenu_question;
+            container.appendChild(questionaffiche);
+
+            let options=JSON.parse(q.options);
+
+            options.forEach(element => {
+                const btn=document.createElement('button');
+                btn.textContent=element;
+                btn.style.margin='10px';
+                btn.style.fontSize='1.5em';
+                btn.onclick=()=>{
+                    saveAnswer(q.id,element);
+                    currentindex++;
+                    showquestion(currentindex);
+                }
+                container.appendChild(btn);       
+            });
+        
+        }
+
+        async function saveAnswer(questionId,answer){
+            const{data,error}=await supabaseClient
+            .from(reponses_utilisateurs)
+            .insert([{ questions_id: questionId, reponse: answer }]);
+            if (error) console.error(error);
+        }
+
+        async function getUserAnswers(userId) {
+            const { data: reponses, error } = await supabaseClient
+            .from('reponses_utilisateurs')
+            .select('question_id, reponse')
+            .eq('user_id', userId);
+
+            if (error) {
+                console.error("Erreur récupération réponses :", error);
+                return null;
+            }
+
+            // On mappe directement dans un objet
+            const answers = {
+                etendue: null,
+                poisson: null,
+                saison: null,
+                taillePoisson: null,
+                profondeur: null,
+                courant: null,
+                encombrement: null
+            };
+
+            for (const rep of reponses) {
+                switch (rep.question_id) {
+                    case 1: answers.etendue = rep.reponse; break;
+                    case 2: answers.poisson = rep.reponse; break;
+                    case 3: answers.saison = rep.reponse; break;
+                    case 4: answers.taillePoisson = rep.reponse; break;
+                    case 5: answers.profondeur = rep.reponse; break;
+                    case 6: answers.courant = rep.reponse; break;
+                    case 7: answers.encombrement = rep.reponse; break;
+                }
+            }
+
+            return answers;
+}
+
+        
+
+        //---------------TROUVER LES CANNES ADAPTEES A L'UTILISATEUR-----------------------
+
+        async function getrecommendedcanne(userId){
+            const answers = await getUserAnswers(userId);             
+            
+            const { data: milieuData } = await supabaseClient
+                .from('milieu')
+                .select('id')
+                .eq('nom', answers.etendue); // etendue = texte de la réponse
+            const milieuId = milieuData[0].id;
+
+            const { data: canneMilieuData } = await supabaseClient
+                .from('canne_milieu')
+                .select('canne_id')
+                .eq('milieu_id', milieuId);
+
+            const canneIDmilieu=canneMilieuData.map(cm=>cm.canne_id);            
+
+            const{ data : poissondata}=await supabaseClient
+            .from('poisson')
+            .select('poisson_id')
+            .eq('nom',answers.poisson);
+
+            const poissonID=poissondata[0].id;
+
+            const{ data : cannepoissondata}=await supabaseClient
+            .from('poisson_canne')
+            .select('canne_id')
+            .eq('poisson_id',poissonID);
+
+            const canneIDpoisson=cannepoissondata.map(cm=>cm.canne_id);
+            
+            const canneIDsFinal = canneIDmilieu
+                .filter(id => canneIDpoisson.includes(id)); 
+
+            if (canneIDsFinal.length === 0) return [];
+            
+            let query = supabaseClient
+            .from('canne')
+            .select('*')
+            .in('id', canneIDsFinal);                
+
+            if(answers.taillePoisson==="oui, je veux mon poisson record" && answers.poisson==="brochet"){          
+
+                query = query
+                .gte('poids_maxi',50);         
+            }
+
+            else if(answers.taillePoisson==="oui, je veux mon poisson record" && answers.poisson==="silure"){
+                query = query
+                .gt('poids_maxi',50);
+            }
+
+            else if(answers.taillePoisson==="oui, je veux mon poisson record" && (answers.poisson === "perche" || answers.poisson === "sandre")){
+                
+                query = query                
+                .eq('poids_maxi',35);  
+            }
+            
+            const { data, error } = await query;
+
+            if (error) {
+            console.error("Erreur récupération cannes :", error);
+            return [];
+            }
+
+            return data;
+            
+        }
+        //---------------------------------------------------------------------------------
+
+        //---------------TROUVER LES MOULINETS ADAPTES A L'UTILISATEUR-----------------------
+
+        async function getrecommendedmoulinet(userId){
+            const answers = await getUserAnswers(userId);
+            const cannes=await getrecommendedcanne(userId);
+            const canneID=cannes.map(c=>c.id);
+
+            const {data:moulinetID}=await supabaseClient
+            .from('canne_moulinet')
+            .select('moulinet_id')
+            .in('canne_id',canneID);
+
+            const moulinetid=moulinetID.map(c=>c.moulinet_id);   
+            
+            let query=supabaseClient
+                    .from('moulinet')
+                    .select('*')
+                    .in('id',moulinetid);
+
+            if(answers.saison==="hiver"){
+
+                query=query.lte('ratio',5);
+            }
+
+            const { data: moulinetfinal, error: moulinetError } = await query;
+
+            if (moulinetError) {
+                console.error(moulinetError);
+                return [];
+            }
+
+            return moulinetfinal;           
+           
+        }
+
+
+
+        async function showResult() {            
+            const cannes=await getrecommendedcanne(userId);
+            const moulinets=await getrecommendedmoulinet(userId);
+            const container = document.getElementById('question-container');
+
+            let html='';
+
+            if (!cannes || cannes.length === 0) {
+                html+= `<p>Aucune canne trouvée correspondant à vos critères.</p>`;                
+            }
+
+            if (!moulinets || moulinets.length === 0){
+                html+= `<p>Aucun moulinet trouvé correspondant à vos critères.</p>`;
+            }
+            if (cannes && cannes.length > 0){
+                html+=`<h2>Voici les cannes adaptées pour vos besoins:</h2><ul>`;
+
+                cannes.forEach(canne => {
+                    html += `
+                        <li>                        
+                            Longueur : ${canne.longueur}<br>                            
+                            Puissance mini : ${canne.poids_mini} g<br>
+                            Puissance maxi : ${canne.poids_maxi} g<br>
+                            Action de canne : ${canne.action} <br>               
+                        </li>
+                    `;
+                });
+
+                html += `</ul>`;
+            }
+
+            if (moulinets && moulinets.length > 0) {
+                html+=`<h2>Voici les moulinets adaptés pour vos besoins:</h2><ul>`;
+                moulinets.forEach(moulinet => {
+                html += `
+                    <li>                        
+                        Taille de bobine : ${moulinet.taille_bobine}<br>
+                        Ratio : ${moulinet.ratio}<br>                                      
+                    </li>
+                `;
+                });
+            html += `</ul>`;
+            }
+            container.innerHTML = html;
+            
+
+            return html;
+
+        }
+
+
+
+            
+            // Ici, tu peux calculer ou récupérer le résultat depuis la base
+        
+
+        
+        start_questionnaire();
+
+
+
+
+    </script>-->
+
+    
+
+    
+    
+</body>
+
+</html>
