@@ -979,7 +979,7 @@ h3 {
     background-color: lightgray;
 }
 
-#synthese {
+.synthese {
     display: block;
     background-color: black;
     color: white;
@@ -988,7 +988,7 @@ h3 {
 }
 
 
-#titre_synthese {
+.titre_synthese {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -997,17 +997,17 @@ h3 {
     margin-bottom: 10px;
 }
 
-#titre_synthese p {
+.titre_synthese p {
     font-size: 20px;
 }
 
-#contenu_synthese {
+.contenu_synthese {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-#contenu_synthese_1 {
+.contenu_synthese_1 {
     max-width: 400px;
     border: 3px solid white;
     padding: 10px;
@@ -1466,10 +1466,23 @@ circle.progress {
     display: flex;
     align-items: center;
     justify-content: center;
+    height:200px;
+    width:800px;
+    
+    
+
+}
+
+.textmorpho {
+    width:400px;
+    height:auto;   
+
 }
 
 #reset{
-    cursor:pointer
+    cursor:pointer;
+    width:150px;
+    height:100%;
 }
 
 /*STYLE PAGE MATERIEL*/
