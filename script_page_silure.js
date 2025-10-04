@@ -31,7 +31,7 @@ function morphodescriptiontext(name, i) {
 
 
     const textmorpho = document.createElement("div")
-    textmorpho.id = `textmorpho_${i}`
+    textmorpho.classList = `textmorpho`
     const pmorpho = document.createElement("p")
     pmorpho.innerText = morpho[i]
     pmorpho.style.color="white";
@@ -47,6 +47,7 @@ function morphodescriptiontext(name, i) {
     descriptionmorpho.appendChild(textmorpho)
     textmorpho.appendChild(pmorpho)
     morpholo.appendChild(descriptionmorpho)
+    morpholo.style.justifyContent="flex-start";
 
      images.forEach(el => {
     if (el.id === name) {
@@ -66,6 +67,7 @@ function morphodescriptiontext(name, i) {
             el.style.transform = "";
             el.style.transition = "";
         });
+        morpholo.style.justifyContent="center";
     });
 }
 
