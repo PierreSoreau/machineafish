@@ -1005,6 +1005,7 @@ h3 {
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .contenu_synthese_1 {
@@ -1043,72 +1044,51 @@ h4 {
     color: white;
 }
 
+.condi_habitat{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap:200px;
+}
+
 .titre {
     display: flex;
     gap: 5px;
     margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 .titre i {
     color: white;
-    margin-left: 5px;
 }
 
-#milieu_aquatique {
+.titre img{
+    width:400px;
+    height:300px;
+}
+
+.milieu_aquatique {
     display: flex;
-    gap: 10px;
+    gap: 30px;
     color: white;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.type_eau1 {
-    text-align: center;
-}
-
-.type_eau2 {
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    /* pour couper l'image si besoin */
-}
-
-.type_eau2 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* pour que l'image couvre sans déformer */
-    display: block;
-    /* évite un petit espace blanc sous l'image */
-    border-radius: 20px;
-}
-
-#courant {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-}
-
-#courant img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* pour que l'image couvre sans déformer */
-    display: block;
-    /* évite un petit espace blanc sous l'image */
-    border-radius: 20px;
-
-
-}
-
-#saisonselect {
+.saisonselect {
     text-align: center;
     text-align-last: center;
     font-family: Roboto Flex;
-    font-size: 15px;
+    font-size: 20px;
     padding: 10px;
     margin-bottom: 10px;
-}
+}    
 
 #visuelspot {
     color: white;
@@ -1122,46 +1102,59 @@ h4 {
 #visuelspotpea {
     gap: 10px;
     flex-wrap: wrap;
+    align-items: flex-start;
+    display: flex;
 
 }
 
 #visuelspoth {
     gap: 10px;
     flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.spot1 p {
+    text-align: center;
+    font-size: 16px; 
+    color:white;
+    width:300px;
+    height:auto;
+    
+    
+   
 }
 
 .spot1 {
-    text-align: center;
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.spot2 {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
-    background-color: white;
-    margin-bottom: 10px;
+    flex-direction: column;           
+    margin-bottom:10px;
+    
+        
 
 }
 
 .spot2 img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
+    max-width: 300px;
+    max-height: 300px; 
+          
     /* évite un petit espace blanc sous l'image */
 
+}
+
+.spot2{
+    background-color: white;
+    width: 300px;
+    height:300px; 
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .spot2 video {
     max-width: 100%;
     height: auto;
-    object-fit: cover;
-    display: block;
     /* évite un petit espace blanc sous l'image */
 }
 
@@ -1437,6 +1430,11 @@ circle.progress {
     justify-content: center;
 }
 
+#taille_silure img{
+    width:400px;
+    height:auto;
+}
+
 #morpholo img{        
     transition: trasnform 0.2s ;
     width:200px;
@@ -1483,6 +1481,24 @@ circle.progress {
     cursor:pointer;
     width:150px;
     height:100%;
+}
+
+.type_eau{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.type_eau img{
+    width:200px;
+    height:auto;
+    border-radius:5px;
+}
+
+.type_eau p{
+    font-size: 20px;
 }
 
 /*STYLE PAGE MATERIEL*/

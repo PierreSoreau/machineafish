@@ -34,7 +34,7 @@ function resetmorpho() {
 //--------AFFICHER LES PHOTOS DES SPOTS DE PECHE EN FONCTION DU VOLET DEROULANT CHOISI------
 
 function changerVisuel() {
-  const saison = document.getElementById("saisonselect").value;
+  const saison = document.querySelector(".saisonselect").value;
   const visuelspotpea = document.getElementById("visuelspotpea");
   const visuelspoth = document.getElementById("visuelspoth");
 
