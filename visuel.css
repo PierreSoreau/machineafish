@@ -1165,7 +1165,7 @@ h4 {
 
 
 
-#video_alimentation {
+.video_alimentation {
     width: 100%;
     display: flex;
     align-items: center;
@@ -1173,14 +1173,14 @@ h4 {
 
 }
 
-#video_alimentation iframe {
-    max-width: 560px;
-    border: none;
-}
-
-#visuel_animaux {
+#visuel_animaux {    
+    display: flex;
     gap: 10px;
-    display: block;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .animal1 {
@@ -1200,12 +1200,9 @@ h4 {
     margin-bottom: 10px;
 }
 
-.famille {
-    gap: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.animal2 img{
+    width:300px;
+    height:300px;
 }
 
 /*visuel sous partie reproduction de la page brochet*/

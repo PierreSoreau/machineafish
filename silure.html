@@ -16,6 +16,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silure</title>
     <meta name="description" content="page de description du silure(morphologie, habitats, alimentation, reproduction)">
+    <!--lien pour voir les vidéos youtube-->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.0/src/lite-yt-embed.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.0/src/lite-yt-embed.css">
+
+
 </head>
 
 <body>
@@ -134,11 +139,12 @@
                 <div class="titre">
                     <i class="fa-solid fa-temperature-three-quarters"></i>
                     <h4>TEMPERATURE</h4>
-                    <img id=temperature_silure src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/jauge_temperature_silure.webp"
+                    <img id=temperature_silure
+                        src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/jauge_temperature_silure.webp"
                         alt="jauge_temperature">
                 </div>
 
-            
+
             </div>
 
             <div class="titre">
@@ -166,14 +172,14 @@
                                 alt="cassant">
                         </div>
                         <p>Cassant</p>
-                    </div>                    
+                    </div>
                     <div class="spot1">
                         <div class="spot2">
                             <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/branche_immergee_v3.webp"
                                 alt="branche_immergee">
                         </div>
                         <p>Branche immergée</p>
-                    </div>                    
+                    </div>
                     <div class="spot1">
                         <div class="spot2">
                             <video autoplay muted loop playsinline preload="auto">
@@ -195,7 +201,7 @@
                             </video>
                         </div>
                         <p>En périphérie d'une chute d'eau</p>
-                    </div>                    
+                    </div>
                     <div class="spot1">
                         <div class="spot2">
                             <video autoplay muted loop playsinline preload="auto">
@@ -296,6 +302,82 @@
 
         <div class="sous_partie">
             <h3 id="alimentation">ALIMENTATION</h3>
+            <br>
+            <div class="video_alimentation">
+                <lite-youtube class="ma-video" videoid="-mcvqrbQU20"></lite-youtube>
+            </div>
+
+            <div id="visuel_animaux">
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ablette.webp"
+                            alt="ablette">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/carpe.webp"
+                            alt="carpe">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/gardon.webp"
+                            alt="gardon">
+                    </div>
+                    <p>Poissons blancs (ablette, carpe, gardon, brème, rotengle...)</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/silure.webp"
+                            alt="silure">
+                    </div>
+                    <p>Cannibalisme du silure</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ecrevisse.webp"
+                            alt="ecrevisse">
+                    </div>
+                    <p>Ecrevisse</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/corbicule.webp"
+                            alt="palourde d'eau douce">
+                    </div>
+                    <p>Palourde d'eau douce</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/grenouille.webp"
+                            alt="grenouille">
+                    </div>
+                    <p>Grenouille</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/caneton.webp"
+                            alt="caneton">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/pigeon.png.webp"
+                            alt="pigeon">
+                    </div>
+                    <p>Canetons, pigeons</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/campagnol.webp"
+                            alt="campagnol">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/souris.webp"
+                            alt="souris">
+                    </div>
+                    <p>Rongeurs (souris, campagnol...)</p>
+                </div>
+                <div class="animal1">
+                    <div class="animal2">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ephemere.webp"
+                            alt="ephémère">
+                        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/libellule.webp"
+                            alt="libellule">
+                    </div>
+                    <p>Insectes (libellules, ephémères...)</p>
+                </div>
+            </div>
+
+            <div class="sous_partie">
+            <h3 id="reproduction">REPRODUCTION</h3>
 
     </main>
 
