@@ -1081,6 +1081,11 @@ h4 {
     margin-top: 20px;
 }
 
+#temperature_brochet{
+    width:300px;
+    height:auto;
+}
+
 .saisonselect {
     text-align: center;
     text-align-last: center;
@@ -1499,6 +1504,11 @@ circle.progress {
 
 .type_eau p{
     font-size: 20px;
+}
+
+#temperature_silure{
+    width:300px;
+    height:auto;
 }
 
 /*STYLE PAGE MATERIEL*/
