@@ -65,7 +65,7 @@ const infos = [
   "4. Incubation – développement des œufs pendant 10-15 jours, naissance d'alevins avec ventouse.",
   "5. Après 10 jours, l'alevin se décroche et peut nager.",
   "6. En mai, le brocheton migre vers des zones calmes et végétalisées.",
-  "7. Croissance rapide : 20-30 cm en 1 an, maturité à 1-3 ans."
+  "7. Croissance rapide : 20-30 cm en 1 an, maturité sexuelle pour les mâles 2 à 3 ans pour une taille entre 30 et 40cm, pour les femelles 3 à 5 ans pour une taille entre 45 et 55cm."
 ];
 
 let stepsDone = 0;
