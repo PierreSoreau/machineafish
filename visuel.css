@@ -500,9 +500,9 @@ nav {
 
 footer {
     display: flex;
-    background-color: black;
-    margin-top: 20px;
+    background-color: black;   
     color: white;
+    border-top:6px solid white;
 
 }
 
@@ -873,6 +873,7 @@ footer a:hover {
 
 #page_brochet {
     padding-top: 160px;
+    background-color: black;
 
 }
 
@@ -1405,13 +1406,9 @@ circle.progress {
 
 /*VISUEL PAGE SILURE*/
 
-#page_silure {
-    padding-top: 160px;
-
-}
-
 #page_silure{
     background-color: black;
+    padding-top: 160px;
 }
 
 #pres_silure{
@@ -1438,7 +1435,7 @@ circle.progress {
 }
 
 #morpholo img{        
-    transition: trasnform 0.2s ;
+    transition: transform 0.2s ;
     width:200px;
     height:200px;
     border-radius: 50%;
@@ -1468,8 +1465,6 @@ circle.progress {
     justify-content: center;
     height:200px;
     width:800px;
-    
-    
 
 }
 
@@ -1506,6 +1501,32 @@ circle.progress {
 #temperature_silure{
     width:300px;
     height:auto;
+}
+
+/*VISUEL PAGE PERCHE*/
+
+#page_perche {
+    padding-top: 160px;
+    background-color: black;
+}
+
+
+#pres_perche{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pres_perche img{
+    width:auto;
+    height:300px;
+
+}
+
+#taille_perche{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*STYLE PAGE MATERIEL*/
