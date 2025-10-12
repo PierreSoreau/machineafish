@@ -1529,6 +1529,11 @@ circle.progress {
     justify-content: center;
 }
 
+#temperature_perche{
+    width:300px;
+    height:auto;
+}
+
 /*STYLE PAGE MATERIEL*/
 
 

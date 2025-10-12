@@ -1,3 +1,5 @@
+//--------- VISUEL PARTIE MORPHOLOGIE-------------------
+
 function morphodescriptiontext(name, i) {
     const image = document.getElementById(name)
     const morpholo = document.getElementById("morpholo")
@@ -68,4 +70,27 @@ function morphodescriptiontext(name, i) {
         });
         morpholo.style.justifyContent="center";
     });
+}
+
+//--------- VISUEL PARTIE HABITATS-------------------
+
+
+function changerVisuel() {
+  const saison = document.querySelector(".saisonselect").value;
+  const visuelspotpea = document.getElementById("visuelspotpea");
+  const visuelspoth = document.getElementById("visuelspoth");
+
+  //Par défaut le visuel des spots sont masqués
+  visuelspotpea.style.display = "none";
+  visuelspoth.style.display = "none";
+
+  //Si le volet déroulant choisi est printemps_ete_automne alors on affiche les photos des spots associés à printemps été automne
+  //Les autres restent masqués. Même chose pour les visuels hiver 
+  if (saison === "printemps_ete_automne") {
+    visuelspotpea.style.display = "flex";
+  }
+
+  else if (saison === "Hiver") {
+    visuelspoth.style.display = "flex";
+  }
 }

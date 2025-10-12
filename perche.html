@@ -138,8 +138,153 @@
                     <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Jauge_faible.webp"
                         alt="jauge_faible">
                 </div>
-            
+            <div class="titre">
+                    <i class="fa-solid fa-temperature-three-quarters"></i>
+                    <h4>TEMPERATURE</h4>
+                    <img id=temperature_perche
+                        src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/jauge_temperature_perche.webp"
+                        alt="jauge_temperature">
+                </div>
+        </div>
 
+            <div class="titre">
+                <i class="fa-solid fa-location-dot"></i>
+                <h4>SPOTS DE PECHE</h4>
+                <select class="saisonselect" onchange="changerVisuel()">
+                    <option value="">-- Sélectionner une saison --</option>
+                    <option value="printemps_ete_automne">Printemps/Eté/Automne</option>
+                    <option value="Hiver">Hiver</option>
+                </select>
+            </div>
+
+            <div id="visuelspot">
+                <div id="visuelspotpea">
+                    <div class="spot1">
+                        <div class="spot2">
+                            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cassantbis.webp"
+                                alt="cassant">
+                        </div>
+                        <p>Cassant</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/nenuphar.webp"
+                                alt="nenuphar">
+                        </div>
+                        <p>Nénuphar</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/branche_immergee_v3.webp"
+                                alt="branche_immergee">
+                        </div>
+                        <p>Branche immergée</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/herbiers.webp"
+                                alt="herbiers">
+                        </div>
+                        <p>Herbiers</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <video autoplay muted loop playsinline preload="auto">
+                                <source
+                                    src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/bras_mort.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvYnJhc19tb3J0Lm1wNCIsImlhdCI6MTc1OTQ0MjgwMywiZXhwIjoxNzkwOTc4ODAzfQ.wSkEsDwfr-zvev-OFy731ixVgGwsK2YEuN41ibsMn4I"
+                                    type="video/mp4" />
+                                Votre navigateur ne supporte pas la vidéo
+                            </video>
+                        </div>
+                        <p>Bras mort</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <video autoplay muted loop playsinline preload="auto">
+                                <source
+                                    src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/chute_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvY2h1dGVfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTQ0Mjg1MywiZXhwIjoxNzkwOTc4ODUzfQ.tYiUFwJBgaOyd90BC0riJopgoO9DJtny3zZwgZIEQxM"
+                                    type="video/mp4" />
+                                Votre navigateur ne supporte pas la vidéo
+                            </video>
+                        </div>
+                        <p>En périphérie d'une chute d'eau</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <video autoplay muted loop playsinline preload="auto">
+                                <source
+                                    src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/pierre_surface_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvcGllcnJlX3N1cmZhY2VfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTgzNDU1MywiZXhwIjoxNzkxMzcwNTUzfQ.SD0PV1Oyj7c2Nk9TAIGo-aCnjJJpIvIy9uJmkHlV5lU"
+                                    type="video/mp4" />
+                                Votre navigateur ne supporte pas la vidéo
+                            </video>
+                        </div>
+                        <p>Obstacle pierre en surface</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <video autoplay muted loop playsinline preload="auto">
+                                <source
+                                    src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/pierre_dans_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvcGllcnJlX2RhbnNfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTgzNDY5MCwiZXhwIjoxNzkxMzcwNjkwfQ.64xIRBILCUE9v-C_ho7NwxfjwImeHBjha8b183YBUjw"
+                                    type="video/mp4" />
+                                Votre navigateur ne supporte pas la vidéo
+                            </video>
+                        </div>
+                        <p>Obstacle immergé</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <video autoplay muted loop playsinline preload="auto">
+                                <source
+                                    src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/croisement_riviere_V3.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvY3JvaXNlbWVudF9yaXZpZXJlX1YzLm1wNCIsImlhdCI6MTc1OTQ0MjkwMCwiZXhwIjoxNzkwOTc4OTAwfQ.Lhr_dTXlTIz7yjKOTQ9xtPUc7dxolsCgFkvE970tBLI"
+                                    type="video/mp4" />
+                                Votre navigateur ne supporte pas la vidéo
+                            </video>
+                        </div>
+                        <p>Rivière affluente</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <video autoplay muted loop playsinline preload="auto">
+                                <source
+                                    src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/pont.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvcG9udC5tcDQiLCJpYXQiOjE3NTk0NDI5MTgsImV4cCI6MTc5MDk3ODkxOH0.q6f449r4CxUN0utJXmGA3fM14LwfJ6K3Kq63RNq2e00"
+                                    type="video/mp4" />
+                                Votre navigateur ne supporte pas la vidéo
+                            </video>
+                        </div>
+                        <p>Pont</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <video autoplay muted loop playsinline preload="auto">
+                                <source
+                                    src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/arbres_surface_eau_V2.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvYXJicmVzX3N1cmZhY2VfZWF1X1YyLm1wNCIsImlhdCI6MTc1OTQ0Mjk0MSwiZXhwIjoxNzkwOTc4OTQxfQ.AI-QNY3SpMwKYa-kW9E0N0SzDatde766A7dK0AUiYoE"
+                                    type="video/mp4" />
+                                Votre navigateur ne supporte pas la vidéo
+                            </video>
+                        </div>
+                        <p>Arbres en surface de l'eau</p>
+                    </div>
+                    <div class="spot1">
+                        <div class="spot2">
+                            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/berge.webp"
+                                alt="berges">
+                        </div>
+                        <p>Berges</p>
+                    </div>
+
+
+                </div>
+
+                <div id="visuelspoth">                    
+                    <div class="spot1">
+                        <div class="spot2">
+                            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cassantbis.webp"
+                                alt="cassant">
+                        </div>
+                        <p>Cassant</p>
+                    </div>                    
+                </div>
+            </div>
         </div>
             
 
