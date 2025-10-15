@@ -338,12 +338,30 @@
                     <p>Larves</p>
                 </div>
             </div>
+            <div class="sous_partie">
+                <h3 id="reproduction">REPRODUCTION</h3>
+                <div class="circle-container">
 
+                    <div class="cycle">
+                        <!--svg est une div spéciale qui sert à accueillir des formes type cercle, courbe...-->
+                        <svg width="800" height="800">
+                            <!--cx="400" ça veut dire que le centre du cercle est en position horizontale 400px du svg et même chose pour le vertical pour cy-->
+                            <circle class="track" cx="400" cy="400" r="260" /> <!--cercle blanc-->
+                            <circle class="progress" cx="400" cy="400" r="260" /><!--cercle vert-->
+                        </svg>
+                    </div>
 
-
-
-
-
+                    <div class="commentaires">
+                        <div class="info-box" id="infoBox">
+                            Cliquez sur une bulle pour découvrir les étapes de reproduction.
+                        </div>
+                        <button onclick="undoStep()" class="undo-button">Revenir à la bulle précédente</button>
+                        <button onclick="return_to_step1()" class="undo-button">Revenir à la configuration de
+                            base</button>
+                    </div>
+                </div>
+            </div>
+            
             <div id="footer-placeholder"></div>
             <script src="script_nav_footer_barrederecherche.js"></script>
             <script src="script_page_perche.js"></script>
