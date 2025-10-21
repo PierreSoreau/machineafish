@@ -35,7 +35,7 @@ main {
 }
 
 nav {
-    background-image: url(https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cailloux.png) !important;
+    background-image: url(https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cailloux.webp) !important;
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
@@ -1506,7 +1506,7 @@ circle.progress {
 /*VISUEL PAGE PERCHE*/
 
 #page_perche {
-    padding-top: 160px;
+    padding-top: 180px;
     background-color: black;
 }
 
@@ -1520,6 +1520,7 @@ circle.progress {
 #pres_perche img{
     width:auto;
     height:300px;
+    border-radius: 10px;
 
 }
 
@@ -1534,6 +1535,34 @@ circle.progress {
     height:auto;
 }
 
+/*VISUEL PAGE SANDRE*/
+
+#page_sandre {
+    padding-top: 180px;
+    background-color: black;
+}
+
+#pres_sandre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pres_sandre img{
+    width:auto;
+    height:300px;
+    border-radius: 10px;
+
+}
+
+#taille_sandre{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 /*STYLE PAGE MATERIEL*/
 
 
@@ -1545,6 +1574,9 @@ circle.progress {
     flex: 1;
     padding-top: 160px;
 }
+
+
+
 
 #page_materiel>*:last-child {
     margin-bottom: 0;
