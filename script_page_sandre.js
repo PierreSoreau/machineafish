@@ -102,11 +102,11 @@ function changerVisuel() {
 const stepsHistory = [];
 
 const infos = [
-  "1. Entre mai et juillet, c'est la periode de frai. Les mâles constituent un nid fait de racine et d'algues dans une zone peu profonde au niveau des berges. La femelle libère ses oeufs qui sont instantanément fécondés par le mâle.", 
-  "2. Incubation – développement des œufs pendant 7 jours accrochés à la végétation du nid. Le nid est surveillé en permanence par le mâle qui se poste devant le nid",
-  "3. Après 2 à 4 jours, les oeufs éclosent et les alevins qui en ressortent s'accrochent au nid par une ventouse au niveau de leur bouche. Pendant cette phase, ils se nourrissent de leur sac vitellin (masse noire sur la photo) qui se résorbe au fur et à mesure de la consommation. ",
-  "4. 3 à 5 jours plus tard, l'alevin se décroche du nid. Il peut nager et se nourrir de zooplancton.",
-  "5. Sa croissance est ensuite rapide : 20-30 cm en 1 an, maturité secuelle des mâles vers 3 à 5 ans pour une taille d'environ 60 à 80cm, maturité sexuelle des femelles vers 4 à 6 ans pour une taille d'environ 80cm à 1m."
+  "1. Entre avril et juin, c'est la periode de frai lorsque la température de l'au atteint environ 15°C. Le mâle prépare un emplacement sur les herbiers, racines d'arbres dans le fond, sables graviers vers 2m de profondeur. La femelle libère ses oeufs qui sont instantanément fécondés par le mâle.", 
+  "2. Incubation – développement des œufs pendant 10 à 15 jours accrochés aux herbiers, racines, obstacles sur le fond. Le nid est surveillé en permanence par le mâle qui oxygène les oeufs à coups de nageoires",
+  "3. Après 10 à 15 jours, les oeufs éclosent et les alevins se nourrisent de leur poche vitelline",
+  "4. Environ 15 jours après l'éclosion, leur poche vitelline est résorbée et les juvéniles se nourrissent de zooplanctons ou de larves d'insectes",
+  "5. Le sandre devient ensuite exclusivement piscivoire lorsqu'il atteint 4 à 6 cm. Sa croissance est ensuite rapide : 20-30 cm en 1 an, maturité secuelle des mâles vers 2 à 3 ans contre 4 ans pour les femelles."  
 ];
 
 let stepsDone = 0;
@@ -148,11 +148,11 @@ const radius = 260;
 const centerX = 400;
 const centerY = 400;
 const images = [
-  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/nid_silure.webp',
-  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_silure.webp',
-  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/embryon_silure.webp',
-  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/alevin_silure.webp',
-  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/petit_silure.webp'  
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/branche_sous_eau.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_sandre.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/alevin_sandre.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/juvenile_sandre.webp',
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/petit_sandre.webp'  
 ];
 
 const picturenumber=[1,2,3,4,5]
