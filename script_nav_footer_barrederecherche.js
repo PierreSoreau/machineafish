@@ -1,24 +1,8 @@
-//--------AFFICHER FOOTER------------------------------------------------------
 
-//Ces 3 lignes permettent de mettre le footer.html dans une div d'un document html qui a en id "footer-placeholder"
-//Cela permet de modifier le footer et qu'il soit appliqué sur l'ensemble des docs html qui ont id "footer-placeholder"
-//Cela évite de faire des copier coller dans les html à chaque modif de footer 
-
-async function chargerFooter() {
-    try {
-        const footerRes = await fetch('footer.html');
-        const footerHTML = await footerRes.text();
-        document.getElementById('footer-placeholder').innerHTML = footerHTML;
-    } catch (error) {
-        console.error("Erreur lors du chargement du footer :", error);
-    }
-}
-
-chargerFooter();
 //-----------------------------------------------------------------------------
 
-async function chargerNav(){
-try {
+async function chargerNavetRecherche() {
+  try {
     //Ces 3 lignes permettent de mettre le nav.html dans une div d'un document html qui a en id "nav-placeholder"
     //Cela permet de modifier le nav et qu'il soit appliqué sur l'ensemble des docs html qui ont id "nav-placeholder"
     //Cela évite de faire des copier coller dans les html à chaque modif de nav 
@@ -26,13 +10,62 @@ try {
     const navRes = await fetch('nav.html');
     const navHTML = await navRes.text();
     document.getElementById('nav-placeholder').innerHTML = navHTML;
-} catch (error) {
-        console.error("Erreur lors du chargement du nav :", error);
+
+    const searchInput = document.getElementById("searchelement");
+    const searchBtn = document.getElementById("rechercher");
+    const navMenu = document.getElementById("navigation");
+
+    function toggleSearchAndMenu() {
+      searchInput.classList.toggle("show-search");
+      if (!searchInput.classList.contains("show-search")) {
+        navMenu.classList.remove("menu-hidden");
+      } else {
+        navMenu.classList.add("menu-hidden");
+        searchInput.focus();
+      }
     }
+
+    // Clic sur la loupe
+    searchBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      toggleSearchAndMenu();
+    });
+
+    // Clic en dehors → ferme la barre et montre le menu
+    document.addEventListener("click", (e) => {
+      const clickedInside = searchInput.contains(e.target) || searchBtn.contains(e.target);
+      if (!clickedInside) {
+        searchInput.classList.remove("show-search");
+        navMenu.classList.remove("menu-hidden");
+      }
+    });
+  } catch (error) {
+    console.error("Erreur lors du chargement du nav :", error);
+  }
 
 }
 
-chargerNav();
+chargerNavetRecherche();
+
+
+//--------AFFICHER FOOTER------------------------------------------------------
+
+//Ces 3 lignes permettent de mettre le footer.html dans une div d'un document html qui a en id "footer-placeholder"
+//Cela permet de modifier le footer et qu'il soit appliqué sur l'ensemble des docs html qui ont id "footer-placeholder"
+//Cela évite de faire des copier coller dans les html à chaque modif de footer 
+
+async function chargerFooter() {
+  try {
+    const footerRes = await fetch('footer.html');
+    const footerHTML = await footerRes.text();
+    document.getElementById('footer-placeholder').innerHTML = footerHTML;
+  } catch (error) {
+    console.error("Erreur lors du chargement du footer :", error);
+  }
+}
+
+chargerFooter();
 
 //--------RECHERCHE ELEMENTS SUR SITE VIA BARRE DE RECHERCHE-------------------
 
@@ -117,12 +150,14 @@ document.addEventListener("DOMContentLoaded", chargerRecherche);
 
 //----------------------------------------------------------------------------------*/
 
-//--------AFFICHAGE/DISPARITION ELEMENTS VISUELS-------------------------------
-
-//Fonction qui permet de faire apparaître ou disparaître un élément sur l'écran
+//--------AFFICHAGE/DISPARITION MENU DEEROULANT POUR VISUEL FORMAT TELEPHONE-------------------------------
 function toggleMenu() {
   const menu = document.getElementById("menudéroulant");
   menu.classList.toggle("caché");
 }
 
 //-----------------------------------------------------------------------------
+
+//--------AFFICHAGE/DISPARITION BARRE DE RECHERCHE-------------------------------
+
+

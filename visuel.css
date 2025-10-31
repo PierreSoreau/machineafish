@@ -27,10 +27,7 @@ main {
 #navig {
     /*background-color: black;*/
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    align-items: center;  
     position: relative;
 }
 
@@ -39,7 +36,7 @@ nav {
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    height: 160px !important;
+    height: 80px !important;
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -50,15 +47,30 @@ nav {
 
 }
 
-#logo {
-    flex: 1;
-    display: flex;
-    width: 300px;
+.hidden-search{
+    display:none !important;
+}
+
+.menu-hidden{
+    display:none !important;
+}
+
+#logo1 {    
+    width: 150px;
+    height:50px;
+    margin-left: 20px;
+}
+
+#logo2 {    
+    width: 150px;
+    height:50px;
+    margin-right: 20px;
+    margin-left: auto;
 }
 
 .logo {
-    width: 200px;
-    height: 40px;
+    width: 150px;
+    height: 50px;
     margin: 0;
     padding: 0;
 }
@@ -84,32 +96,41 @@ nav {
 
 }
 
-#barre_de_recherche {
-    justify-content: center;
-    align-items: center;
-    max-width: 800px;
-    width: 100%;
-    display: flex;
-    flex: 2;
-
+#search-container { 
+                
+    display: flex;            /* input + bouton alignés horizontalement */
+    align-items: center;      /* centrage vertical */
+    gap: 10px;
+    margin-right: 50px;                
+    
 }
 
-#barre_de_recherche input {
-    width: 100%;
+#searchelement {   
+    width: 0px;    
     outline: none;
     height: 40px;
     border-radius: 30px;
-
+    padding-left: 15px;
+    transition: width 0.4s ease, opacity 0.4s ease; /* transition ouverture douce */
+    opacity: 0;              /* invisible au départ */
 }
+
+#searchelement.show-search {
+    width: 800px;   /* largeur finale souhaitée */
+    opacity: 1;     /* visible */
+}
+
 
 .logorecherche {
     height: 80px;
     width: auto;
+    margin-left: auto;
 }
 
 #rechercher {
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 #navigation {
@@ -121,8 +142,29 @@ nav {
     text-align: center;
     position: relative;
     align-items: center;
+    margin: 0 auto; /*centre horizontalement le menu */ 
 
 
+}
+
+#nav-left {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+#nav-center {
+  display: flex;
+  justify-content: center; /* centre le menu horizontalement */
+  flex: 1 1 auto;          /* prend tout l’espace disponible */
+  
+}
+
+#nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;         /* espace entre loupe et logo2 */
+  flex: 0 0 auto;    /* largeur minimale, pas d’expansion */
 }
 
 #menuButton {
@@ -169,7 +211,7 @@ nav {
 .video_background {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 200px;
     /* Ajuste selon la hauteur de ta nav */
     overflow: hidden;
 }
