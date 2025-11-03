@@ -27,7 +27,7 @@
 
 <body>
 
-    <div id="nav-placeholder"></div>
+    <section id="nav-placeholder"></section>
     <main id="page_brochet">
         <div id="pres_brochet">
             <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_vu_morpho.webp"
@@ -43,8 +43,8 @@
         </div>
 
 
-        <div class="sous_partie">
-            <div class="morphologie">
+        <section class="sous_partie">
+            <section class="morphologie">
                 <h3 id="morphologie">MORPHOLOGIE</h3>
                 <div id="taille_brochet">
                     <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/taille_brochet.webp"
@@ -103,8 +103,8 @@
                             même jusqu'au bord parce que les attaques du brochet sont fulgurantes</p>
                     </div>
                 </div>
-            </div>
-            <div class="synthese">
+            </section>
+            <section class="synthese">
                 <div class="titre_synthese">
                     <i class="fa-solid fa-clipboard-list fa-xl" style="color: white"></i>
                     <p>Synthèse pêche:</p>
@@ -142,17 +142,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </section>
 
-        <div class="sous_partie">
+        <section class="sous_partie">
             <h3 id="habitats">HABITATS</h3>
             <br>
             <div class="titre">
                 <i class="fa-solid fa-water"></i>
                 <h4>MILIEU AQUATIQUE</h4>
             </div>
-            <div class="milieu_aquatique">
+            <section class="milieu_aquatique">
                 <div class="type_eau">
                     <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fleuve.webp"
                         alt="Fleuve">
@@ -178,9 +178,9 @@
                         alt="Canal">
                     <p>Canal</p>
                 </div>
-            </div>
+            </section>
             <br>
-            <div class="condi_habitat">
+            <section class="condi_habitat">
                 <div class="titre">
                     <i class="fa-solid fa-wind"></i>
                     <h4>INTENSITE COURANT</h4>
@@ -194,7 +194,7 @@
                         src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/jauge_temperature_brochet.webp"
                         alt="jauge_temperature">
                 </div>
-            </div>
+            </section>
             <br>
             <div class="titre">
                 <i class="fa-solid fa-location-dot"></i>
@@ -206,8 +206,8 @@
                 </select>
             </div>
 
-            <div id="visuelspot">
-                <div id="visuelspotpea">
+            <section id="visuelspot">
+                <section id="visuelspotpea">
                     <div class="spot1">
                         <div class="spot2">
                             <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fosse.webp"
@@ -320,9 +320,9 @@
                         </div>
                         <p>Arbres en surface de l'eau</p>
                     </div>
-                </div>
+                </section>
 
-                <div id="visuelspoth">
+                <section id="visuelspoth">
                     <div class="spot1">
                         <div class="spot2">
                             <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fosse.webp"
@@ -370,18 +370,18 @@
                         </div>
                         <p>Obstacle immergé</p>
                     </div>
-                </div>
-            </div>
-        </div>
+                </section>
+            </section>
+        </section>
 
-        <div class="sous_partie">
+        <section class="sous_partie">
             <h3 id="alimentation">ALIMENTATION</h3>
             <br>
             <div class="video_alimentation">
                 <lite-youtube class="ma-video" videoid="z-aweXLYwrA"></lite-youtube>
             </div>
 
-            <div id="visuel_animaux">
+            <section id="visuel_animaux">
                 <div class="animal1">
                     <div class="animal2">
                         <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ablette.webp"
@@ -439,9 +439,9 @@
                     </div>
                     <p>Insectes (libellules, ephémères...)</p>
                 </div>
-            </div>
-        </div>
-        <div class="sous_partie">
+            </section>
+        </section>
+        <section class="sous_partie">
             <h3 id="reproduction">REPRODUCTION</h3>
 
             <div class="circle-container">
@@ -466,42 +466,14 @@
             </div>
             <div id="video_reproduction">
                 <lite-youtube class="ma-video" videoid="FgGtz5AB8I8"></lite-youtube>
-                <p>Vidéo de la reproduction du brochet</p>
-                <!--<a href="https://www.youtube.com/watch?v=FgGtz5AB8I8" alt="lien_vidéo_youtube_reproduction_brochet" target="_blank">
-                <p><strong>LIEN VIDEO YOUTUBE REPRODUCTION BROCHET</strong></p>
-            </a>-->
+                <p>Vidéo de la reproduction du brochet</p>                
             </div>
-            <!--<div class="sous_partie">
-        <h3>LEURRES POUR BROCHET</h3>
-
-        <select id="profondeur">
-            <option value="">--Sélectionner une profondeur--</option>            
-            <option value="surface">Suface</option>
-            <option value="proche surface">Proche de la surface</option>
-            <option value="eau intermédiaire">eau intermédiaire</option>
-            <option value="fond">Fond</option>
-        </select>        
-        <select id="saison">
-            <option value="">--Sélectionner une saison--</option>
-            <option value="printemps">Printemps</option>
-            <option value="été">Eté</option>
-            <option value="automne">Automne</option>
-            <option value="hiver">Hiver</option>            
-        </select>
-        
-        <button onclick="filtre()">Filtrer</button>
-
-        <div id="filtre_leurre">
-           
-        </div>
-
-    </div>-->
-
+        </section>    
 
     </main>
 
 
-    <div id="footer-placeholder"></div>
+    <section id="footer-placeholder"></section>
 
     <!--<div id="cookies_background" class="hidden cookies">
     <div id="cookies">        

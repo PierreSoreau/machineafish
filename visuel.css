@@ -679,8 +679,8 @@ footer a:hover {
 
 
 .brochet {
-    height: 200px;
-    width: 200px;
+    height: 54vh;
+    width: 38vw;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
@@ -721,8 +721,8 @@ footer a:hover {
 }
 
 .silure {
-    height: 200px;
-    width: 200px;
+    height: 54vh;
+    width: 38vw;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/silure.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
@@ -763,8 +763,8 @@ footer a:hover {
 }
 
 .perche {
-    height: 200px;
-    width: 200px;
+    height: 54vh;
+    width: 38vw;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/perche.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
@@ -805,8 +805,8 @@ footer a:hover {
 }
 
 .sandre {
-    height: 200px;
-    width: 200px;
+    height: 54vh;
+    width: 38vw;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/sandre.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
@@ -846,14 +846,14 @@ footer a:hover {
     border-radius: 20px;
 }
 
-.chevesne {
+/*.chevesne {
     height: 200px;
     width: 250px;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/chevesne.webp');
     background-size: cover;
-    /* l'image couvre tout l'espace */
+    l'image couvre tout l'espace 
     background-position: center;
-    /* centrée horizontalement et verticalement */
+     centrée horizontalement et verticalement 
     background-repeat: no-repeat;
     margin-top: 20px;
     display: flex;
@@ -871,7 +871,7 @@ footer a:hover {
     position: relative;
     z-index: 2;
     margin: 0;
-    /* important pour centrer verticalement */
+    important pour centrer verticalement 
     padding: 0;
 }
 
@@ -883,10 +883,10 @@ footer a:hover {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    /* overlay noir semi-transparent */
+    /* overlay noir semi-transparent 
     z-index: 1;
     border-radius: 20px;
-}
+}*/
 
 /*VISUEL PAGE BROCHET*/
 

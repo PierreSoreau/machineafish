@@ -25,7 +25,7 @@
 
 <body>
 
-    <div id="nav-placeholder"></div>
+    <section id="nav-placeholder"></section>
 
 
     <main id="page_silure">
@@ -43,7 +43,7 @@
 
         </div>
 
-        <div class="sous_partie">
+        <section class="sous_partie">
             <h3 id="morphologie">MORPHOLOGIE</h3>
             <div id="taille_silure">
                 <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/silure_taille.webp"
@@ -68,7 +68,7 @@
 
             </div>
 
-            <div class="synthese">
+            <section class="synthese">
                 <div class="titre_synthese">
                     <i class="fa-solid fa-clipboard-list fa-xl" style="color: white"></i>
                     <p>Synthèse pêche:</p>
@@ -93,9 +93,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="sous_partie">
+            </section>
+        </section>
+        <section class="sous_partie">
             <h3 id="habitats">HABITATS</h3>
             <div class="titre">
                 <i class="fa-solid fa-water"></i>
@@ -158,7 +158,7 @@
             </div>
 
             <div id="visuelspot">
-                <div id="visuelspotpea">
+                <section id="visuelspotpea">
                     <div class="spot1">
                         <div class="spot2">
                             <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fosse.webp"
@@ -246,9 +246,9 @@
                         </div>
                         <p>En profondeur sous les branches d'un arbre</p>
                     </div>
-                </div>
+                </section>
 
-                <div id="visuelspoth">
+                <section id="visuelspoth">
                     <div class="spot1">
                         <div class="spot2">
                             <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fosse.webp"
@@ -296,18 +296,18 @@
                         </div>
                         <p>Obstacle immergé</p>
                     </div>
-                </div>
+                </section>
             </div>
-        </div>
+        </section>
 
-        <div class="sous_partie">
+        <section class="sous_partie">
             <h3 id="alimentation">ALIMENTATION</h3>
             <br>
             <div class="video_alimentation">
                 <lite-youtube class="ma-video" videoid="-mcvqrbQU20"></lite-youtube>
             </div>
 
-            <div id="visuel_animaux">
+            <section id="visuel_animaux">
                 <div class="animal1">
                     <div class="animal2">
                         <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ablette.webp"
@@ -374,39 +374,40 @@
                     </div>
                     <p>Insectes (libellules, ephémères...)</p>
                 </div>
-            </div>
+            </section>
+        </section>
 
-            <div class="sous_partie">
-                <h3 id="reproduction">REPRODUCTION</h3>
-                <div class="circle-container">
+        <section class="sous_partie">
+            <h3 id="reproduction">REPRODUCTION</h3>
+            <div class="circle-container">
 
-                    <div class="cycle">
-                        <!--svg est une div spéciale qui sert à accueillir des formes type cercle, courbe...-->
-                        <svg width="800" height="800">
-                            <!--cx="400" ça veut dire que le centre du cercle est en position horizontale 400px du svg et même chose pour le vertical pour cy-->
-                            <circle class="track" cx="400" cy="400" r="260" /> <!--cercle blanc-->
-                            <circle class="progress" cx="400" cy="400" r="260" /><!--cercle vert-->
-                        </svg>
-                    </div>
-
-                    <div class="commentaires">
-                        <div class="info-box" id="infoBox">
-                            Cliquez sur une bulle pour découvrir les étapes de reproduction.
-                        </div>
-                        <button onclick="undoStep()" class="undo-button">Revenir à la bulle précédente</button>
-                        <button onclick="return_to_step1()" class="undo-button">Revenir à la configuration de
-                            base</button>
-                    </div>
-
+                <div class="cycle">
+                    <!--svg est une div spéciale qui sert à accueillir des formes type cercle, courbe...-->
+                    <svg width="800" height="800">
+                        <!--cx="400" ça veut dire que le centre du cercle est en position horizontale 400px du svg et même chose pour le vertical pour cy-->
+                        <circle class="track" cx="400" cy="400" r="260" /> <!--cercle blanc-->
+                        <circle class="progress" cx="400" cy="400" r="260" /><!--cercle vert-->
+                    </svg>
                 </div>
+
+                <div class="commentaires">
+                    <div class="info-box" id="infoBox">
+                        Cliquez sur une bulle pour découvrir les étapes de reproduction.
+                    </div>
+                    <button onclick="undoStep()" class="undo-button">Revenir à la bulle précédente</button>
+                    <button onclick="return_to_step1()" class="undo-button">Revenir à la configuration de
+                        base</button>
+                </div>
+
             </div>
+        </section>
 
     </main>
 
 
 
 
-    <div id="footer-placeholder"></div>
+    <section id="footer-placeholder"></section>
 
     <script src="script_nav_footer_barrederecherche.js"></script>
     <script src="script_page_silure.js"></script>
