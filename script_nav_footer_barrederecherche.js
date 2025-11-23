@@ -7,7 +7,7 @@ async function chargerNavetRecherche() {
     //Cela permet de modifier le nav et qu'il soit appliqué sur l'ensemble des docs html qui ont id "nav-placeholder"
     //Cela évite de faire des copier coller dans les html à chaque modif de nav 
     //Ces lignes doivent être dans la fonction chargerRecherche et pas en dehors car sinon la fonction se lancerait sans que le nav soit affiché  
-    const navRes = await fetch('nav.html');
+    const navRes = await fetch('header.html');
     const navHTML = await navRes.text();
     document.getElementById('nav-placeholder').innerHTML = navHTML;
 

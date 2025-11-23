@@ -9,13 +9,17 @@
     <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
     <!--lien vers le site Font Awesome d'icône-->
     <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
-    <!--lien entre css et html-->
-    <link rel="stylesheet" href="visuel.css">
-    <!--liens écritures-->
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/accueil.css">
+    <!--<link rel="stylesheet" href="visuel.css">-->  
+    <!--liens écritures-->  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil machineapêche</title>
@@ -25,7 +29,7 @@
 
 <body>
 
-    <section id="nav-placeholder"></section>
+    <?php require 'header.html'; ?>
     <main>
         <div class="video_background">
             <video autoplay muted loop playsinline preload="auto" id="bg_video">
@@ -54,9 +58,7 @@
             <p>Régale toi avec ces recettes</p>-->
             </a>
         </section>
-    </main>
-
-    <section id="footer-placeholder"></section>
+    </main>  
 
 
     <!--<div id="cookies_background">
@@ -69,7 +71,7 @@
 
 
     <!--lien vers le script js qui rassemble tous mes js-->
-    <script src="script_nav_footer_barrederecherche.js"></script>
+    <?php require 'footer_.html'; ?>
 </body>
 
 

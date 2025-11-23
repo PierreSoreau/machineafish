@@ -1,0 +1,173 @@
+<header>
+
+
+    <div id="logo1" class="show">
+        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/logo_site_%20machine@fish.webp"
+            alt="logo de mon site" class="logo">
+    </div>
+
+    <div id="menu" class="show">
+        <button id="menu_burger">
+            <i class="fa-solid fa-bars fa-2xl"></i>
+        </button>
+    </div>
+    <nav id="nav_menu" class="show_">
+        <a href="http://localhost/site internet pêche/codes/machineafish/index.html" class="navi1">Accueil</a>
+        <a href="http://localhost/site internet pêche/codes/machineafish/carnassiers.html" class="navi1">Carnassiers</a>
+        <a href="http://localhost/site internet pêche/codes/machineafish/materiel.html" class="navi1">Matériel</a>
+        <a href="http://localhost/site internet pêche/codes/machineafish/tutos_videos.html" class="navi1">Tutos vidéos</a>
+        <!--<a href="https://machineapeche/Ou_pêcher.fr" class="navi1">Ou pêcher?</a>
+        <a href="https://machineapeche/Règlementation.fr" class="navi1">Règlementation</a>
+        <a href="https://machineapeche/Recettes_de_cuisine.fr" class="navi1">Recettes de cuisine</a>-->
+    </nav>
+
+    <div id="search-container">
+        <input type="text" id="searchelement" placeholder="Rechercher">
+        <button id="rechercher" type="button">
+            <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/logo_recherche_poissonbis.webp"
+                alt="logo rechercher" class="logorecherche">
+        </button>
+    </div>
+
+    <div id="logo2">
+        <img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/logo_site_%20machine@fish.webp"
+            alt="logo de mon site" class="logo">
+    </div>
+
+    <!--<div id="monespace">
+            <i class="fa-regular fa-user fa-2x logo-profil"></i>
+            <p>Mon espace</p>
+        </div>-->
+
+    <!--<button id="menuButton" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars fa-2xl"></i>   
+        <p>Menu</p>
+    </button>-->
+
+    <!--<div id="menudéroulant" class="menu caché">        
+        <a href="http://localhost/site internet pêche/codes/machineafish/index.html" class="navi2">Accueil</a>
+        <a href="http://localhost/site internet pêche/codes/machineafish/carnassiers.html" class="navi2">Carnassiers</a>
+        <a href="http://localhost/site internet pêche/codes/machineafish/materiel.html" class="navi2">Matériel</a>
+        <a href="http://localhost/site internet pêche/codes/machineafish/tutos_videos.html" class="navi2">Tutoriels vidéos</a>
+
+
+        <a href="https://machineapeche/Ou_pêcher.fr" class="navi2">Ou pêcher?</a>
+        <a href="https://machineapeche/Règlementation.fr" class="navi2">Règlementation</a>
+        <a href="https://machineapeche/Recettes_de_cuisine.fr" class="navi2">Recettes de cuisine</a>
+    </div>-->
+
+
+
+</header>
+
+<script>
+    const mediaPhone = window.matchMedia("(max-width: 575px)");
+    const mediaTablet = window.matchMedia("(min-width: 576px) and (max-width: 991px)");
+    const mediaDesktop = window.matchMedia("(min-width: 992px)");
+
+    function resetElements() {
+        // Tout afficher ou masquer comme par défaut
+        document.getElementById("logo1").style.display = "";
+        document.getElementById("menu").style.display = "";
+        document.getElementById("search-container").style.display = "";
+        document.getElementById("nav_menu").style.display = "";
+        // Etc. selon ta structure
+    }
+
+    function comportementPhone() {
+
+        resetElements();
+
+        const menu = document.getElementById("menu");
+        const navmenu = document.getElementById("nav_menu");
+        const searchbutton = document.getElementById("rechercher");
+        const recherche = document.getElementById("searchelement");
+        const logo_site = document.getElementById("logo1");
+        const container = document.getElementById("search-container");
+
+
+        searchbutton.addEventListener("click", () => {
+            recherche.classList.add("show");
+            menu.classList.remove('show');
+            logo_site.classList.remove('show');
+            container.classList.add("show");
+            recherche.focus();
+
+        });
+
+        menu.addEventListener("click", () => {
+            navmenu.classList.add('show');
+
+
+        });
+        document.addEventListener("click", (e) => {
+            if (!navmenu.contains(e.target) && !menu.contains(e.target)) {
+                navmenu.classList.remove('show')
+            };
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!recherche.contains(e.target) && !searchbutton.contains(e.target)) {
+                recherche.classList.remove("show");
+                container.classList.remove("show");
+                menu.classList.add('show');
+                logo_site.classList.add('show');
+            }
+        });
+    }
+
+    function comportementTablet() {
+
+        resetElements();
+        
+        const navmenu = document.getElementById("nav_menu");
+        const searchbutton = document.getElementById("rechercher");
+        const recherche = document.getElementById("searchelement");
+        const logo_site = document.getElementById("logo1");
+        const container = document.getElementById("search-container");
+
+
+        searchbutton.addEventListener("click", () => {
+            recherche.classList.add("show");            
+            logo_site.classList.remove('show');
+            container.classList.add("show");
+            navmenu.classList.remove("show_");            
+
+        });
+        
+
+        document.addEventListener("click", (e) => {
+            if (!recherche.contains(e.target) && !searchbutton.contains(e.target)) {
+                recherche.classList.remove("show");
+                container.classList.remove("show");
+                navmenu.classList.add('show_');
+                logo_site.classList.add('show');
+            }
+        });
+    }
+
+    function comportementDesktop() {
+        resetElements();
+    }
+
+
+    
+
+    function handleResize() {
+        if (mediaPhone.matches) {
+            comportementPhone();
+        } else if (mediaTablet.matches) {
+            comportementTablet();
+        }
+        else if(mediaDesktop.matches){
+            comportementDesktop();
+        }
+    }
+
+    handleResize();
+
+    mediaPhone.addListener(handleResize);
+    mediaTablet.addListener(handleResize);
+    mediaDesktop.addListener(handleResize);    
+
+</script>

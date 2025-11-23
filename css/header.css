@@ -1,0 +1,326 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+    line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+    text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+    min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+    scroll-margin-block: 5ex;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-image: url(https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cailloux.webp) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    height: 8vh !important;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+
+nav {
+    display: none;
+
+}
+
+
+nav.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 0px 10px 10px;
+    background-color: black;
+    position: absolute;
+    top: 8vh;
+    text-align: center;
+    z-index: 11;
+    width: 100%;
+}
+
+.navi1 {
+    text-decoration: none;
+    font-family: "Inter", cursive;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    border-top: 1px solid white;
+    font-size: 16px;
+
+}
+
+#menu.show {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform:translateX(-50%);
+}
+
+#menu {
+    display: none;
+}
+
+#menu_burger {
+    background: none !important;
+    border: none !important;
+
+}
+
+button i::before {
+    color: white !important;
+}
+
+#logo1.show {
+    display: flex;
+    width: 100px;
+    height: 5vh;
+
+}
+
+#logo1 {
+    display: none;
+}
+
+#logo1 img {
+    width: 100%;
+    height: 100%;
+
+}
+
+#logo2 {
+    display: none;
+}
+
+
+#search-container {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+#search-container.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+#searchelement {
+    display: none;
+    transition: width 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+}
+
+#searchelement.show {
+    display: inline-block;
+    outline: none;
+    height: 4vh;
+    border-radius: 30px;
+    box-sizing: border-box;
+    text-indent: 15px;
+    width: auto;
+    /* largeur finale souhaitée */
+    opacity: 1;
+    font-size: 16px;
+    /* visible */
+    /*position:absolute;
+    z-index:1001;
+    background-color: white;*/
+    caret-color: black;
+    padding-right: 10px;
+}
+
+
+.logorecherche {
+    height: 8vh;
+    width: auto;
+    margin-left: auto;
+}
+
+#rechercher {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+@media(min-width:576px) {
+
+    #menu.show {
+        display: none;
+    }
+
+    nav.show_ {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    nav {
+        display: none;
+
+
+    }
+
+    .navi1 {
+        border-top: none;
+        padding: 0px;
+        width: auto;
+    }
+
+    #searchelement.show {
+        width: 80%;
+
+    }
+
+}
+
+
+@media(min-width:992px) {
+
+
+    .navi1 {
+        font-size: 20px;
+        padding: 15px;
+
+    }
+
+    .navi1:hover {
+        border-radius: 10px;
+        background-color: white;
+        color: black;
+
+    }
+
+    #logo1.show {
+        height: 7vh;
+        width: 120px;
+    }
+
+    #rechercher {
+        padding-right: 20px;
+    }
+
+    #searchelement {
+        display: inline-block;
+        outline: none;
+        height: 4vh;
+        border-radius: 30px;
+        box-sizing: border-box;
+        text-indent: 20px;
+        width: 20vw;        
+        opacity: 1;
+        font-size: 16px;        
+        caret-color: black;
+        padding-right: 10px;
+        
+    }
+
+
+
+
+
+
+
+}

@@ -8,7 +8,7 @@
 }
 
 
-body,
+/*body,
 html {
     font-family: 'Roboto Flex', sans-serif;
     height: 100%;
@@ -16,15 +16,15 @@ html {
     flex-direction: column;
 }
 
-main {
+/*main {
     flex: 1;
-    /* pousse le footer vers le bas */
-}
+    /* pousse le footer vers le bas 
+}*/
 
-#navig {
-    /*background-color: black;*/
+/*#navig {
+    /*background-color: black;
     display: flex;
-    align-items: center;  
+    align-items: center;
     position: relative;
 }
 
@@ -44,23 +44,23 @@ nav {
 
 }
 
-.hidden-search{
-    display:none !important;
+.hidden-search {
+    display: none !important;
 }
 
-.menu-hidden{
-    display:none !important;
+.menu-hidden {
+    display: none !important;
 }
 
-#logo1 {    
+#logo1 {
     width: 10vw;
-    height:5vh;
+    height: 5vh;
     margin-left: 1.4vw;
 }
 
-#logo2 {    
+#logo2 {
     width: 10vw;
-    height:5vh;
+    height: 5vh;
     margin-right: 1.4vw;
     margin-left: auto;
 }
@@ -91,31 +91,37 @@ nav {
     padding-top: 10px;
 
 
-}*/
-
-#search-container { 
-                
-    display: flex;            /* input + bouton alignés horizontalement */
-    align-items: center;      /* centrage vertical */
-    gap: 0.7vw;
-    margin-right: 3.5vw;                
-    
 }
 
-#searchelement {   
-    width: 0px;    
+#search-container {
+
+    display: flex;
+    /* input + bouton alignés horizontalement 
+    align-items: center;
+    /* centrage vertical 
+    gap: 0.7vw;
+    margin-right: 3.5vw;
+
+}
+
+#searchelement {
+    width: 0px;
     outline: none;
     height: 4vh;
     border-radius: 30px;
     padding-left: 15px;
-    transition: width 0.4s ease, opacity 0.4s ease; /* transition ouverture douce */
-    opacity: 0;              /* invisible au départ */
+    transition: width 0.4s ease, opacity 0.4s ease;
+    /* transition ouverture douce 
+    opacity: 0;
+    /* invisible au départ 
     font-size: 20px;
 }
 
 #searchelement.show-search {
-    width: 60vw;   /* largeur finale souhaitée */
-    opacity: 1;     /* visible */
+    width: 60vw;
+    /* largeur finale souhaitée 
+    opacity: 1;
+    /* visible 
 }
 
 
@@ -132,39 +138,44 @@ nav {
 }
 
 #navigation {
-    /*background-color:black;*/
+    /*background-color:black;
     display: flex;
-    /* Permet d’aligner les enfants en ligne */
+    /* Permet d’aligner les enfants en ligne 
     justify-content: center;
-    /* Centre les enfants horizontalement */
+    /* Centre les enfants horizontalement 
     text-align: center;
     position: relative;
     align-items: center;
-    margin: 0 auto; /*centre horizontalement le menu */ 
+    margin: 0 auto;
+    /*centre horizontalement le menu 
     font-size: 25px;
-    gap:0.7vw;
+    gap: 0.7vw;
 
 
 }
 
 #nav-left {
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
 }
 
 #nav-center {
-  display: flex;
-  justify-content: center; /* centre le menu horizontalement */
-  flex: 1 1 auto;          /* prend tout l’espace disponible */
-  
+    display: flex;
+    justify-content: center;
+    /* centre le menu horizontalement 
+    flex: 1 1 auto;
+    /* prend tout l’espace disponible 
+
 }
 
 #nav-right {
-  display: flex;
-  align-items: center;
-  gap: 0.7vw;         /* espace entre loupe et logo2 */
-  flex: 0 0 auto;    /* largeur minimale, pas d’expansion */
+    display: flex;
+    align-items: center;
+    gap: 0.7vw;
+    /* espace entre loupe et logo2 
+    flex: 0 0 auto;
+    /* largeur minimale, pas d’expansion 
 }
 
 #menuButton {
@@ -174,7 +185,7 @@ nav {
 .navi1 {
     text-decoration: none;
     color: white;
-    padding: 1.5vh 1vw ;
+    padding: 1.5vh 1vw;
     position: relative;
     z-index: 1;
     display: inline-block;
@@ -205,7 +216,7 @@ nav {
 
 .navi1:hover {
     color: black;
-}
+}*/
 
 
 .video_background {
@@ -230,7 +241,7 @@ nav {
     justify-items: center;
     margin-bottom: 11vh;
     margin-top: 11vh;
-    gap:4vw;
+    gap: 4vw;
 }
 
 .poissons {
@@ -241,7 +252,7 @@ nav {
     /* l'image couvre tout l'espace */
     background-position: center;
     /* centrée horizontalement et verticalement */
-    background-repeat: no-repeat;    
+    background-repeat: no-repeat;
     display: flex;
     color: white;
     text-align: center;
@@ -341,7 +352,7 @@ nav {
     /* l'image couvre tout l'espace */
     background-position: center;
     /* centrée horizontalement et verticalement */
-    background-repeat: no-repeat;    
+    background-repeat: no-repeat;
     display: flex;
     color: white;
     text-align: center;
@@ -349,7 +360,7 @@ nav {
     justify-content: center;
     align-items: center;
     font-size: 40px;
-    border-radius: 20px;    
+    border-radius: 20px;
     text-decoration: none;
 }
 
@@ -449,7 +460,7 @@ nav {
     justify-content: center;
     align-items: center;
     font-size: 40px;
-    border-radius: 20px;    
+    border-radius: 20px;
     text-decoration: none;
 }
 
@@ -537,12 +548,12 @@ nav {
     padding: 20px;
 }
 
-footer {
+/*footer {
     display: flex;
-    background-color: black;   
+    background-color: black;
     color: white;
-    border-top:6px solid white;
-    height:8vh;
+    border-top: 6px solid white;
+    height: 8vh;
     align-items: center;
 
 }
@@ -554,10 +565,10 @@ footer a {
     padding: 15px;
     position: relative;
     z-index: 1;
-    display: inline-block;    
+    display: inline-block;
     align-items: center;
 
-   
+
 
 }
 
@@ -575,7 +586,7 @@ footer a::after {
     height: 100%;
     border-radius: 10px;
     z-index: -1;
-    
+
 
 }
 
@@ -585,12 +596,12 @@ footer a:hover::after {
 
 footer a:hover {
     color: black;
-    
+
 }
 
 #logo_footer_gauche1 {
     align-items: center;
-    display: flex;    
+    display: flex;
     height: 5vh;
     width: 10vw;
     justify-content: center;
@@ -610,12 +621,12 @@ footer a:hover {
     display: none;
 }*/
 
-#informations_site {
-    display:flex;
+/*#informations_site {
+    display: flex;
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    gap:1.7vw;
+    gap: 1.7vw;
 }
 
 #informations_site a {
@@ -646,11 +657,11 @@ footer a:hover {
     margin-right: 10px;
 }*/
 
-#logo_footer_droit2 {
+/*#logo_footer_droit2 {
     align-items: center;
     display: flex;
     height: 5vh;
-    width:10vw;
+    width: 10vw;
     justify-content: center;
     margin-left: auto;
 }
@@ -661,7 +672,9 @@ footer a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px
+    gap: 30px;
+    width: 70%;
+    position: relative;
 }
 
 #page_carnassiers {
@@ -670,24 +683,34 @@ footer a:hover {
     align-items: center;
     text-align: center;
     flex: 1;
-    padding-top: 160px;
+    padding-top: 8vh;
 }
 
 #page_carnassiers>*:last-child {
     margin-bottom: 0;
 }
 
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  display: flex;        /* permet 2 images côte à côte */
+  gap: 5px;             /* petit espace entre les 2 photos (optionnel) */
+}
 
 .brochet {
-    height: 54vh;
-    width: 38vw;
+    width: 300px;
+    height:300px;
+    aspect-ratio: 1/1;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
     background-position: center;
     /* centrée horizontalement et verticalement */
     background-repeat: no-repeat;
-    margin-top: 20px;
     display: flex;
     color: white;
     text-align: center;
@@ -721,15 +744,15 @@ footer a:hover {
 }
 
 .silure {
-    height: 54vh;
-    width: 38vw;
+    width: 300px;
+    height:300px;
+    aspect-ratio: 1/1;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/silure.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
     background-position: center;
     /* centrée horizontalement et verticalement */
     background-repeat: no-repeat;
-    margin-top: 20px;
     display: flex;
     color: white;
     text-align: center;
@@ -763,15 +786,14 @@ footer a:hover {
 }
 
 .perche {
-    height: 54vh;
-    width: 38vw;
+    height: 300px;
+    width: 300px;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/perche.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
     background-position: center;
     /* centrée horizontalement et verticalement */
-    background-repeat: no-repeat;
-    margin-top: 20px;
+    background-repeat: no-repeat;    
     display: flex;
     color: white;
     text-align: center;
@@ -805,15 +827,14 @@ footer a:hover {
 }
 
 .sandre {
-    height: 54vh;
-    width: 38vw;
+    height: 300px;
+    width: 300px;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/sandre.webp');
     background-size: cover;
     /* l'image couvre tout l'espace */
     background-position: center;
     /* centrée horizontalement et verticalement */
-    background-repeat: no-repeat;
-    margin-top: 20px;
+    background-repeat: no-repeat;    
     display: flex;
     color: white;
     text-align: center;
@@ -844,6 +865,26 @@ footer a:hover {
     /* overlay noir semi-transparent */
     z-index: 1;
     border-radius: 20px;
+}
+
+button.prev, button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }
+
+button:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
 
 /*.chevesne {
@@ -1094,12 +1135,12 @@ h4 {
     color: white;
 }
 
-.condi_habitat{
+.condi_habitat {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap:200px;
+    gap: 200px;
 }
 
 .titre {
@@ -1116,9 +1157,9 @@ h4 {
     color: white;
 }
 
-.titre img{
-    width:400px;
-    height:300px;
+.titre img {
+    width: 400px;
+    height: 300px;
 }
 
 .milieu_aquatique {
@@ -1131,9 +1172,9 @@ h4 {
     margin-top: 20px;
 }
 
-#temperature_brochet{
-    width:300px;
-    height:auto;
+#temperature_brochet {
+    width: 300px;
+    height: auto;
 }
 
 .saisonselect {
@@ -1143,7 +1184,7 @@ h4 {
     font-size: 20px;
     padding: 10px;
     margin-bottom: 10px;
-}    
+}
 
 #visuelspot {
     color: white;
@@ -1170,38 +1211,38 @@ h4 {
 
 .spot1 p {
     text-align: center;
-    font-size: 16px; 
-    color:white;
-    width:300px;
-    height:auto;
-    
-    
-   
+    font-size: 16px;
+    color: white;
+    width: 300px;
+    height: auto;
+
+
+
 }
 
 .spot1 {
     display: flex;
     justify-content: center;
-    flex-direction: column;           
-    margin-bottom:10px;
-    
-        
+    flex-direction: column;
+    margin-bottom: 10px;
+
+
 
 }
 
 .spot2 img {
     max-width: 300px;
-    max-height: 300px; 
-          
+    max-height: 300px;
+
     /* évite un petit espace blanc sous l'image */
 
 }
 
-.spot2{
+.spot2 {
     background-color: white;
     width: 300px;
-    height:300px; 
-    display: flex;    
+    height: 300px;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
@@ -1223,7 +1264,7 @@ h4 {
 
 }
 
-#visuel_animaux {    
+#visuel_animaux {
     display: flex;
     gap: 10px;
     padding-bottom: 10px;
@@ -1250,9 +1291,9 @@ h4 {
     margin-bottom: 10px;
 }
 
-.animal2 img{
-    width:300px;
-    height:300px;
+.animal2 img {
+    width: 300px;
+    height: 300px;
 }
 
 /*visuel sous partie reproduction de la page brochet*/
@@ -1291,9 +1332,11 @@ circle.progress {
     stroke-width: 4;
     fill: none;
     /*centre du cercle transparent*/
-    stroke-dasharray: 1633;/*le cercle au complet*/ 
+    stroke-dasharray: 1633;
+    /*le cercle au complet*/
     /* ~2πr with r = 260 */
-    stroke-dashoffset: 1633; /*le cercle progressif*/
+    stroke-dashoffset: 1633;
+    /*le cercle progressif*/
     transition: stroke-dashoffset 0.6s ease;
 }
 
@@ -1303,7 +1346,8 @@ circle.progress {
     height: 200px;
     border-radius: 50%;
     border: 3px solid #2a8;
-    overflow: hidden;/*cache tout ce qui dépasse de la bulle*/
+    overflow: hidden;
+    /*cache tout ce qui dépasse de la bulle*/
     cursor: pointer;
     transition: transform 0.2s;
 }
@@ -1314,15 +1358,15 @@ circle.progress {
 
 .bubble p {
     font-size: 20px;
-    position: absolute;   
+    position: absolute;
     color: white;
     top: 50%;
     /* centre verticalement */
     left: 50%;
     /* centre horizontalement */
     transform: translate(-50%, -50%);
-    /* centre exact */    
-    font-weight: bold;    
+    /* centre exact */
+    font-weight: bold;
     text-shadow: 2px 2px 4px black;
     /* pour que ça reste lisible */
     z-index: 3;
@@ -1385,7 +1429,7 @@ circle.progress {
 
 }
 
-#video_reproduction p{
+#video_reproduction p {
     font-size: 20px;
     color: white;
 }
@@ -1455,101 +1499,101 @@ circle.progress {
 
 /*VISUEL PAGE SILURE*/
 
-#page_silure{
+#page_silure {
     background-color: black;
     padding-top: 160px;
 }
 
-#pres_silure{
+#pres_silure {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#pres_silure img{
-    width:auto;
-    height:300px;
+#pres_silure img {
+    width: auto;
+    height: 300px;
 
 }
 
-#taille_silure{
-    display:flex;
+#taille_silure {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#taille_silure img{
-    width:400px;
-    height:auto;
+#taille_silure img {
+    width: 400px;
+    height: auto;
 }
 
-#morpholo img{        
-    transition: transform 0.2s ;
-    width:200px;
-    height:200px;
+#morpholo img {
+    transition: transform 0.2s;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border:2px solid white ;
-    cursor:pointer;
+    border: 2px solid white;
+    cursor: pointer;
 }
 
-#morpholo{
-    padding:20px;
-    display:flex;
+#morpholo {
+    padding: 20px;
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap:20px;
+    gap: 20px;
 }
 
-#morpholo img:hover{
+#morpholo img:hover {
     transform: scale(1.1);
 }
 
 
 
 #descriptionmorpho {
-    gap:10px;
+    gap: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height:200px;
-    width:800px;
+    height: 200px;
+    width: 800px;
 
 }
 
 .textmorpho {
-    width:400px;
-    height:auto;   
+    width: 400px;
+    height: auto;
 
 }
 
-#reset{
-    cursor:pointer;
-    width:150px;
-    height:100%;
+#reset {
+    cursor: pointer;
+    width: 150px;
+    height: 100%;
 }
 
-.type_eau{
-    display:flex;
+.type_eau {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
 }
 
-.type_eau img{
-    width:200px;
-    height:auto;
-    border-radius:5px;
+.type_eau img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
 }
 
-.type_eau p{
+.type_eau p {
     font-size: 20px;
 }
 
-#temperature_silure{
-    width:300px;
-    height:auto;
+#temperature_silure {
+    width: 300px;
+    height: auto;
 }
 
 /*VISUEL PAGE PERCHE*/
@@ -1560,28 +1604,28 @@ circle.progress {
 }
 
 
-#pres_perche{
+#pres_perche {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#pres_perche img{
-    width:auto;
-    height:300px;
+#pres_perche img {
+    width: auto;
+    height: 300px;
     border-radius: 10px;
 
 }
 
-#taille_perche{
-    display:flex;
+#taille_perche {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#temperature_perche{
-    width:300px;
-    height:auto;
+#temperature_perche {
+    width: 300px;
+    height: auto;
 }
 
 /*VISUEL PAGE SANDRE*/
@@ -1591,21 +1635,21 @@ circle.progress {
     background-color: black;
 }
 
-#pres_sandre{
+#pres_sandre {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#pres_sandre img{
-    width:auto;
-    height:300px;
+#pres_sandre img {
+    width: auto;
+    height: 300px;
     border-radius: 10px;
 
 }
 
-#taille_sandre{
-    display:flex;
+#taille_sandre {
+    display: flex;
     align-items: center;
     justify-content: center;
 }

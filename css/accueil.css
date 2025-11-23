@@ -1,0 +1,281 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+    line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+    text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+    min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+    scroll-margin-block: 5ex;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+flex:1;
+}
+
+.video_background {
+    position: relative;
+    width: 100%;
+    height: 20vh;
+    /* Ajuste selon la hauteur de ta nav */
+    overflow: hidden;
+}
+
+#bg_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+}
+
+.menu_visuel {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin-bottom: 11vh;
+    margin-top: 11vh;
+    gap: 4vw;
+}
+
+.poissons {
+    height: 54vh;
+    width: 28vw;
+    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet.webp');
+    background-size: cover;
+    /* l'image couvre tout l'espace */
+    background-position: center;
+    /* centrée horizontalement et verticalement */
+    background-repeat: no-repeat;
+    display: flex;
+    color: white;
+    text-align: center;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.poissons p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    /* important pour centrer verticalement */
+    padding: 0;
+}
+
+
+.poissons::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* overlay noir semi-transparent */
+    z-index: 1;
+    border-radius: 20px;
+
+}
+
+.poissons>* {
+    position: relative;
+    z-index: 2;
+    /* texte au-dessus de l’overlay */
+}
+
+.tutos {
+    height: 54vh;
+    width: 28vw;
+    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/tutos.webp');
+    background-size: cover;
+    /* l'image couvre tout l'espace */
+    background-position: center;
+    /* centrée horizontalement et verticalement */
+    background-repeat: no-repeat;
+    display: flex;
+    color: white;
+    text-align: center;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.tutos p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    /* important pour centrer verticalement */
+    padding: 0;
+}
+
+
+.tutos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* overlay noir semi-transparent */
+    z-index: 1;
+    border-radius: 20px;
+
+}
+
+.tutos>* {
+    position: relative;
+    z-index: 2;
+    /* texte au-dessus de l’overlay */
+}
+
+.matériel {
+    height: 54vh;
+    width: 28vw;
+    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/materiel.webp');
+    background-size: cover;
+    /* l'image couvre tout l'espace */
+    background-position: center;
+    /* centrée horizontalement et verticalement */
+    background-repeat: no-repeat;
+    display: flex;
+    color: white;
+    text-align: center;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.matériel p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    /* important pour centrer verticalement */
+    padding: 0;
+}
+
+
+.matériel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* overlay noir semi-transparent */
+    z-index: 1;
+    border-radius: 20px;
+
+}
+
+.matériel>* {
+    position: relative;
+    z-index: 2;
+    /* texte au-dessus de l’overlay */
+}
