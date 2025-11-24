@@ -134,6 +134,7 @@ footer a {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+    list-style: none;
 }
 
 @media (min-width:576px){
@@ -152,25 +153,21 @@ footer a {
     
 }
 
-@media (min-width:992px){
+@media (min-width:992px){  
 
-    footer{
-    justify-content: flex-start;
+    #informations_site a{
+        padding:10px;
     }
 
-    .logo_site._2{
-        display: none;
-    }
 
+    #informations_site a:hover{
+        color:black;
+        border-radius: 10px;
+        background-color: white;
+
+    }
     #informations_site{
         flex-direction: row;
-        position: absolute;
-        transform: translateX(-50%);
-        left:50%; 
-        gap:20px;
-        align-items: center;
-        top:0;
-        bottom:0;       
     }
 
 

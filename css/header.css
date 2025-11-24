@@ -109,7 +109,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    
 }
 
 
@@ -118,6 +118,11 @@ nav {
 
 }
 
+.puce{
+    list-style: none;
+    width: 100%;
+    
+}
 
 nav.show {
     display: flex;
@@ -133,13 +138,16 @@ nav.show {
     width: 100%;
 }
 
-.navi1 {
-    text-decoration: none;
-    font-family: "Inter", cursive;
-    padding: 10px;
-    color: white;
+.puce li{
     width: 100%;
     border-top: 1px solid white;
+    padding: 10px;
+}
+
+.navi1 {
+    text-decoration: none;
+    font-family: "Inter", cursive;    
+    color: white;    
     font-size: 16px;
 
 }
@@ -263,11 +271,19 @@ button i::before {
 
     }
 
-    .navi1 {
+    .puce{
+        display: flex;
+        gap:20px;
+    }
+
+    .puce li{
         border-top: none;
         padding: 0px;
         width: auto;
+
     }
+
+    
 
     #searchelement.show {
         width: 80%;
@@ -281,9 +297,8 @@ button i::before {
 
 
     .navi1 {
-        font-size: 20px;
-        padding: 15px;
-
+        font-size: 20px;  
+        padding: 10px;      
     }
 
     .navi1:hover {

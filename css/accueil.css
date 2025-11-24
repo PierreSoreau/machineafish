@@ -104,43 +104,36 @@ body {
     flex-direction: column;
 }
 
-main{
-flex:1;
+main {
+    flex: 1;
+    padding-top: 8vh;
 }
 
 .video_background {
-    position: relative;
     width: 100%;
     height: 20vh;
-    /* Ajuste selon la hauteur de ta nav */
     overflow: hidden;
 }
 
-#bg_video {
-    position: absolute;
-    top: 0;
-    left: 0;
+.video_background video {
+    height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
 .menu_visuel {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    margin-bottom: 11vh;
-    margin-top: 11vh;
-    gap: 4vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    padding: 10px 0px;
+    gap: 10px;
 }
 
-.poissons {
-    height: 54vh;
-    width: 28vw;
-    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet.webp');
+.lien {
+    width: 300px;
+    height: 300px;
     background-size: cover;
-    /* l'image couvre tout l'espace */
     background-position: center;
-    /* centrée horizontalement et verticalement */
     background-repeat: no-repeat;
     display: flex;
     color: white;
@@ -151,18 +144,41 @@ flex:1;
     font-size: 40px;
     border-radius: 20px;
     text-decoration: none;
+    z-index: 1;
+    margin: 0 auto;
 }
 
-.poissons p {
+.lien.poisson {
+    grid-column: 1;
+    grid-row: 1/2;
+    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet.webp');
+
+}
+
+.lien.video {
+    grid-column: 1;
+    grid-row: 2/3;
+    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/tutos.webp');
+
+}
+
+.lien.materiel {
+    grid-column: 1;
+    grid-row: 3/4;
+    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/materiel.webp');
+
+}
+
+.lien p {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     margin: 0;
-    /* important pour centrer verticalement */
     padding: 0;
+    font-family: "Inter", cursive;
 }
 
 
-.poissons::before {
+.lien::before {
     content: "";
     position: absolute;
     top: 0;
@@ -171,111 +187,77 @@ flex:1;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
     /* overlay noir semi-transparent */
-    z-index: 1;
+    z-index: 2;
     border-radius: 20px;
 
 }
 
-.poissons>* {
-    position: relative;
-    z-index: 2;
-    /* texte au-dessus de l’overlay */
-}
+@media(min-width:576px) {
+    .lien {
+        width: 400px;
+        height: 400px;
+    }
 
-.tutos {
-    height: 54vh;
-    width: 28vw;
-    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/tutos.webp');
-    background-size: cover;
-    /* l'image couvre tout l'espace */
-    background-position: center;
-    /* centrée horizontalement et verticalement */
-    background-repeat: no-repeat;
-    display: flex;
-    color: white;
-    text-align: center;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    border-radius: 20px;
-    text-decoration: none;
-}
-
-.tutos p {
-    position: relative;
-    z-index: 2;
-    margin: 0;
-    /* important pour centrer verticalement */
-    padding: 0;
-}
-
-
-.tutos::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* overlay noir semi-transparent */
-    z-index: 1;
-    border-radius: 20px;
 
 }
 
-.tutos>* {
-    position: relative;
-    z-index: 2;
-    /* texte au-dessus de l’overlay */
+@media(min-width:992px) {
+
+    .video_background {
+        grid-column: 1;
+        grid-row: 1/2;
+        height: 100%;
+    }
+
+
+    .lien {
+        width: 300px;
+        height: 300px;
+        margin: auto auto;
+    }
+
+    .menu_visuel {
+        grid-column: 1;
+        grid-row: 2/3;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        padding: 10px 10px;
+    }
+
+
+    .lien.poisson {
+        grid-column: 1;
+        grid-row: 1/2;
+    }
+
+    .lien.video {
+        grid-column: 2;
+        grid-row: 1/2;
+    }
+
+    .lien.materiel {
+        grid-column: 3;
+        grid-row: 1/2;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 20vh 1fr;
+        height: 100%;
+    }
 }
 
-.matériel {
-    height: 54vh;
-    width: 28vw;
-    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/materiel.webp');
-    background-size: cover;
-    /* l'image couvre tout l'espace */
-    background-position: center;
-    /* centrée horizontalement et verticalement */
-    background-repeat: no-repeat;
-    display: flex;
-    color: white;
-    text-align: center;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    border-radius: 20px;
-    text-decoration: none;
+@media(min-width:1200px) {
+    .lien {
+        width: 370px;
+        height: 370px;        
+    }
 }
 
-.matériel p {
-    position: relative;
-    z-index: 2;
-    margin: 0;
-    /* important pour centrer verticalement */
-    padding: 0;
-}
-
-
-.matériel::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    /* overlay noir semi-transparent */
-    z-index: 1;
-    border-radius: 20px;
-
-}
-
-.matériel>* {
-    position: relative;
-    z-index: 2;
-    /* texte au-dessus de l’overlay */
+@media(min-width:1400px) {
+    .lien {
+        width: 450px;
+        height: 450px;       
+    }
 }

@@ -32,27 +32,27 @@
     <?php require 'header.html'; ?>
     <main>
         <div class="video_background">
-            <video autoplay muted loop playsinline preload="auto" id="bg_video">
+            <video autoplay muted loop playsinline preload="auto" >
                 <source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/video_accueilbis.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvdmlkZW9fYWNjdWVpbGJpcy5tcDQiLCJpYXQiOjE3NTk0NDI3MTIsImV4cCI6MTc5MDk3ODcxMn0.qXTL2uqb-r1ZndkgNVn_vxZPdamICVBa8WlanGIvJgE" type="video/mp4" />
                 Votre navigateur ne supporte pas la vidéo
             </video>
         </div>
 
         <section class="menu_visuel">
-            <a href="http://localhost/site internet pêche/codes/machineafish/carnassiers.html" class="poissons">
+            <a href="http://localhost/site internet pêche/codes/machineafish/carnassiers.html" class="lien poisson">
                 <p>Carnassiers d'eau douce</p>
             </a>
             <!--<a href="https://machineapeche/Règlementation.fr" class="reglementations">
             <p>Pêche en eau douce: la loi</p>
         </a>-->
-            <a href="http://localhost/site internet pêche/codes/machineafish/tutos_videos.html" class="tutos">
+            <a href="http://localhost/site internet pêche/codes/machineafish/tutos_videos.html" class="lien video">
                 <p>Tutoriels vidéos</p>
             </a>
             <!--<a href="https://machineapeche/Ou_pêcher.fr" class="localisation">
             <p>Ou pêcher?</p>-->
             </a>
-            <a href="http://localhost/site internet pêche/codes/machineafish/materiel.html" class="matériel">
-                <p>Quels matériels choisir pour pêcher?</p>
+            <a href="http://localhost/site internet pêche/codes/machineafish/materiel.html" class="lien materiel">
+                <p>Matériel</p>
             </a>
             <!--<a href="https://machineapeche/Recettes_de_cuisine.fr" class="recettes">
             <p>Régale toi avec ces recettes</p>-->
