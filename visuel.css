@@ -219,11 +219,11 @@ nav {
 }*/
 
 
-.video_background {
+/*.video_background {
     position: relative;
     width: 100%;
     height: 20vh;
-    /* Ajuste selon la hauteur de ta nav */
+    /* Ajuste selon la hauteur de ta nav 
     overflow: hidden;
 }
 
@@ -249,9 +249,9 @@ nav {
     width: 28vw;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet.webp');
     background-size: cover;
-    /* l'image couvre tout l'espace */
+    /* l'image couvre tout l'espace
     background-position: center;
-    /* centrée horizontalement et verticalement */
+    /* centrée horizontalement et verticalement 
     background-repeat: no-repeat;
     display: flex;
     color: white;
@@ -268,7 +268,7 @@ nav {
     position: relative;
     z-index: 2;
     margin: 0;
-    /* important pour centrer verticalement */
+    /* important pour centrer verticalement
     padding: 0;
 }
 
@@ -281,7 +281,7 @@ nav {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    /* overlay noir semi-transparent */
+    /* overlay noir semi-transparent 
     z-index: 1;
     border-radius: 20px;
 
@@ -290,7 +290,7 @@ nav {
 .poissons>* {
     position: relative;
     z-index: 2;
-    /* texte au-dessus de l’overlay */
+    /* texte au-dessus de l’overlay 
 }
 
 /*.reglementations {
@@ -342,16 +342,16 @@ nav {
     position: relative;
     z-index: 2;
     /* texte au-dessus de l’overlay 
-}*/
+}
 
 .tutos {
     height: 54vh;
     width: 28vw;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/tutos.webp');
     background-size: cover;
-    /* l'image couvre tout l'espace */
+    /* l'image couvre tout l'espace 
     background-position: center;
-    /* centrée horizontalement et verticalement */
+    /* centrée horizontalement et verticalement 
     background-repeat: no-repeat;
     display: flex;
     color: white;
@@ -368,7 +368,7 @@ nav {
     position: relative;
     z-index: 2;
     margin: 0;
-    /* important pour centrer verticalement */
+    /* important pour centrer verticalement 
     padding: 0;
 }
 
@@ -381,7 +381,7 @@ nav {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    /* overlay noir semi-transparent */
+    /* overlay noir semi-transparent 
     z-index: 1;
     border-radius: 20px;
 
@@ -390,7 +390,7 @@ nav {
 .tutos>* {
     position: relative;
     z-index: 2;
-    /* texte au-dessus de l’overlay */
+    /* texte au-dessus de l’overlay 
 }
 
 /*.localisation {
@@ -442,16 +442,16 @@ nav {
     position: relative;
     z-index: 2;
     /* texte au-dessus de l’overlay 
-}*/
+}
 
 .matériel {
     height: 54vh;
     width: 28vw;
     background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/materiel.webp');
     background-size: cover;
-    /* l'image couvre tout l'espace */
+    /* l'image couvre tout l'espace 
     background-position: center;
-    /* centrée horizontalement et verticalement */
+    /* centrée horizontalement et verticalement 
     background-repeat: no-repeat;
     display: flex;
     color: white;
@@ -468,7 +468,7 @@ nav {
     position: relative;
     z-index: 2;
     margin: 0;
-    /* important pour centrer verticalement */
+    /* important pour centrer verticalement 
     padding: 0;
 }
 
@@ -481,7 +481,7 @@ nav {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
-    /* overlay noir semi-transparent */
+    /* overlay noir semi-transparent 
     z-index: 1;
     border-radius: 20px;
 
@@ -490,7 +490,7 @@ nav {
 .matériel>* {
     position: relative;
     z-index: 2;
-    /* texte au-dessus de l’overlay */
+    /* texte au-dessus de l’overlay 
 }
 
 /*.recettes {
@@ -544,7 +544,7 @@ nav {
     /* texte au-dessus de l’overlay
 }*/
 
-#pres_brochet {
+/*#pres_brochet {
     padding: 20px;
 }
 
@@ -931,7 +931,7 @@ button:hover {
 
 /*VISUEL PAGE BROCHET*/
 
-.navig_poisson {
+/*.navig_poisson {
     display: flex;
     font-size: 20px;
     gap: 20px;
@@ -1068,9 +1068,9 @@ h3 {
 
 #resetBtn:hover {
     background-color: lightgray;
-}
+}*/
 
-.synthese {
+/*.synthese {
     display: block;
     background-color: black;
     color: white;
@@ -1118,7 +1118,7 @@ h3 {
     margin-bottom: 20px;
     gap: 10px;
     align-items: center;
-}
+}*/
 
 .sous_partie {
     background-color: black;

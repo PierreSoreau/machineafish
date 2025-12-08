@@ -1,33 +1,55 @@
 //--------AFFICHER DETAILS EXPLICATION PHOTO MORPHOLOGIE AU CLIQUE SUR L'IMAGE------
 
 //Cette fonction permet d'afficher le détail de l'explication d'une morpho au clique sur l'image et fait disparaître les autres 
-function afficher(element) {
-  const items = document.querySelectorAll('.morphologie .photo_morpho');
-  const resetBtn = document.getElementById('resetBtn');
-  items.forEach(item => {
-    if (item !== element) {
-      item.classList.add('cache');
-      item.classList.remove('active');
-    }
+const container1 = document.getElementById("morpho_container");
+const resetbutton = document.getElementById("resetBtn");
+let activephoto = null;
 
+container1.addEventListener("click", e => {
+  if (window.innerWidth < 992) return; // Ne rien faire sur mobile
+
+  const photo = e.target.closest('.photo_morpho');
+
+  if (!photo) return;
+
+  if (activephoto === photo) return;
+
+  activephoto = photo;
+
+  container1.querySelectorAll(".photo_morpho").forEach(el => {
+    if (el === photo) {
+      el.classList.add("expanded");
+      el.querySelector(".description").style.display = "block";
+      el.querySelectorAll(".morpho").forEach(img => img.style.display = "block");
+    }
     else {
-      item.classList.add('active');
-      item.classList.remove('cache');
+      el.classList.remove("expanded");
+      el.querySelector(".description").style.display = "none";
+      el.querySelectorAll(".morpho").forEach(img => img.style.display = "none");
     }
-  });
-  resetBtn.style.display = 'block';
-}
 
-//Cette fonction permet de revenir à l'affichage de toute les photos en appuyant sur le bouton revenir à toutes les photos 
-function resetmorpho() {
-  const items = document.querySelectorAll('.morphologie .photo_morpho');
-  const resetBtn = document.getElementById('resetBtn');
-  items.forEach(item => {
-    item.classList.remove('active');
-    item.classList.remove('cache');
+    
   });
-  resetBtn.style.display = 'none';
-}
+  resetbutton.style.display = 'inline-block';
+
+});
+
+
+resetbutton.addEventListener('click', () => {
+  activephoto = null;
+
+  container1.querySelectorAll('.photo_morpho').forEach(ele => {
+    ele.classList.remove("expanded");
+    ele.querySelectorAll(".morpho").forEach(img => img.style.display = "block");
+    ele.querySelector(".description").style.display = "none";
+  });
+
+  resetbutton.style.display = 'none'; // cacher le bouton reset
+});
+
+
+
+
 
 //---------------------------------------------------------------------------------
 
@@ -116,14 +138,14 @@ const images = [
   'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_cycle.webp'
 ];
 
-const picturenumber=[1,2,3,4,5,6,7]
+const picturenumber = [1, 2, 3, 4, 5, 6, 7]
 //Pour chaque image du tableau image situé juste au dessus on leur associe une position sur le cercle (x,y)
 //On les mets dans le html brochet
 //On leur demande les fonctionnalités de clickbubble au click via setattribute 
 images.forEach((src, i) => {
   const angle = (2 * Math.PI / images.length) * i - Math.PI / 2;
   const x = centerX + radius * Math.cos(angle);
-  const y = centerY + radius * Math.sin(angle);  
+  const y = centerY + radius * Math.sin(angle);
 
   //création de la div bubble
   const bubble = document.createElement('div');
@@ -135,8 +157,8 @@ images.forEach((src, i) => {
   bubble.setAttribute('onclick', `clickBubble(${i}, this)`);
   //crée l'image
   const img = document.createElement('img');
-  const p= document.createElement('p');
-  p.textContent=picturenumber[i];
+  const p = document.createElement('p');
+  p.textContent = picturenumber[i];
   img.src = src;
   img.alt = `etape_${i}`;
   //met la div img dans bubble
@@ -186,11 +208,11 @@ function return_to_step1() {
   });
 
   Array.from(paragraph).forEach((p) => {
-    p.remove();   
+    p.remove();
 
   });
 
-  infoBox.textContent="Cliquez sur une bulle pour découvrir les étapes de reproduction.";
+  infoBox.textContent = "Cliquez sur une bulle pour découvrir les étapes de reproduction.";
 
   stepsDone = 0;
   stepsHistory = [];

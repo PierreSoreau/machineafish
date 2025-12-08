@@ -33,9 +33,17 @@ ol[role='list'] {
 }
 
 /* Set core body defaults */
+html,
 body {
-    min-height: 100vh;
+    height: 100%;
     line-height: 1.5;
+    margin: 0;
+    
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -100,8 +108,7 @@ header {
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    height: 8vh !important;
-    position: fixed;
+    position: sticky;
     z-index: 1000;
     top: 0;
     left: 0;
@@ -109,7 +116,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
 }
 
 
@@ -118,10 +125,10 @@ nav {
 
 }
 
-.puce{
+.puce {
     list-style: none;
     width: 100%;
-    
+
 }
 
 nav.show {
@@ -138,7 +145,7 @@ nav.show {
     width: 100%;
 }
 
-.puce li{
+.puce li {
     width: 100%;
     border-top: 1px solid white;
     padding: 10px;
@@ -146,8 +153,8 @@ nav.show {
 
 .navi1 {
     text-decoration: none;
-    font-family: "Inter", cursive;    
-    color: white;    
+    font-family: "Inter", cursive;
+    color: white;
     font-size: 16px;
 
 }
@@ -157,7 +164,7 @@ nav.show {
     align-items: center;
     position: absolute;
     left: 50%;
-    transform:translateX(-50%);
+    transform: translateX(-50%);
 }
 
 #menu {
@@ -217,6 +224,7 @@ button i::before {
     display: none;
     transition: width 0.4s ease, opacity 0.4s ease;
     opacity: 0;
+    font-family: "Inter", cursive;
 }
 
 #searchelement.show {
@@ -271,19 +279,19 @@ button i::before {
 
     }
 
-    .puce{
+    .puce {
         display: flex;
-        gap:20px;
+        gap: 20px;
     }
 
-    .puce li{
+    .puce li {
         border-top: none;
         padding: 0px;
         width: auto;
 
     }
 
-    
+
 
     #searchelement.show {
         width: 80%;
@@ -297,8 +305,8 @@ button i::before {
 
 
     .navi1 {
-        font-size: 20px;  
-        padding: 10px;      
+        font-size: 20px;
+        padding: 10px;
     }
 
     .navi1:hover {
@@ -324,12 +332,12 @@ button i::before {
         border-radius: 30px;
         box-sizing: border-box;
         text-indent: 20px;
-        width: 20vw;        
+        width: 20vw;
         opacity: 1;
-        font-size: 16px;        
+        font-size: 16px;
         caret-color: black;
         padding-right: 10px;
-        
+
     }
 
 

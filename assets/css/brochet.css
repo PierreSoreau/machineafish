@@ -1,0 +1,852 @@
+main {
+    background-color: black;
+}
+
+/*PARTIE MORPHOLOGIE*/
+
+#pres_brochet {
+    width: 100%;
+    height: auto;
+}
+
+#pres_brochet img {
+    max-width: 80%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px auto;
+
+}
+
+#navig_poisson {
+    display: flex;
+    font-size: 16px;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    max-width: 100vw;
+}
+
+#navig_poisson li {
+    color: white;
+    border: 3px solid white;
+    border-radius: 3px;
+    padding: 3px;
+    list-style: none;
+
+}
+
+#navig_poisson a {
+
+    text-decoration: none;
+    font-family: "Inter", cursive;
+}
+
+.sous_partie {
+    border-top: solid 2px white;
+}
+
+
+.sous_partie h3 {
+    color: white;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: "Inter", cursive;
+}
+
+
+#taille_brochet {
+    max-width: 100%;
+}
+
+#taille_brochet img {
+    border-radius: 20px;
+    max-width: 80%;
+    object-fit: cover;
+    margin: 10px auto;
+}
+
+
+#morpho_container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+
+}
+
+#resetBtn {
+    display: none;
+}
+
+.photo_morpho {
+    max-width: 100%;
+    grid-column: 1;
+    margin: auto 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.photo_morpho.nb2 {
+    grid-row: 1/2;
+}
+
+.photo_morpho.nb3 {
+    grid-row: 2/3;
+}
+
+.photo_morpho.nb4 {
+    grid-row: 3/4;
+}
+
+.photo_morpho.nb5 {
+    grid-row: 4/5;
+}
+
+.photo_morpho.nb6 {
+    grid-row: 5/6;
+}
+
+#box_morpho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.morpho {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+
+.description {
+    text-align: justify;
+    color: white;
+    font-family: "Inter", cursive;
+    font-size: 16px;
+}
+
+
+#resetBtn {
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    width: 100%;
+}
+
+
+.synthese {
+    display: block;
+    background-color: black;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+
+.titre_synthese {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+
+.titre_synthese h4 {
+    font-size: 20px;
+    font-family: "Inter", cursive;
+}
+
+.contenu_synthese {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+    margin: auto 10px;
+}
+
+.box_synthese {
+    width: 100%;
+
+
+}
+
+.ligne_contenu {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+    align-items: center;
+}
+
+.ligne_contenu p {
+    font-family: "Inter", cursive;
+    font-size: 16px;
+}
+
+/*FIN PARTIE MORPHOLOGIE*/
+
+
+
+
+
+@media(min-width:600px) {
+
+    /*PARTIE MORPHOLOGIE*/
+    #navig_poisson {
+        justify-content: center;
+    }
+    
+
+    .photo_morpho {
+        flex-direction: row;
+    }
+
+    #box_morpho {
+        flex-direction: column;
+        width:120px;
+        min-width: 120px;
+    }
+
+    #box_morpho .morpho{
+        width:120px;
+    }
+
+    .contenu_synthese {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3,auto);        
+        border: none;
+        background-color: transparent;
+        padding: 0px;
+        border-radius: 0px;
+        height:414px;
+    }
+
+    .box_synthese {
+        border: 1px solid #333333;
+        background-color: #1a1a1a;
+        padding: 20px;
+        border-radius: 10px;
+        height:100%;
+    }
+
+
+
+}
+
+@media(min-width:992px) {
+
+
+    #resetBtn {
+        font-family: "Inter", cursive;
+        width: auto;
+        margin-left: 10px;
+        border-radius: 10px;
+        transition: transform 0.5s ease;
+    }
+
+    #resetBtn:hover {
+        transform: scale(1.05);
+    }
+
+    #morpho_container {
+        grid-template-columns: repeat(5, auto);
+        grid-template-rows: auto;
+        gap: 0px;
+        width: fit-content;
+        margin: 10px auto;
+    }
+
+    .morpho {
+        width: 150px;
+        height: 150px;
+        transition: transform 0.5s ease;
+    }
+
+    .morpho:hover {
+        transform: scale(1.05);
+    }
+
+
+
+    .photo_morpho {
+        border: none;
+        background-color: transparent;
+        border-radius: 0px;
+        margin: 0px;
+        padding: 20px 0.5vw;
+
+    }
+
+
+
+    #box_morpho {
+        flex-direction: row;
+        gap: 1vw;
+    }
+
+    .photo_morpho.nb2.expanded {
+        grid-column: 1 / span 5;
+        width: 80%;
+        margin: auto auto;
+        border: 1px solid #333333;
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 10px;
+
+    }
+
+    .photo_morpho.nb3.expanded {
+        grid-column: 1 / span 5;
+        width: 80%;
+        margin: auto auto;
+        border: 1px solid #333333;
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .photo_morpho.nb4.expanded {
+        grid-column: 1 / span 5;
+        width: 80%;
+        margin: auto auto;
+        border: 1px solid #333333;
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .photo_morpho.nb5.expanded {
+        grid-column: 1 / span 5;
+        width: 80%;
+        margin: auto auto;
+        border: 1px solid #333333;
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .photo_morpho.nb6.expanded {
+        grid-column: 1 / span 5;
+        width: 50%;
+        margin: auto auto;
+        border: 1px solid #333333;
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .description {
+        display: none;
+    }
+
+
+    .photo_morpho.nb2 {
+        grid-column: 1/2;
+        grid-row: 1;
+    }
+
+    .photo_morpho.nb3 {
+        grid-column: 2/3;
+        grid-row: 1;
+    }
+
+    .photo_morpho.nb4 {
+        grid-column: 3/4;
+        grid-row: 1;
+    }
+
+    .photo_morpho.nb5 {
+        grid-column: 4/5;
+        grid-row: 1;
+    }
+
+    .photo_morpho.nb6 {
+        grid-column: 5/6;
+        grid-row: 1;
+    }
+}
+
+
+
+
+/*@media(min-width:992px) {
+
+    #navig_poisson li {
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    #navig_poisson li:hover {
+        transform: scale(1.05);
+        background-color: white;
+        color: black;
+
+
+    }
+
+
+    /*.synthese {
+    display: block;
+    background-color: black;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+
+.titre_synthese {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.titre_synthese p {
+    font-size: 20px;
+}
+
+.contenu_synthese {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.contenu_synthese_1 {
+    max-width: 400px;
+    border: 3px solid white;
+    padding: 10px;
+
+}
+
+#contenu_synthese_2 {
+    max-width: 400px;
+    border: 3px solid white;
+    padding: 10px;
+
+}
+
+.ligne_contenu {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+    align-items: center;
+}
+
+.sous_partie {
+    background-color: black;
+    padding-top: 5px;
+    border-top: 5px solid white;
+    scroll-margin-top: 160px;
+}
+
+h4 {
+    color: white;
+}
+
+.habitat p {
+    color: white;
+}
+
+.condi_habitat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.titre {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.titre i {
+    color: white;
+}
+
+.titre img {
+    width: 400px;
+    height: 300px;
+}
+
+.milieu_aquatique {
+    display: flex;
+    gap: 30px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#temperature_brochet {
+    width: 300px;
+    height: auto;
+}
+
+.saisonselect {
+    text-align: center;
+    text-align-last: center;
+    font-family: Roboto Flex;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#visuelspot {
+    color: white;
+}
+
+#visuelspotpea,
+#visuelspoth {
+    display: none;
+}
+
+#visuelspotpea {
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    display: flex;
+
+}
+
+#visuelspoth {
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.spot1 p {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    width: 300px;
+    height: auto;
+
+
+
+}
+
+.spot1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+
+
+}
+
+.spot2 img {
+    max-width: 300px;
+    max-height: 300px;
+
+    /* évite un petit espace blanc sous l'image 
+
+}
+
+.spot2 {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.spot2 video {
+    max-width: 100%;
+    height: auto;
+    /* évite un petit espace blanc sous l'image 
+}
+
+
+
+.video_alimentation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#visuel_animaux {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.animal1 {
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.animal2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.animal2 img {
+    width: 300px;
+    height: 300px;
+}
+
+/*visuel sous partie reproduction de la page brochet
+
+.circle-container {
+    position: relative;
+    margin: 30px auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.cycle {
+    width: 800px;
+    height: 800px;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+
+}
+
+circle.track {
+    stroke: white;
+    stroke-width: 4;
+    fill: none;
+}
+
+circle.progress {
+    stroke: #2a8;
+    stroke-width: 4;
+    fill: none;
+    /*centre du cercle transparent
+    stroke-dasharray: 1633;
+    /*le cercle au complet
+    /* ~2πr with r = 260 
+    stroke-dashoffset: 1633;
+    /*le cercle progressif
+    transition: stroke-dashoffset 0.6s ease;
+}
+
+.bubble {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #2a8;
+    overflow: hidden;
+    /*cache tout ce qui dépasse de la bulle
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.bubble img:hover {
+    transform: scale(1.1);
+}
+
+.bubble p {
+    font-size: 20px;
+    position: absolute;
+    color: white;
+    top: 50%;
+    /* centre verticalement 
+    left: 50%;
+    /* centre horizontalement 
+    transform: translate(-50%, -50%);
+    /* centre exact 
+    font-weight: bold;
+    text-shadow: 2px 2px 4px black;
+    /* pour que ça reste lisible 
+    z-index: 3;
+    margin: 0;
+}
+
+.bubble img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s;
+
+}
+
+.bubble.clicked {
+    border-color: #555;
+    transform: scale(0.95);
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.info-box {
+    margin-top: 20px;
+    padding: 10px;
+    min-height: 60px;
+    font-size: 16px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.commentaires p {
+    margin-bottom: 20px;
+}
+
+.commentaires {
+    border: 3px solid white;
+}
+
+.undo-button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #2a8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#video_reproduction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    max-width: 400px;
+    margin: 0 auto 15px;
+    flex-direction: column;
+
+}
+
+#video_reproduction p {
+    font-size: 20px;
+    color: white;
+}
+
+.Leurre {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+.visuel_animation_leurre {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.leurre {
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
+    background-size: contain;
+    /* ou cover si tu veux remplir 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.leurre h3 {
+    color: black;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* fond blanc semi-transparent 
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+
+.animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+
+}
+
+@media(min-width:992px){
+
+#navig_poisson li{
+    cursor:pointer;
+    transition: transform 0.2s;
+}
+
+#navig_poisson li:hover {
+    transform: scale(1.05);
+    background-color: white;
+    color: black;    
+
+
+}*/
