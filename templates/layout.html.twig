@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <!--lien vers le site supabase-->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <!--lien vers le site algolia qui permet de faire des recherches dans la barre de recherche-->
-    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>    
     <!--lien vers le site Font Awesome d'icône-->
     <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
+    
+    {% block stylesheets %}
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/home_page.css">
-    <link rel="stylesheet" href="assets/css/brochet.css">
+    {% endblock %}    
     <!--<link rel="stylesheet" href="visuel.css">-->  
     <!--liens écritures-->  
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,15 +22,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil machineapêche</title>
+    <title>{% block title %} Accueil machineapêche {% endblock %}</title>
     <meta name="description"
-        content="site de vulgarisation de la pêche aux leurres en eau douce:types de poissons, matériels, tutoriels de méthode de pêche, lieux de pêche, règlementation, recettes, leurres faits mains">
-        <!-- <meta name="description" 
-    content="Description du brochet: morphologie, habitats, alimentation, reproduction">
-    <script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.js"></script>-->
+        content="{% block description %}site de vulgarisation de la pêche aux leurres en eau douce:types de poissons, matériels, tutoriels de méthode de pêche, lieux de pêche, règlementation, recettes, leurres faits mains.{% endblock %}">        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.css">
+    <script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.js"></script>
 </head>
 
     <body>
-        <?php require "templates/$template.phtml";?>
+        {% include "partials/_header.html.twig" %}
+
+        {% block main %}
+        {% endblock %}       
+
+        
+        {% include "partials/_footer.html.twig" %}
+        
+        
     </body>
 </html>

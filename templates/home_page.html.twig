@@ -1,0 +1,52 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="assets/css/home_page.css">
+	{{parent()}}
+{% endblock %}
+
+{% block main %}
+	<main id="home_page">
+		<div class="video_background">
+			<video autoplay muted loop playsinline preload="auto">
+				<source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/video_accueilbis.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvdmlkZW9fYWNjdWVpbGJpcy5tcDQiLCJpYXQiOjE3NTk0NDI3MTIsImV4cCI6MTc5MDk3ODcxMn0.qXTL2uqb-r1ZndkgNVn_vxZPdamICVBa8WlanGIvJgE" type="video/mp4"/>
+				Votre navigateur ne supporte pas la vidéo
+			</video>
+		</div>
+
+		<section class="menu_visuel">
+			<a href="http://localhost/site internet pêche/codes/machineafish/carnassiers.html" class="lien poisson">
+				<p>Carnassiers d'eau douce</p>
+			</a>
+			<!--<a href="https://machineapeche/Règlementation.fr" class="reglementations">
+																		            <p>Pêche en eau douce: la loi</p>
+																		        </a>-->
+			<a href="http://localhost/site internet pêche/codes/machineafish/tutos_videos.html" class="lien video">
+				<p>Tutoriels vidéos</p>
+			</a>
+			<!--<a href="https://machineapeche/Ou_pêcher.fr" class="localisation">
+																		            <p>Ou pêcher?</p>
+					</a>-->
+			<a href="http://localhost/site internet pêche/codes/machineafish/materiel.html" class="lien materiel">
+				<p>Matériel</p>
+			</a>
+			<!--<a href="https://machineapeche/Recettes_de_cuisine.fr" class="recettes">
+													            <p>Régale toi avec ces recettes</p>
+								</a>-->
+		</section>
+	</main>
+
+	<!--<div id="cookies_background" class="hidden cookies">
+	    <div id="cookies">        
+	    </div> 
+	    </div>   
+	
+	    lien vers le script js qui gère les cookies google analytics
+	    <script src="script_gestion_cookies.js"></script>-->
+{% endblock %}
+
+
+
+
+
+
