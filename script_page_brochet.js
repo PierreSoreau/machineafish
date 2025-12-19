@@ -3,6 +3,7 @@
 //Cette fonction permet d'afficher le détail de l'explication d'une morpho au clique sur l'image et fait disparaître les autres 
 const container1 = document.getElementById("morpho_container");
 const resetbutton = document.getElementById("resetBtn");
+
 let activephoto = null;
 
 container1.addEventListener("click", e => {
@@ -17,19 +18,28 @@ container1.addEventListener("click", e => {
   activephoto = photo;
 
   container1.querySelectorAll(".photo_morpho").forEach(el => {
+    const boxMorpho = el.querySelector("#box_morpho");
     if (el === photo) {
       el.classList.add("expanded");
       el.querySelector(".description").style.display = "block";
       el.querySelectorAll(".morpho").forEach(img => img.style.display = "block");
+
+      if (boxMorpho) {
+      boxMorpho.style.flexDirection = "column";
     }
+      
+    }
+
+
     else {
       el.classList.remove("expanded");
       el.querySelector(".description").style.display = "none";
-      el.querySelectorAll(".morpho").forEach(img => img.style.display = "none");
+      el.querySelectorAll(".morpho").forEach(img => img.style.display = "none");      
     }
 
     
   });
+  
   resetbutton.style.display = 'inline-block';
 
 });
@@ -42,6 +52,12 @@ resetbutton.addEventListener('click', () => {
     ele.classList.remove("expanded");
     ele.querySelectorAll(".morpho").forEach(img => img.style.display = "block");
     ele.querySelector(".description").style.display = "none";
+    
+
+    const boxMorphoReset = ele.querySelector("#box_morpho");
+    if (boxMorphoReset) {
+      boxMorphoReset.style.flexDirection = "row";
+    }
   });
 
   resetbutton.style.display = 'none'; // cacher le bouton reset
