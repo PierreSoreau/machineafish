@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <!--lien vers le site supabase-->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>    
-    <!--lien vers le site Font Awesome d'icône-->
-    <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
-    
-    {% block stylesheets %}
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    {% endblock %}    
-    <!--<link rel="stylesheet" href="visuel.css">-->  
-    <!--liens écritures-->  
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Accueil machineapêche {% endblock %}</title>
-    <meta name="description"
-        content="{% block description %}site de vulgarisation de la pêche aux leurres en eau douce:types de poissons, matériels, tutoriels de méthode de pêche, lieux de pêche, règlementation, recettes, leurres faits mains.{% endblock %}">        
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.css">
-    <script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.js"></script>
-</head>
+	<head>
+		<meta
+		charset="UTF-8">
+		<!--lien vers le site supabase-->
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+		<!--lien vers le site Font Awesome d'icône-->
+		<script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
 
-    <body>
-        {% include "partials/_header.html.twig" %}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="assets/css/header.css">
+			<link rel="stylesheet" href="assets/css/footer.css">
+		{% endblock %}
+		<!--<link rel="stylesheet" href="visuel.css">-->
+		<!--liens écritures-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}
+				Accueil machineapêche
+			{% endblock %}
+		</title>
+		<meta name="description" content="{% block description %}site de vulgarisation de la pêche aux leurres en eau douce:types de poissons, matériels, tutoriels de méthode de pêche, lieux de pêche, règlementation, recettes, leurres faits mains.{% endblock %}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.css">
+		<script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.js"></script>
+	</head>
 
-        {% block main %}
-        {% endblock %}       
+	<body>
+		{% include "partials/_header.html.twig" %}
 
-        
-        {% include "partials/_footer.html.twig" %}
-        
-        
-    </body>
+		{% block main %}{% endblock %}
+
+
+		{% include "partials/_footer.html.twig" %}
+
+		{% block javascripts %}		
+		{% endblock %}
+
+
+	</body>
 </html>
