@@ -4,6 +4,7 @@ footer {
     color: white;
     height: auto;
     flex-direction: column;
+    border-top:1px solid white;
 
 }
 

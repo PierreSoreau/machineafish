@@ -1,0 +1,137 @@
+/* --- Mise en page globale du Quiz --- */
+.quiz {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #1a1a1a; /* Gris très foncé presque noir */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid #333; /* Bordure discrète */
+}
+
+/* --- Barre de progression --- */
+.progress_container {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#progress_bar {
+    width: 0%;
+    height: 8px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 10px;
+    transition: width 0.4s ease-in-out;
+}
+
+#progress_title {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #bdc3c7; /* Gris clair pour le texte */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* --- Questions --- */
+#questions_title {
+    font-size: 1.8rem;
+    color: #ffffff; /* Texte blanc */
+    text-align: center;
+    margin-bottom: 30px;
+    min-height: 60px;
+}
+
+/* --- Grille d'options --- */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* --- Cartes de réponse (tes divs générées en JS) --- */
+.answer-card {
+    background: #2c2c2c; /* Fond des cartes gris foncé */
+    border: 2px solid #3d3d3d;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: #ecf0f1; /* Texte blanc cassé */
+}
+
+
+.card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:50%;
+}
+
+.card-text{
+    text-align: center;
+    width:50%;
+}
+
+
+
+/* Cache le conteneur d'image s'il est vide ou si la carte a la classe no-img */
+.answer-card.no-img .card-img {
+    display: none !important;
+}
+
+/* Force le texte à prendre 100% de la largeur et centre-le */
+.answer-card.no-img .card-text {
+    width: 100% !important;
+    flex: 1; /* Prend tout l'espace disponible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px; /* Optionnel : pour garder une hauteur constante */
+}
+
+/* On centre aussi le texte horizontalement pour les questions Oui/Non par exemple */
+.answer-card.no-img span {
+    text-align: center;
+    font-size: 1.2rem;
+}
+.answer-card:hover {
+    border-color: #3498db; /* Bleu pêche au survol */
+    background: #34495e; /* Légère couleur bleutée au survol */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.answer-card span {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* --- Style pour les images/logos --- */
+.img-logo {
+    width: 80px;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Ombre sur les poissons/saisons */
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .quiz {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    #questions_title {
+        font-size: 1.4rem;
+    }
+}

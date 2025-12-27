@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="assets/css/questions.css">
+{% endblock %}
+
+{% block title %}
+	Questionnaire Matériel
+{% endblock %}
+
+{% block description %}
+	Questionnaire auquel l'utilisateur doit répondre pour avoir du matériel personnalisé 
+{% endblock %}
+
+{% block main %}
+	<div class="quiz">
+		<div class="progress_container">
+			<div id="progress_bar"></div>
+			<span id="progress_title"></span>
+		</div>
+		<div class="questions_container">
+			<h2 id="questions_title"></h2>
+			<div id="options-container" class="options-grid"></div>
+		</div>
+	</div>
+	<form id="hidden-quiz-form" action="index.php?route=materiel" method="POST" style="display: none;">
+		<input type="hidden" name="results" id="results-input">
+	</form>
+{% endblock %}
+{% block javascripts %}
+	{# script qui permet de transformer en format json lisible pour javascript les datas sortis de php #}
+	<script>
+		const allQuestions = {{ questions|json_encode()|raw }};
+const allPoissons = {{ poissons|json_encode()|raw }};
+const allSaisons = {{ saisons|json_encode()|raw }};
+	</script>
+	<script src="questions.js" defer></script>
+{% endblock %}

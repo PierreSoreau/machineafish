@@ -16,6 +16,15 @@ class Router
              if($_GET['route'] === 'brochet') {
                 $this->uc->brochet();
             }
+
+            else if ($_GET['route'] === 'materiel'){
+                $this->uc->savedata();
+                $this->uc->result();
+            }
+
+            else if ($_GET['route'] === 'questions'){
+                $this->uc->questions();
+            }
             /*else if($_GET['route'] === 'sandre') {
                 $this->uc->sandre();
             }*/
