@@ -94,6 +94,7 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'DefaultController' => __DIR__ . '/../..' . '/controllers/DefaultController.php',
         'Fil' => __DIR__ . '/../..' . '/models/Fil.php',
         'Leurre' => __DIR__ . '/../..' . '/models/Leurre.php',
+        'MaterielManager' => __DIR__ . '/../..' . '/managers/MaterielManager.php',
         'MilieuAquatique' => __DIR__ . '/../..' . '/models/MilieuAquatique.php',
         'Moulinet' => __DIR__ . '/../..' . '/models/Moulinet.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',

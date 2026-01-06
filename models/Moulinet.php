@@ -1,14 +1,13 @@
 <?php
 class Moulinet {
-    public function __construct(
-        private int $id,
-        private int $taille_bobine,
-        private int $ratio,
-        private string $nom
-    ) {}
+    
+        private ?int $id = null;
+        private ?int $taille_bobine = null;
+        private ?int $ratio = null;
+        private ?string $nom = null;
 
-    public function getId(): int { return $this->id; }
-    public function getTailleBobine(): int { return $this->taille_bobine; }
-    public function getRatio(): int { return $this->ratio; }
-    public function getNom(): string { return $this->nom; }
+    public function getId(): ?int { return $this->id; }
+    public function getTailleBobine(): ?int { return $this->taille_bobine; }
+    public function getRatio(): ?int { return $this->ratio; }
+    public function getNom(): ?string { return $this->nom; }
 }

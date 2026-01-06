@@ -33,35 +33,34 @@ class UserController extends AbstractController
             'poissons' => $allpoissons,
             'saisons' => $allsaisons
         ]);
-    }
-
-    public function savedata(): void
-    {
-        if (!empty($_POST['results'])) {
-            $answers = json_decode($_POST['results'], true); //le true permet à ce que ça soit un tableau associatif classique de PHP : ```php [ "1" => "Brochet", "2" => "Été" ]
-            $userId = session_id();
-            $datareponses = new ReponsesUtilisateursManager;
-
-            $datareponses->saveAll($answers, $userId);
-        }
-
-
-        $this->render('materiel.html.twig', []);
-    }
+    }    
 
     public function result(): void
     {
-        $answers = json_decode($_POST['results'], true);
+
+        $resultsJson = $_POST['results'] ?? '[]';
+        $answers = json_decode($resultsJson, true) ?? [];
+
+        // Si le formulaire est vide, on peut rediriger vers le quiz ou afficher une erreur
+        if (empty($answers)) {
+            $this->render('questions.html.twig', ['error' => 'Veuillez remplir le quiz']);
+            return;
+        }
+        $userId = session_id();
+        $datareponses = new ReponsesUtilisateursManager;
+        $datareponses->saveAll($answers, $userId);
+
+        
         $mappingMilieux = [
             "petite étendue d'eau" => 1,
-            "grande étendue d'eau" => 2,           
+            "grande étendue d'eau" => 2,
         ];
 
         $mappingpoisson = [
             "sandre" => 1,
             "brochet" => 2,
             "silure" => 3,
-            "perche" => 4           
+            "perche" => 4
         ];
 
         // On récupère le texte et on trouve l'ID correspondant
@@ -69,24 +68,23 @@ class UserController extends AbstractController
         $milieuId  = $mappingMilieux[$nomMilieu] ?? 1; // 1 par défaut si non trouvé
 
         $nomPoisson = $answers[2];
-        $poissonId=$mappingpoisson[$nomPoisson];
+        $poissonId = $mappingpoisson[$nomPoisson] ?? 1;
 
         $donneesQuiz = [
             'milieu_id' => $milieuId, // On envoie maintenant un chiffre !
-            'poissonid'  => $poissonId,
-            'poisson_nom' =>$answers[2],
-            'taille'    => $answers[3],
-            'saison'    => $answers[4],
-            'courant'   => $answers[5],
+            'poisson'  => $poissonId,
+            'poisson_nom' => $answers[2] ?? "Brochet",
+            'taille'    => $answers[3] ?? 0,
+            'saison'    => $answers[4] ?? "Été",
+            'courant'   => $answers[5] ?? "Faible",
         ];
 
-        $datamateriel=new MaterielManager;
-        $resultats=$datamateriel->selection_matos($donneesQuiz);
+        $datamateriel = new MaterielManager;
+        $resultats = $datamateriel->selection_matos($donneesQuiz);
 
         $this->render('materiel.html.twig', [
-            "materiel"=>$resultats,
+            "materiel" => $resultats
 
         ]);
-}
-
+    }
 }

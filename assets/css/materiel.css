@@ -1,0 +1,166 @@
+main {
+    background-color: black;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+main h2 {
+    color: white;
+    font-family: "Inter", cursive;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+#matos {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.matos_detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    border: 2px solid green;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.nom_materiel_container {
+    display: flex;
+    justify-content: flex-start;
+    width:100%;
+}
+
+.nom_matos {
+    font-size: 20px;
+    color: white;
+    font-family: "Inter", cursive;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.nom_matos.canne {
+    background-color: red;
+}
+
+.nom_matos.moulinet {
+    background-color: blue;
+}
+
+.nom_matos.fil {
+    background-color: green;
+}
+
+.nom_matos.leurres {
+    background-color: yellow;
+    color:black !important;
+}
+
+
+.matos_detail img {
+    width: 150px;
+    border-radius: 10px;
+}
+
+.matos_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.matos_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.matos_box p {
+    font-family: "Inter", cursive;
+    color: white;
+    font-size: 16px;
+}
+
+.matos_titre {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 10px;
+    width: 180px;
+}
+
+.matos_titre h3 {
+    font-family: "Inter", cursive;
+    font-size: 16px;
+}
+
+.matos_titre img {
+    width: 30px;
+    height: 30px;
+}
+
+.titre_fil{
+    font-size: 13px !important;
+}
+
+.matos_titre.fil{
+    gap:0px;
+}
+
+.logo_fil{
+    width:50px !important;
+    height:50px !important;
+}
+
+
+
+.photo_leurre{
+    width:100px !important;
+    height:auto;
+}
+
+.leurre_container{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.leurre-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
+
+.matos_titre.leurre{
+    justify-content: center;
+    width:100px;
+    height:50px;
+}
+
+.matos_titre.leurre h3{
+    font-size: 13px !important;
+
+}

@@ -20,6 +20,7 @@ return array(
     'DefaultController' => $baseDir . '/controllers/DefaultController.php',
     'Fil' => $baseDir . '/models/Fil.php',
     'Leurre' => $baseDir . '/models/Leurre.php',
+    'MaterielManager' => $baseDir . '/managers/MaterielManager.php',
     'MilieuAquatique' => $baseDir . '/models/MilieuAquatique.php',
     'Moulinet' => $baseDir . '/models/Moulinet.php',
     'PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',

@@ -19,7 +19,8 @@ class MaterielManager extends AbstractManager
 
     {
         $milieuid = $donneesQuiz['milieu_id'];
-        $espece = $donneesQuiz['poisson'];
+        $especenb = $donneesQuiz['poisson'];
+        $espece = $donneesQuiz['poisson_nom'];
         $taille = $donneesQuiz['taille'];
         $courant = $donneesQuiz['courant'];
         $saison = $donneesQuiz['saison'];
@@ -44,6 +45,8 @@ class MaterielManager extends AbstractManager
         } else {
             $poids = $poidsreference;
         }
+
+        $poids = (int) round($poids);
 
         //les règles d'action de la canne en fonction du poisson
 
@@ -85,7 +88,7 @@ class MaterielManager extends AbstractManager
             ]
         ];
 
-        $especeNom = strtolower($donneesQuiz['poisson_nom']);
+        $especeNom = strtolower($espece);
        
 
         $typesAutorises = $reglesSaison[$especeNom][$saison] ?? ["shad"];
@@ -93,12 +96,13 @@ class MaterielManager extends AbstractManager
 
         // obtention de la base de données des cannes en fonction du milieu et du poisson et du courant       
 
-        $sqlCannes = "SELECT DISTINCT canne.* FROM canne 
+        $sqlCannes = "SELECT canne.* FROM canne 
               INNER JOIN canne_milieu_aquatique ON canne.id = canne_milieu_aquatique.canne_id 
               INNER JOIN milieu_aquatique ON canne_milieu_aquatique.milieu_id = milieu_aquatique.id
               WHERE milieu_aquatique.id = :idMilieu
               AND :pref BETWEEN canne.poids_mini AND canne.poids_maxi
-              AND canne.action IN (" . $this->formatInClause($actionsAutorisees) . ")";
+              AND canne.action IN (" . $this->formatInClause($actionsAutorisees) . ")
+              ORDER BY ABS(canne.poids_mini - :pref) ASC LIMIT 1";
 
         $query = $this->db->prepare($sqlCannes);
         $query->execute([
@@ -109,8 +113,10 @@ class MaterielManager extends AbstractManager
         $cannes = $query->fetchAll(PDO::FETCH_CLASS, 'Canne');
 
         // obtention de la base de données des moulinets en fonction du premier filtre des cannes et de la saison
+        $triRatio=($saison==="hiver") ? 'ASC' : 'DESC';
 
-        $sqlmoulinet = "SELECT DISTINCT moulinet.* FROM moulinet 
+
+        $sqlmoulinet = "SELECT moulinet.* FROM moulinet 
         INNER JOIN saison_moulinet ON moulinet.id = saison_moulinet.moulinet_id
         INNER JOIN canne_moulinet ON moulinet.id = canne_moulinet.moulinet_id
         WHERE canne_moulinet.canne_id IN (
@@ -120,7 +126,9 @@ class MaterielManager extends AbstractManager
             AND :pref BETWEEN canne.poids_mini AND canne.poids_maxi
             AND canne.action IN (" . $this->formatInClause($actionsAutorisees) . ")
         ) 
-        AND saison_moulinet.saison_id = :saison";
+        AND saison_moulinet.saison_id = :saison
+        ORDER BY moulinet.ratio $triRatio
+        LIMIT 1";
 
         $query1 = $this->db->prepare($sqlmoulinet);
         $query1->execute([
@@ -133,7 +141,7 @@ class MaterielManager extends AbstractManager
 
         // obtention de la base de données des leurres en fonction des réponses de tout le questionnaire
 
-        $sqlleurres = "SELECT DISTINCT leurre.* FROM leurre
+        $sqlleurres = "SELECT DISTINCT ON (leurre.nom) leurre.* FROM leurre
         -- On lie le leurre au poisson
         INNER JOIN poisson_leurre ON leurre.id = poisson_leurre.leurre_id
         -- On lie le leurre à la canne
@@ -148,7 +156,7 @@ class MaterielManager extends AbstractManager
         AND canne.action IN ({$this->formatInClause($actionsAutorisees)})
         -- IMPORTANT : On vérifie que le poids du leurre est cohérent avec le calcul du quiz
         AND leurre.poids_leurre BETWEEN :pmin AND :pmax
-        AND leurre.type IN (" . $this->formatInClause($typesAutorises) . ")";
+        AND leurre.nom IN (" . $this->formatInClause($typesAutorises) . ")";
 
         $query2 = $this->db->prepare($sqlleurres);
         $query2->execute([
@@ -156,7 +164,7 @@ class MaterielManager extends AbstractManager
             'pref'     => $poids,
             'pmin'     => $poidsmini,
             'pmax'     => $poidsmaxi,
-            'idPoisson' => $espece
+            'idPoisson' => $especenb
         ]);
 
         $leurres = $query2->fetchAll(PDO::FETCH_CLASS, 'Leurre');
@@ -165,12 +173,13 @@ class MaterielManager extends AbstractManager
         $sqlfil="SELECT fil.* FROM fil
         JOIN poisson_fil ON fil.id=poisson_fil.fil_id
         WHERE fil.gros_specimen = :taille
-        AND poisson_fil.poisson_id = :poissonid";
+        AND poisson_fil.poisson_id = :poissonid
+        LIMIT 1";
 
         $query3 = $this->db->prepare($sqlfil);
         $query3->execute([
             'taille' => $taille,
-            'poissonid' => $espece            
+            'poissonid' => $especenb            
         ]);
 
         $fils = $query3->fetchAll(PDO::FETCH_CLASS, 'Fil');
@@ -181,7 +190,7 @@ class MaterielManager extends AbstractManager
             'leurres'=>$leurres,
             'fils'=>$fils           
 
-        ];
+        ];     
 
 
 

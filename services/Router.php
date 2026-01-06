@@ -17,8 +17,7 @@ class Router
                 $this->uc->brochet();
             }
 
-            else if ($_GET['route'] === 'materiel'){
-                $this->uc->savedata();
+            else if ($_GET['route'] === 'materiel'){                
                 $this->uc->result();
             }
 

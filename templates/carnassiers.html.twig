@@ -78,3 +78,13 @@
 </body>
 
 </html>
+
+<!--{% block javascripts %}
+		{# script qui permet de transformer en format json lisible pour javascript les datas sortis de php #}
+		<script>
+			const allQuestions = {{ questions|json_encode()|raw }};
+const allPoissons = {{ poissons|json_encode()|raw }};
+const allSaisons = {{ saisons|json_encode()|raw }};
+		</script>
+		<script src="questions.js" defer></script>
+	{% endblock %}

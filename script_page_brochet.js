@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add("expanded");
         el.querySelector(".description").style.display = "block";
         el.querySelectorAll(".morpho").forEach(img => img.style.display = "block");
+        photo.prepend(resetbutton); //resetbouton placé tout au début de la div expanded
+        
 
         if (boxMorpho) {
           boxMorpho.style.flexDirection = "column";
@@ -43,14 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     resetbutton.style.display = 'inline-block';
+    resetbutton.classList.add("expanded1");
 
   });
 
 
-  resetbutton.addEventListener('click', () => {
+  resetbutton.addEventListener('click', (e) => {
     activephoto = null;
+    //Empêche le clic de relancer l'ouverture de la photo
+    e.stopPropagation();
 
     container1.querySelectorAll('.photo_morpho').forEach(ele => {
+      ele.style.display = "block";
       ele.classList.remove("expanded");
       ele.querySelectorAll(".morpho").forEach(img => img.style.display = "block");
       ele.querySelector(".description").style.display = "none";
@@ -79,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
       labels: ['Lent', 'Modéré', 'Rapide'],
       datasets: [{
         data: [1, 1, 1],
-        backgroundColor: ['#2ecc71', '#f39c12', '#e74c3c'],
+        backgroundColor: ['#2ecc71', '#ffffff', '#ffffff'],
         borderWidth: 0,
         hoverOffset: 10, //permet de zoomer au survol de la zone
         datalabels: {
-          color: '#ffffff',
+          color: ['#ffffff', '#000000', '#000000'],
           anchor: 'center',
           align: 'center',
           font: function (context) {
@@ -219,28 +225,27 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // On cherche l'input "saison" qui est coché (checked)
     const radioSelectionne = document.querySelector('input[name="saison"]:checked');
-    const saison = radioSelectionne ? radioSelectionne.value : ""; //si radioselecionne n'est pas nul alors ça prend la valeur sélectionné sinon ça prend la valeur ""
+    const saison = radioSelectionne ? radioSelectionne.value : "printemps_ete_automne"; //si radioselecionne n'est pas nul alors ça prend la valeur sélectionné sinon ça prend la valeur "printemps_ete_automne"
 
     const visuelspotpea = document.getElementById("visuelspotpea");
     const visuelspoth = document.getElementById("visuelspoth");
 
     // On cache tout par défaut
-    visuelspotpea.style.display = "none";
+    visuelspotpea.style.display = "grid";
     visuelspoth.style.display = "none";
 
     // On affiche selon le choix
     if (saison === "printemps_ete_automne") {
         visuelspotpea.style.display = "grid";
+        visuelspoth.style.display = "none"
     } 
-    else if (saison === "Hiver") {
+    else {
         visuelspoth.style.display = "grid";
-    }
-    else if (saison === "") {
-        visuelspoth.style.display = "none";
         visuelspotpea.style.display = "none";
-
-    }
+    }    
 }
+
+changerVisuel();
 
 //-----------------------------------------------------
 
