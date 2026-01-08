@@ -17,6 +17,22 @@ class Router
                 $this->uc->brochet();
             }
 
+            else if($_GET['route'] === 'sandre') {
+                $this->uc->sandre();
+            }
+
+            else if($_GET['route'] === 'silure') {
+                $this->uc->silure();
+            }
+
+            else if($_GET['route'] === 'perche') {
+                $this->uc->perche();
+            }
+
+             else if ($_GET['route'] === 'materiel'){                
+                $this->uc->result();
+            }
+
             else if ($_GET['route'] === 'materiel'){                
                 $this->uc->result();
             }
@@ -24,9 +40,11 @@ class Router
             else if ($_GET['route'] === 'questions'){
                 $this->uc->questions();
             }
-            /*else if($_GET['route'] === 'sandre') {
-                $this->uc->sandre();
-            }*/
+
+            else if($_GET['route'] === 'poissons') {
+                $this->uc->poissons();
+            }
+            
             /*else if($_GET['route'] === 'login') {
                 $this->ac->login();
             }
@@ -38,25 +56,11 @@ class Router
             }
             else if($_GET['route'] === 'profile') {
                 $this->uc->profile();
-            }*/
-            /*else if($_GET['route'] === 'carnassiers') {
-                $this->uc->carnassiers();
-            }
-
-            else if($_GET['route'] === 'silure') {
-                $this->uc->silure();
-            }
-            else if($_GET['route'] === 'perche') {
-                $this->uc->perche();
-            }
-
-            else if($_GET['route'] === 'materiel') {
-                $this->uc->materiel();
-            }
+            }*/           
 
             else if($_GET['route'] === 'tutoriels') {
                 $this->uc->tutoriels();
-            }*/
+            }
             
             else
             {

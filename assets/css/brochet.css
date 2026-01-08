@@ -7,6 +7,14 @@ main {
 #pres_brochet {
     width: 100%;
     height: auto;
+    padding-top: 10px;
+}
+
+#pres_brochet h1{
+    color: white;
+    font-family: "Inter", cursive;
+    text-align: center;
+    font-size: 25px;
 }
 
 #pres_brochet img {
@@ -30,6 +38,52 @@ main {
     /* Cache la barre de défilement sur Firefox */
     white-space: nowrap;
     max-width: 100vw;
+}
+
+#navig_fish {
+    display: flex;
+    /* On le colle en bas */
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    gap: 10px;
+    position: fixed;
+    z-index: 100;
+
+    /* Design de la barre */
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Fond semi-transparent pour lire */
+    backdrop-filter: blur(5px);
+    /* Effet flou moderne (optionnel) */
+    border-top: 1px solid #ccc;
+
+    /* Gestion du scroll horizontal */
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#navig_fish img {
+    width: 60px;
+    /* Taille fixe en px c'est mieux que vw ici */
+    height: 60px;
+    /* L'image remplit bien le rond sans s'écraser */
+    border-radius: 50%;
+
+
+}
+
+.poisson_actif {
+    border: 3px solid red;
+    /* Le cercle rouge */
+    transform: scale(1.1);
+    /* Un petit zoom pour la mettre en valeur */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    /* Une petite lueur rouge */
 }
 
 /* Cache la barre de défilement sur Chrome/Safari */
@@ -956,6 +1010,10 @@ h4 {
 
 
 @media(min-width:600px) {
+    
+    #navig_fish {
+        gap: 50px;        
+    }
 
     /*PARTIE MORPHOLOGIE*/
     #navig_poisson {
@@ -1206,6 +1264,30 @@ h4 {
 
 @media(min-width:992px) {
 
+    #pres_brochet h1{
+        font-size: 40px;
+    }
+
+    #pres_brochet img {
+        max-width: 70% !important;
+    }
+
+    #navig_fish {
+        gap: 100px;        
+    }
+
+    #navig_fish img {        
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Effet "rebond" sympa */
+
+    }
+
+    #navig_fish a:hover img {
+        transform: scale(1.15);
+             
+    }
+
     /*PARTIE MORPHOLOGIE*/
 
     .btn-retour-cercle {
@@ -1252,8 +1334,8 @@ h4 {
         margin: 10px auto;
     }
 
-    #resetBtn.expanded1 {       
-        width:10%;
+    #resetBtn.expanded1 {
+        width: 10%;
     }
 
     .morpho {

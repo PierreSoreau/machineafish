@@ -3,21 +3,45 @@
 class UserController extends AbstractController
 {
 
-
-    public function brochet(): void
-    {
-        $this->render('brochet.html.twig', []);
-    }
-
-    public function notFound(): void
-    {
-        $this->render('notfound.html.twig', []);
-    }
-
     public function home(): void
     {
         $this->render('home_page.html.twig', []);
     }
+
+    public function poissons(): void
+    {
+        $this->render('poissons.html.twig', ['route' => $_GET['route']]);
+    }
+
+    public function tutoriels(): void
+    {
+        $this->render('tutoriels.html.twig', ['route' => $_GET['route']]);
+    }
+
+    public function brochet(): void
+    {
+        $this->render('brochet.html.twig', ['route' => $_GET['route']]);
+    }
+
+    public function sandre(): void
+    {
+        $this->render('sandre.html.twig', ['route' => $_GET['route']]);
+    }
+
+    public function silure(): void
+    {
+        $this->render('silure.html.twig', ['route' => $_GET['route']]);
+    }
+
+    public function perche(): void
+    {
+        $this->render('perche.html.twig', ['route' => $_GET['route']]);
+    }    
+
+    public function notFound(): void
+    {
+        $this->render('notfound.html.twig', []);
+    }    
 
     public function questions(): void
     {
