@@ -1,282 +1,200 @@
-<!DOCTYPE html>
-<html>
+{% extends 'layout.html.twig' %}
 
-<head>
-    <meta charset="UTF-8">
-    <!--lien vers le site supabase-->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <!--lien vers le site Font Awesome d'icône-->
-    <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
-    <!--lien entre css et html-->
-    <link rel="stylesheet" href="visuel.css">
-    <!--liens écritures-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
-        rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutoriels vidéos pêche</title>
-    <meta name="description" content="Tutoriels vidéos pêche">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.css">
-    <script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.js"></script>
-</head>
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="assets/css/tutoriels.css">
+{% endblock %}
 
-<body>
+{% block title %}
+	Tutoriels vidéos apprentissage de la pêche aux leurres
+{% endblock %}
 
-    <section id="nav-placeholder"></section>
-    <main id="page_tutos">
-        <div id="navig_tutos">
-            <a href="#leurres_durs">Leurres durs</a>
-            <a href="#leurres_souples">Leurres souples</a>
-            <a href="#moulinet">Montage fil/moulinet</a>
-            <a href="#noeuds">Les noeuds indispensables</a>
-            <a href="#loi">La loi pour pêcher en eau douce</a>
+{% block description %}
+	Tutoriels vidéos apprentissage de la pêche aux leurres (animations de leurres, noeuds, montage, législation)
+{% endblock %}
 
-        </div>
+{% block main %}
+	<main>
+		<div id="navig_tutoriels">
+			<button class="filter-btn" data-filter="all">Tous</button>
+			<button class="filter-btn" data-filter="animations-leurres">Animations leurres</button>
+			<button class="filter-btn" data-filter="montages">Montages</button>
+			<button class="filter-btn" data-filter="noeuds">Noeuds</button>
+			<button class="filter-btn" data-filter="couleurs-leurres">Couleurs leurres</button>
+			<button class="filter-btn" data-filter="loi">La loi</button>
+		</div>
 
-        <section class="thematique">
+		<section
+			class="list-videos">
 
-            <h3 id="leurres_durs">LES LEURRES DURS</h3><br><br>
-
-            <h4>LES TYPES DE LEURRE</h4>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="LHrRLOXY9Qs"></lite-youtube>
-                    <p>CRAWLER</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="1uyu1UE10os"></lite-youtube>
-                    <p>LEURRE A HELICES</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="UVpmMoAC-CM"></lite-youtube>
-                    <p>POPPER</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="_x1L8F-YnUo"></lite-youtube>
-                    <p>STICKBAIT</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="U1mhBWaFbRo"></lite-youtube>
-                    <p>GLIDEBAIT</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="JxU1Bo8Ezvk"></lite-youtube>
-                    <p>SWIMBAIT</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="c8VI05foJq8"></lite-youtube>
-                    <p>LIPLESS</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="bnh3uVt7AAw"></lite-youtube>
-                    <p>JERKBAIT</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="CZfzELHr01s"></lite-youtube>
-                    <p>CRANKBAIT</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="RbjqkH0GH2k"></lite-youtube>
-                    <p>LAME VIBRANTE</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="LuHUdnJrYpU"></lite-youtube>
-                    <p>JIG</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="9IzdBbEpbxg"></lite-youtube>
-                    <p>CUILLER TOURNANTE</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="ApplEFUDEQM"></lite-youtube>
-                    <p>SPINTAIL</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="ucoxpImHQQo"></lite-youtube>
-                    <p>CHATTERBAIT</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="mN5gUOoQcHg"></lite-youtube>
-                    <p>SPINNERBAIT</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="1B1nkiOra1U"></lite-youtube>
-                    <p>RUBBERJIG</p>
-                </div>
-            </section>
-
-            <h4>LES ANIMATIONS DE LEURRE</h4>
-
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="jDP2hTJX5BQ"></lite-youtube>
-                    <p>Animations leurres durs</p>
-                </div>
-            </section>
-        </section>
+			{# Les animations des leurres #}
 
 
-        <section class="thematique">
-            <h3 id="leurres_souples">LES LEURRES SOUPLES</h3><br><br>
-            <h4>LES TYPES DE LEURRE</h4>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="Zkr3gMGxFiQ"></lite-youtube>
-                    <p>FROG</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="LHrRLOXY9Qs"></lite-youtube>
-                    <p>CRAWLER</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="1E4BPww_AQc"></lite-youtube>
-                    <p>SHAD</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="e7Ulhr2DBAY"></lite-youtube>
-                    <p>GRUB</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="8ORnwqNo0Os"></lite-youtube>
-                    <p>CREATURE: INSECTES</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="Z4p5UdbKeUc"></lite-youtube>
-                    <p>CREATURE: ECREVISSE</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="r88GAYYv_HY"></lite-youtube>
-                    <p>TUBE</p>
-                </div>
-            </section>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="LHrRLOXY9Qs"></lite-youtube>
+				<p>Crawler</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="1uyu1UE10os"></lite-youtube>
+				<p>Leurre à hélices</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="UVpmMoAC-CM"></lite-youtube>
+				<p>Popper</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="_x1L8F-YnUo"></lite-youtube>
+				<p>Stickbait</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="U1mhBWaFbRo"></lite-youtube>
+				<p>Glidebait</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="JxU1Bo8Ezvk"></lite-youtube>
+				<p>Swimbait</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="c8VI05foJq8"></lite-youtube>
+				<p>Lipless</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="bnh3uVt7AAw"></lite-youtube>
+				<p>Jerkbait</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="CZfzELHr01s"></lite-youtube>
+				<p>Crankbait</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="RbjqkH0GH2k"></lite-youtube>
+				<p>Lame vibrante</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="LuHUdnJrYpU"></lite-youtube>
+				<p>Jig</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="9IzdBbEpbxg"></lite-youtube>
+				<p>Cuiller tournante</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="ApplEFUDEQM"></lite-youtube>
+				<p>Spintail</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="ucoxpImHQQo"></lite-youtube>
+				<p>Chatterbait</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="mN5gUOoQcHg"></lite-youtube>
+				<p>Spinnerbait</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="1B1nkiOra1U"></lite-youtube>
+				<p>Rubberjig</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="Zkr3gMGxFiQ"></lite-youtube>
+				<p>Frog</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="LHrRLOXY9Qs"></lite-youtube>
+				<p>Crawler</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="1E4BPww_AQc"></lite-youtube>
+				<p>Shad</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="e7Ulhr2DBAY"></lite-youtube>
+				<p>Grub</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="8ORnwqNo0Os"></lite-youtube>
+				<p>Créatures: insectes</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="Z4p5UdbKeUc"></lite-youtube>
+				<p>Créatures: écrevisses</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="r88GAYYv_HY"></lite-youtube>
+				<p>Tube</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="5LJ4J5Bkv48"></lite-youtube>
+				<p>Animations leurres souples</p>
+			</div>
+			<div class="tuto-card" data-category="animations-leurres">
+				<lite-youtube class="tutos" videoid="jDP2hTJX5BQ"></lite-youtube>
+				<p>Animations leurres durs</p>
+			</div>
+
+			{# Couleurs des leurres #}
+
+			<div class="tuto-card " data-category="couleurs-leurres">
+				<lite-youtube class="tutos" videoid="3CqbPbjUL9A"></lite-youtube>
+				<p>Couleur des leurres</p>
+			</div>
+
+			{# Les montages #}
 
 
-            <h4>LES ANIMATIONS DE LEURRE</h4>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="5LJ4J5Bkv48"></lite-youtube>
-                    <p>Animations leurres souple</p>
-                </div>
-            </section>
+			<div class="tuto-card" data-category="montages">
+				<lite-youtube class="tutos" videoid="KFPGXkFmvxU"></lite-youtube>
+				<p>Montage tête plombée</p>
+			</div>
+			<div class="tuto-card" data-category="montages">
+				<lite-youtube class="tutos" videoid="m-RnvWphqnw"></lite-youtube>
+				<p>Montages texan</p>
+			</div>
+			<div class="tuto-card" data-category="montages">
+				<lite-youtube class="tutos" videoid="M_RYjhbpFZk"></lite-youtube>
+				<p>Montage hameçon texan</p>
+			</div>
+			<div class="tuto-card" data-category="montages">
+				<lite-youtube class="tutos" videoid="jO4-xQR6MyU"></lite-youtube>
+				<p>Les types de tête plombée</p>
+			</div>
+			<div class="tuto-card" data-category="montages">
+				<lite-youtube class="tutos" videoid="aRgDD8snBSQ"></lite-youtube>
+				<p>Montage du fil sur le moulinet</p>
+			</div>
+
+			{# Les noeuds #}
+
+			<div class="tuto-card" data-category="noeuds">
+				<lite-youtube class="tutos" videoid="Mi09T4jeSMg"></lite-youtube>
+				<p>Noeud de raccord nylon sur la bobine du moulinet</p>
+			</div>
+			<div class="tuto-card" data-category="noeuds">
+				<lite-youtube class="tutos" videoid="AO21OYnsoe0"></lite-youtube>
+				<p>Noeuds de raccord fil avec fil</p>
+			</div>
+			<div class="tuto-card" data-category="noeuds">
+				<lite-youtube class="tutos" videoid="rnO1OkhjO4M"></lite-youtube>
+				<p>Noeud de raccord agrafe avec fil</p>
+			</div>
+
+			{# La loi #}
+
+			<div class="tuto-card" data-category="loi">
+				<lite-youtube class="tutos" videoid="Fr7r6WpRyXI"></lite-youtube>
+				<p>La loi de la pêche en eau douce en FRANCE</p>
+			</div>
+			<div class="tuto-card" data-category="loi">
+				<a href="https://map.geopeche.com/#15.27/47.913447/2.429514" target="_blank" class="reglementation"></a>
+				<p>Carte intéractive règlementation</p>
+			</div>
 
 
-            <h4>LES MONTAGES </h4>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="KFPGXkFmvxU"></lite-youtube>
-                    <p>Montage d'une tête plombée classique sur un leurre souple</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="m-RnvWphqnw"></lite-youtube>
-                    <p>les principaux montages texan</p>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="M_RYjhbpFZk"></lite-youtube>
-                    <p>Montage d'un hameçon texan sur un leurre souple</p>
-                </div>
-            </section>
+		</section>
+	</main>
 
-            <h4>LA COULEUR DU LEURRE</h4>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="3CqbPbjUL9A"></lite-youtube>
-                    <p>Couleur du leurre souple</p>
-                </div>
-            </section>
-
-            <h4>LES TETES PLOMBEES</h4>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="jO4-xQR6MyU"></lite-youtube>
-                    <p>Les types de tête plombée et leurs utilisations</p>
-                </div>
-            </section>
-
-        </section>
+{% endblock %}
 
 
-        <section class="thematique">
-            <h3 id="moulinet">MOULINET</h3>
-            <div class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="aRgDD8snBSQ"></lite-youtube>
-                    <p>Comment remplir de fil son moulinet?</p>
-                </div>
-            </div>
-        </section>
-        <section class="thematique">
-            <h3 id="noeuds">NOEUDS DE PECHE</h3>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="Mi09T4jeSMg"></lite-youtube>
-                    <p>Noeud de raccord moulinet/nylon:</p>
-                    <span class="rouge">le noeud de backing</span>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="AO21OYnsoe0"></lite-youtube>
-                    <p>Noeud de raccord nylon/tresse ou tresse/fluorocarbone:</p>
-                    <span class="rouge">le noeud albright</span>
-                </div>
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="rnO1OkhjO4M"></lite-youtube>
-                    <p>Noeud de raccord agrafe/fluorocarbone:</p>
-                    <span class="rouge">le noeud palomar</span>
-                </div>
-
-            </section>
-        </section>
-        <section class="thematique">
-            <h3 id="loi">LA LOI DE LA PECHE EN EAU DOUCE</h3>
-            <section class="videos">
-                <div class="video">
-                    <lite-youtube class="ma-video" videoid="Fr7r6WpRyXI"></lite-youtube>
-                    <p>La règlementation de la pêche en eau douce en FRANCE</p>
-                </div>
-                
-                <a href="https://map.geopeche.com/#15.27/47.913447/2.429514" target="_blank" class="reglementation"> <p>carte intéractive règlementation</p></a>
-                <!--<script>
-                    async function getLeurreImage() {
-                        const { data } = supabaseClient
-                            .storage
-                            .from("images_leurres")
-                            .getPublicUrl("carte_reglementations.webp");
-
-                        document.getElementById("img-reglementation").src=data.publicUrl}
-
-                    getLeurreImage();
-                    
-                </script>-->
-            </section>
-
-        </section>
-
-
-
-
-    </main>
-
-    <section id="footer-placeholder"></section>
-
-
-    <!--<div id="cookies_background">
-    <div id="cookies">        
-    </div> 
-    </div>    
-
-    lien vers le script js qui gère les cookies google analytics-->
-    <!--<script src="script_gestion_cookies.js"></script>-->
-
-
-    <!--lien vers le script js qui rassemble tous mes js-->
-    <script src="script_nav_footer_barrederecherche.js"></script>
-
-
-
-
-
-</body>
-
-
-</html>
+{% block javascripts %}
+	<script src="script_tutoriels.js"></script>
+{% endblock %}

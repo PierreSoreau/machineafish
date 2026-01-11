@@ -39,12 +39,12 @@
 						</div>
 						<p>{{ materiel.cannes[0].poidsMini ~ "g - " ~ materiel.cannes[0].poidsMaxi ~ "g"}}</p>
 					</div>
-					<div class="matos_box">
+					<div class="matos_box action">
 						<div class="matos_titre">
 							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/action.webp" alt="logo_action"/>
 							<h3>Action</h3>
 						</div>
-						<p>{{ 	}}</p>
+						<p>{{ materiel.cannes[0].action}}</p>
 					</div>
 				</div>
 			</div>
@@ -102,6 +102,7 @@
 						<h3 class="nom_matos leurres">LEURRES</h3>
 					</div>
 				</div>
+				<img class="leurre" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/logo_leurre.webp" alt="logo_leurre"/>
 				<div class="leurre_container">
 					{% for leurre in materiel.leurres %}
 						<div class="leurre-box">

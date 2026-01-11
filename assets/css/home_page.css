@@ -1,3 +1,8 @@
+main {
+    margin-top: 60px;
+
+}
+
 .video_background {
     position: absolute;
     top: 0;
@@ -156,7 +161,7 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto;
         padding: 10px 10px;
-        gap: 50px;
+        gap: 40px;
     }
 
 

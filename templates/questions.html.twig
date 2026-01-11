@@ -10,23 +10,26 @@
 {% endblock %}
 
 {% block description %}
-	Questionnaire auquel l'utilisateur doit répondre pour avoir du matériel personnalisé 
+	Questionnaire auquel l'utilisateur doit répondre pour avoir du matériel personnalisé
 {% endblock %}
 
 {% block main %}
-	<div class="quiz">
-		<div class="progress_container">
-			<div id="progress_bar"></div>
-			<span id="progress_title"></span>
+	<main>
+		<div class="quiz">
+			<div class="progress_container">
+				<div id="progress_bar"></div>
+				<span id="progress_title"></span>
+			</div>
+			<div class="questions_container">
+				<h2 id="questions_title"></h2>
+				<div id="options-container" class="options-grid"></div>
+			</div>
 		</div>
-		<div class="questions_container">
-			<h2 id="questions_title"></h2>
-			<div id="options-container" class="options-grid"></div>
-		</div>
-	</div>
-	<form id="hidden-quiz-form" action="index.php?route=materiel" method="POST" style="display: none;">
-		<input type="hidden" name="results" id="results-input">
-	</form>
+		<form id="hidden-quiz-form" action="index.php?route=materiel" method="POST" style="display: none;">
+			<input type="hidden" name="results" id="results-input">
+		</form>
+
+	</main>
 {% endblock %}
 {% block javascripts %}
 	{# script qui permet de transformer en format json lisible pour javascript les datas sortis de php #}

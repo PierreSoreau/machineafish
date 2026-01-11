@@ -1,0 +1,133 @@
+main {
+    background-color: black;
+    margin-top: 60px;
+}
+
+
+#navig_tutoriels {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    /* Cache la barre de défilement sur Firefox */
+    white-space: nowrap;
+    /*evite que les élément de navig passe à la ligne si plus de place sur l'écran*/
+    max-width: 100vw;
+    position: sticky;
+    top: 60px;
+    z-index: 900;
+    background-color: black;
+
+
+}
+
+/* Cache la barre de défilement sur Chrome/Safari */
+#navig_tutoriels::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-btn {
+    color: rgba(255, 255, 255, 0.8);
+    /* Blanc légèrement transparent */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Bordure fine et discrète */
+    background: rgba(255, 255, 255, 0.05);
+    /* Fond très légèrement grisé */
+    padding: 8px 20px;
+    border-radius: 50px;
+    /* Forme pilule moderne */
+    backdrop-filter: blur(5px);
+    /* Effet flou derrière le bouton */
+    font-weight: 500;
+    font-family: "Inter", cursive;
+    transition: transform 0.3s ease;
+}
+
+.filter-btn.active {
+    color: black !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    background: white !important;
+}
+
+.filter-btn:hover {
+    color: #ffffff;
+    border-color: #2ecc71;
+    background: rgba(46, 204, 113, 0.1);
+    /*Lueur verte:
+    0 c'est le centrage horizontal de l'ombre
+    5px c'est le centrage vertical de l'ombre
+    15px c'est l'épaisseur
+    dans le rgba 0.3 permet d'avoir une couleur qui n'est pas totalement opaque au-dessus de 0.3 ça devient trop opaque*/
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+    transform: scale(1.1);
+}
+
+.list-videos {
+    display: grid;
+    /* auto-fit veut dire que ça créé autant de colonne que nécessaire en fonction de la taille de l'écran
+    minmax veut dire que la largeur de la colonne doit faire au minimum 300px 
+    pour que ça soit adapté à la taille d'un écran d'ordi*/
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding-bottom: 10px;
+    gap: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.reglementation {
+    background-image: url('https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/carte_reglementation.webp');
+    background-size: cover;
+    /* l'image couvre tout l'espace */
+    background-position: center;
+    /* centrée horizontalement et verticalement */
+    background-repeat: no-repeat;
+    text-decoration: none;
+    border-radius: 20px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 10px;
+    display: flex;
+    max-width: 500px;
+    margin:0px auto 10px auto;
+}
+
+
+.tuto-card {
+    display: block;
+
+}
+
+
+.tuto-card .tutos {   
+    width: 100%;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 0px auto 10px auto;
+
+}
+
+
+
+.tuto-card p {
+    color: white;
+    font-family: "Inter", cursive;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+
+@media (min-width:900px) {
+
+    #navig_tutoriels {
+        justify-content: center;
+    }
+
+
+
+}

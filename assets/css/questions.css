@@ -1,8 +1,14 @@
+main {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
 /* --- Mise en page globale du Quiz --- */
 .quiz {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 30px;
+    width: 300px;   
+    height:500px; 
     background: #1a1a1a; /* Gris très foncé presque noir */
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
@@ -94,7 +100,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 80px; /* Optionnel : pour garder une hauteur constante */
+    height: 80px; /* Optionnel : pour garder une hauteur constante */
 }
 
 /* On centre aussi le texte horizontalement pour les questions Oui/Non par exemple */
@@ -124,14 +130,22 @@
     filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Ombre sur les poissons/saisons */
 }
 
+
 /* --- Responsive --- */
-@media (max-width: 600px) {
-    .quiz {
-        margin: 10px;
+@media (min-width: 600px) {
+    .quiz {       
         padding: 20px;
+        width: 300px;
     }
     
     #questions_title {
         font-size: 1.4rem;
     }
+}
+
+@media (min-width: 992px) {
+    .quiz {
+        width: 600px;
+    }
+
 }

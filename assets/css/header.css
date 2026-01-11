@@ -38,12 +38,20 @@ body {
     height: 100%;
     line-height: 1.5;
     margin: 0;
+    scroll-padding-top: 120px;
     
 }
 
 body {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* On dit au bloc central de prendre toute la place restante */
+main {
+    flex: 1; 
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -103,20 +111,22 @@ textarea:not([rows]) {
     box-sizing: border-box;
 }
 
+
 header {
     background-image: url(https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cailloux.webp) !important;
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    position: sticky;
+    position: fixed;
     z-index: 1000;
     top: 0;
     left: 0;
     right: 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-
+    align-items: center; 
+    height:60px;
+   
 }
 
 

@@ -23,20 +23,7 @@
 
 		</div>
 
-		<ul id="navig_poisson">
-			<li>
-				<a href="#morphologie">Morphologie</a>
-			</li>
-			<li>
-				<a href="#habitats">Habitats</a>
-			</li>
-			<li>
-				<a href="#alimentation">Alimentation</a>
-			</li>
-			<li>
-				<a href="#reproduction">Reproduction</a>
-			</li>
-		</ul>
+		{% include "partials/_navig-poisson.html.twig" %}
 
 		<section class="sous_partie">
 			<h3 id="morphologie">MORPHOLOGIE</h3>
@@ -453,7 +440,7 @@
 </main>
 {% endblock %}
 {% block javascripts %}
-{# Scripts js pour ue les visuels des graphiques marchent et les js de la page marchent également #}
+{# Scripts js pour que les visuels des graphiques marchent et les js de la page marchent également #}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 <script src="script_page_brochet.js"></script>

@@ -1,16 +1,17 @@
 main {
     background-color: black;
-    width: 100vw;
     display: flex;
+    width: 100%;
     flex-direction: column;
     text-align: center;
+    padding-top: 60px;
 }
 
 main h2 {
     color: white;
     font-family: "Inter", cursive;
     font-size: 20px;
-    margin: 20px 0;
+    padding: 20px 0;
 }
 
 #matos {
@@ -19,6 +20,8 @@ main h2 {
     grid-template-rows: repeat(4, 1fr);
     gap: 10px;
     margin-bottom: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .matos_detail {
@@ -90,6 +93,10 @@ main h2 {
     gap: 10px;
 }
 
+.matos_box.action{
+    padding-bottom: 10px;
+}
+
 .matos_box p {
     font-family: "Inter", cursive;
     color: white;
@@ -133,7 +140,7 @@ main h2 {
 
 
 .photo_leurre{
-    width:100px !important;
+    width:80px !important;
     height:auto;
 }
 
@@ -143,6 +150,7 @@ main h2 {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    padding-bottom: 10px;
 }
 
 
@@ -156,11 +164,54 @@ main h2 {
 
 .matos_titre.leurre{
     justify-content: center;
-    width:100px;
+    width:80px !important;
     height:50px;
 }
 
 .matos_titre.leurre h3{
     font-size: 13px !important;
+
+}
+
+.leurre{
+    width:130px !important;
+    padding-top:10px;
+}
+
+@media(min-width:600px){
+
+    #matos {    
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);    
+}
+
+.matos_detail{
+    width:90%;
+}
+
+.photo_leurre{
+    width:100px !important;  
+
+}
+
+.matos_titre.leurre{    
+    width:100px !important;
+    
+}
+
+
+}
+
+@media(min-width:992px){
+
+    #matos {    
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);    
+}
+
+.matos_detail{
+    width:100%;
+}
+
 
 }

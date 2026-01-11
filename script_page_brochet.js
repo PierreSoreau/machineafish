@@ -1,5 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+
+
+
+  //---------------------------VISUEL MENU NAVIGATION---------------------------------
+
+  const buttons = document.querySelectorAll('.filter-btn');
+
+  buttons.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      button.classList.add('active');      
+  });
+
+});
+
   //--------AFFICHER DETAILS EXPLICATION PHOTO MORPHOLOGIE AU CLIQUE SUR L'IMAGE------
 
   //Cette fonction permet d'afficher le détail de l'explication d'une morpho au clique sur l'image et fait disparaître les autres 
@@ -26,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.querySelector(".description").style.display = "block";
         el.querySelectorAll(".morpho").forEach(img => img.style.display = "block");
         photo.prepend(resetbutton); //resetbouton placé tout au début de la div expanded
-        
+
 
         if (boxMorpho) {
           boxMorpho.style.flexDirection = "column";
@@ -213,36 +233,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  });
+});
 
 
 
-  //---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 
-  //--------AFFICHER LES PHOTOS DES SPOTS DE PECHE EN FONCTION DU VOLET DEROULANT CHOISI------
+//--------AFFICHER LES PHOTOS DES SPOTS DE PECHE EN FONCTION DU VOLET DEROULANT CHOISI------
 
-  function changerVisuel(){
-    
-    // On cherche l'input "saison" qui est coché (checked)
-    const radioSelectionne = document.querySelector('input[name="saison"]:checked');
-    const saison = radioSelectionne ? radioSelectionne.value : "printemps_ete_automne"; //si radioselecionne n'est pas nul alors ça prend la valeur sélectionné sinon ça prend la valeur "printemps_ete_automne"
+function changerVisuel() {
 
-    const visuelspotpea = document.getElementById("visuelspotpea");
-    const visuelspoth = document.getElementById("visuelspoth");
+  // On cherche l'input "saison" qui est coché (checked)
+  const radioSelectionne = document.querySelector('input[name="saison"]:checked');
+  const saison = radioSelectionne ? radioSelectionne.value : "printemps_ete_automne"; //si radioselecionne n'est pas nul alors ça prend la valeur sélectionné sinon ça prend la valeur "printemps_ete_automne"
 
-    // On cache tout par défaut
+  const visuelspotpea = document.getElementById("visuelspotpea");
+  const visuelspoth = document.getElementById("visuelspoth");
+
+  // On cache tout par défaut
+  visuelspotpea.style.display = "grid";
+  visuelspoth.style.display = "none";
+
+  // On affiche selon le choix
+  if (saison === "printemps_ete_automne") {
     visuelspotpea.style.display = "grid";
-    visuelspoth.style.display = "none";
-
-    // On affiche selon le choix
-    if (saison === "printemps_ete_automne") {
-        visuelspotpea.style.display = "grid";
-        visuelspoth.style.display = "none"
-    } 
-    else {
-        visuelspoth.style.display = "grid";
-        visuelspotpea.style.display = "none";
-    }    
+    visuelspoth.style.display = "none"
+  }
+  else {
+    visuelspoth.style.display = "grid";
+    visuelspotpea.style.display = "none";
+  }
 }
 
 changerVisuel();
@@ -252,68 +272,68 @@ changerVisuel();
 //--------AFFICHER LES PHOTOS DES POISSONS BLANCS------
 
 function changeSlide(element, direction) {
-    // 1. On trouve le conteneur parent du bouton cliqué
-    const container = element.closest('.carousel-container');
-    
-    // 2. On récupère TOUS les slides de CE conteneur uniquement
-    const slides = container.querySelectorAll('.slide');
-    
-    // 3. On cherche lequel est actuellement affiché
-    let currentIndex = 0;
-    slides.forEach((slide, index) => {
-        if (slide.classList.contains('active')) {
-            currentIndex = index;
-        }
-    });
+  // 1. On trouve le conteneur parent du bouton cliqué
+  const container = element.closest('.carousel-container');
 
-    // 4. On retire le mode actif du slide actuel
-    slides[currentIndex].classList.remove('active');
+  // 2. On récupère TOUS les slides de CE conteneur uniquement
+  const slides = container.querySelectorAll('.slide');
 
-    // 5. On calcule le nouvel index avec la boucle (début/fin)
-    let newIndex = currentIndex + direction;
-    if (newIndex >= slides.length) newIndex = 0;
-    if (newIndex < 0) newIndex = slides.length - 1;
+  // 3. On cherche lequel est actuellement affiché
+  let currentIndex = 0;
+  slides.forEach((slide, index) => {
+    if (slide.classList.contains('active')) {
+      currentIndex = index;
+    }
+  });
 
-    // 6. On affiche le nouveau slide
-    slides[newIndex].classList.add('active');
+  // 4. On retire le mode actif du slide actuel
+  slides[currentIndex].classList.remove('active');
+
+  // 5. On calcule le nouvel index avec la boucle (début/fin)
+  let newIndex = currentIndex + direction;
+  if (newIndex >= slides.length) newIndex = 0;
+  if (newIndex < 0) newIndex = slides.length - 1;
+
+  // 6. On affiche le nouveau slide
+  slides[newIndex].classList.add('active');
 }
 
 //----------------------------------------------------------------------------------------
 
 const stepsData = [
-    { title: "La Migration", desc: "1. Entre février et avril, les mâles et les femelles à maturité sexuelle migrent vers les zones de frai.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/migration_vers_frayere.webp" },
-    { title: "L'Accouplement", desc: "2. Le mâle suit la femelle et libère sa laitance.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/reproduction_brochet_frayere.webp" },
-    { title: "La Ponte", desc: "3. Ponte des œufs à 7°C-11°C. Les œufs se collent sur la végétation.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_brochets.webp" },
-    { title: "L'Incubation", desc: "4. Développement des œufs pendant 10-15 jours, naissance d'alevins avec ventouse.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Alevin_accroche_avec_vesicule_vitelline.webp" },
-    { title: "Le Brocheton", desc: "5. Après 10 jours, l'alevin se décroche et peut nager.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Brocheton.webp" },
-    { title: "La Migration", desc: "6. En mai, le brocheton migre vers des zones calmes et végétalisées.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/herbiers.webp" },
-    { title: "La Croissance", desc: "7. Croissance rapide : 20-30 cm en 1 an, maturité sexuelle pour les mâles 2 à 3 ans pour une taille entre 30 et 40cm, pour les femelles 3 à 5 ans pour une taille entre 45 et 55cm.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_cycle.webp" }
+  { title: "La Migration", desc: "1. Entre février et avril, les mâles et les femelles à maturité sexuelle migrent vers les zones de frai.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/migration_vers_frayere.webp" },
+  { title: "L'Accouplement", desc: "2. Le mâle suit la femelle et libère sa laitance.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/reproduction_brochet_frayere.webp" },
+  { title: "La Ponte", desc: "3. Ponte des œufs à 7°C-11°C. Les œufs se collent sur la végétation.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_brochets.webp" },
+  { title: "L'Incubation", desc: "4. Développement des œufs pendant 10-15 jours, naissance d'alevins avec ventouse.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Alevin_accroche_avec_vesicule_vitelline.webp" },
+  { title: "Le Brocheton", desc: "5. Après 10 jours, l'alevin se décroche et peut nager.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Brocheton.webp" },
+  { title: "La Migration", desc: "6. En mai, le brocheton migre vers des zones calmes et végétalisées.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/herbiers.webp" },
+  { title: "La Croissance", desc: "7. Croissance rapide : 20-30 cm en 1 an, maturité sexuelle pour les mâles 2 à 3 ans pour une taille entre 30 et 40cm, pour les femelles 3 à 5 ans pour une taille entre 45 et 55cm.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_cycle.webp" }
 ];
 
 function showStep(index) {
-    const bulles = document.querySelectorAll('.step-bulle');
-    const fill = document.getElementById('barFill');
-    
-    // 1. Animation de la barre
-    const progress = (index / (bulles.length - 1)) * 100;
-    fill.style.height = progress + "%";
+  const bulles = document.querySelectorAll('.step-bulle');
+  const fill = document.getElementById('barFill');
 
-    // 2. Update des bulles
-    bulles.forEach((b, i) => {
-        if(i <= index) b.classList.add('active');
-        else b.classList.remove('active');
-    });
+  // 1. Animation de la barre
+  const progress = (index / (bulles.length - 1)) * 100;
+  fill.style.height = progress + "%";
 
-    // 3. Changement du texte avec un petit effet
-    const content = document.getElementById('stepContent');
-    content.style.opacity = 0;
-    
-    setTimeout(() => {
-        document.getElementById('stepTitle').innerText = stepsData[index].title;
-        document.getElementById('stepDesc').innerText = stepsData[index].desc;
-        document.getElementById('stepImage').src = stepsData[index].img;
-        content.style.opacity = 1;
-    }, 200);
+  // 2. Update des bulles
+  bulles.forEach((b, i) => {
+    if (i <= index) b.classList.add('active');
+    else b.classList.remove('active');
+  });
+
+  // 3. Changement du texte avec un petit effet
+  const content = document.getElementById('stepContent');
+  content.style.opacity = 0;
+
+  setTimeout(() => {
+    document.getElementById('stepTitle').innerText = stepsData[index].title;
+    document.getElementById('stepDesc').innerText = stepsData[index].desc;
+    document.getElementById('stepImage').src = stepsData[index].img;
+    content.style.opacity = 1;
+  }, 200);
 }
 /*
 //--------AFFICHER VISUELS ET CONTENU ECRITS DES ETAPES DE REPRODUCTION-------------------
@@ -534,7 +554,7 @@ async function filtre() {
   afficherleurres(data);
 }
   */
- 
+
 
 
 
