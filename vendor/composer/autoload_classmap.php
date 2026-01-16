@@ -25,6 +25,8 @@ return array(
     'Moulinet' => $baseDir . '/models/Moulinet.php',
     'PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
     'Poisson' => $baseDir . '/models/Poisson.php',
+    'PoissonDescription' => $baseDir . '/models/PoissonDescription.php',
+    'PoissonDescriptionManager' => $baseDir . '/managers/PoissonDescriptionManager.php',
     'PoissonFil' => $baseDir . '/models/PoissonFil.php',
     'PoissonLeurre' => $baseDir . '/models/PoissonLeurre.php',
     'PoissonManager' => $baseDir . '/managers/PoissonManager.php',

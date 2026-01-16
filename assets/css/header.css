@@ -187,8 +187,8 @@ nav.show {
 
 }
 
-button i::before {
-    color: white !important;
+.fleche{
+    color: white;
 }
 
 #logo1.show {

@@ -99,6 +99,8 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'Moulinet' => __DIR__ . '/../..' . '/models/Moulinet.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Poisson' => __DIR__ . '/../..' . '/models/Poisson.php',
+        'PoissonDescription' => __DIR__ . '/../..' . '/models/PoissonDescription.php',
+        'PoissonDescriptionManager' => __DIR__ . '/../..' . '/managers/PoissonDescriptionManager.php',
         'PoissonFil' => __DIR__ . '/../..' . '/models/PoissonFil.php',
         'PoissonLeurre' => __DIR__ . '/../..' . '/models/PoissonLeurre.php',
         'PoissonManager' => __DIR__ . '/../..' . '/managers/PoissonManager.php',

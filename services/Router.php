@@ -12,38 +12,40 @@ class Router
 
     public function handleRequest() : void
     {
-        if(!empty($_GET['route'])) {
-             if($_GET['route'] === 'brochet') {
-                $this->uc->brochet();
-            }
+        $route = $_GET['route'] ?? 'home'; // Par défaut 'home'
 
-            else if($_GET['route'] === 'sandre') {
-                $this->uc->sandre();
-            }
+        switch ($route) {
+            case 'home':
+                $this->uc->home();
+                break;
 
-            else if($_GET['route'] === 'silure') {
-                $this->uc->silure();
-            }
-
-            else if($_GET['route'] === 'perche') {
-                $this->uc->perche();
-            }
-
-             else if ($_GET['route'] === 'materiel'){                
-                $this->uc->result();
-            }
-
-            else if ($_GET['route'] === 'materiel'){                
-                $this->uc->result();
-            }
-
-            else if ($_GET['route'] === 'questions'){
-                $this->uc->questions();
-            }
-
-            else if($_GET['route'] === 'poissons') {
+            case 'poissons':
                 $this->uc->poissons();
-            }
+                break;
+
+            case 'materiel':
+                $this->uc->result();
+                break;
+        
+            case 'questions':
+                $this->uc->questions();
+                break;
+
+            case 'brochet':
+                $this->uc->brochet();
+                break;
+
+            case 'tutoriels':
+                $this->uc->tutoriels();
+                break;
+
+            default:
+                $this->uc->descriptionPoisson(); 
+            break;
+        }   
+    }      
+
+            
             
             /*else if($_GET['route'] === 'login') {
                 $this->ac->login();
@@ -58,18 +60,5 @@ class Router
                 $this->uc->profile();
             }*/           
 
-            else if($_GET['route'] === 'tutoriels') {
-                $this->uc->tutoriels();
-            }
             
-            else
-            {
-                $this->uc->notFound();
-            }
-        }
-        else
-        {
-            $this->uc->home();
-        }
-    }
 }

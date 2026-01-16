@@ -32,7 +32,8 @@
 	</main>
 {% endblock %}
 {% block javascripts %}
-	{# script qui permet de transformer en format json lisible pour javascript les datas sortis de php #}
+	{# script qui permet de transformer en format json lisible pour javascript les datas sortis de php 
+	et ainsi d'éviter de charger une page à chaque click. Tout se fait sur une seule page #}
 	<script>
 		const allQuestions = {{ questions|json_encode()|raw }};
 const allPoissons = {{ poissons|json_encode()|raw }};

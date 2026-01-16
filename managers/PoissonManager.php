@@ -11,30 +11,39 @@ class PoissonManager extends AbstractManager
     public function findAll()
     {
         $query = $this->db->prepare('SELECT * FROM poisson ');
-        
+
 
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        $poissons=[];
+        $poissons = [];
 
-        foreach ($results as $result) {            
-            
-            $poisson= new Poisson(
+        foreach ($results as $result) {
+
+            $poisson = new Poisson(
                 $result["id"],
                 $result["nom"],
                 $result["logo"],
                 $result["image"]
             );
 
-             $poissons[] = $poisson;
-        }          
-        
+            $poissons[] = $poisson;
+        }
+
 
         return $poissons;
     }
+
+
+    public function findImageByName(string $name): string
+    {
+        $query = $this->db->prepare('SELECT image FROM poisson WHERE nom = :nom ');
+        $query->execute(['nom' => $name]);
+
+       $result=$query->fetchColumn();
+
+       return $result;
+    }
+
+    
 }
-
-
-
-?>

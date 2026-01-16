@@ -20,28 +20,62 @@ class UserController extends AbstractController
 
     public function brochet(): void
     {
-        $this->render('brochet.html.twig', ['route' => $_GET['route']]);
+
+        $dataPoisson= new PoissonManager;        
+        $descriptionsPoisson = new PoissonDescriptionManager;
+
+        $imagePoisson= $dataPoisson->findImageByName($_GET['route']);
+        $detailPoissons= $dataPoisson->findAll();
+        $descriptionPoisson = $descriptionsPoisson ->selectPoissonByName($_GET['route']);
+
+        if (!$imagePoisson && empty($descriptionPoisson)) {
+        // On redirige vers l'accueil 
+        header('Location: index.php'); 
+        exit();
     }
 
-    public function sandre(): void
-    {
-        $this->render('sandre.html.twig', ['route' => $_GET['route']]);
+        $this->render('brochet.html.twig', 
+        ['namepoisson' => $_GET['route'],
+        'imagepoisson'=>$imagePoisson,
+        'descriptionpoisson'=>$descriptionPoisson,
+        'detailpoissons'=> $detailPoissons      
+        ]); 
+        
     }
 
-    public function silure(): void
+   
+
+    public function descriptionPoisson(): void
     {
-        $this->render('silure.html.twig', ['route' => $_GET['route']]);
+        $dataPoisson= new PoissonManager;        
+        $descriptionsPoisson = new PoissonDescriptionManager;
+
+        $imagePoisson= $dataPoisson->findImageByName($_GET['route']);
+        $detailPoissons= $dataPoisson->findAll();
+        $descriptionPoisson = $descriptionsPoisson ->selectPoissonByName($_GET['route']);
+
+        if (!$imagePoisson && empty($descriptionPoisson)) {
+        // On redirige vers l'accueil 
+        header('Location: index.php'); 
+        exit();
     }
 
-    public function perche(): void
-    {
-        $this->render('perche.html.twig', ['route' => $_GET['route']]);
-    }    
+        $this->render('detail_poisson.html.twig', 
+        ['namepoisson' => $_GET['route'],
+        'imagepoisson'=>$imagePoisson,
+        'descriptionpoisson'=>$descriptionPoisson,
+        'detailpoissons'=> $detailPoissons      
+        ]);
+    }
+
+    
 
     public function notFound(): void
     {
         $this->render('notfound.html.twig', []);
-    }    
+    }  
+    
+    
 
     public function questions(): void
     {

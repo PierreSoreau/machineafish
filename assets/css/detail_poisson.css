@@ -1,0 +1,1966 @@
+main {
+    background-color: black;
+    margin-top: 60px;
+}
+
+/*PARTIE MORPHOLOGIE*/
+
+#pres_poisson {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+}
+
+#pres_poisson h1 {
+    color: white;
+    font-family: "Inter", cursive;
+    text-align: center;
+    font-size: 25px;
+}
+
+#pres_poisson img {
+    max-width: 80%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px auto;
+
+}
+
+#navig_poisson {
+    display: flex;
+    font-size: 16px;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    /* Cache la barre de défilement sur Firefox */
+    white-space: nowrap;
+    /*anti retour à la ligne*/
+    max-width: 100vw;
+    position: sticky;
+    top: 60px;
+    z-index: 900;
+    background-color: black;
+
+}
+
+.filter-btn.active {
+    color: black !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    background: white !important;
+}
+
+#navig_fish {
+    display: flex;
+    /* On le colle en bas */
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    gap: 10px;
+    position: fixed;
+    z-index: 1000;
+
+    /* Design de la barre */
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Fond semi-transparent pour lire */
+    backdrop-filter: blur(5px);
+    /* Effet flou moderne (optionnel) */
+    border-top: 1px solid #ccc;
+
+    /* Gestion du scroll horizontal */
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#navig_fish img {
+    width: 60px;
+    /* Taille fixe en px c'est mieux que vw ici */
+    height: 60px;
+    /* L'image remplit bien le rond sans s'écraser */
+    border-radius: 50%;
+
+
+}
+
+.poisson_actif {
+    border: 3px solid red;
+    /* Le cercle rouge */
+    transform: scale(1.1);
+    /* Un petit zoom pour la mettre en valeur */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    /* Une petite lueur rouge */
+}
+
+/* Cache la barre de défilement sur Chrome/Safari */
+#navig_poisson::-webkit-scrollbar {
+    display: none;
+}
+
+#navig_poisson li {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /*l'ensemble des animations sont faites en 0.3s avec une accélération (0.4,0)/décélération (0.2,1) en courbe de bezier*/
+    padding: 3px;
+    list-style: none;
+
+
+}
+
+#navig_poisson li a {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    /* Blanc légèrement transparent */
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Bordure fine et discrète */
+    background: rgba(255, 255, 255, 0.05);
+    /* Fond très légèrement grisé */
+    padding: 8px 20px;
+    border-radius: 50px;
+    /* Forme pilule moderne */
+    backdrop-filter: blur(5px);
+    /* Effet flou derrière le bouton */
+    font-weight: 500;
+    font-family: "Inter", cursive;
+}
+
+#navig_poisson li:hover {
+    transform: scale(1.1);
+
+}
+
+#navig_poisson li a:hover {
+    color: #ffffff;
+    border-color: #2ecc71;
+    background: rgba(46, 204, 113, 0.1);
+    /*Lueur verte:
+    0 c'est le centrage horizontal de l'ombre
+    5px c'est le centrage vertical de l'ombre
+    15px c'est l'épaisseur
+    dans le rgba 0.3 permet d'avoir une couleur qui n'est pas totalement opaque au-dessus de 0.3 ça devient trop opaque*/
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+.sous_partie {
+    border-top: solid 2px white;
+}
+
+
+.sous_partie h3 {
+    color: white;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: "Inter", cursive;
+    letter-spacing: 1.5px;
+}
+
+
+#taille_poisson {
+    max-width: 100%;
+}
+
+#taille_poisson img {
+    border-radius: 20px;
+    max-width: 80%;
+    object-fit: cover;
+    margin: 10px auto;
+}
+
+
+#morpho_container {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+
+
+}
+
+#resetBtn {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.photo_morpho {
+    max-width: 100%;
+    margin: auto 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.morpho {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+
+.description {
+    text-align: justify;
+    color: white;
+    font-family: "Inter", cursive;
+    font-size: 16px;
+}
+
+
+/*-------*/
+
+
+
+
+
+.synthese {
+    display: block;
+    background-color: black;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+
+.titre_synthese {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+
+.titre_synthese h4 {
+    font-size: 20px;
+    font-family: "Inter", cursive;
+}
+
+.contenu_synthese {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit,auto);
+    gap: 40px;
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+    margin: auto 10px;
+}
+
+.ligne_contenu {
+    display: flex;    
+    gap: 10px;
+    align-items: center;
+}
+
+.ligne_contenu i {
+    background: rgba(99, 230, 190, 0.1);
+    /* Cercle léger autour du check */
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 15px;
+    margin: auto auto;
+    color: #63E6BE;
+}
+
+
+
+.ligne_contenu p {
+    font-family: "Inter", cursive;
+    font-size: 16px;
+}
+
+/*FIN PARTIE MORPHOLOGIE*/
+
+/*DEBUT PARTIE HABITATS*/
+
+#temp {
+    width: 280px;
+    height: 280px;
+    position: relative;
+
+}
+
+
+
+.temp-label {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: sans-serif;
+    background: rgba(255, 255, 255, 0.1);
+    /* Fond très léger */
+    backdrop-filter: blur(4px);
+    /* Effet de flou derrière */
+    padding: 4px 8px;
+    border-radius: 12px;
+    /* Bords très arrondis */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+}
+
+.temp-label.nb1 {
+    left: -5%;
+    bottom: 38%;
+}
+
+.temp-label.nb2 {
+    left: 24%;
+    top: 21%;
+}
+
+.temp-label.nb3 {
+    left: 78%;
+    top: 32%;
+}
+
+.temp-label.nb4 {
+    right: -7%;
+    top: 55%;
+}
+
+
+
+
+
+.aqua1 {
+    display: flex;
+    margin-bottom: 30px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.aqua1 i {
+    color: white;
+}
+
+h4 {
+    color: white;
+    font-family: "Inter", cursive;
+    letter-spacing: 1.5px;
+}
+
+.milieu_aquatique {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    gap: 10px;
+    width: 95%;
+    margin: auto;
+}
+
+.type_eau {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    gap: 10px;
+
+}
+
+.type_eau img {
+    border-radius: 10px;
+
+
+}
+
+.type_eau p {
+    color: white;
+    font-family: "Inter", cursive;
+    font-size: 20px;
+}
+
+
+
+.type_eau.nb1 {
+    grid-row: 1/2;
+    grid-column: 1/2;
+
+}
+
+.type_eau.nb2 {
+    grid-row: 2/3;
+    grid-column: 1/2;
+
+}
+
+.type_eau.nb3 {
+    grid-row: 3/4;
+    grid-column: 1/2;
+
+}
+
+.type_eau.nb4 {
+    grid-row: 4/5;
+    grid-column: 1/2;
+
+}
+
+.type_eau.nb5 {
+    grid-row: 5/6;
+    grid-column: 1/2;
+
+}
+
+#needle {
+    position: absolute;
+    width: 10px;
+    /*largeur de l'aiguille*/
+    height: 80px;
+    /* Longueur de l'aiguille */
+    background: white;
+    bottom: 90px;
+    left: 50%;
+    clip-path: polygon(50% 0%, 0% 110%, 100% 110%);
+    /*ça crée un triangle*/
+    transform-origin: bottom center;
+    /* L'aiguille tourne autour de sa base */
+    transform: rotate(-90deg);
+    /* Départ à 0°C (gauche) pour l'aiguille contre 90°C en temps normal */
+    transition: transform 2s ease-out;
+    /* L'effet d'animation fluide */
+    z-index: 100;
+}
+
+/* Le petit rond à la base de l'aiguille */
+#needle::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0px;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    clip-path: none !important;
+}
+
+.aqua2 {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.aqua2 i {
+    color: white;
+}
+
+#box-condis {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#graph {
+    position: relative;
+    width: 280px;
+    height: 280px;
+}
+
+.condis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 95%;
+    margin-top: 30px;
+}
+
+#visuelspotpea {
+    display: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(12, 1fr);
+    gap: 10px;
+}
+
+.spot1 {
+    width: 95%;
+    margin: auto;
+}
+
+.spot1 p {
+    color: white;
+    text-align: center;
+    font-family: "Inter", cursive;
+    font-size: 16px;
+}
+
+.spot2 video,
+.spot2 img {
+    width: 300px;
+    height: 170px;
+    border-radius: 10px;
+
+}
+
+.spot2 video {
+    object-fit: cover;
+}
+
+#visuelspoth {
+    display: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#selectspot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#box-selectspot {
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px auto;
+
+
+
+}
+
+.season-switcher {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    border-radius: 12px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+/* On cache les ronds des boutons radio */
+.season-switcher input[type="radio"] {
+    display: none;
+}
+
+/* Le design des étiquettes (labels) */
+.season-switcher label {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-family: "Inter", cursive;
+    width: 230px;
+    text-align: center;
+}
+
+/* Effet au survol */
+.season-switcher label:hover {
+    color: #fff;
+}
+
+/* Style quand le bouton est sélectionné (coché) */
+.season-switcher input[type="radio"]:checked+label {
+    color: #fff;
+
+}
+
+#radio-none:checked+label {
+    background-color: #e74c3c;
+}
+
+#radio-pea:checked+label {
+    background-color: #2ecc71;
+}
+
+/* Style spécial pour le bouton Hiver quand coché */
+#radio-hiver:checked+label {
+    background-color: #3498db;
+}
+
+.aqua1,
+.season-switcher,
+#box-selectspot {
+    padding-left: 0;
+}
+
+/* PARTIE ALIMENTATION*/
+
+.video_alimentation {
+    max-width: 500px;
+    max-height: 500px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ma-video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+#visuel_animaux {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, 1fr);
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 500px;
+    overflow: hidden;
+    /* Rien ne dépasse */
+    border-radius: 10px;
+}
+
+.animal1 {
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+}
+
+.animal1 p {
+    color: white;
+    font-family: "Inter", cursive;
+    font-size: 16px;
+
+}
+
+.animal2 img {
+    border-radius: 10px;
+}
+
+.slide {
+    display: none;
+    /* Toutes les images sont cachées par défaut */
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.slide.active {
+    display: block;
+    /* Seule l'image active est affichée */
+    animation: fadeIn 0.5s;
+    /* Petit effet de transition */
+}
+
+/* Style des flèches */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.next {
+    right: 0;
+}
+
+.prev {
+    left: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* PARTIE REPRODUCTION*/
+
+.cycle-mobile {
+    display: flex;
+    gap: 50px;
+    padding: 20px;
+}
+
+.progress-track {
+    position: relative;
+    width: 4px;
+    background: #333;
+    /* Barre grise */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.progress-bar-fill {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #3498db;
+    /* Bleu qui progresse */
+    height: 0%;
+    /* Sera piloté par le JS */
+    transition: height 0.5s ease;
+}
+
+.step-bulle {
+    width: 35px;
+    height: 35px;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-family: "Inter", cursive;
+    font-size: 16px;
+}
+
+.step-bulle.active {
+    border-color: #3498db;
+    background: #3498db;
+}
+
+.step-content {
+    flex: 1;
+    /* Prend tout le reste de la place */
+    border: 1px solid #333333;
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+#stepDesc {
+    color: white;
+    font-family: "Inter", cursive;
+    font-size: 16px;
+    text-align: center;
+}
+
+#stepImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+#video_reproduction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 10px;
+
+}
+
+#repro {
+    text-align: center;
+}
+
+.reprod {
+    width: 90%;
+    border-radius: 10px;
+}
+
+
+
+/*.habitat p {
+    color: white;
+}
+
+.condi_habitat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.titre {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+
+
+.titre img {
+    width: 400px;
+    height: 300px;
+}
+
+.milieu_aquatique {
+    display: flex;
+    gap: 30px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#temperature_brochet {
+    width: 300px;
+    height: auto;
+}
+
+.saisonselect {
+    text-align: center;
+    text-align-last: center;
+    font-family: Roboto Flex;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#visuelspot {
+    color: white;
+}
+
+#visuelspotpea,
+#visuelspoth {
+    display: none;
+}
+
+#visuelspotpea {
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    display: flex;
+
+}
+
+#visuelspoth {
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.spot1 p {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    width: 300px;
+    height: auto;
+
+
+
+}
+
+.spot1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+
+
+}
+
+.spot2 img {
+    max-width: 300px;
+    max-height: 300px;
+
+    /* évite un petit espace blanc sous l'image 
+
+}
+
+.spot2 {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.spot2 video {
+    max-width: 100%;
+    height: auto;
+    /* évite un petit espace blanc sous l'image
+
+
+
+.video_alimentation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#visuel_animaux {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.animal1 {
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.animal2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.animal2 img {
+    width: 300px;
+    height: 300px;
+}*/
+
+
+
+@media(min-width:600px) {
+
+    #taille_poisson img {
+        width: 400px;
+    }
+
+    #pres_poisson img {
+        width: 400px;
+    }
+
+    #navig_fish {
+        gap: 50px;
+    }
+
+    /*PARTIE MORPHOLOGIE*/
+    #navig_poisson {
+        justify-content: center;
+    }
+
+
+    .photo_morpho {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+
+    .contenu_synthese {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, auto);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: #111;
+        padding: 0px;
+        border-radius: 10px;
+        height: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        gap: 0;
+    }
+
+    .ligne_contenu {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 24px;
+        height: 100%;
+        margin-bottom: 0px;
+        box-sizing: border-box;
+        align-items: flex-start;
+        /* Pour que toutes les cases d'une ligne s'alignent */
+    }
+
+
+    .ligne_contenu.nb1 {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .ligne_contenu.nb2 {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+
+    .ligne_contenu.nb3 {
+        grid-column: 1/2;
+        grid-row: 3/4;
+    }
+
+    .ligne_contenu.nb4 {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+
+    .ligne_contenu.nb5 {
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+
+    .ligne_contenu.nb6 {
+        grid-column: 2/3;
+        grid-row: 3/4;
+
+    }
+
+    /* La ligne verticale du milieu */
+    .ligne_contenu.nb4,
+    .ligne_contenu.nb5,
+    .ligne_contenu.nb6 {
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* On retire la bordure du bas pour les deux dernières cases du tableau */
+    .ligne_contenu.nb3,
+    .ligne_contenu.nb6 {
+        border-bottom: none;
+    }
+
+    /*PARTIE HABITATS*/
+
+
+    .milieu_aquatique {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+        gap: 10px;
+    }
+
+
+    .type_eau {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .type_eau.nb1 {
+        grid-row: 1/2;
+        grid-column: 1/2;
+
+    }
+
+    .type_eau.nb2 {
+        grid-row: 1/2;
+        grid-column: 2/3;
+
+    }
+
+    .type_eau.nb3 {
+        grid-row: 2/3;
+        grid-column: 1/2;
+
+    }
+
+    .type_eau.nb4 {
+        grid-row: 2/3;
+        grid-column: 2/3;
+
+    }
+
+    .type_eau.nb5 {
+        grid-row: 3/4;
+        grid-column: 1/2;
+
+    }
+
+    #needle {
+        height: 140px;
+        /* Longueur de l'aiguille */
+        bottom: 140px;
+
+    }
+
+
+    #graph {
+        width: 550px;
+        height: 550px;
+    }
+
+    .temp-label.nb1 {
+        left: -2%;
+        bottom: 38%;
+    }
+
+    .temp-label.nb2 {
+        left: 24%;
+        top: 26%;
+    }
+
+    .temp-label.nb3 {
+        left: 78%;
+        top: 32%;
+    }
+
+    .temp-label.nb4 {
+        right: -2%;
+        top: 55%;
+    }
+
+    #temp {
+        min-width: 550px;
+        min-height: 550px;
+    }
+
+
+    #visuelspotpea {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    #visuelspoth {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .spot2 video,
+    .spot2 img {
+        width: 250px;
+        height: 140px;
+
+
+    }
+
+    .spot1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* PARTIE ALIMENTATION*/
+    .video_alimentation {
+        max-width: 900px;
+    }
+
+
+
+    #visuel_animaux {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    /*PARTIE REPRODUCTION*/
+
+    .cycle-mobile {
+        justify-content: center;
+    }
+
+    .step-bulle {
+        width: 50px;
+        height: 50px;
+    }
+
+    #stepImage {
+        width: 400px;
+        height: 400px;
+        border-radius: 10px;
+    }
+
+    #stepDesc {
+        color: white;
+        font-family: "Inter", cursive;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #stepTitle {
+        font-size: 25px;
+    }
+
+    .step-content {
+        flex: none;
+        width: 80%;
+    }
+
+    #repro {
+        font-size: 25px;
+    }
+}
+
+@media(min-width:992px) {
+
+    #pres_poisson h1 {
+        font-size: 40px;
+    }
+
+    #pres_poisson img {
+        max-width: 70% !important;
+    }
+
+    #navig_fish {
+        gap: 100px;
+    }
+
+    #navig_fish img {
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    }
+
+    #navig_fish a:hover img {
+        transform: scale(1.15);
+
+    }
+
+    /*PARTIE MORPHOLOGIE*/
+
+
+    .btn-retour-cercle {
+        /* --- Nettoyage du bouton par défaut --- */
+        appearance: none;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0;
+        outline: none;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        border-radius: 50%;
+        color: white;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: "Inter", cursive;
+        margin: auto 0;
+        width: 10% !important;
+    }
+
+    .btn-retour-cercle:hover {
+        background: rgba(46, 204, 113, 0.1);
+        border-color: #2ecc71;
+        box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+        transform: scale(1.1);
+    }
+
+    .fa-arrow-left {
+        color: red !important;
+       
+    }
+
+
+    .btn-retour-cercle:hover .fleche {
+        color: #2ecc71;
+    }
+
+    #morpho_container {
+        grid-template-columns: repeat(auto-fit, 160px);
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /*classe mode focus qui permet de changer le grid de morpho container en flex lorsque l'on clic sur une photo*/
+    #morpho_container.mode-focus {       
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       
+        width: 100%;
+    }
+
+
+    .morpho {
+        width: 150px;
+        height: 150px;
+        transition: transform 0.5s ease;
+        cursor: pointer;
+    }
+
+    .morpho:hover {
+        transform: scale(1.05);
+    }
+
+
+
+    .photo_morpho {
+        border: none;
+        background-color: transparent;
+        border-radius: 0px;
+        margin: 0px;
+        padding: 20px 0.5vw;
+        justify-self: center;
+
+    }
+
+    .photo_morpho.active {
+        max-width: 90%;
+        margin: 20px 20px 20px 0px !important;
+        border: 1px solid #333333;
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .description {
+        display: none;
+    }
+
+
+
+    /*PARTIE HABITATS*/
+
+
+    .milieu_aquatique {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        gap: 5px;
+    }
+
+
+    .type_eau {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .type_eau img {
+        width: 100%;
+    }
+
+    .type_eau.nb1 {
+        grid-row: 1/2;
+        grid-column: 1/2;
+
+    }
+
+    .type_eau.nb2 {
+        grid-row: 1/2;
+        grid-column: 2/3;
+
+    }
+
+    .type_eau.nb3 {
+        grid-row: 1/2;
+        grid-column: 3/4;
+
+    }
+
+    .type_eau.nb4 {
+        grid-row: 1/2;
+        grid-column: 4/5;
+
+    }
+
+    .type_eau.nb5 {
+        grid-row: 1/2;
+        grid-column: 5/6;
+
+    }
+
+    #needle {
+        height: 140px;
+        /* Longueur de l'aiguille */
+        bottom: 140px;
+
+    }
+
+
+    #graph {
+        width: 450px;
+        height: 450px;
+    }
+
+    .temp-label.nb1 {
+        left: -2%;
+        bottom: 38%;
+    }
+
+    .temp-label.nb2 {
+        left: 24%;
+        top: 26%;
+    }
+
+    .temp-label.nb3 {
+        left: 78%;
+        top: 32%;
+    }
+
+    .temp-label.nb4 {
+        right: -2%;
+        top: 55%;
+    }
+
+    #temp {
+        min-width: 450px;
+        min-height: 450px;
+    }
+
+    #box-condis {
+        gap: 20px;
+        flex-direction: row;
+    }
+
+    .condis {
+        width: 47%;
+    }
+
+    #visuelspotpea {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 5px;
+    }
+
+    #visuelspoth {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 5px;
+    }
+
+    .spot2 video,
+    .spot2 img {
+        width: 300px;
+        height: 170px;
+
+
+    }
+
+    /* PARTIE ALIMENTATION*/
+    .video_alimentation {
+        max-width: 1500px;
+    }
+
+
+
+    #visuel_animaux {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    /*PARTIE REPRODUCTION*/
+
+    .step-content {
+        width: 60%;
+    }
+
+}
+
+
+
+
+
+
+
+
+/*@media(min-width:992px) {
+
+    #navig_poisson li {
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    #navig_poisson li:hover {
+        transform: scale(1.05);
+        background-color: white;
+        color: black;
+
+
+    }
+
+
+    /*.synthese {
+    display: block;
+    background-color: black;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+
+.titre_synthese {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.titre_synthese p {
+    font-size: 20px;
+}
+
+.contenu_synthese {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.contenu_synthese_1 {
+    max-width: 400px;
+    border: 3px solid white;
+    padding: 10px;
+
+}
+
+#contenu_synthese_2 {
+    max-width: 400px;
+    border: 3px solid white;
+    padding: 10px;
+
+}
+
+.ligne_contenu {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+    align-items: center;
+}
+
+.sous_partie {
+    background-color: black;
+    padding-top: 5px;
+    border-top: 5px solid white;
+    scroll-margin-top: 160px;
+}
+
+h4 {
+    color: white;
+}
+
+.habitat p {
+    color: white;
+}
+
+.condi_habitat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.titre {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.titre i {
+    color: white;
+}
+
+.titre img {
+    width: 400px;
+    height: 300px;
+}
+
+.milieu_aquatique {
+    display: flex;
+    gap: 30px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#temperature_brochet {
+    width: 300px;
+    height: auto;
+}
+
+.saisonselect {
+    text-align: center;
+    text-align-last: center;
+    font-family: Roboto Flex;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#visuelspot {
+    color: white;
+}
+
+#visuelspotpea,
+#visuelspoth {
+    display: none;
+}
+
+#visuelspotpea {
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    display: flex;
+
+}
+
+#visuelspoth {
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.spot1 p {
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    width: 300px;
+    height: auto;
+
+
+
+}
+
+.spot1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+
+
+}
+
+.spot2 img {
+    max-width: 300px;
+    max-height: 300px;
+
+    /* évite un petit espace blanc sous l'image 
+
+}
+
+.spot2 {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.spot2 video {
+    max-width: 100%;
+    height: auto;
+    /* évite un petit espace blanc sous l'image 
+}
+
+
+
+.video_alimentation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#visuel_animaux {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.animal1 {
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.animal2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.animal2 img {
+    width: 300px;
+    height: 300px;
+}
+
+/*visuel sous partie reproduction de la page brochet
+
+.circle-container {
+    position: relative;
+    margin: 30px auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.cycle {
+    width: 800px;
+    height: 800px;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+
+}
+
+circle.track {
+    stroke: white;
+    stroke-width: 4;
+    fill: none;
+}
+
+circle.progress {
+    stroke: #2a8;
+    stroke-width: 4;
+    fill: none;
+    /*centre du cercle transparent
+    stroke-dasharray: 1633;
+    /*le cercle au complet
+    /* ~2πr with r = 260 
+    stroke-dashoffset: 1633;
+    /*le cercle progressif
+    transition: stroke-dashoffset 0.6s ease;
+}
+
+.bubble {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #2a8;
+    overflow: hidden;
+    /*cache tout ce qui dépasse de la bulle
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.bubble img:hover {
+    transform: scale(1.1);
+}
+
+.bubble p {
+    font-size: 20px;
+    position: absolute;
+    color: white;
+    top: 50%;
+    /* centre verticalement 
+    left: 50%;
+    /* centre horizontalement 
+    transform: translate(-50%, -50%);
+    /* centre exact 
+    font-weight: bold;
+    text-shadow: 2px 2px 4px black;
+    /* pour que ça reste lisible 
+    z-index: 3;
+    margin: 0;
+}
+
+.bubble img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s;
+
+}
+
+.bubble.clicked {
+    border-color: #555;
+    transform: scale(0.95);
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.info-box {
+    margin-top: 20px;
+    padding: 10px;
+    min-height: 60px;
+    font-size: 16px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.commentaires p {
+    margin-bottom: 20px;
+}
+
+.commentaires {
+    border: 3px solid white;
+}
+
+.undo-button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #2a8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#video_reproduction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    max-width: 400px;
+    margin: 0 auto 15px;
+    flex-direction: column;
+
+}
+
+#video_reproduction p {
+    font-size: 20px;
+    color: white;
+}
+
+.Leurre {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+.visuel_animation_leurre {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.leurre {
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
+    background-size: contain;
+    /* ou cover si tu veux remplir 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.leurre h3 {
+    color: black;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* fond blanc semi-transparent 
+    margin: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+
+.animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+
+}
+
+@media(min-width:992px){
+
+#navig_poisson li{
+    cursor:pointer;
+    transition: transform 0.2s;
+}
+
+#navig_poisson li:hover {
+    transform: scale(1.05);
+    background-color: white;
+    color: black;    
+
+
+}*/
