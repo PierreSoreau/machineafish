@@ -226,13 +226,6 @@ main {
     font-size: 16px;
 }
 
-
-/*-------*/
-
-
-
-
-
 .synthese {
     display: block;
     background-color: black;
@@ -258,21 +251,23 @@ main {
 }
 
 .contenu_synthese {
-    display: grid; 
-    grid-template-columns: repeat(auto-fit,auto);
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     border: 1px solid #333333;
     background-color: #1a1a1a;
-    padding: 20px;
     border-radius: 10px;
-    max-width: 100%;
+    width: auto;
     margin: auto 10px;
+    overflow: hidden;
+    /*permet de tronquer l'angle du border de la case qui dépasse de contenu synthese*/
 }
 
 .ligne_contenu {
-    display: flex;    
+    display: flex;
     gap: 10px;
     align-items: center;
+    border: 1px solid #333333;
+    padding: 20px;
 }
 
 .ligne_contenu i {
@@ -281,7 +276,6 @@ main {
     padding: 10px;
     border-radius: 8px;
     margin-right: 15px;
-    margin: auto auto;
     color: #63E6BE;
 }
 
@@ -296,67 +290,17 @@ main {
 
 /*DEBUT PARTIE HABITATS*/
 
-#temp {
-    width: 280px;
-    height: 280px;
-    position: relative;
-
-}
-
-
-
-.temp-label {
-    position: absolute;
+.fa-water,
+.fa-wind,
+.fa-temperature-three-quarters {
     color: white;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: sans-serif;
-    background: rgba(255, 255, 255, 0.1);
-    /* Fond très léger */
-    backdrop-filter: blur(4px);
-    /* Effet de flou derrière */
-    padding: 4px 8px;
-    border-radius: 12px;
-    /* Bords très arrondis */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 11px;
 }
 
-.temp-label.nb1 {
-    left: -5%;
-    bottom: 38%;
-}
-
-.temp-label.nb2 {
-    left: 24%;
-    top: 21%;
-}
-
-.temp-label.nb3 {
-    left: 78%;
-    top: 32%;
-}
-
-.temp-label.nb4 {
-    right: -7%;
-    top: 55%;
-}
-
-
-
-
-
-.aqua1 {
+.habitat_title {
     display: flex;
-    margin-bottom: 30px;
-    gap: 10px;
     justify-content: center;
-    align-items: center;
-
-}
-
-.aqua1 i {
-    color: white;
+    gap: 10px;
+    margin: 10px 0;
 }
 
 h4 {
@@ -367,8 +311,7 @@ h4 {
 
 .milieu_aquatique {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, auto);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
     width: 95%;
     margin: auto;
@@ -398,98 +341,7 @@ h4 {
 }
 
 
-
-.type_eau.nb1 {
-    grid-row: 1/2;
-    grid-column: 1/2;
-
-}
-
-.type_eau.nb2 {
-    grid-row: 2/3;
-    grid-column: 1/2;
-
-}
-
-.type_eau.nb3 {
-    grid-row: 3/4;
-    grid-column: 1/2;
-
-}
-
-.type_eau.nb4 {
-    grid-row: 4/5;
-    grid-column: 1/2;
-
-}
-
-.type_eau.nb5 {
-    grid-row: 5/6;
-    grid-column: 1/2;
-
-}
-
-#needle {
-    position: absolute;
-    width: 10px;
-    /*largeur de l'aiguille*/
-    height: 80px;
-    /* Longueur de l'aiguille */
-    background: white;
-    bottom: 90px;
-    left: 50%;
-    clip-path: polygon(50% 0%, 0% 110%, 100% 110%);
-    /*ça crée un triangle*/
-    transform-origin: bottom center;
-    /* L'aiguille tourne autour de sa base */
-    transform: rotate(-90deg);
-    /* Départ à 0°C (gauche) pour l'aiguille contre 90°C en temps normal */
-    transition: transform 2s ease-out;
-    /* L'effet d'animation fluide */
-    z-index: 100;
-}
-
-/* Le petit rond à la base de l'aiguille */
-#needle::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0px;
-    width: 10px;
-    height: 10px;
-    background: white;
-    border-radius: 50%;
-    clip-path: none !important;
-}
-
-.aqua2 {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.aqua2 i {
-    color: white;
-}
-
-#box-condis {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-
-}
-
-#graph {
-    position: relative;
-    width: 280px;
-    height: 280px;
-}
-
-.condis {
+.box_habitat {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -502,6 +354,28 @@ h4 {
     padding-right: 10px;
     width: 95%;
     margin-top: 30px;
+}
+
+.graph {
+    width: 280px;
+    height: 280px;
+}
+
+/*---------------------------------------------------*/
+
+
+.condi_habitat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#jauge_courant {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 #visuelspotpea {
@@ -1015,132 +889,13 @@ h4 {
         justify-content: flex-start;
     }
 
-
-    .contenu_synthese {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(3, auto);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background-color: #111;
-        padding: 0px;
-        border-radius: 10px;
-        height: auto;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        gap: 0;
-    }
-
-    .ligne_contenu {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 24px;
-        height: 100%;
-        margin-bottom: 0px;
-        box-sizing: border-box;
-        align-items: flex-start;
-        /* Pour que toutes les cases d'une ligne s'alignent */
-    }
-
-
-    .ligne_contenu.nb1 {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
-
-    .ligne_contenu.nb2 {
-        grid-column: 1/2;
-        grid-row: 2/3;
-    }
-
-    .ligne_contenu.nb3 {
-        grid-column: 1/2;
-        grid-row: 3/4;
-    }
-
-    .ligne_contenu.nb4 {
-        grid-column: 2/3;
-        grid-row: 1/2;
-    }
-
-    .ligne_contenu.nb5 {
-        grid-column: 2/3;
-        grid-row: 2/3;
-    }
-
-    .ligne_contenu.nb6 {
-        grid-column: 2/3;
-        grid-row: 3/4;
-
-    }
-
-    /* La ligne verticale du milieu */
-    .ligne_contenu.nb4,
-    .ligne_contenu.nb5,
-    .ligne_contenu.nb6 {
-        border-left: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    /* On retire la bordure du bas pour les deux dernières cases du tableau */
-    .ligne_contenu.nb3,
-    .ligne_contenu.nb6 {
-        border-bottom: none;
-    }
-
     /*PARTIE HABITATS*/
 
-
-    .milieu_aquatique {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, auto);
-        gap: 10px;
-    }
-
-
-    .type_eau {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .type_eau.nb1 {
-        grid-row: 1/2;
-        grid-column: 1/2;
-
-    }
-
-    .type_eau.nb2 {
-        grid-row: 1/2;
-        grid-column: 2/3;
-
-    }
-
-    .type_eau.nb3 {
-        grid-row: 2/3;
-        grid-column: 1/2;
-
-    }
-
-    .type_eau.nb4 {
-        grid-row: 2/3;
-        grid-column: 2/3;
-
-    }
-
-    .type_eau.nb5 {
-        grid-row: 3/4;
-        grid-column: 1/2;
-
-    }
-
-    #needle {
-        height: 140px;
-        /* Longueur de l'aiguille */
-        bottom: 140px;
-
-    }
-
-
-    #graph {
+    .graph {
         width: 550px;
         height: 550px;
     }
+    
 
     .temp-label.nb1 {
         left: -2%;
@@ -1301,7 +1056,7 @@ h4 {
 
     .fa-arrow-left {
         color: red !important;
-       
+
     }
 
 
@@ -1314,13 +1069,13 @@ h4 {
         justify-content: center;
         align-items: center;
     }
-    
+
     /*classe mode focus qui permet de changer le grid de morpho container en flex lorsque l'on clic sur une photo*/
-    #morpho_container.mode-focus {       
+    #morpho_container.mode-focus {
         display: flex;
         align-items: center;
         justify-content: center;
-       
+
         width: 100%;
     }
 
@@ -1366,68 +1121,27 @@ h4 {
         display: none;
     }
 
+    .contenu_synthese {
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    }
+
+
 
 
     /*PARTIE HABITATS*/
 
-
-    .milieu_aquatique {
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: 1fr;
-        gap: 5px;
-    }
-
-
-    .type_eau {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .type_eau img {
-        width: 100%;
-    }
-
-    .type_eau.nb1 {
-        grid-row: 1/2;
-        grid-column: 1/2;
-
-    }
-
-    .type_eau.nb2 {
-        grid-row: 1/2;
-        grid-column: 2/3;
-
-    }
-
-    .type_eau.nb3 {
-        grid-row: 1/2;
-        grid-column: 3/4;
-
-    }
-
-    .type_eau.nb4 {
-        grid-row: 1/2;
-        grid-column: 4/5;
-
-    }
-
-    .type_eau.nb5 {
-        grid-row: 1/2;
-        grid-column: 5/6;
-
-    }
-
-    #needle {
-        height: 140px;
-        /* Longueur de l'aiguille */
-        bottom: 140px;
-
-    }
-
-
-    #graph {
+    .graph {
         width: 450px;
         height: 450px;
+    }
+
+    .box_habitat {
+        width: 47%;
+    }
+
+    .condi_habitat {
+        gap: 20px;
+        flex-direction: row;
     }
 
     .temp-label.nb1 {
@@ -1460,9 +1174,7 @@ h4 {
         flex-direction: row;
     }
 
-    .condis {
-        width: 47%;
-    }
+
 
     #visuelspotpea {
         grid-template-columns: repeat(3, 1fr);

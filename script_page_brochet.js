@@ -94,9 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
   //---------------------------------------------------------------------------------
 
   //------------------AFFICHER LE GRAPHIQUE DU COURANT-------------------------------
-
+  
   const courant = document.getElementById('jauge_courant').getContext('2d');
-
 
   new Chart(courant, {
     type: 'doughnut',
@@ -164,10 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Calcul de l'angle (0% de courant = -90deg, 100% de courant = +90deg)
   const angle = (courantTarget / 100) * 180 - 90;
 
-  // On lance l'animation après un court délai. Après 500 ms l'aiguille se décale jusqu'à courantTarget
-  setTimeout(() => {
-    needle.style.transform = `rotate(${angle}deg)`;
-  }, 500);
+
+  
 
 
 
