@@ -53,6 +53,12 @@ class UserController extends AbstractController
         $imagePoisson= $dataPoisson->findImageByName($_GET['route']);
         $detailPoissons= $dataPoisson->findAll();
         $descriptionPoisson = $descriptionsPoisson ->selectPoissonByName($_GET['route']);
+        $descriptionhabitat = $descriptionsPoisson ->selectHabitatByName($_GET['route']);
+        $descriptionspotpea = $descriptionsPoisson ->selectSpotPea($_GET['route']);
+        $descriptionspothiver = $descriptionsPoisson ->selectSpotHiver($_GET['route']);
+        $descriptionfood = $descriptionsPoisson ->selectFoodByName($_GET['route']);
+
+
 
         if (!$imagePoisson && empty($descriptionPoisson)) {
         // On redirige vers l'accueil 
@@ -64,7 +70,11 @@ class UserController extends AbstractController
         ['namepoisson' => $_GET['route'],
         'imagepoisson'=>$imagePoisson,
         'descriptionpoisson'=>$descriptionPoisson,
-        'detailpoissons'=> $detailPoissons      
+        'detailpoissons'=> $detailPoissons,
+        'descriptionhabitat'=>$descriptionhabitat,
+        'descriptionspotpea'=>$descriptionspotpea,
+        'descriptionspothiver'=>$descriptionspothiver,  
+        'descriptionfood'=>$descriptionfood,    
         ]);
     }
 

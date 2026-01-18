@@ -1,16 +1,16 @@
 <?php
 class PoissonDescription 
 {
-    public function __construct(
-        private int $id,
-        private string $type_description,
-        private int $poisson,
-        private ?string $description = null,
-        private ?string $alt = null,
-        private ?string $image = null
+    
+        private int $id;
+        private string $type_description;
+        private int $poisson;
+        private ?string $description = null;
+        private ?string $alt = null;
+        private ?string $image = null;
 
 
-    ) {}
+  
 
 
     public function getId()

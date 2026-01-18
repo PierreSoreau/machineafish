@@ -2,19 +2,7 @@
 
 class MaterielManager extends AbstractManager
 {
-
-    //fonction qui permet de transformer les tableaux php en chaine de caractère lisible par SQL
-
-    private function formatInClause(array $items): string
-    {
-        // On transforme chaque élément en 'element' (avec des quotes)
-        $formatted = array_map(function ($item) {
-            return "'" . addslashes($item) . "'";
-        }, $items);
-
-        // On les joint avec une virgule
-        return implode(',', $formatted);
-    }
+    
     public function selection_matos(array $donneesQuiz): array
 
     {
@@ -35,10 +23,11 @@ class MaterielManager extends AbstractManager
 
         ];
 
-        $poidsmini=$reglespoids[$espece][$taille][0];
-        $poidsmaxi=$reglespoids[$espece][$taille][1];
-
-        $poidsreference = ( $poidsmini +  $poidsmaxi) / 2;
+        $poidsmini = $reglespoids[$espece][$taille][0];
+        $poidsmaxi = $reglespoids[$espece][$taille][1];
+        
+        //calcul d'un poids de référence comme indicateur de sélection de la puissance de la canne
+        $poidsreference = ($poidsmini +  $poidsmaxi) / 2;
 
         if ($courant === "oui") {
             $poids = $poidsreference * 1.5;
@@ -89,31 +78,95 @@ class MaterielManager extends AbstractManager
         ];
 
         $especeNom = strtolower($espece);
-       
+
 
         $typesAutorises = $reglesSaison[$especeNom][$saison] ?? ["shad"];
 
+        $paramscanne = [
+            'idMilieu' => $milieuid,
+            'pref'     => $poids
+        ];
 
-        // obtention de la base de données des cannes en fonction du milieu et du poisson et du courant       
+        $paramsmoulinet = [
+            'idMilieu' => $milieuid,
+            'pref'     => $poids,
+            'saison' => $saison
+        ];
+
+        $paramsleurre = [
+            'idMilieu' => $milieuid,
+            'pref'     => $poids,
+            'pmin'     => $poidsmini,
+            'pmax'     => $poidsmaxi,
+            'idPoisson' => $especenb
+        ];
+
+        $elementsqlaction = [];
+        $elementsqlleurre = [];
+
+        // On boucle sur les actions du poisson (ex: "fast", "regular")
+        foreach ($actionsAutorisees as $index => $action) {
+            // On crée une clé unique pour chaque action : :action_0, :action_1...
+            $key = ":action_" . $index;
+
+            // On ajoute le marqueur à la liste des données sql que l'on va mettre après le IN pour la requête
+            $elementsqlaction[] = $key;
+
+            // On associe la vraie valeur à ce marqueur dans le tableau de paramètres
+            $paramscanne[$key] = $action;
+            $paramsmoulinet[$key] = $action;
+            $paramsleurre[$key] = $action;
+        }
+
+
+        // On transforme le tableau de marqueurs en string : ":action_0, :action_1"
+        // Si le tableau est vide (aucun poisson trouvé), on gère le cas pour éviter une erreur SQL
+        if (!$actionsAutorisees) {
+            $arraysqlaction = "('')";
+        } else {
+            $arraytransform = implode(",", $elementsqlaction);
+            $arraysqlaction = "($arraytransform)";
+        }
+
+        //On fait la même chose pour les types de leurres spécifiques à chaque poisson
+        foreach ($typesAutorises as $index => $leurre) {
+            $key = ":leurre_" . $index;
+            
+            $elementsqlleurre[] = $key;
+            
+            $paramsleurre[$key] = $leurre;
+
+
+
+        }
+
+        if (!$typesAutorises) {
+            $arraysqlleurre = "('')";
+        } else {
+            $arraytransform2 = implode(",", $elementsqlleurre);
+            $arraysqlleurre = "($arraytransform2)";
+        }
+
+
+
+
+        // obtention de la base de données des cannes en fonction du milieu et du poisson et du courant  
 
         $sqlCannes = "SELECT canne.* FROM canne 
               INNER JOIN canne_milieu_aquatique ON canne.id = canne_milieu_aquatique.canne_id 
               INNER JOIN milieu_aquatique ON canne_milieu_aquatique.milieu_id = milieu_aquatique.id
               WHERE milieu_aquatique.id = :idMilieu
               AND :pref BETWEEN canne.poids_mini AND canne.poids_maxi
-              AND canne.action IN (" . $this->formatInClause($actionsAutorisees) . ")
+              AND canne.action IN $arraysqlaction
               ORDER BY ABS(canne.poids_mini - :pref) ASC LIMIT 1";
 
         $query = $this->db->prepare($sqlCannes);
-        $query->execute([
-            'idMilieu' => $milieuid,
-            'pref'     => $poids
-        ]);
+        $query->execute($paramscanne);
 
         $cannes = $query->fetchAll(PDO::FETCH_CLASS, 'Canne');
 
         // obtention de la base de données des moulinets en fonction du premier filtre des cannes et de la saison
-        $triRatio=($saison==="hiver") ? 'ASC' : 'DESC';
+        $triRatio = ($saison === "hiver") ? 'ASC' : 'DESC';
 
 
         $sqlmoulinet = "SELECT moulinet.* FROM moulinet 
@@ -124,18 +177,14 @@ class MaterielManager extends AbstractManager
             INNER JOIN canne_milieu_aquatique ON canne.id = canne_milieu_aquatique.canne_id 
             WHERE canne_milieu_aquatique.milieu_id = :idMilieu
             AND :pref BETWEEN canne.poids_mini AND canne.poids_maxi
-            AND canne.action IN (" . $this->formatInClause($actionsAutorisees) . ")
+            AND canne.action IN $arraysqlaction
         ) 
         AND saison_moulinet.saison_id = :saison
         ORDER BY moulinet.ratio $triRatio
         LIMIT 1";
 
         $query1 = $this->db->prepare($sqlmoulinet);
-        $query1->execute([
-            'idMilieu' => $milieuid,
-            'pref'     => $poids,
-            'saison' => $saison
-        ]);
+        $query1->execute($paramsmoulinet);
 
         $moulinets = $query1->fetchAll(PDO::FETCH_CLASS, 'Moulinet');
 
@@ -153,24 +202,18 @@ class MaterielManager extends AbstractManager
         WHERE poisson_leurre.poisson_id = :idPoisson -- Optionnel si tu as l'ID
         AND canne_milieu_aquatique.milieu_id = :idMilieu
         AND :pref BETWEEN canne.poids_mini AND canne.poids_maxi
-        AND canne.action IN ({$this->formatInClause($actionsAutorisees)})
+        AND canne.action IN $arraysqlaction
         -- IMPORTANT : On vérifie que le poids du leurre est cohérent avec le calcul du quiz
         AND leurre.poids_leurre BETWEEN :pmin AND :pmax
-        AND leurre.nom IN (" . $this->formatInClause($typesAutorises) . ")";
+        AND leurre.nom IN $arraysqlleurre";
 
         $query2 = $this->db->prepare($sqlleurres);
-        $query2->execute([
-            'idMilieu' => $milieuid,
-            'pref'     => $poids,
-            'pmin'     => $poidsmini,
-            'pmax'     => $poidsmaxi,
-            'idPoisson' => $especenb
-        ]);
+        $query2->execute($paramsleurre);
 
         $leurres = $query2->fetchAll(PDO::FETCH_CLASS, 'Leurre');
 
 
-        $sqlfil="SELECT fil.* FROM fil
+        $sqlfil = "SELECT fil.* FROM fil
         JOIN poisson_fil ON fil.id=poisson_fil.fil_id
         WHERE fil.gros_specimen = :taille
         AND poisson_fil.poisson_id = :poissonid
@@ -179,18 +222,18 @@ class MaterielManager extends AbstractManager
         $query3 = $this->db->prepare($sqlfil);
         $query3->execute([
             'taille' => $taille,
-            'poissonid' => $especenb            
+            'poissonid' => $especenb
         ]);
 
         $fils = $query3->fetchAll(PDO::FETCH_CLASS, 'Fil');
 
-        $materiel=[
-            'cannes'=>$cannes,
-            'moulinets'=>$moulinets,
-            'leurres'=>$leurres,
-            'fils'=>$fils           
+        $materiel = [
+            'cannes' => $cannes,
+            'moulinets' => $moulinets,
+            'leurres' => $leurres,
+            'fils' => $fils
 
-        ];     
+        ];
 
 
 

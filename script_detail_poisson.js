@@ -190,7 +190,7 @@ new Chart(courant, {
 
 //--------------------------AFFICHER GRAPHIQUE TEMPERATURE-------------------------
 
-const ctx = document.getElementById('pikeGauge').getContext('2d');
+const ctx = document.getElementById('jauge_temperature').getContext('2d');
 
 
 new Chart(ctx, {
@@ -199,7 +199,7 @@ new Chart(ctx, {
     data: {
         labels: ['Léthale', 'Acceptable', 'Idéale', 'Acceptable', 'Léthale'],
         datasets: [{
-            data: [10, 26, 36, 18, 10],
+            data: [10, 20, 30, 20, 10],
             backgroundColor: ['#e74c3c', '#f39c12', '#2ecc71', '#f39c12', '#e74c3c'],
             borderWidth: 0,
             hoverOffset: 10,
@@ -248,7 +248,49 @@ new Chart(ctx, {
     }
 });
 
+//----------------------------------------------------------------------------------------------------------
+//--------------------------AFFICHER SPOT DE PECHE EN FONCTION DE LA SAISON---------------------------------
+
+const pea=document.getElementById("saison-pea")
+const hiver=document.getElementById("saison-hiver")
+
+pea.addEventListener("click",function(){
+    document.querySelectorAll(".pea").forEach(function(e){
+
+        e.style.display="flex"
+
+
+    })
+    document.querySelectorAll(".hiver").forEach(function(e){
+
+        e.style.display="none"
+
+
+    })
+
+})
+
+hiver.addEventListener("click",function(){
+    document.querySelectorAll(".pea").forEach(function(e){
+
+        e.style.display="none"
+
+
+    })
+    document.querySelectorAll(".hiver").forEach(function(e){
+
+        e.style.display="flex"
+
+
+    })
+})
+
+
+
 //---------------------------------------------------------------------------------
+
+
+
 
 
 
