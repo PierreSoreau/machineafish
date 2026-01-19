@@ -251,35 +251,35 @@ new Chart(ctx, {
 //----------------------------------------------------------------------------------------------------------
 //--------------------------AFFICHER SPOT DE PECHE EN FONCTION DE LA SAISON---------------------------------
 
-const pea=document.getElementById("saison-pea")
-const hiver=document.getElementById("saison-hiver")
+const pea = document.getElementById("saison-pea")
+const hiver = document.getElementById("saison-hiver")
 
-pea.addEventListener("click",function(){
-    document.querySelectorAll(".pea").forEach(function(e){
+pea.addEventListener("click", function () {
+    document.querySelectorAll(".pea").forEach(function (e) {
 
-        e.style.display="flex"
+        e.style.display = "flex"
 
 
     })
-    document.querySelectorAll(".hiver").forEach(function(e){
+    document.querySelectorAll(".hiver").forEach(function (e) {
 
-        e.style.display="none"
+        e.style.display = "none"
 
 
     })
 
 })
 
-hiver.addEventListener("click",function(){
-    document.querySelectorAll(".pea").forEach(function(e){
+hiver.addEventListener("click", function () {
+    document.querySelectorAll(".pea").forEach(function (e) {
 
-        e.style.display="none"
+        e.style.display = "none"
 
 
     })
-    document.querySelectorAll(".hiver").forEach(function(e){
+    document.querySelectorAll(".hiver").forEach(function (e) {
 
-        e.style.display="flex"
+        e.style.display = "flex"
 
 
     })
@@ -289,8 +289,100 @@ hiver.addEventListener("click",function(){
 
 //---------------------------------------------------------------------------------
 
+//--------------------------AFFICHER CARROUSEL ALIMENTATION-------------------------------------
+
+let compteur = 0;
+
+function MoveSlideFood(deplacement) {
+
+    const container = document.getElementById("container_food")
+    const slides = document.querySelectorAll(".food")
+    const nbslides = slides.length
 
 
+    compteur += deplacement
+
+    if (compteur >= nbslides) {
+        compteur = 0
+    }
+
+    else if (compteur < 0) {
+        compteur = nbslides - 1
+    }
+
+    const movepercentage = compteur * (-100);
+    container.style.transform = `translateX(${movepercentage}%)`;
+
+}
+
+document.querySelector(".prev").addEventListener("click", function (e) {
+
+    MoveSlideFood(-1)
+
+})
+
+document.querySelector(".next").addEventListener("click", function (e) {
+
+    MoveSlideFood(+1)
+
+})
+
+
+
+//---------------------------AFFICHER CARROUSEL REPRODUCTION------------------------------------------------------
+
+
+let compteur2 = 0;
+function MoveSlideReprod(deplacement) {
+
+    const container = document.getElementById("container_reprod")
+    const slides = document.querySelectorAll(".step_reprod")
+    const stepbulle = document.querySelectorAll(".step-bulle")
+    const progressbar = document.getElementById("barFill")
+    const nbslides = slides.length
+
+
+    compteur2 += deplacement   
+
+
+
+    if (compteur2 >= nbslides) {
+        compteur2 = 0
+
+    }
+
+    else if (compteur2 < 0) {
+        compteur2 = nbslides - 1
+    }
+
+    const movepercentage = compteur2 * (-100);
+    const fillbar = compteur2 * 22;
+    container.style.transform = `translateX(${movepercentage}%)`;
+    progressbar.style.height = `${fillbar}%`
+
+    // b représente l'élément stepbulle et i représente son numéro dans la liste des en partant de 0.
+    stepbulle.forEach(function (b, i) {
+        if (i <=compteur2) { b.classList.add("active") }
+        else {
+            b.classList.remove("active")
+        }
+    })
+}
+
+document.querySelector(".prev.reprod").addEventListener("click", function (e) {
+
+    MoveSlideReprod(-1)
+
+})
+
+document.querySelector(".next.reprod").addEventListener("click", function (e) {
+
+    MoveSlideReprod(+1)
+
+})
+
+
+//---------------------------------------------------------------------------------
 
 
 

@@ -25,7 +25,8 @@ class UserController extends AbstractController
         $descriptionsPoisson = new PoissonDescriptionManager;
 
         $imagePoisson= $dataPoisson->findImageByName($_GET['route']);
-        $detailPoissons= $dataPoisson->findAll();
+        $detailPoisson= $dataPoisson->findByName($_GET['route']);
+        $detailAllPoissons= $dataPoisson->findAll();
         $descriptionPoisson = $descriptionsPoisson ->selectPoissonByName($_GET['route']);
 
         if (!$imagePoisson && empty($descriptionPoisson)) {
@@ -38,7 +39,8 @@ class UserController extends AbstractController
         ['namepoisson' => $_GET['route'],
         'imagepoisson'=>$imagePoisson,
         'descriptionpoisson'=>$descriptionPoisson,
-        'detailpoissons'=> $detailPoissons      
+        'detailpoisson'=> $detailPoisson, 
+        'detailallpoissons'=> $detailAllPoissons,     
         ]); 
         
     }
@@ -51,12 +53,14 @@ class UserController extends AbstractController
         $descriptionsPoisson = new PoissonDescriptionManager;
 
         $imagePoisson= $dataPoisson->findImageByName($_GET['route']);
-        $detailPoissons= $dataPoisson->findAll();
+        $detailPoisson= $dataPoisson->findByName($_GET['route']);        
+        $detailAllPoissons=$dataPoisson->findAll();
         $descriptionPoisson = $descriptionsPoisson ->selectPoissonByName($_GET['route']);
         $descriptionhabitat = $descriptionsPoisson ->selectHabitatByName($_GET['route']);
         $descriptionspotpea = $descriptionsPoisson ->selectSpotPea($_GET['route']);
         $descriptionspothiver = $descriptionsPoisson ->selectSpotHiver($_GET['route']);
         $descriptionfood = $descriptionsPoisson ->selectFoodByName($_GET['route']);
+        $reprod = $descriptionsPoisson ->selectReprodByName($_GET['route']);
 
 
 
@@ -70,11 +74,13 @@ class UserController extends AbstractController
         ['namepoisson' => $_GET['route'],
         'imagepoisson'=>$imagePoisson,
         'descriptionpoisson'=>$descriptionPoisson,
-        'detailpoissons'=> $detailPoissons,
+        'detailpoisson'=> $detailPoisson,
+        'detailallpoissons'=> $detailAllPoissons,
         'descriptionhabitat'=>$descriptionhabitat,
         'descriptionspotpea'=>$descriptionspotpea,
         'descriptionspothiver'=>$descriptionspothiver,  
-        'descriptionfood'=>$descriptionfood,    
+        'descriptionfood'=>$descriptionfood,
+        'reprod'=>$reprod  
         ]);
     }
 

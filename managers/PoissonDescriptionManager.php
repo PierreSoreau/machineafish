@@ -108,10 +108,24 @@ class PoissonDescriptionManager extends AbstractManager
 
     }
 
+    //Données des étapes de reproduction du poisson
+    public function selectReprodByName(string $name)
+    {
+        $query = $this->db->prepare
+        ("SELECT poisson_description.* 
+        FROM poisson_description 
+        JOIN poisson ON poisson_description.poisson_id=poisson.id       
+        WHERE poisson.nom= :name 
+        AND poisson_description.type_description= 'reproduction'
+        ORDER BY poisson_description.id ASC");
+        
+
+        $query->execute(['name'=> $name]);
+        $select_reprod = $query->fetchAll(PDO::FETCH_CLASS, 'PoissonDescription');
+
+
+        return $select_reprod;
+    }
     
-
-   
-
-
-
+    
 }

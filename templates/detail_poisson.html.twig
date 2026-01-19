@@ -153,114 +153,90 @@
 				</div>
 			</section>
 
-			{# <section class="sous_partie">
+			<section
+				class="sous_partie">
+				{# NE PAS TOUCHER AUX ID DES H3 C'EST IMPORTANT POUR LA NAVIGATION DE LA PAGE#}
 				<h3 id="alimentation">ALIMENTATION</h3>
 				<br>
-				<div class="video_alimentation">
-					<lite-youtube class="ma-video" videoid="-mcvqrbQU20"></lite-youtube>
+				<div id="detail_food">
+					<p>{{detailpoisson.descriptionfood}}</p>
+				</div>
+				{% if detailpoisson.videofood is not null  %}
+					<div class="video_fish">
+						<lite-youtube class="ma-video" videoid="{{detailpoisson.videofood}}"></lite-youtube>
+					</div>
+				{% endif %}
+
+				<div id="box_food">
+					<button class="prev">&#10094;</button>
+					<div id="container_food">
+						{% for food in descriptionfood %}
+							<div class="food">
+								<img src="{{food.image}}" alt="{{food.alt}}">
+								<p>{{food.alimentation}}</p>
+							</div>
+						{% endfor %}
+					</div>
+					<button class="next">&#10095;</button>
 				</div>
 
-				<section id="visuel_animaux">
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ablette.webp" alt="ablette">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/carpe.webp" alt="carpe">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/gardon.webp" alt="gardon">
-						</div>
-						<p>Poissons blancs (ablette, carpe, gardon, brème, rotengle...)</p>
-					</div>
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/silure.webp" alt="silure">
-						</div>
-						<p>Cannibalisme du silure</p>
-					</div>
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ecrevisse.webp" alt="ecrevisse">
-						</div>
-						<p>Ecrevisse</p>
-					</div>
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/corbicule.webp" alt="palourde d'eau douce">
-						</div>
-						<p>Palourde d'eau douce</p>
-					</div>
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/grenouille.webp" alt="grenouille">
-						</div>
-						<p>Grenouille</p>
-					</div>
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/caneton.webp" alt="caneton">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/pigeon.png.webp" alt="pigeon">
-						</div>
-						<p>Canetons, pigeons</p>
-					</div>
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/campagnol.webp" alt="campagnol">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/souris.webp" alt="souris">
-						</div>
-						<p>Rongeurs (souris, campagnol...)</p>
-					</div>
-					<div class="animal1">
-						<div class="animal2">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ephemere.webp" alt="ephémère">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/libellule.webp" alt="libellule">
-						</div>
-						<p>Insectes (libellules, ephémères...)</p>
-					</div>
-				</section>
 			</section>
 
 			<section class="sous_partie">
 				<h3 id="reproduction">REPRODUCTION</h3>
-				<div class="circle-container">
-
-					<div
-						class="cycle">
-						<!--svg est une div spéciale qui sert à accueillir des formes type cercle, courbe...-->
-						<svg
-							width="800" height="800">
-							<!--cx="400" ça veut dire que le centre du cercle est en position horizontale 400px du svg et même chose pour le vertical pour cy-->
-							<circle
-							class="track" cx="400" cy="400" r="260"/>
-							<!--cercle blanc-->
-							<circle
-							class="progress" cx="400" cy="400" r="260"/>
-						<!--cercle vert-->
-						</svg>
+				{% if detailpoisson.videoreprod is not null %}
+					<div class="video_fish">
+						<lite-youtube class="ma-video" videoid="{{detailpoisson.videoreprod}}"></lite-youtube>
+					</div>
+				{% endif %}
+				<div id="box_reprod">
+					<div class="progress-track">
+						<div class="progress-bar-fill" id="barFill"></div>
+						{% for step in reprod %}
+							{# loop.index en twig permet de sortir les index des données de reprod (ligne 1=1, ligne2=2...) #}
+							{% if loop.index == 1 %}
+								<div class="step-bulle active" id="{{loop.index}}">{{loop.index}}</div>
+							{% else %}
+								<div class="step-bulle" id="{{loop.index}}">{{loop.index}}</div>
+							{% endif %}
+						{% endfor %}
 					</div>
 
-					<div class="commentaires">
-						<div class="info-box" id="infoBox">
-							Cliquez sur une bulle pour découvrir les étapes de reproduction.
+
+					<div class="slider-window">
+						<button class="prev reprod">&#10094;</button>
+						<div id="container_reprod">
+							{% for step in reprod %}
+								{% if step.type_description == "reproduction"  %}
+									<div class="step_reprod">
+										<img src="{{step.image}}" alt="{{step.alt}}">
+										<p>{{step.description}}</p>
+									</div>
+								{% endif %}
+							{% endfor %}
+
 						</div>
-						<button onclick="undoStep()" class="undo-button">Revenir à la bulle précédente</button>
-						<button onclick="return_to_step1()" class="undo-button">Revenir à la configuration de
-																																																																																																																																																																																																																																																			                        base</button>
+						<button class="next reprod">&#10095;</button>
 					</div>
-
 				</div>
-			</section> #}
 
 
-		</main>
-
-	{% endblock %}
-
-	{% block javascripts %}
-		{# Scripts js pour que les visuels des graphiques marchent et les js de la page marchent également #}
-		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-		<script>
-			const poissonactuel ="{{ namepoisson }}"
-		</script>
-		<script src="script_detail_poisson.js"></script>
+			</div>
+		</section>
 
 
-	{% endblock %}
+	</main>
+
+{% endblock %}
+
+{% block javascripts %}
+	{# Scripts js pour que les visuels des graphiques marchent et les js de la page marchent également #}
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+	<script>
+		const poissonactuel ="{{ namepoisson }}"
+	</script>
+	<script src="script_detail_poisson.js"></script>
+
+
+{% endblock %}
