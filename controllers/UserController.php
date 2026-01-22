@@ -15,7 +15,16 @@ class UserController extends AbstractController
 
     public function tutoriels(): void
     {
-        $this->render('tutoriels.html.twig', ['route' => $_GET['route']]);
+        $data = new TutosVideosManager;
+        $datatutos = $data->findAll();
+
+        $this->render(
+            'tutoriels.html.twig',
+            [
+                'route' => $_GET['route'],
+                'tutos' => $datatutos
+            ]
+        );
     }
 
     public function brochet(): void

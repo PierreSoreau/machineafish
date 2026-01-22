@@ -116,6 +116,8 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'SousPartiesDuSite' => __DIR__ . '/../..' . '/models/SousPartiesDuSite.php',
         'Spot' => __DIR__ . '/../..' . '/models/Spot.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'TutosVideos' => __DIR__ . '/../..' . '/models/TutosVideos.php',
+        'TutosVideosManager' => __DIR__ . '/../..' . '/managers/TutosVideosManager.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',

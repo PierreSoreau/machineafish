@@ -16,7 +16,7 @@
 {% block main %}
 	<main>
 		<div id="navig_tutoriels">
-			<button class="filter-btn" data-filter="all">Tous</button>
+			<button class="filter-btn active" data-filter="all">Tous</button>
 			<button class="filter-btn" data-filter="animations-leurres">Animations leurres</button>
 			<button class="filter-btn" data-filter="montages">Montages</button>
 			<button class="filter-btn" data-filter="noeuds">Noeuds</button>
@@ -24,169 +24,28 @@
 			<button class="filter-btn" data-filter="loi">La loi</button>
 		</div>
 
-		<section
-			class="list-videos">
-
-			{# Les animations des leurres #}
+		<section class="list-videos">
 
 
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="LHrRLOXY9Qs"></lite-youtube>
-				<p>Crawler</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="1uyu1UE10os"></lite-youtube>
-				<p>Leurre à hélices</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="UVpmMoAC-CM"></lite-youtube>
-				<p>Popper</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="_x1L8F-YnUo"></lite-youtube>
-				<p>Stickbait</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="U1mhBWaFbRo"></lite-youtube>
-				<p>Glidebait</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="JxU1Bo8Ezvk"></lite-youtube>
-				<p>Swimbait</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="c8VI05foJq8"></lite-youtube>
-				<p>Lipless</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="bnh3uVt7AAw"></lite-youtube>
-				<p>Jerkbait</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="CZfzELHr01s"></lite-youtube>
-				<p>Crankbait</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="RbjqkH0GH2k"></lite-youtube>
-				<p>Lame vibrante</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="LuHUdnJrYpU"></lite-youtube>
-				<p>Jig</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="9IzdBbEpbxg"></lite-youtube>
-				<p>Cuiller tournante</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="ApplEFUDEQM"></lite-youtube>
-				<p>Spintail</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="ucoxpImHQQo"></lite-youtube>
-				<p>Chatterbait</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="mN5gUOoQcHg"></lite-youtube>
-				<p>Spinnerbait</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="1B1nkiOra1U"></lite-youtube>
-				<p>Rubberjig</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="Zkr3gMGxFiQ"></lite-youtube>
-				<p>Frog</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="LHrRLOXY9Qs"></lite-youtube>
-				<p>Crawler</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="1E4BPww_AQc"></lite-youtube>
-				<p>Shad</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="e7Ulhr2DBAY"></lite-youtube>
-				<p>Grub</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="8ORnwqNo0Os"></lite-youtube>
-				<p>Créatures: insectes</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="Z4p5UdbKeUc"></lite-youtube>
-				<p>Créatures: écrevisses</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="r88GAYYv_HY"></lite-youtube>
-				<p>Tube</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="5LJ4J5Bkv48"></lite-youtube>
-				<p>Animations leurres souples</p>
-			</div>
-			<div class="tuto-card" data-category="animations-leurres">
-				<lite-youtube class="tutos" videoid="jDP2hTJX5BQ"></lite-youtube>
-				<p>Animations leurres durs</p>
-			</div>
+			{% for tuto in tutos %}
 
-			{# Couleurs des leurres #}
+				{% if tuto.id == 35 %}
 
-			<div class="tuto-card " data-category="couleurs-leurres">
-				<lite-youtube class="tutos" videoid="3CqbPbjUL9A"></lite-youtube>
-				<p>Couleur des leurres</p>
-			</div>
+					<div class="tuto-card" data-category="{{tuto.categorie}}">
+						<a href="{{tuto.video}}" target="_blank" class="reglementation"></a>
+						<p>{{tuto.description}}</p>
+					</div>
 
-			{# Les montages #}
+				{% else %}
 
+					<div class="tuto-card" data-category="{{tuto.categorie}}">
+						<lite-youtube class="tutos" videoid="{{tuto.video}}"></lite-youtube>
+						<p>{{tuto.description}}</p>
+					</div>
 
-			<div class="tuto-card" data-category="montages">
-				<lite-youtube class="tutos" videoid="KFPGXkFmvxU"></lite-youtube>
-				<p>Montage tête plombée</p>
-			</div>
-			<div class="tuto-card" data-category="montages">
-				<lite-youtube class="tutos" videoid="m-RnvWphqnw"></lite-youtube>
-				<p>Montages texan</p>
-			</div>
-			<div class="tuto-card" data-category="montages">
-				<lite-youtube class="tutos" videoid="M_RYjhbpFZk"></lite-youtube>
-				<p>Montage hameçon texan</p>
-			</div>
-			<div class="tuto-card" data-category="montages">
-				<lite-youtube class="tutos" videoid="jO4-xQR6MyU"></lite-youtube>
-				<p>Les types de tête plombée</p>
-			</div>
-			<div class="tuto-card" data-category="montages">
-				<lite-youtube class="tutos" videoid="aRgDD8snBSQ"></lite-youtube>
-				<p>Montage du fil sur le moulinet</p>
-			</div>
+				{% endif %}
 
-			{# Les noeuds #}
-
-			<div class="tuto-card" data-category="noeuds">
-				<lite-youtube class="tutos" videoid="Mi09T4jeSMg"></lite-youtube>
-				<p>Noeud de raccord nylon sur la bobine du moulinet</p>
-			</div>
-			<div class="tuto-card" data-category="noeuds">
-				<lite-youtube class="tutos" videoid="AO21OYnsoe0"></lite-youtube>
-				<p>Noeuds de raccord fil avec fil</p>
-			</div>
-			<div class="tuto-card" data-category="noeuds">
-				<lite-youtube class="tutos" videoid="rnO1OkhjO4M"></lite-youtube>
-				<p>Noeud de raccord agrafe avec fil</p>
-			</div>
-
-			{# La loi #}
-
-			<div class="tuto-card" data-category="loi">
-				<lite-youtube class="tutos" videoid="Fr7r6WpRyXI"></lite-youtube>
-				<p>La loi de la pêche en eau douce en FRANCE</p>
-			</div>
-			<div class="tuto-card" data-category="loi">
-				<a href="https://map.geopeche.com/#15.27/47.913447/2.429514" target="_blank" class="reglementation"></a>
-				<p>Carte intéractive règlementation</p>
-			</div>
+			{% endfor %}
 
 
 		</section>

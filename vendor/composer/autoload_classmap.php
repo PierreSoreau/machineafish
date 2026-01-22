@@ -42,6 +42,8 @@ return array(
     'SousPartiesDuSite' => $baseDir . '/models/SousPartiesDuSite.php',
     'Spot' => $baseDir . '/models/Spot.php',
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+    'TutosVideos' => $baseDir . '/models/TutosVideos.php',
+    'TutosVideosManager' => $baseDir . '/managers/TutosVideosManager.php',
     'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
     'UserController' => $baseDir . '/controllers/UserController.php',
     'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
