@@ -18,30 +18,43 @@
 	<main>
 		{% include "partials/_poissons.html.twig" %}
 		<div id="pres_poisson">
-			<h1>Le
-				{{namepoisson}}</h1>
-			<img src="{{imagepoisson}}" alt="{{namepoisson}}">
+			{% if namepoisson == "perche" %}
+				<h1>La
+					{{namepoisson}}</h1>
+			{% else %}
+				<h1>Le
+					{{namepoisson}}</h1>
+			{% endif %}
+			<img src="{{detailpoisson.imagepresentation}}" alt="{{namepoisson}}">
 		</div>
 
 		{% include "partials/_navig-poisson.html.twig" %}
 
 		<section class="sous_partie">
 			<h3 id="morphologie">MORPHOLOGIE</h3>
-			<div id="taille_poisson">
-				{% for info in descriptionpoisson %}
-					{% if info.alt == "taille " ~ namepoisson  %}
-						<img src="{{info.image}}" alt="taille {{namepoisson}}">
-					{% endif %}
-				{% endfor %}
+			<div
+				id="taille_poisson">
+				{# ~ permet de concaténer des éléments et comme il y a un espace 
+																																																								après taille juste avant son guillement ça fait "taille brochet" au final par exemple  #}
+				<img src="{{detailpoisson.taille}}" alt="taille {{namepoisson}}">
 			</div>
 			<div id="morpho_container">
 				<button class="btn-retour-cercle" id="resetBtn">
 					<i class="fa-solid fa-arrow-left"></i>
 				</button>
 				{% for morphologie in descriptionpoisson %}
-					{% if morphologie.type_description == "morphologie-bulle" %}
+					{% if morphologie.type_description == "morphologie-bulle" and morphologie.autresimage is null %}
 						<div class="photo_morpho">
 							<img src="{{morphologie.image}}" alt="{{morphologie.alt}}" class="morpho">
+							<p class="description">{{morphologie.description}}</p>
+						</div>
+
+					{% elseif morphologie.type_description == "morphologie-bulle" and morphologie.autresimage is not null %}
+						<div class="photo_morpho">
+							<div class="morpho_box">
+								<img src="{{morphologie.image}}" alt="{{morphologie.alt}}" class="morpho">
+								<img src="{{morphologie.autresimage}}" alt="{{morphologie.alt}}" class="morpho">
+							</div>
 							<p class="description">{{morphologie.description}}</p>
 						</div>
 					{% endif %}
@@ -185,7 +198,7 @@
 			<section class="sous_partie">
 				<h3 id="reproduction">REPRODUCTION</h3>
 				{% if detailpoisson.videoreprod is not null %}
-					<div class="video_fish">
+					<div class="video_fish reprod">
 						<lite-youtube class="ma-video" videoid="{{detailpoisson.videoreprod}}"></lite-youtube>
 					</div>
 				{% endif %}

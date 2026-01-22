@@ -209,6 +209,14 @@ main {
     border-radius: 10px;
 }
 
+.morpho_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
 
 .morpho {
     border-radius: 50%;
@@ -662,7 +670,7 @@ h4 {
 
 .progress-bar-fill {
     position: absolute;
-    top: 0;
+    top: 2%;
     width: 10px;
     background: #3498db;
     /* Bleu qui progresse */
@@ -938,6 +946,11 @@ h4 {
         justify-content: flex-start;
     }
 
+    .morpho_box{
+        flex-direction: column;
+        min-width: 120px;      
+    }
+
     /*PARTIE HABITATS*/
 
     .graph {
@@ -998,6 +1011,14 @@ h4 {
 
     .prev.reprod {       
        left:40px
+    }
+
+    .ma-video{
+        max-width: 750px;
+    }
+
+    .video_fish.reprod {
+        max-width: 750px;
     }
 
     
@@ -1069,7 +1090,7 @@ h4 {
     }
 
     #morpho_container {
-        grid-template-columns: repeat(auto-fit, 160px);
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -1106,6 +1127,16 @@ h4 {
         justify-self: center;
 
     }
+
+    .morpho_box{
+        flex-direction: row;
+        gap: 1vw;  
+        min-width: 300px;       
+    }
+
+    
+    
+
 
     .photo_morpho.active {
         max-width: 90%;

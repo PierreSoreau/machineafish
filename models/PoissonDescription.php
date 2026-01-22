@@ -1,16 +1,15 @@
 <?php
-class PoissonDescription 
+class PoissonDescription
 {
-    
-        private int $id;
-        private string $type_description;
-        private int $poisson;
-        private ?string $description = null;
-        private ?string $alt = null;
-        private ?string $image = null;
 
-
-  
+    private int $id;
+    private string $type_description;
+    private int $poisson;
+    private ?string $description = null;
+    private ?string $alt = null;
+    private ?string $image = null;
+    private ?string $temperature_value = null;
+    private ?string $autresimage = null;
 
 
     public function getId()
@@ -96,4 +95,30 @@ class PoissonDescription
 
 
 
+
+
+    public function getTemperature_value()
+    {
+        return $this->temperature_value;
+    }
+
+
+    public function setTemperature_value($temperature_value)
+    {
+        $this->temperature_value = $temperature_value;
+
+        return $this;
+    }
+
+    public function getAutresimage()
+    {
+        return $this->autresimage;
+    }
+
+    public function setAutresimage($autresimage)
+    {
+        $this->autresimage = $autresimage;
+
+        return $this;
+    }
 }

@@ -117,7 +117,7 @@ switch (vitesse) {
         break;
 
     default:
-        // Cas par défaut (tout gris par exemple)
+
         backgroundColors = ['#ecf0f1', '#ecf0f1', '#ecf0f1'];
         textcolor = ['#000000', '#000000', '#000000'];
 }
@@ -342,7 +342,7 @@ function MoveSlideReprod(deplacement) {
     const nbslides = slides.length
 
 
-    compteur2 += deplacement   
+    compteur2 += deplacement
 
 
 
@@ -355,14 +355,20 @@ function MoveSlideReprod(deplacement) {
         compteur2 = nbslides - 1
     }
 
+    const currentBulle = stepbulle[compteur2];
+    // Mesure la hauteur totale de la barre de progression offsetHeight mesure la hauteur totale de la bare grise en pixel
+    const trackHeight = document.getElementById("box_reprod").querySelector(".progress-track").offsetHeight;
+    // distance entre le haut et le haut de la bulle en question + moitié de sa hauteur) / hauteur totale
+    const fillbar = ((currentBulle.offsetTop + (currentBulle.offsetHeight / 2)) / trackHeight) * 100;
+
     const movepercentage = compteur2 * (-100);
-    const fillbar = compteur2 * 22;
+
     container.style.transform = `translateX(${movepercentage}%)`;
     progressbar.style.height = `${fillbar}%`
 
     // b représente l'élément stepbulle et i représente son numéro dans la liste des en partant de 0.
     stepbulle.forEach(function (b, i) {
-        if (i <=compteur2) { b.classList.add("active") }
+        if (i <= compteur2) { b.classList.add("active") }
         else {
             b.classList.remove("active")
         }

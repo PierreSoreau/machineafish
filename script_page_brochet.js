@@ -298,13 +298,13 @@ function changeSlide(element, direction) {
 //----------------------------------------------------------------------------------------
 
 const stepsData = [
-  { title: "La Migration", desc: "1. Entre février et avril, les mâles et les femelles à maturité sexuelle migrent vers les zones de frai.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/migration_vers_frayere.webp" },
-  { title: "L'Accouplement", desc: "2. Le mâle suit la femelle et libère sa laitance.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/reproduction_brochet_frayere.webp" },
-  { title: "La Ponte", desc: "3. Ponte des œufs à 7°C-11°C. Les œufs se collent sur la végétation.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_brochets.webp" },
+  { title: "La Migration", desc: "1.La Migration: entre février et avril, les mâles et les femelles à maturité sexuelle migrent vers les zones de frai.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/migration_vers_frayere.webp" },
+  { title: "L'Accouplement", desc: "2. L'Accouplement: le mâle suit la femelle et libère sa laitance.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/reproduction_brochet_frayere.webp" },
+  { title: "La Ponte", desc: "3. La ponte: les œufs sont pondus entre 7°C et 11°C puis se collent sur la végétation.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_brochets.webp" },
   { title: "L'Incubation", desc: "4. Développement des œufs pendant 10-15 jours, naissance d'alevins avec ventouse.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Alevin_accroche_avec_vesicule_vitelline.webp" },
-  { title: "Le Brocheton", desc: "5. Après 10 jours, l'alevin se décroche et peut nager.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Brocheton.webp" },
-  { title: "La Migration", desc: "6. En mai, le brocheton migre vers des zones calmes et végétalisées.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/herbiers.webp" },
-  { title: "La Croissance", desc: "7. Croissance rapide : 20-30 cm en 1 an, maturité sexuelle pour les mâles 2 à 3 ans pour une taille entre 30 et 40cm, pour les femelles 3 à 5 ans pour une taille entre 45 et 55cm.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_cycle.webp" }
+  { title: "Le Brocheton", desc: "5. Le brocheton: après 10 jours, l'alevin se décroche et peut nager, c'est désormais un brocheton", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/Brocheton.webp" },
+  { title: "La Migration", desc: "6. La migration: En mai, le brocheton migre vers des zones calmes et végétalisées.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/herbiers.webp" },
+  { title: "La Croissance", desc: "7. La croissance: la croissance du brochet est ensuite rapide : 20-30 cm en 1 an, maturité sexuelle pour les mâles 2 à 3 ans pour une taille entre 30 et 40cm, pour les femelles 3 à 5 ans pour une taille entre 45 et 55cm.", img: "https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/brochet_cycle.webp" }
 ];
 
 function showStep(index) {

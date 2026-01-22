@@ -10,7 +10,7 @@ class Router
         $this->uc = new UserController();
     }
 
-    public function handleRequest() : void
+    public function handleRequest(): void
     {
         $route = $_GET['route'] ?? 'home'; // Par défaut 'home'
 
@@ -26,13 +26,25 @@ class Router
             case 'materiel':
                 $this->uc->result();
                 break;
-        
+
             case 'questions':
                 $this->uc->questions();
                 break;
 
             case 'brochet':
-                $this->uc->brochet();
+                $this->uc->descriptionPoisson();
+                break;
+
+            case 'silure':
+                $this->uc->descriptionPoisson();
+                break;
+
+            case 'sandre':
+                $this->uc->descriptionPoisson();
+                break;
+
+            case 'perche':
+                $this->uc->descriptionPoisson();
                 break;
 
             case 'tutoriels':
@@ -40,14 +52,14 @@ class Router
                 break;
 
             default:
-                $this->uc->descriptionPoisson(); 
-            break;
-        }   
-    }      
+                $this->uc->descriptionPoisson();
+                break;
+        }
+    }
 
-            
-            
-            /*else if($_GET['route'] === 'login') {
+
+
+    /*else if($_GET['route'] === 'login') {
                 $this->ac->login();
             }
             else if($_GET['route'] === 'register') {
@@ -58,7 +70,5 @@ class Router
             }
             else if($_GET['route'] === 'profile') {
                 $this->uc->profile();
-            }*/           
-
-            
+            }*/
 }

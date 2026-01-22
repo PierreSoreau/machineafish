@@ -1,77 +1,77 @@
 //--------- VISUEL PARTIE MORPHOLOGIE-------------------
 function morphodescriptiontext(name, i) {
-    const image = document.getElementById(name)
-    const morpholo = document.getElementById("morpholo")
-    const images = document.querySelectorAll(".image_sandre")
+  const image = document.getElementById(name)
+  const morpholo = document.getElementById("morpholo")
+  const images = document.querySelectorAll(".image_sandre")
 
 
 
-    const existing = document.getElementById("descriptionmorpho");
-    if (existing && existing.dataset.name === name) return;
+  const existing = document.getElementById("descriptionmorpho");
+  if (existing && existing.dataset.name === name) return;
 
-    const morpho = ["Le sandre possède une excellente vue grâce au tapis réflecteur de sa rétine. Cela lui permet de réflechir la lumière même dans des eaux à faible luminosité (eaux troubles/profondes). Il peut donc chasser ses proies dans toutes les situations."
-        , "En plus de cette faculté visuelle, le sandre est dotée d'un ligne latérale tout le long de son corps (de la base de sa tête jusqu'à sa nageoire caudale). Cela lui permet de détecter les vibrations et les mouvements de l'eau. Dans une eau très sombre c'est un atout majeur pour qu'il détecte ses proies."
-        , "La gueule du sandre est garnie de canines pointues lui permettant de blesser et maintenir dans sa gueule ses proies. Attention donc à bien porter des gants lorsque vous voulez le manipuler."
-        , "La nageoire dorsale du sandre la plus proche de la tête est rigide et piquante, lui permettant de se diriger et de se défendre face aux prédateurs. Attention donc de manipuler si possible le sandre avec des gants."
-        , "Le sandre est de couleur gris-vert avec des bandes sombres verticales. Cette couleur lui permet de se fondre facilement dans des zones sablonneuses, caillouteuses ou vaseuses. Il peut alors attaquer par surprise ses proies."
-        , "Tout comme le brochet le sandre possède un corps fusiforme lui permettant de faire des attaques fulgurantes, en sortant de ses cachettes."
-        
-    ]
+  const morpho = ["Le sandre possède une excellente vue grâce au tapis réflecteur de sa rétine. Cela lui permet de réflechir la lumière même dans des eaux à faible luminosité (eaux troubles/profondes). Il peut donc chasser ses proies dans toutes les situations."
+    , "En plus de cette faculté visuelle, le sandre est dotée d'un ligne latérale tout le long de son corps (de la base de sa tête jusqu'à sa nageoire caudale). Cela lui permet de détecter les vibrations et les mouvements de l'eau. Dans une eau très sombre c'est un atout majeur pour qu'il détecte ses proies."
+    , "La gueule du sandre est garnie de canines pointues lui permettant de blesser et maintenir dans sa gueule ses proies. Attention donc à bien porter des gants lorsque vous voulez le manipuler."
+    , "La nageoire dorsale du sandre la plus proche de la tête est rigide et piquante, lui permettant de se diriger et de se défendre face aux prédateurs. Attention donc de manipuler si possible le sandre avec des gants."
+    , "Le sandre est de couleur gris-vert avec des bandes sombres verticales. Cette couleur lui permet de se fondre facilement dans des zones sablonneuses, caillouteuses ou vaseuses. Il peut alors attaquer par surprise ses proies."
+    , "Tout comme le brochet le sandre possède un corps fusiforme lui permettant de faire des attaques fulgurantes, en sortant de ses cachettes."
 
-   
-
-    // Créer le panneau de description
-    const descriptionmorpho = document.createElement("div")
-    descriptionmorpho.id = "descriptionmorpho"
-    descriptionmorpho.dataset.name = name;
-
-    // Clone de l'image (l'originale reste en place)
-    const imageClone = image.cloneNode(true);
-    imageClone.removeAttribute("id");
-    imageClone.style.cursor = "default";
-    imageClone.style.transform = "none";
-    imageClone.style.transition = "none";
+  ]
 
 
-    const textmorpho = document.createElement("div")
-    textmorpho.classList = `textmorpho`
-    const pmorpho = document.createElement("p")
-    pmorpho.innerText = morpho[i]
-    pmorpho.style.color="white";
 
-    const reset = document.createElement("button")
-    reset.innerText = "Revenir à toutes les photos"
-    reset.id = "reset"
+  // Créer le panneau de description
+  const descriptionmorpho = document.createElement("div")
+  descriptionmorpho.id = "descriptionmorpho"
+  descriptionmorpho.dataset.name = name;
 
-    // Montage de l'html
+  // Clone de l'image (l'originale reste en place)
+  const imageClone = image.cloneNode(true);
+  imageClone.removeAttribute("id");
+  imageClone.style.cursor = "default";
+  imageClone.style.transform = "none";
+  imageClone.style.transition = "none";
 
-    descriptionmorpho.appendChild(reset)
-    descriptionmorpho.appendChild(imageClone)
-    descriptionmorpho.appendChild(textmorpho)
-    textmorpho.appendChild(pmorpho)
-    morpholo.appendChild(descriptionmorpho)
-    morpholo.style.justifyContent="flex-start";
 
-     images.forEach(el => {
+  const textmorpho = document.createElement("div")
+  textmorpho.classList = `textmorpho`
+  const pmorpho = document.createElement("p")
+  pmorpho.innerText = morpho[i]
+  pmorpho.style.color = "white";
+
+  const reset = document.createElement("button")
+  reset.innerText = "Revenir à toutes les photos"
+  reset.id = "reset"
+
+  // Montage de l'html
+
+  descriptionmorpho.appendChild(reset)
+  descriptionmorpho.appendChild(imageClone)
+  descriptionmorpho.appendChild(textmorpho)
+  textmorpho.appendChild(pmorpho)
+  morpholo.appendChild(descriptionmorpho)
+  morpholo.style.justifyContent = "flex-start";
+
+  images.forEach(el => {
     if (el.id === name) {
-        el.style.display = "none"; // l'original disparaît
+      el.style.display = "none"; // l'original disparaît
     } else {
-        el.style.display = "none"; // les autres aussi
+      el.style.display = "none"; // les autres aussi
     }
-});
+  });
 
-    reset.addEventListener("click", () => {
+  reset.addEventListener("click", () => {
 
-        descriptionmorpho.remove();
-        images.forEach(el => {
-            el.style.display = "";
-            el.style.cursor = "";
-            el.style.pointerEvents = "";
-            el.style.transform = "";
-            el.style.transition = "";
-        });
-        morpholo.style.justifyContent="center";
+    descriptionmorpho.remove();
+    images.forEach(el => {
+      el.style.display = "";
+      el.style.cursor = "";
+      el.style.pointerEvents = "";
+      el.style.transform = "";
+      el.style.transition = "";
     });
+    morpholo.style.justifyContent = "center";
+  });
 }
 
 //--------- VISUEL PARTIE HABITATS-------------------
@@ -102,11 +102,11 @@ function changerVisuel() {
 const stepsHistory = [];
 
 const infos = [
-  "1. Entre avril et juin, c'est la periode de frai lorsque la température de l'au atteint environ 15°C. Le mâle prépare un emplacement sur les herbiers, racines d'arbres dans le fond, sables graviers vers 2m de profondeur. La femelle libère ses oeufs qui sont instantanément fécondés par le mâle.", 
+  "1. Entre avril et juin, c'est la periode de frai lorsque la température de l'eau atteint environ 15°C. Le mâle prépare un emplacement sur les herbiers, racines d'arbres dans le fond, sables graviers vers 2m de profondeur. La femelle libère ses oeufs qui sont instantanément fécondés par le mâle.",
   "2. Incubation – développement des œufs pendant 10 à 15 jours accrochés aux herbiers, racines, obstacles sur le fond. Le nid est surveillé en permanence par le mâle qui oxygène les oeufs à coups de nageoires",
   "3. Après 10 à 15 jours, les oeufs éclosent et les alevins se nourrisent de leur poche vitelline",
   "4. Environ 15 jours après l'éclosion, leur poche vitelline est résorbée et les juvéniles se nourrissent de zooplanctons ou de larves d'insectes",
-  "5. Le sandre devient ensuite exclusivement piscivoire lorsqu'il atteint 4 à 6 cm. Sa croissance est ensuite rapide : 20-30 cm en 1 an, maturité secuelle des mâles vers 2 à 3 ans contre 4 ans pour les femelles."  
+  "5. Le sandre devient ensuite exclusivement piscivoire lorsqu'il atteint 4 à 6 cm. Sa croissance est ensuite rapide : 20-30 cm en 1 an, maturité secuelle des mâles vers 2 à 3 ans contre 4 ans pour les femelles."
 ];
 
 let stepsDone = 0;
@@ -152,17 +152,17 @@ const images = [
   'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/oeufs_sandre.webp',
   'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/alevin_sandre.webp',
   'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/juvenile_sandre.webp',
-  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/petit_sandre.webp'  
+  'https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/petit_sandre.webp'
 ];
 
-const picturenumber=[1,2,3,4,5]
+const picturenumber = [1, 2, 3, 4, 5]
 //Pour chaque image du tableau image situé juste au dessus on leur associe une position sur le cercle (x,y)
 //On les mets dans le html brochet
 //On leur demande les fonctionnalités de clickbubble au click via setattribute 
 images.forEach((src, i) => {
   const angle = (2 * Math.PI / images.length) * i - Math.PI / 2;
   const x = centerX + radius * Math.cos(angle);
-  const y = centerY + radius * Math.sin(angle);  
+  const y = centerY + radius * Math.sin(angle);
 
   //création de la div bubble
   const bubble = document.createElement('div');
@@ -174,8 +174,8 @@ images.forEach((src, i) => {
   bubble.setAttribute('onclick', `clickBubble(${i}, this)`);
   //crée l'image
   const img = document.createElement('img');
-  const p= document.createElement('p');
-  p.textContent=picturenumber[i];
+  const p = document.createElement('p');
+  p.textContent = picturenumber[i];
   img.src = src;
   img.alt = `etape_${i}`;
   //met la div img dans bubble
@@ -225,11 +225,11 @@ function return_to_step1() {
   });
 
   Array.from(paragraph).forEach((p) => {
-    p.remove();   
+    p.remove();
 
   });
 
-  infoBox.textContent="Cliquez sur une bulle pour découvrir les étapes de reproduction.";
+  infoBox.textContent = "Cliquez sur une bulle pour découvrir les étapes de reproduction.";
 
   stepsDone = 0;
   stepsHistory = [];
