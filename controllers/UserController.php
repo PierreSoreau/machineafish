@@ -21,77 +21,82 @@ class UserController extends AbstractController
     public function brochet(): void
     {
 
-        $dataPoisson= new PoissonManager;        
+        $dataPoisson = new PoissonManager;
         $descriptionsPoisson = new PoissonDescriptionManager;
 
-        $imagePoisson= $dataPoisson->findImageByName($_GET['route']);
-        $detailPoisson= $dataPoisson->findByName($_GET['route']);
-        $detailAllPoissons= $dataPoisson->findAll();
-        $descriptionPoisson = $descriptionsPoisson ->selectPoissonByName($_GET['route']);
+        $imagePoisson = $dataPoisson->findImageByName($_GET['route']);
+        $detailPoisson = $dataPoisson->findByName($_GET['route']);
+        $detailAllPoissons = $dataPoisson->findAll();
+        $descriptionPoisson = $descriptionsPoisson->selectPoissonByName($_GET['route']);
 
         if (!$imagePoisson && empty($descriptionPoisson)) {
-        // On redirige vers l'accueil 
-        header('Location: index.php'); 
-        exit();
+            // On redirige vers l'accueil 
+            header('Location: index.php');
+            exit();
+        }
+
+        $this->render(
+            'brochet.html.twig',
+            [
+                'namepoisson' => $_GET['route'],
+                'imagepoisson' => $imagePoisson,
+                'descriptionpoisson' => $descriptionPoisson,
+                'detailpoisson' => $detailPoisson,
+                'detailallpoissons' => $detailAllPoissons,
+            ]
+        );
     }
 
-        $this->render('brochet.html.twig', 
-        ['namepoisson' => $_GET['route'],
-        'imagepoisson'=>$imagePoisson,
-        'descriptionpoisson'=>$descriptionPoisson,
-        'detailpoisson'=> $detailPoisson, 
-        'detailallpoissons'=> $detailAllPoissons,     
-        ]); 
-        
-    }
 
-   
 
     public function descriptionPoisson(): void
     {
-        $dataPoisson= new PoissonManager;        
+        $dataPoisson = new PoissonManager;
         $descriptionsPoisson = new PoissonDescriptionManager;
 
-        $imagePoisson= $dataPoisson->findImageByName($_GET['route']);
-        $detailPoisson= $dataPoisson->findByName($_GET['route']);        
-        $detailAllPoissons=$dataPoisson->findAll();
-        $descriptionPoisson = $descriptionsPoisson ->selectPoissonByName($_GET['route']);
-        $descriptionhabitat = $descriptionsPoisson ->selectHabitatByName($_GET['route']);
-        $descriptionspotpea = $descriptionsPoisson ->selectSpotPea($_GET['route']);
-        $descriptionspothiver = $descriptionsPoisson ->selectSpotHiver($_GET['route']);
-        $descriptionfood = $descriptionsPoisson ->selectFoodByName($_GET['route']);
-        $reprod = $descriptionsPoisson ->selectReprodByName($_GET['route']);
+        $imagePoisson = $dataPoisson->findImageByName($_GET['route']);
+        $detailPoisson = $dataPoisson->findByName($_GET['route']);
+        $detailAllPoissons = $dataPoisson->findAll();
+        $descriptionPoisson = $descriptionsPoisson->selectPoissonByName($_GET['route']);
+        $descriptionhabitat = $descriptionsPoisson->selectHabitatByName($_GET['route']);
+        $descriptionspotpea = $descriptionsPoisson->selectSpotPea($_GET['route']);
+        $descriptionspothiver = $descriptionsPoisson->selectSpotHiver($_GET['route']);
+        $descriptionfood = $descriptionsPoisson->selectFoodByName($_GET['route']);
+        $reprod = $descriptionsPoisson->selectReprodByName($_GET['route']);
 
 
 
         if (!$imagePoisson && empty($descriptionPoisson)) {
-        // On redirige vers l'accueil 
-        header('Location: index.php'); 
-        exit();
+            // On redirige vers l'accueil 
+            header('Location: index.php');
+            exit();
+        }
+
+        $this->render(
+            'detail_poisson.html.twig',
+            [
+                'namepoisson' => $_GET['route'],
+                'imagepoisson' => $imagePoisson,
+                'descriptionpoisson' => $descriptionPoisson,
+                'detailpoisson' => $detailPoisson,
+                'detailallpoissons' => $detailAllPoissons,
+                'descriptionhabitat' => $descriptionhabitat,
+                'descriptionspotpea' => $descriptionspotpea,
+                'descriptionspothiver' => $descriptionspothiver,
+                'descriptionfood' => $descriptionfood,
+                'reprod' => $reprod
+            ]
+        );
     }
 
-        $this->render('detail_poisson.html.twig', 
-        ['namepoisson' => $_GET['route'],
-        'imagepoisson'=>$imagePoisson,
-        'descriptionpoisson'=>$descriptionPoisson,
-        'detailpoisson'=> $detailPoisson,
-        'detailallpoissons'=> $detailAllPoissons,
-        'descriptionhabitat'=>$descriptionhabitat,
-        'descriptionspotpea'=>$descriptionspotpea,
-        'descriptionspothiver'=>$descriptionspothiver,  
-        'descriptionfood'=>$descriptionfood,
-        'reprod'=>$reprod  
-        ]);
-    }
 
-    
 
     public function notFound(): void
     {
         $this->render('notfound.html.twig', []);
-    }  
-    
-    
+    }
+
+
 
     public function questions(): void
     {
@@ -107,7 +112,7 @@ class UserController extends AbstractController
             'poissons' => $allpoissons,
             'saisons' => $allsaisons
         ]);
-    }    
+    }
 
     public function result(): void
     {
@@ -124,7 +129,7 @@ class UserController extends AbstractController
         $datareponses = new ReponsesUtilisateursManager;
         $datareponses->saveAll($answers, $userId);
 
-        
+
         $mappingMilieux = [
             "petite étendue d'eau" => 1,
             "grande étendue d'eau" => 2,
