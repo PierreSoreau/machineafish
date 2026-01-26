@@ -130,6 +130,10 @@ main {
     filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Ombre sur les poissons/saisons */
 }
 
+#hidden-quiz-form{
+    display: none;
+}
+
 
 /* --- Responsive --- */
 @media (min-width: 600px) {

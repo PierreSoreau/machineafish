@@ -95,6 +95,7 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'DefaultController' => __DIR__ . '/../..' . '/controllers/DefaultController.php',
         'Fil' => __DIR__ . '/../..' . '/models/Fil.php',
         'Habitat' => __DIR__ . '/../..' . '/models/Habitat.php',
+        'ImagesAutres' => __DIR__ . '/../..' . '/models/ImagesAutres.php',
         'Leurre' => __DIR__ . '/../..' . '/models/Leurre.php',
         'MaterielManager' => __DIR__ . '/../..' . '/managers/MaterielManager.php',
         'Moulinet' => __DIR__ . '/../..' . '/models/Moulinet.php',
@@ -116,11 +117,14 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'SousPartiesDuSite' => __DIR__ . '/../..' . '/models/SousPartiesDuSite.php',
         'Spot' => __DIR__ . '/../..' . '/models/Spot.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'TrameUrl' => __DIR__ . '/../..' . '/models/TrameUrl.php',
         'TutosVideos' => __DIR__ . '/../..' . '/models/TutosVideos.php',
         'TutosVideosManager' => __DIR__ . '/../..' . '/managers/TutosVideosManager.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'UrlManager' => __DIR__ . '/../..' . '/managers/UrlManager.php',
         'UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        'Videos' => __DIR__ . '/../..' . '/models/Videos.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

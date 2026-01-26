@@ -113,10 +113,6 @@ textarea:not([rows]) {
 
 
 header {
-    background-image: url(https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/cailloux.webp) !important;
-    background-position: center !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
     position: fixed;
     z-index: 1000;
     top: 0;
@@ -126,7 +122,20 @@ header {
     justify-content: space-between;
     align-items: center; 
     height:60px;
+    width:100vw;
    
+}
+
+
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+
 }
 
 
@@ -187,9 +196,15 @@ nav.show {
 
 }
 
-.fleche{
-    color: white;
+.fleche.show,.fa-xmark.show{
+    color: white !important; 
+    display: inline-block;
 }
+
+.fleche, .fa-xmark{
+    display:none 
+}
+
 
 #logo1.show {
     display: flex;

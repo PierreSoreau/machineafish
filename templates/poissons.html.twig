@@ -15,32 +15,21 @@
 
 {% block main %}
 
-    <main id="page_carnassiers">
+	<main id="page_carnassiers">
 		<div class="video_background">
 			<video autoplay muted loop playsinline preload="auto">
-				<source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/video_accueilbis.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvdmlkZW9fYWNjdWVpbGJpcy5tcDQiLCJpYXQiOjE3NTk0NDI3MTIsImV4cCI6MTc5MDk3ODcxMn0.qXTL2uqb-r1ZndkgNVn_vxZPdamICVBa8WlanGIvJgE" type="video/mp4"/>
+				<source src="{{contenuvideo}}{{urlpage}}{{extensionvideo}}" type="video/webm"/>
 				Votre navigateur ne supporte pas la vidéo
 			</video>
 		</div>
 
 		<section class="menu_visuel">
-			<a href="index.php?route=silure" class="lien silure">
-				<p>Silure</p>
-			</a>			
-			<a href="index.php?route=brochet" class="lien brochet">
-				<p>Brochet</p>
-			</a>			
-			<a href="index.php?route=sandre" class="lien sandre">
-				<p>Sandre</p>
-			</a>
-            <a href="index.php?route=perche" class="lien perche">
-				<p>Perche</p>
-			</a>				
+			{% for poisson in detailallpoissons %}
+				<a href="index.php?route={{poisson.nom}}" class="lien">
+					<img src="{{contenuimage}}{{poisson.image}}{{extensionimage}}" alt="{{poisson.nom}}">
+					<p>{{poisson.nom|capitalize}}</p>
+				</a>
+			{% endfor %}
 		</section>
-	</main>	        
-    {% endblock %}
-
-    {% block javascripts %}
-    <!--<script src="script_nav_footer_barrederecherche.js"></script>
-    <script src="script_page_carnassiers.js"></script>-->
-    {% endblock %}
+	</main>
+{% endblock %}

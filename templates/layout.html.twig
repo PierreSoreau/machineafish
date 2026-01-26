@@ -25,7 +25,8 @@
 				Accueil machineapêche
 			{% endblock %}
 		</title>
-		<meta name="description" content="{% block description %}site de vulgarisation de la pêche aux leurres en eau douce:types de poissons, matériels, tutoriels de méthode de pêche, lieux de pêche, règlementation, recettes, leurres faits mains.{% endblock %}">
+		<meta
+		name="description" content="{% block description %}site de vulgarisation de la pêche aux leurres en eau douce:types de poissons, matériels, tutoriels de méthode de pêche, lieux de pêche, règlementation, recettes, leurres faits mains.{% endblock %}">
 		<!-- ce link permet de charger les vidéos youtube rapidement sur la page sans qu'elle prenne du temps à s'afficher sur l'écran-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.css">
 		<script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed/src/lite-yt-embed.js"></script>
@@ -39,7 +40,8 @@
 
 		{% include "partials/_footer.html.twig" %}
 
-		{% block javascripts %}		
+		{% block javascripts %}
+			<script src="script_header.js"></script>
 		{% endblock %}
 
 

@@ -9,27 +9,24 @@
 	<main id="home_page">
 		<div class="video_background">
 			<video autoplay muted loop playsinline preload="auto">
-				<source src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/sign/video_machineafish/video_accueilbis.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NThkZTExZC0wYjhiLTRmNjQtYjdjMS04OTE3OWJjODg5NjkiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb19tYWNoaW5lYWZpc2gvdmlkZW9fYWNjdWVpbGJpcy5tcDQiLCJpYXQiOjE3NTk0NDI3MTIsImV4cCI6MTc5MDk3ODcxMn0.qXTL2uqb-r1ZndkgNVn_vxZPdamICVBa8WlanGIvJgE" type="video/mp4"/>
+				<source src="{{contenuvideo}}{{urlpage}}{{extensionvideo}}" type="video/webm"/>
 				Votre navigateur ne supporte pas la vidéo
 			</video>
 		</div>
 
 		<section class="menu_visuel">
-			<a href="index.php?route=poissons" class="lien poisson">
-				<p>Les poissons</p>
-			</a>			
-			<a href="index.php?route=tutoriels" class="lien video">
-				<p>Tutoriels vidéos</p>
-			</a>			
-			<a href="index.php?route=materiel" class="lien materiel">
-				<p>Matériel</p>
-			</a>			
+			<a href="index.php?route=poissons" class="lien-menu">
+				<img src="{{contenuimage}}{{photopoisson.image}}{{extensionimage}}" alt="poissons">
+				<p class="titre-menu">Les poissons</p>
+			</a>
+			<a href="index.php?route=tutoriels" class="lien-menu">
+				<img src="{{contenuimage}}{{imagetuto}}{{extensionimage}}" alt="tutoriels">
+				<p class="titre-menu">Tutoriels vidéos</p>
+			</a>
+			<a href="index.php?route=materiel" class="lien-menu">
+				<img src="{{contenuimage}}{{imagematos}}{{extensionimage}}" alt="matériel">
+				<p class="titre-menu">Matériel</p>
+			</a>
 		</section>
-	</main>	
+	</main>
 {% endblock %}
-
-
-
-
-
-

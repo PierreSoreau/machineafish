@@ -5,7 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 let currentIndex = 0;
 let answers = {};
+const beginurl="https://res.cloudinary.com/dgzbdoozf/image/upload/";
+const endurl=".webp";
 
+
+//Fonction qui permet d'afficher les questions + choix de réponse
 function showQuestion() {
     const question = allQuestions[currentIndex];
     //récupération du titre
@@ -18,28 +22,33 @@ function showQuestion() {
 
     const options = document.getElementById('options-container');
     options.innerHTML = "";
+    //pour retirer les guillemets du tableau du json de la clé options 
+    //{ "id": 1, "contenu_question": "Quel poisson recherches-tu ?","options": "[\"Brochet\", \"Sandre\", \"Perche\"]", "type_reponse": "radio" }
+    //on fait un parse optionsarray=["brochet","sandre","perche"] par exemple
     const optionsarray = JSON.parse(question.options);
     optionsarray.forEach(opt => {
-        opt = opt.trim();
+        opt = opt.trim();//permet de supprimer des espace ou sauts à la ligne dans le contenu
         const card = document.createElement('div');
-        card.className = 'answer-card';
-        console.log(`Comparaison : "${opt}" (longueur ${opt.length}) VS "${allPoissons[0]?.nom}"`);
-        //on vérifie si le nom du poisson ou de la saison correspondant à opt
+        card.classList.add('answer-card');        
+        //on vérifie si le nom du poisson ou de la saison correspondent à opt
         const poissondata = allPoissons.find(p => p.nom === opt);
+        console.log("voici le tableau:", poissondata)
         const saisondata = allSaisons.find(s => s.saison === opt);
         let imageHtml = "";
         if (poissondata) {
             const poissonurl = poissondata.logo;
-            imageHtml = `<img src="${poissonurl}" alt="${opt}" class="img-logo">`;
+            imageHtml = `<img src="${beginurl}${poissonurl}${endurl}" alt="${opt}" class="img-logo">`;
         }
 
         if (saisondata) {
             const saisonurl = saisondata.logo;
-            imageHtml = `<img src="${saisonurl}" alt="${opt}" class="img-logo">`;
+            imageHtml = `<img src="${beginurl}${saisonurl}${endurl}" alt="${opt}" class="img-logo">`;
         }
 
-        const imgClass = imageHtml === "" ? "no-img" : "";
-        card.className = `answer-card ${imgClass}`;
+        const imgClass = imageHtml === "" ? "no-img" : ""; //est-ce que imageHtml est vide si oui alors imgClass="no-img" sinon imgClass=""
+        if (imgClass !== "") {
+            card.classList.add(imgClass);
+        }       
 
         card.innerHTML = `<div id="card-content" class="card">
                             <div class="card-img">
@@ -50,16 +59,21 @@ function showQuestion() {
                             </div>
                           </div>`;
 
-        //au clique on change de question
-        card.onclick = () => suiteQuestionnaire(question.id, opt);
+        
         ///avant de cliquer il faut que le questionnaire s'affiche donc on ajoute tous les boutons
-        options.appendChild(card);
+        options.append(card);
+
+        //au clique on change de question
+        card.addEventListener('click', () => suiteQuestionnaire(question.id, opt));
+        
+        
     });
 
 
 
 }
 
+//fonction qui permet d'enchaîner sur la suite du questionnaire ou d'envoyer les réponses du questionnaire à la base de données via le formulaire caché
 function suiteQuestionnaire(questionId, choice) {
     answers[questionId] = choice;
 
@@ -67,7 +81,7 @@ function suiteQuestionnaire(questionId, choice) {
         currentIndex++;
         showQuestion();
     } else {
-        // On transforme tes réponses en texte
+        // On transforme les réponses en texte
         const fluxDeDonnees = JSON.stringify(answers);
 
         // On met ce texte dans le champ caché du formulaire

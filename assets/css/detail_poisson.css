@@ -437,12 +437,53 @@ h4 {
     width: 100%;
 }
 
+.pea img, .hiver img{
+    width: 300px;
+    height:170px;
+    border-radius: 10px;
+}
+
+.animation_saison {
+    position: relative;
+    width: 300px;
+    height:170px;     
+    overflow: hidden;
+}
+
+.animation_saison img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+.image-anim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* On lie l'animation définie plus bas */
+    animation: mimeVideo 2s infinite alternate ease-in-out;
+}
+
+/* Définition du mouvement ou du changement */
+@keyframes mimeVideo {
+    0% {
+        opacity: 0;
+        
+    }
+    100% {
+        opacity: 1;
+        
+    }
+}
+
 .pea {
     display: flex;
+   
 }
 
 .hiver {
     display: none;
+    
 }
 
 
@@ -455,19 +496,7 @@ h4 {
     font-size: 16px;
 }
 
-.hiver video,
-.hiver img,
-.pea video,
-.pea img {
-    width: 300px;
-    height: 170px;
-    border-radius: 10px;
-}
 
-.pea video,
-.hiver video {
-    object-fit: cover;
-}
 
 .season-switcher {
     border: 1px solid #333333;
@@ -983,10 +1012,12 @@ h4 {
 
     }
 
-    .hiver video,
-    .hiver img,
-    .pea video,
-    .pea img {
+    .pea img, .hiver img{
+    width: 350px;
+    height:200px;
+}
+
+    .animation_saison {
         width: 350px;
         height: 200px;
     }

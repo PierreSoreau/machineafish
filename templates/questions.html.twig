@@ -25,19 +25,80 @@
 				<div id="options-container" class="options-grid"></div>
 			</div>
 		</div>
-		<form id="hidden-quiz-form" action="index.php?route=materiel" method="POST" style="display: none;">
+		<form id="hidden-quiz-form" action="index.php?route=materiel" method="POST">
 			<input type="hidden" name="results" id="results-input">
 		</form>
 
 	</main>
 {% endblock %}
 {% block javascripts %}
-	{# script qui permet de transformer en format json lisible pour javascript les datas sortis de php 
-	et ainsi d'éviter de charger une page à chaque click. Tout se fait sur une seule page #}
-	<script>
-		const allQuestions = {{ questions|json_encode()|raw }};
+	{# 1ière étape: 
+							
+							Usercontroller envoie des données à la page. 
+							Ces données ont été récupérées par QuestionsManager et sont sous cette forme
+						
+						$allquestions = [
+						    0 => object(Questions) {
+						        private $id => 1,
+						        private $contenu_question => "Dans quelle étendue d'eau souhaitez-vous pêcher?",
+						        private $type_reponse => "choix unique",
+						        private $options => '["petite étendue d'eau","grande étendue d'eau"]' // C'est une chaîne JSON ici
+						    },
+						    1 => object(Questions) {
+						        private $id => 2,
+						        private $contenu_question => "Quel poisson souhaitez-vous pêcher?",
+						        private $type_reponse => "choix unique",
+						        private $options => '["brochet","perche","sandre","silure"]'
+						    }
+						
+							etc...
+						];
+					
+						Ce tableau n'est pas exploitable par javascript, il faut le transformer en json 
+						grâce à json encode mais comme les propriétés de la classe Questions sont privées il n'est normalement pas possible de tranformer le tableau
+						mais dans la classe il y a implements jsonserializable et la fonction jsonserialize.
+					
+						Etape 2: php transforme donc le tableau initiale en un tableau que json encode peut transformer 
+					
+						Voici le "tableau de transition" produit par jsonSerialize exemple c'est un tableau de tableaux associatifs classiques 
+					[
+					    0 => [
+					        "id" => 1,
+					        "contenu_question" => "Quel poisson recherches-tu ?",
+					        "options" => '["Brochet", "Sandre", "Perche"]', // Toujours une string ici
+					        "type_reponse" => "radio"
+					    ],
+					    1 => [
+					        "id" => 2,
+					        "contenu_question" => "Quelle est la saison ?",
+					        "options" => '["Printemps", "Été"]',
+					        "type_reponse" => "radio"
+					    ]
+					]
+						Etape 3: Ensuite on a le json encode cela donne donc le tableau suivant:
+					
+						[
+					  {
+					    "id": 1,
+					    "contenu_question": "Quel poisson recherches-tu ?",
+					    "options": "[\"Brochet\", \"Sandre\", \"Perche\"]",
+					    "type_reponse": "radio"
+					  },
+					  {
+					    "id": 2,
+					    "contenu_question": "Quelle est la saison actuelle ?",
+					    "options": "[\"Printemps\", \"Été\", \"Automne\"]",
+					    "type_reponse": "radio"
+					  }
+					]
+						C'est bon maintenant le tableau est exploitable par javascript. Le principe est le même pour all saisons et allpoissons php#}
+	{# raw évite à twig de transformer les guillemets du json en codage de sécurité #}
+
+	{{ parent() }}
+		<script>
+const allQuestions = {{ questions|json_encode()|raw }};
 const allPoissons = {{ poissons|json_encode()|raw }};
 const allSaisons = {{ saisons|json_encode()|raw }};
-	</script>
-	<script src="questions.js" defer></script>
+	</script><script src="questions.js" defer> </script>
+
 {% endblock %}

@@ -2,7 +2,7 @@
 
 class MaterielManager extends AbstractManager
 {
-    
+
     public function selection_matos(array $donneesQuiz): array
 
     {
@@ -25,7 +25,7 @@ class MaterielManager extends AbstractManager
 
         $poidsmini = $reglespoids[$espece][$taille][0];
         $poidsmaxi = $reglespoids[$espece][$taille][1];
-        
+
         //calcul d'un poids de référence comme indicateur de sélection de la puissance de la canne
         $poidsreference = ($poidsmini +  $poidsmaxi) / 2;
 
@@ -131,13 +131,10 @@ class MaterielManager extends AbstractManager
         //On fait la même chose pour les types de leurres spécifiques à chaque poisson
         foreach ($typesAutorises as $index => $leurre) {
             $key = ":leurre_" . $index;
-            
+
             $elementsqlleurre[] = $key;
-            
+
             $paramsleurre[$key] = $leurre;
-
-
-
         }
 
         if (!$typesAutorises) {
@@ -166,6 +163,11 @@ class MaterielManager extends AbstractManager
         $cannes = $query->fetchAll(PDO::FETCH_CLASS, 'Canne');
 
         // obtention de la base de données des moulinets en fonction du premier filtre des cannes et de la saison
+
+        //si la saison c'est l'hiver on tri les ratios du plus au plus grand
+        //parce qu'il est préférable de faire un limit 1 du tableau sur un petit ratio parce qu'en hiver on ramène le fil lentement
+        //parce que les poissons sont au ralenti
+        //C'est l'inverse pour les autres saisons parce qu'on ramène le fil plus rapidement parce que les poissons sont plus actifs
         $triRatio = ($saison === "hiver") ? 'ASC' : 'DESC';
 
 

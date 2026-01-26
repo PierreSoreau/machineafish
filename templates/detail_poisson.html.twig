@@ -25,7 +25,7 @@
 				<h1>Le
 					{{namepoisson}}</h1>
 			{% endif %}
-			<img src="{{detailpoisson.imagepresentation}}" alt="{{namepoisson}}">
+			<img src="{{contenuurl}}{{detailpoisson.imagepresentation}}{{extensionurl}}" alt="{{namepoisson}}">
 		</div>
 
 		{% include "partials/_navig-poisson.html.twig" %}
@@ -35,8 +35,8 @@
 			<div
 				id="taille_poisson">
 				{# ~ permet de concaténer des éléments et comme il y a un espace 
-																																																								après taille juste avant son guillement ça fait "taille brochet" au final par exemple  #}
-				<img src="{{detailpoisson.taille}}" alt="taille {{namepoisson}}">
+																																																																																																																																																après taille juste avant son guillement ça fait "taille brochet" au final par exemple  #}
+				<img src="{{contenuurl}}{{detailpoisson.taille}}{{extensionurl}}" alt="taille {{namepoisson}}">
 			</div>
 			<div id="morpho_container">
 				<button class="btn-retour-cercle" id="resetBtn">
@@ -45,15 +45,15 @@
 				{% for morphologie in descriptionpoisson %}
 					{% if morphologie.type_description == "morphologie-bulle" and morphologie.autresimage is null %}
 						<div class="photo_morpho">
-							<img src="{{morphologie.image}}" alt="{{morphologie.alt}}" class="morpho">
+							<img src="{{contenuurl}}{{morphologie.image}}{{extensionurl}}" alt="{{morphologie.alt}}" class="morpho">
 							<p class="description">{{morphologie.description}}</p>
 						</div>
 
 					{% elseif morphologie.type_description == "morphologie-bulle" and morphologie.autresimage is not null %}
 						<div class="photo_morpho">
 							<div class="morpho_box">
-								<img src="{{morphologie.image}}" alt="{{morphologie.alt}}" class="morpho">
-								<img src="{{morphologie.autresimage}}" alt="{{morphologie.alt}}" class="morpho">
+								<img src="{{contenuurl}}{{morphologie.image}}{{extensionurl}}" alt="{{morphologie.alt}}" class="morpho">
+								<img src="{{contenuurl}}{{morphologie.autresimage}}{{extensionurl}}" alt="{{morphologie.alt}}" class="morpho">
 							</div>
 							<p class="description">{{morphologie.description}}</p>
 						</div>
@@ -86,7 +86,7 @@
 				<div class="milieu_aquatique">
 					{% for milieu in descriptionhabitat %}
 						<div class="type_eau">
-							<img src="{{milieu.image}}" alt="{{milieu.alt}}">
+							<img src="{{contenuurl}}{{milieu.image}}{{extensionurl}}" alt="{{milieu.alt}}">
 							<p>{{milieu.habitat}}</p>
 						</div>
 					{% endfor %}
@@ -131,34 +131,33 @@
 
 				<div id="visuelspot">
 					{% for spotpea in descriptionspotpea %}
-						{% if spotpea.alt is not null %}
+						{% if spotpea.autresimage is null %}
 							<div class="pea">
-								<img src="{{spotpea.image}}" alt="{{spotpea.alt}}">
+								<img src="{{contenuurl}}{{spotpea.image}}{{extensionurl}}" alt="{{spotpea.alt}}">
 								<p>{{spotpea.spot}}</p>
 							</div>
 						{% else %}
 							<div class="pea">
-								<video autoplay muted loop playsinline preload="auto">
-									<source src="{{spotpea.image}}" type="video/mp4"/>
-									Votre navigateur ne supporte pas la vidéo
-								</video>
+								<div class="animation_saison">
+									<img src="{{contenuurl}}{{spotpea.image}}{{extensionurl}}" alt="{{spotpea.alt}}" class="image-base">
+									<img src="{{contenuurl}}{{spotpea.autresimage}}{{extensionurl}}" alt="{{spotpea.alt_autresimage}}" class="image-anim">
+								</div>
 								<p>{{spotpea.spot}}</p>
 							</div>
 						{% endif %}
 					{% endfor %}
 					{% for spothiver in descriptionspothiver %}
-						{% if spothiver.alt is not null %}
+						{% if spothiver.autresimage is null %}
 							<div class="hiver">
-								<img src="{{spothiver.image}}" alt="{{spothiver.alt}}">
+								<img src="{{contenuurl}}{{spothiver.image}}{{extensionurl}}" alt="{{spothiver.alt}}">
 								<p>{{spothiver.spot}}</p>
 							</div>
 						{% else %}
 							<div class="hiver">
-
-								<video autoplay muted loop playsinline preload="auto">
-									<source src="{{spothiver.image}}" type="video/mp4"/>
-									Votre navigateur ne supporte pas la vidéo
-								</video>
+								<div class="animation_saison">
+									<img src="{{contenuurl}}{{spothiver.image}}{{extensionurl}}" alt="{{spothiver.alt}}" class="image-base">
+									<img src="{{contenuurl}}{{spothiver.autresimage}}{{extensionurl}}" alt="{{spothiver.alt_autresimage}}" class="image-anim">
+								</div>
 								<p>{{spothiver.spot}}</p>
 							</div>
 						{% endif %}
@@ -185,7 +184,7 @@
 					<div id="container_food">
 						{% for food in descriptionfood %}
 							<div class="food">
-								<img src="{{food.image}}" alt="{{food.alt}}">
+								<img src="{{contenuurl}}{{food.image}}{{extensionurl}}" alt="{{food.alt}}">
 								<p>{{food.alimentation}}</p>
 							</div>
 						{% endfor %}
@@ -222,7 +221,7 @@
 							{% for step in reprod %}
 								{% if step.type_description == "reproduction"  %}
 									<div class="step_reprod">
-										<img src="{{step.image}}" alt="{{step.alt}}">
+										<img src="{{contenuurl}}{{step.image}}{{extensionurl}}" alt="{{step.alt}}">
 										<p>{{step.description}}</p>
 									</div>
 								{% endif %}
@@ -239,9 +238,7 @@
 
 
 	</main>
-
 {% endblock %}
-
 {% block javascripts %}
 	{# Scripts js pour que les visuels des graphiques marchent et les js de la page marchent également #}
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -250,6 +247,5 @@
 		const poissonactuel ="{{ namepoisson }}"
 	</script>
 	<script src="script_detail_poisson.js"></script>
-
-
+	{{ parent() }}
 {% endblock %}

@@ -5,12 +5,62 @@ class UserController extends AbstractController
 
     public function home(): void
     {
-        $this->render('home_page.html.twig', []);
+        $url = new UrlManager;
+        $dataPoisson = new PoissonManager;
+
+        $extensionimage = $url->findExtensionByType("image");
+        $contenuimage = $url->findContenuByType("image");
+        $extensionvideo = $url->findExtensionByType("video");
+        $contenuvideo = $url->findContenuByType("video");
+        $videopage = $url->findVideoByPage("accueil");
+        $imagematos = $url->findImageByTheme("materiel");
+        $imagetuto = $url->findImageByTheme("tutos");
+        $photoPoisson = $dataPoisson->findByName("brochet");
+
+
+        $this->render(
+            'home_page.html.twig',
+            [
+                'extensionimage' => $extensionimage,
+                'contenuimage' => $contenuimage,
+                'extensionvideo' => $extensionvideo,
+                'contenuvideo' => $contenuvideo,
+                'urlpage' => $videopage,
+                'photopoisson' => $photoPoisson,
+                'imagematos' => $imagematos,
+                'imagetuto' => $imagetuto
+
+            ]
+        );
     }
 
     public function poissons(): void
     {
-        $this->render('poissons.html.twig', ['route' => $_GET['route']]);
+        $url = new UrlManager;
+        $dataPoisson = new PoissonManager;
+
+        $extensionimage = $url->findExtensionByType("image");
+        $contenuimage = $url->findContenuByType("image");
+        $extensionvideo = $url->findExtensionByType("video");
+        $contenuvideo = $url->findContenuByType("video");
+        $videopage = $url->findVideoByPage("accueil");
+        $detailAllPoissons = $dataPoisson->findAll();
+
+
+
+
+        $this->render(
+            'poissons.html.twig',
+            [
+                'route' => $_GET['route'],
+                'extensionimage' => $extensionimage,
+                'contenuimage' => $contenuimage,
+                'extensionvideo' => $extensionvideo,
+                'contenuvideo' => $contenuvideo,
+                'urlpage' => $videopage,
+                'detailallpoissons' => $detailAllPoissons
+            ]
+        );
     }
 
     public function tutoriels(): void
@@ -27,41 +77,11 @@ class UserController extends AbstractController
         );
     }
 
-    public function brochet(): void
-    {
-
-        $dataPoisson = new PoissonManager;
-        $descriptionsPoisson = new PoissonDescriptionManager;
-
-        $imagePoisson = $dataPoisson->findImageByName($_GET['route']);
-        $detailPoisson = $dataPoisson->findByName($_GET['route']);
-        $detailAllPoissons = $dataPoisson->findAll();
-        $descriptionPoisson = $descriptionsPoisson->selectPoissonByName($_GET['route']);
-
-        if (!$imagePoisson && empty($descriptionPoisson)) {
-            // On redirige vers l'accueil 
-            header('Location: index.php');
-            exit();
-        }
-
-        $this->render(
-            'brochet.html.twig',
-            [
-                'namepoisson' => $_GET['route'],
-                'imagepoisson' => $imagePoisson,
-                'descriptionpoisson' => $descriptionPoisson,
-                'detailpoisson' => $detailPoisson,
-                'detailallpoissons' => $detailAllPoissons,
-            ]
-        );
-    }
-
-
-
     public function descriptionPoisson(): void
     {
         $dataPoisson = new PoissonManager;
         $descriptionsPoisson = new PoissonDescriptionManager;
+        $url = new UrlManager;
 
         $imagePoisson = $dataPoisson->findImageByName($_GET['route']);
         $detailPoisson = $dataPoisson->findByName($_GET['route']);
@@ -72,6 +92,9 @@ class UserController extends AbstractController
         $descriptionspothiver = $descriptionsPoisson->selectSpotHiver($_GET['route']);
         $descriptionfood = $descriptionsPoisson->selectFoodByName($_GET['route']);
         $reprod = $descriptionsPoisson->selectReprodByName($_GET['route']);
+        $extensionUrl = $url->findExtensionByType("image");
+        $contenuUrl = $url->findContenuByType("image");
+
 
 
 
@@ -93,7 +116,9 @@ class UserController extends AbstractController
                 'descriptionspotpea' => $descriptionspotpea,
                 'descriptionspothiver' => $descriptionspothiver,
                 'descriptionfood' => $descriptionfood,
-                'reprod' => $reprod
+                'reprod' => $reprod,
+                'extensionurl' => $extensionUrl,
+                'contenuurl' => $contenuUrl
             ]
         );
     }
@@ -126,18 +151,18 @@ class UserController extends AbstractController
     public function result(): void
     {
 
-        $resultsJson = $_POST['results'] ?? '[]';
-        $answers = json_decode($resultsJson, true) ?? [];
+        $resultsJson = $_POST['results'] ?? '[]'; //si $_POST['results'] existe alors il prend sa valeur sinon par défaut c'est "[]"
+        $answers = json_decode($resultsJson, true) ?? []; //permet de transformer les données pour les rendre exploitables 
+        //c'est à dire un tableau associatif. 
+        // on passe de ça '{"1":"Brochet"}' à ça [ 1 => "Brochet" ]
 
         // Si le formulaire est vide, on peut rediriger vers le quiz ou afficher une erreur
         if (empty($answers)) {
             $this->render('questions.html.twig', ['error' => 'Veuillez remplir le quiz']);
             return;
         }
-        $userId = session_id();
-        $datareponses = new ReponsesUtilisateursManager;
-        $datareponses->saveAll($answers, $userId);
 
+        $userId = session_id();
 
         $mappingMilieux = [
             "petite étendue d'eau" => 1,
@@ -165,14 +190,22 @@ class UserController extends AbstractController
             'taille'    => $answers[3] ?? 0,
             'saison'    => $answers[4] ?? "Été",
             'courant'   => $answers[5] ?? "Faible",
+
         ];
 
+        $datareponses = new ReponsesUtilisateursManager;
         $datamateriel = new MaterielManager;
+        $dataphoto = new UrlManager;
+
+        $datareponses->saveAll($answers, $userId);
         $resultats = $datamateriel->selection_matos($donneesQuiz);
+        $urlimages = $dataphoto->findImageByPage("materiel");
+
+
 
         $this->render('materiel.html.twig', [
-            "materiel" => $resultats
-
+            "materiel" => $resultats,
+            "urlimages" => $urlimages
         ]);
     }
 }

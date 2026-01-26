@@ -23,25 +23,25 @@
 						<h3 class="nom_matos canne">CANNE</h3>
 					</div>
 				</div>
-				<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/canne.webp" alt="logo_canne"/>
+				<img src="{{repeat.contenuurl}}{{ urlimages[0]['url'] }}{{repeat.extensionurl}}" alt="logo_canne"/>
 				<div class="matos_container">
 					<div class="matos_box">
 						<div class="matos_titre">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/regle.png" alt="logo_longueur"/>
+							<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
 							<h3>Longueur</h3>
 						</div>
 						<p>{{ materiel.cannes[0].longueur}}</p>
 					</div>
 					<div class="matos_box">
 						<div class="matos_titre">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/muscle-du-bras.png" alt="logo_puissance"/>
+							<img src="{{repeat.contenuurl}}{{ urlimages[5]['url'] }}{{repeat.extensionurl}}" alt="logo_puissance"/>
 							<h3>Puissance</h3>
 						</div>
 						<p>{{ materiel.cannes[0].poidsMini ~ "g - " ~ materiel.cannes[0].poidsMaxi ~ "g"}}</p>
 					</div>
 					<div class="matos_box action">
 						<div class="matos_titre">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/action.webp" alt="logo_action"/>
+							<img src="{{repeat.contenuurl}}{{ urlimages[4]['url'] }}{{repeat.extensionurl}}" alt="logo_action"/>
 							<h3>Action</h3>
 						</div>
 						<p>{{ materiel.cannes[0].action}}</p>
@@ -54,18 +54,18 @@
 						<h3 class="nom_matos moulinet">MOULINET</h3>
 					</div>
 				</div>
-				<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/moulinet.webp" alt="logo_moulinet"/>
+				<img src="{{repeat.contenuurl}}{{ urlimages[1]['url'] }}{{repeat.extensionurl}}" alt="logo_moulinet"/>
 				<div class="matos_container">
 					<div class="matos_box">
 						<div class="matos_titre">
-							<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/regle.png" alt="logo_longueur"/>
+							<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
 							<h3>Taille bobine</h3>
 						</div>
 						<p>{{ materiel.moulinets[0].tailleBobine}}</p>
 					</div>
 					<div class="matos_box">
 						<div class="matos_titre">
-							<img class="logo_fil" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/ratio.webp" alt="logo_ratio_moulinet"/>
+							<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[8]['url'] }}{{repeat.extensionurl}}" alt="logo_ratio_moulinet"/>
 							<h3>Ratio</h3>
 						</div>
 						<p>{{ materiel.moulinets[0].ratio}}</p>
@@ -78,18 +78,18 @@
 						<h3 class="nom_matos fil">FIL</h3>
 					</div>
 				</div>
-				<img src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/fil.webp" alt="logo_fil"/>
+				<img src="{{repeat.contenuurl}}{{ urlimages[3]['url'] }}{{repeat.extensionurl}}" alt="logo_fil"/>
 				<div class="matos_container">
 					<div class="matos_box">
 						<div class="matos_titre fil">
-							<img class="logo_fil" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/type_fil.webp" alt="logo_type_fil"/>
+							<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
 							<h3 class="titre_fil">Diamètre Tresse</h3>
 						</div>
 						<p>{{ materiel.fils[0].epaisseurDeTresse}}</p>
 					</div>
 					<div class="matos_box">
 						<div class="matos_titre fil">
-							<img class="logo_fil" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/type_fil.webp" alt="logo_type_fil"/>
+							<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
 							<h3 class="titre_fil">Diamètre Fluorocarbone</h3>
 						</div>
 						<p>{{ materiel.fils[0].epaisseurDeFluorocarbone}}</p>
@@ -102,11 +102,11 @@
 						<h3 class="nom_matos leurres">LEURRES</h3>
 					</div>
 				</div>
-				<img class="leurre" src="https://dbaqpiukoronlivotpcl.supabase.co/storage/v1/object/public/images_leurres/logo_leurre.webp" alt="logo_leurre"/>
+				<img class="leurre" src="{{repeat.contenuurl}}{{ urlimages[2]['url'] }}{{repeat.extensionurl}}" alt="logo_leurre"/>
 				<div class="leurre_container">
 					{% for leurre in materiel.leurres %}
 						<div class="leurre-box">
-							<img class="photo_leurre" src="{{leurre.url}}" alt="visuel_leurre"/>
+							<img class="photo_leurre" src="{{repeat.contenuurl}}{{leurre.url}}{{repeat.extensionurl}}" alt="visuel_leurre"/>
 							<div class="matos_titre leurre">
 								<h3 class="nom_leurre">{{leurre.nom}}</h3>
 							</div>
