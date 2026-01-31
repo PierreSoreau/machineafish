@@ -14,20 +14,20 @@ class PoissonManager extends AbstractManager
 
 
         $query->execute(['nom' => $name]);
-       $query->setFetchMode(PDO::FETCH_CLASS, 'Poisson'); 
-       $poissons = $query->fetch();       
+        $query->setFetchMode(PDO::FETCH_CLASS, 'Poisson');
+        $poissons = $query->fetch();
 
 
         return $poissons;
     }
 
-     public function findAll()
+    public function findAll()
     {
         $query = $this->db->prepare('SELECT * FROM poisson ');
 
 
         $query->execute();
-       $poissons = $query->fetchAll(PDO::FETCH_CLASS, 'Poisson');        
+        $poissons = $query->fetchAll(PDO::FETCH_CLASS, 'Poisson');
 
 
         return $poissons;
@@ -39,10 +39,8 @@ class PoissonManager extends AbstractManager
         $query = $this->db->prepare('SELECT image FROM poisson WHERE nom = :nom ');
         $query->execute(['nom' => $name]);
 
-       $result=$query->fetchColumn();
+        $result = $query->fetchColumn();
 
-       return $result;
+        return $result;
     }
-
-    
 }

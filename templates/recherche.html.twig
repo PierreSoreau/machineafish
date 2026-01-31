@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="assets/css/recherche.css">
+{% endblock %}
+
+{% block title %}
+	Résultats recherche
+{% endblock %}
+
+{% block description %}
+	Détails des résultats de la recherche de l'utilisateur
+{% endblock %}
+
+{% block main %}
+<main>
+
+
+
+<div class="box-cards">
+
+{% for datacard in datacards %}
+
+<div class="search-card">
+<a href="{{datacard.lien}}" class="lien-page"></a>
+
+<h2>{{datacard.categorie}}</h2>
+<img src="{{repeat.contenuurl}}{{datacard.image}}{{repeat.extensionurl}}" alt="{{datacard.categorie}}">
+<p>{{datacard.description}}</p>
+
+</div>
+{% endfor %}
+</div>
+
+
+
+
+</main>
+
+{% endblock %}

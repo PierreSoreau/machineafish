@@ -237,6 +237,10 @@ nav.show {
 
 }
 
+#search-container form {
+    display: contents; /* Le formulaire devient invisible pour la mise en page */
+}
+
 #search-container.show {
     display: flex;
     align-items: center;

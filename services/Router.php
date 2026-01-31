@@ -50,25 +50,13 @@ class Router
             case 'tutoriels':
                 $this->uc->tutoriels();
                 break;
+            case 'recherche':
+                $this->uc->recherche();
+                break;
 
             default:
                 $this->uc->descriptionPoisson();
                 break;
         }
     }
-
-
-
-    /*else if($_GET['route'] === 'login') {
-                $this->ac->login();
-            }
-            else if($_GET['route'] === 'register') {
-                $this->ac->register();
-            }
-            else if($_GET['route'] === 'logout') {
-                $this->ac->logout();
-            }
-            else if($_GET['route'] === 'profile') {
-                $this->uc->profile();
-            }*/
 }

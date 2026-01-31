@@ -208,4 +208,143 @@ class UserController extends AbstractController
             "urlimages" => $urlimages
         ]);
     }
+
+    public function recherche()
+    {
+
+        $searchdata = new SearchManager();
+
+
+
+
+        $globalsearchtable = [];
+
+
+        //BASE DE DONNEES PAGE MATERIEL
+        $materiel = [
+            // --- Ton matériel de base ---
+            "canne",
+            "cannes",
+            "puissance",
+            "light",
+            "medium-light",
+            "medium",
+            "medium-heavy",
+            "heavy",
+            "extra-heavy",
+            "extra-extra-heavy",
+            "action",
+            "fast",
+            "regular",
+            "longueur",
+            "taille",
+            "poids",
+            "fils",
+            "fil",
+            "tresse",
+            "tresses",
+            "fluorocarbone",
+            "moulinet",
+            "moulinets",
+            "bobine",
+            "bobines",
+            "ratio",
+            "leurre",
+            "leurres",
+
+
+            "tube-bait",
+            "tube-baits",
+            "minnow",
+            "minnows",
+            "shad",
+            "shads",
+            "rubberjig",
+            "rubberjigs",
+            "crankbait",
+            "crankbaits",
+            "worm",
+            "worms",
+            "cuillère tournante",
+            "cuillères tournantes",
+            "cuillère",
+            "spintail",
+            "spintails",
+            "stickbait",
+            "stickbaits",
+            "jerkbait",
+            "jerkbaits",
+            "lipless",
+            "jig",
+            "jigs",
+            "swimbait",
+            "swimbaits",
+            "crawler",
+            "crawlers",
+            "lame-vibrante",
+            "lames-vibrantes",
+            "lame",
+            "leurre à hélice",
+            "leurres à hélice",
+            "popper",
+            "poppers",
+            "frog",
+            "frogs",
+            "glidebait",
+            "glidebaits",
+            "spinnerbait",
+            "spinnerbaits",
+            "spinner",
+            "chatterbait",
+            "chatterbaits",
+            "chatter",
+            "creature",
+            "creatures",
+            "grub",
+            "grubs"
+        ];
+
+        $horsdatabase = ["alimentation", "reproduction", "morphologie", "habitat", "spot", "pêche"];
+
+        //BASE DE DONNEES PAGES POISSON
+        $poissons = $searchdata->TriForPoissonPages();
+
+        foreach ($poissons as $nomDuPoisson => $motsActuels) {
+            // On fusionne les mots spécifiques du poisson avec les mots génériques
+            // $poissons[$nomDuPoisson] va être mis à jour réellement
+            $poissons[$nomDuPoisson] = array_merge($motsActuels, $horsdatabase);
+
+            // On enlève les doublons au cas où un mot générique serait déjà présent
+            $poissons[$nomDuPoisson] = array_unique($poissons[$nomDuPoisson]);
+
+            //On réindexe proprement
+            $poissons[$nomDuPoisson] = array_values($poissons[$nomDuPoisson]);
+        }
+
+
+
+        //BASE DE DONNEES PAGES TUTOS
+        $tutos = $searchdata->TriForTutosPage();
+
+        //assemblages des données dans le tabeau globalsearchtable
+
+        $globalsearchtable["tutoriels"] = $tutos;
+
+        $globalsearchtable["materiel"] = $materiel;
+
+        //array merge permet d'ajouter le tableau poisson dans global searchtable à la suite en gardant ses clés
+        $globalsearchtable = array_merge($globalsearchtable, $poissons);
+
+        //on récupère le ou les mots de l'utilisateur
+        $searchuser = $_POST['searchresults'] ?? "[]";
+
+        $categories = $searchdata->comparaisonWords($searchuser, $globalsearchtable);
+
+        $datacards = $searchdata->findSpecificCards($categories);
+
+        $this->render('recherche.html.twig', [
+            "datacards" => $datacards
+
+        ]);
+    }
 }
