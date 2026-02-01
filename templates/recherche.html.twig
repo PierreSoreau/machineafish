@@ -20,6 +20,18 @@
 
 <div class="box-cards">
 
+{% if categories is empty %}
+
+<div class="search-card">
+<a href="{{datacards.lien}}" class="lien-page"></a>
+<img src="{{repeat.contenuurl}}{{datacards.image}}{{repeat.extensionurl}}" alt="{{datacards.alt}}">
+<h2>{{datacards.titre}}</h2>
+</div>
+
+
+
+{% else %}
+
 {% for datacard in datacards %}
 
 <div class="search-card">
@@ -31,6 +43,8 @@
 
 </div>
 {% endfor %}
+
+{% endif %}
 </div>
 
 

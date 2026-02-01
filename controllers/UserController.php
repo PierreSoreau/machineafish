@@ -304,7 +304,7 @@ class UserController extends AbstractController
             "grubs"
         ];
 
-        $horsdatabase = ["alimentation", "reproduction", "morphologie", "habitat", "spot", "pêche"];
+        $horsdatabase = ["alimentation", "reproduction", "morphologie", "habitat", "spot", "pêche", "poisson", "carnassier"];
 
         //BASE DE DONNEES PAGES POISSON
         $poissons = $searchdata->TriForPoissonPages();
@@ -343,7 +343,8 @@ class UserController extends AbstractController
         $datacards = $searchdata->findSpecificCards($categories);
 
         $this->render('recherche.html.twig', [
-            "datacards" => $datacards
+            "datacards" => $datacards,
+            "categories" => $categories
 
         ]);
     }

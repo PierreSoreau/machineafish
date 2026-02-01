@@ -488,9 +488,6 @@ class SearchManager extends AbstractManager
         // BOUCLE 1 : On prend chaque mot tapé par l'utilisateur (ex: "Canne", "Brochrt")
         foreach ($motsFiltres as $motUser) {
 
-            $meilleurResultat = null; // Va contenir la clé gagnante (ex: "Brochet" ou "materiel")
-            $plusPetiteDistance = 1000;             // On commence avec une distance infinie
-
             // BOUCLE 2 : On parcourt chaque catégorie/page de ta base de données
             // $cleResultat = "Brochet", "materiel", "tutos"...
             // $listeMotsCles = Le tableau des mots associés ['dents', 'eau'...]
@@ -505,24 +502,22 @@ class SearchManager extends AbstractManager
                         // Calcul de la distance (nombre de fautes de frappe)
                         $distance = levenshtein($motUser, $motDatabase);
 
-                        // CAS A : Match Parfait (0 faute)
-                        if ($distance === 0) {
-                            $tableauDesResultats[] = $cleResultat; // On arrête tout, on a trouvé exactement !
-                        }
+                        if ($distance <= 1) {
+                            // 1. On ajoute la catégorie aux résultats
+                            $tableauDesResultats[] = $cleResultat;
 
-                        // CAS B : C'est le meilleur score vu jusqu'à présent
-                        // On mémorise ce résultat comme étant le champion actuel
-                        if ($distance < $plusPetiteDistance) {
-                            $plusPetiteDistance = $distance;
-                            $meilleurResultat = $cleResultat;
+                            // 2. IMPORTANT : On sort de la boucle 3 (break)
+                            // Si on a trouvé que "Brochet" contient "carnassier", 
+                            // inutile de tester les 50 autres mots du brochet.
+                            // On passe directement à la catégorie suivante (ex: Sandre)
+                            break;
                         }
                     }
                 }
             }
-            if ($plusPetiteDistance <= 2 && $meilleurResultat !== null) {
-                $tableauDesResultats[] = $meilleurResultat;
-            }
         }
+
+        // On nettoie les doublons à la fin et on réindexe
         $resultatsUniques = array_unique($tableauDesResultats);
         return array_values($resultatsUniques);
     }
@@ -531,7 +526,7 @@ class SearchManager extends AbstractManager
     {
 
         if (empty($categories)) {
-            return [];
+            return ["titre" => "Aucun résultat pour la recherche", "image" => "v1769942307/lose_search_ubeww7", "alt" => "logo aucun résultat", "lien" => "index.php"];
         }
 
         //on créé une chaîne de caractère de points d'interrogations "?,?,?" 
