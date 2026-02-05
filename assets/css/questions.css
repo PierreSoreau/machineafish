@@ -8,12 +8,17 @@ main {
 /* --- Mise en page globale du Quiz --- */
 .quiz {
     width: 300px;   
-    height:500px; 
+    height:auto; 
     background: #1a1a1a; /* Gris très foncé presque noir */
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid #333; /* Bordure discrète */
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom: 10px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 /* --- Barre de progression --- */
@@ -140,6 +145,7 @@ main {
     .quiz {       
         padding: 20px;
         width: 300px;
+        height:500px
     }
     
     #questions_title {
