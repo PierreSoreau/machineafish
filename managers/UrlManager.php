@@ -75,7 +75,8 @@ class UrlManager extends AbstractManager
         $query = $this->db->prepare(
             'SELECT imagesautres.url   
             FROM  imagesautres
-            WHERE  imagesautres.page = :page     
+            WHERE  imagesautres.page = :page
+            ORDER BY imagesautres.id ASC     
         '
         );
         $query->execute(['page' => $page]);

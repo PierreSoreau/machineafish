@@ -85,6 +85,7 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'Agrafe' => __DIR__ . '/../..' . '/models/Agrafe.php',
         'AgrafeLeurre' => __DIR__ . '/../..' . '/models/AgrafeLeurre.php',
         'Alimentation' => __DIR__ . '/../..' . '/models/Alimentation.php',
+        'Analyse_Materiel' => __DIR__ . '/../..' . '/models/Analyse_Materiel.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'AuthController' => __DIR__ . '/../..' . '/controllers/AuthController.php',
         'Canne' => __DIR__ . '/../..' . '/models/Canne.php',

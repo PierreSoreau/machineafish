@@ -11,6 +11,7 @@ return array(
     'Agrafe' => $baseDir . '/models/Agrafe.php',
     'AgrafeLeurre' => $baseDir . '/models/AgrafeLeurre.php',
     'Alimentation' => $baseDir . '/models/Alimentation.php',
+    'Analyse_Materiel' => $baseDir . '/models/Analyse_Materiel.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'AuthController' => $baseDir . '/controllers/AuthController.php',
     'Canne' => $baseDir . '/models/Canne.php',

@@ -1,217 +1,481 @@
+body {
+  position: relative;
+  height: auto !important;
+}
 main {
-    background-color: black;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
-    padding-top: 60px;
+  background-color: black;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding-top: 60px;
 }
 
-main h2 {
-    color: white;
-    font-family: "Inter", cursive;
-    font-size: 20px;
-    padding: 20px 0;
+main h2, main h1 {
+  color: white;
+  font-family: "Inter", cursive;
+  font-size: 20px;
+  padding: 20px 0;
+}
+
+main h2{
+padding: 20px 0;
+}
+
+main h1{
+  text-transform:uppercase; 
+  padding: 0px 0px 20px 0px;
 }
 
 #matos {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .matos_detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    border: 2px solid green;
-    width: 80%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  border: 2px solid green;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
 }
 
 .nom_materiel_container {
-    display: flex;
-    justify-content: flex-start;
-    width:100%;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .nom_matos {
-    font-size: 20px;
-    color: white;
-    font-family: "Inter", cursive;
-    border-radius: 10px;
-    padding: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
+  font-size: 20px;
+  color: white;
+  font-family: "Inter", cursive;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .nom_matos.canne {
-    background-color: red;
+  background-color: red;
 }
 
 .nom_matos.moulinet {
-    background-color: blue;
+  background-color: blue;
 }
 
 .nom_matos.fil {
-    background-color: green;
+  background-color: green;
 }
 
 .nom_matos.leurres {
-    background-color: yellow;
-    color:black !important;
+  background-color: yellow;
+  color: black !important;
 }
 
+.logo_matos {
+  width: 150px;
+  border-radius: 10px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.logo_matos.fil {
+  width: auto;
+}
 
 .matos_detail img {
-    width: 150px;
-    border-radius: 10px;
+  width: 150px;
+  border-radius: 10px;
 }
 
 .matos_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .matos_box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
-.matos_box.action{
-    padding-bottom: 10px;
+.box-infos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.box-infos img {
+  width: 30px;
+  height: 30px;
+}
+
+.infos.info-mater {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.blur-overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.infos-box {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  max-width: 1400px;
+  width: 95%;
+  max-height: 80vh;  
+  background-color: #1a1a1a;
+  z-index: 20;
+  border-radius: 10px;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0px 10px 10px 10px;
+  overflow-y: auto;
+}
+
+
+
+
+.schema-scroll-zone {
+  width: 100%; /* Prend toute la largeur du popup noir */
+   /* Active le scroll horizontal SI l'image dépasse */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  
+}
+
+/* Cible la zone de scroll */
+.schema-scroll-zone::-webkit-scrollbar {
+  height: 6px; /* Hauteur de la barre horizontale */
+}
+
+/* Le fond de la barre (le rail) */
+.schema-scroll-zone::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* La partie qui bouge (le curseur) */
+.schema-scroll-zone::-webkit-scrollbar-thumb {
+  background: red; /* Gris foncé visible */
+  border-radius: 4px;
+}
+
+/* Au survol (optionnel) */
+.schema-scroll-zone::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.infos-box h2 {
+  font-family: "Inter", cursive;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+
+/* IMPORTANT : Ton parent doit être relative pour que le absolute fonctionne */
+.schema-scroll-zone {
+  position: relative;
+  margin: 0px auto 20px auto;
+  max-width: 600px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.schema-scroll-zone.number1 {
+  max-width: 600px;
+}
+
+.infos-box img {
+  display:none;
+  width: 100%;
+  height: 400px;
+  max-width: none; /* Sécurité pour empêcher le navigateur de la réduire */  
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.infos-image.number1 {
+  width: 400px;
+  height: 400px;
+}
+
+.infos-box p {
+  text-align: justify;
+  color: white;
+  font-family: "Inter", cursive;
+  font-size: 16px;
+  /* Magie : transforme les sauts de ligne de la BDD en <br> visuels */
+  white-space: pre-line;
+}
+
+/* Le mot clé important */
+.text-important {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline #ff4757; /* Petit souligné stylé */
+}
+
+/* L'avantage technique */
+.text-highlight {
+  color: #ffd700; /* Jaune doré */
+  font-style: italic;
+}
+
+/* Les lieux (Eau) */
+.text-eau {
+  color: #00d2d3; /* Cyan lumineux très lisible sur noir */
+  font-weight: 600;
+}
+
+/* Les tailles de cannes */
+.text-short,
+.text-long {
+  color: #ff6b6b; /* Rouge doux */
+  font-weight: bold;
+  text-transform: uppercase; /* Pour bien détacher visuellement */
+  font-size: 0.9em; /* Légèrement plus petit ou grand selon ton goût */
+}
+
+/* Les styles spécifiques aux actions */
+.text-fast {
+  color: #ff6b6b;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.text-regular {
+  color: #ff9f43;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.text-slow {
+  color: #2ed573;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.text-blue {
+  color: #54a0ff;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.text-pink {
+  color: #ff79c6;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.text-math {
+  display: block; /* Met la formule sur sa propre ligne */
+  text-align: center;
+  color: #2ed573; /* Vert "Matrix" ou "Calculatrice" */
+  font-family: "Courier New", monospace; /* Police style machine à écrire */
+  font-weight: bold;
+  background: rgba(46, 213, 115, 0.1); /* Petit fond vert très léger */
+  padding: 10px;
+  border: 1px dashed #2ed573; /* Bordure en pointillés */
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.fa-xmark.closeinfos {
+  color: white;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+  right: 10px;
+  margin: 5px 0px;
+  float: right;
+}
+
+.matos_box.action {
+  padding-bottom: 10px;
 }
 
 .matos_box p {
-    font-family: "Inter", cursive;
-    color: white;
-    font-size: 16px;
+  font-family: "Inter", cursive;
+  color: white;
+  font-size: 16px;
 }
 
 .matos_titre {
-    background-color: white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 30px;
-    padding: 10px;
-    width: 180px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 10px;
+  width: 180px;
 }
 
 .matos_titre h3 {
-    font-family: "Inter", cursive;
-    font-size: 16px;
+  font-family: "Inter", cursive;
+  font-size: 16px;
 }
 
-.matos_titre img {
-    width: 30px;
-    height: 30px;
+.button-infos {
+  height: 100%;
+}
+.button-infos img {
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
 }
 
-.titre_fil{
-    font-size: 13px !important;
+.titre_fil {
+  font-size: 13px !important;
 }
 
-.matos_titre.fil{
-    gap:0px;
+.matos_titre.fil {
+  gap: 0px;
 }
 
-.logo_fil{
-    width:50px !important;
-    height:50px !important;
+.button_infos .logo_fil {
+  width: 50px !important;
+  height: 50px !important;
 }
 
-
-
-.photo_leurre{
-    width:80px !important;
-    height:auto;
+.photo_leurre {
+  width: 80px !important;
+  height: auto;
 }
 
-.leurre_container{
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding-bottom: 10px;
+.leurre_container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 10px;
 }
 
-
-.leurre-box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap:10px;
+.leurre-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.matos_titre.leurre{
-    justify-content: center;
-    width:80px !important;
-    height:50px;
+.matos_titre.leurre {
+  justify-content: center;
+  width: 80px !important;
+  height: 50px;
 }
 
-.matos_titre.leurre h3{
-    font-size: 13px !important;
-
+.matos_titre.leurre h3 {
+  font-size: 13px !important;
 }
 
-.leurre{
-    width:130px !important;
-    padding-top:10px;
-}
-
-@media(min-width:600px){
-
-    #matos {    
+@media (min-width: 600px) {
+  #matos {
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(2, 1fr);    
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .matos_detail {
+    width: 90%;
+  }
+
+  .photo_leurre {
+    width: 100px !important;
+  }
+
+  .matos_titre.leurre {
+    width: 100px !important;
+  }
 }
 
-.matos_detail{
-    width:90%;
-}
-
-.photo_leurre{
-    width:100px !important;  
-
-}
-
-.matos_titre.leurre{    
-    width:100px !important;
-    
-}
-
-
-}
-
-@media(min-width:992px){
-
-    #matos {    
+@media (min-width: 992px) {
+  #matos {
     grid-template-rows: 1fr;
-    grid-template-columns: repeat(4, 1fr);    
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .matos_detail {
+    width: 100%;
+  }  
+
+  .infos-box {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+    overflow-y: auto;
+    width: auto;
+    padding-left:40px;
+    padding-right: 40px;
+    
+  }
+  
+
+  .infos-box img{
+    display:block;
+    width:800px;
+    height:auto;
+  }
+
+  
+
+  .schema-scroll-zone {  
+  width: 800px;  
 }
 
-.matos_detail{
-    width:100%;
+.schema-scroll-zone.number1 {
+  width: 400px;
 }
+  
 
+  .infos {
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
 
+  .infos:hover {
+    transform: scale(1.2);
+  }
+
+  main h2,  main h1 {
+    font-size: 30px;
+  }
+  
 }

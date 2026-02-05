@@ -134,6 +134,13 @@ class UserController extends AbstractController
 
     public function questions(): void
     {
+        //le if est nécessaire dans le cas ou l'utilisateur recommence 
+        //le questionnaire dans ce cas on clear la session des réponses au questionnaire 
+        //pour éviter que ça prenne en compte des anciennes réponses
+        if (isset($_SESSION['resultats_quiz'])) {
+            unset($_SESSION['resultats_quiz']);
+        }
+
         $dataquestions = new QuestionsManager;
         $allquestions = $dataquestions->findAll();
         $datapoissons = new PoissonManager;
@@ -150,64 +157,98 @@ class UserController extends AbstractController
 
     public function result(): void
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $resultsJson = $_POST['results'] ?? '[]'; //si $_POST['results'] existe alors il prend sa valeur sinon par défaut c'est "[]"
-        $answers = json_decode($resultsJson, true) ?? []; //permet de transformer les données pour les rendre exploitables 
-        //c'est à dire un tableau associatif. 
-        // on passe de ça '{"1":"Brochet"}' à ça [ 1 => "Brochet" ]
+            $resultsJson = $_POST['results'] ?? '[]'; //si $_POST['results'] existe alors il prend sa valeur sinon par défaut c'est "[]"
+            $answers = json_decode($resultsJson, true) ?? []; //permet de transformer les données pour les rendre exploitables 
+            //c'est à dire un tableau associatif. 
+            // on passe de ça '{"1":"Brochet"}' à ça [ 1 => "Brochet" ]
 
-        // Si le formulaire est vide, on peut rediriger vers le quiz ou afficher une erreur
-        if (empty($answers)) {
-            $this->render('questions.html.twig', ['error' => 'Veuillez remplir le quiz']);
-            return;
+            // Si le formulaire est vide, on peut rediriger vers le quiz ou afficher une erreur
+            if (empty($answers)) {
+                $this->render('questions.html.twig', ['error' => 'Veuillez remplir le quiz']);
+                return;
+            }
+
+            $userId = session_id();
+
+            $mappingMilieux = [
+                "petite étendue d'eau" => 1,
+                "grande étendue d'eau" => 2,
+            ];
+
+            $mappingpoisson = [
+                "sandre" => 1,
+                "brochet" => 2,
+                "silure" => 3,
+                "perche" => 4
+            ];
+
+            // On récupère le texte et on trouve l'ID correspondant
+            $nomMilieu = $answers[1]; // ex: "Lac"
+            $milieuId  = $mappingMilieux[$nomMilieu] ?? 1; // 1 par défaut si non trouvé
+
+            $nomPoisson = $answers[2];
+            $poissonId = $mappingpoisson[$nomPoisson] ?? 1;
+
+            $donneesQuiz = [
+                'milieu_id' => $milieuId, // On envoie maintenant un chiffre !
+                'poisson'  => $poissonId,
+                'poisson_nom' => $answers[2] ?? "Brochet",
+                'taille'    => $answers[3] ?? 0,
+                'saison'    => $answers[4] ?? "Été",
+                'courant'   => $answers[5] ?? "Faible",
+
+            ];
+
+            $datareponses = new ReponsesUtilisateursManager;
+            $datamateriel = new MaterielManager;
+
+
+            $datareponses->saveAll($answers, $userId);
+            $resultats = $datamateriel->selection_matos($donneesQuiz);
+
+
+            // --- STOCKAGE EN SESSION parce qu'on va utiliser les données sur une autre page que la page question 
+            //et qu'on utilise la méthode GET pour les utiliser et cette méthode ne fonctionne qu'avec 
+            //les données présentes uniquement sur la page ou l'url de la page donc là 
+            //vu que les données proviennent d'une autre page pas le choix que de les enregistrer via SESSION
+
+            $_SESSION['resultats_quiz'] = [
+                'materiel'  => $resultats,
+                'name_fish' => $donneesQuiz['poisson_nom']
+            ];
+
+            //redirection vers la page materiel avec les données obtenues de questions
+            header('Location: index.php?route=materiel');
+            exit;
         }
 
-        $userId = session_id();
+        if (!isset($_SESSION['resultats_quiz'])) {
+            header('Location: index.php?route=questions');
+            exit;
+        }
 
-        $mappingMilieux = [
-            "petite étendue d'eau" => 1,
-            "grande étendue d'eau" => 2,
-        ];
+        // On récupère les données calculées lors du POST
+        $dataFromSession = $_SESSION['resultats_quiz'];
 
-        $mappingpoisson = [
-            "sandre" => 1,
-            "brochet" => 2,
-            "silure" => 3,
-            "perche" => 4
-        ];
-
-        // On récupère le texte et on trouve l'ID correspondant
-        $nomMilieu = $answers[1]; // ex: "Lac"
-        $milieuId  = $mappingMilieux[$nomMilieu] ?? 1; // 1 par défaut si non trouvé
-
-        $nomPoisson = $answers[2];
-        $poissonId = $mappingpoisson[$nomPoisson] ?? 1;
-
-        $donneesQuiz = [
-            'milieu_id' => $milieuId, // On envoie maintenant un chiffre !
-            'poisson'  => $poissonId,
-            'poisson_nom' => $answers[2] ?? "Brochet",
-            'taille'    => $answers[3] ?? 0,
-            'saison'    => $answers[4] ?? "Été",
-            'courant'   => $answers[5] ?? "Faible",
-
-        ];
-
-        $datareponses = new ReponsesUtilisateursManager;
-        $datamateriel = new MaterielManager;
         $dataphoto = new UrlManager;
+        $datamateriel = new MaterielManager;
 
-        $datareponses->saveAll($answers, $userId);
-        $resultats = $datamateriel->selection_matos($donneesQuiz);
         $urlimages = $dataphoto->findImageByPage("materiel");
+        $infos = $datamateriel->findInfos();
 
 
 
         $this->render('materiel.html.twig', [
-            "materiel" => $resultats,
-            "urlimages" => $urlimages
+            "materiel" => $dataFromSession["materiel"],
+            "name_fish" => $dataFromSession["name_fish"],
+            "urlimages" => $urlimages,
+            "infos" => $infos,
+
         ]);
     }
+
 
     public function recherche()
     {

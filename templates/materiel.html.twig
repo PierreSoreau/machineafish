@@ -15,7 +15,9 @@
 
 {% block main %}
 	<main>
-		<h2>Voici la sélection idéale pour votre session de pêche</h2>
+		<h2>Voici la sélection idéale pour pêcher</h2>
+		<h1>le
+			{{name_fish}}</h1>
 		<section id="matos">
 			<div class="matos_detail">
 				<div class="nom_materiel_container">
@@ -23,28 +25,43 @@
 						<h3 class="nom_matos canne">CANNE</h3>
 					</div>
 				</div>
-				<img src="{{repeat.contenuurl}}{{ urlimages[0]['url'] }}{{repeat.extensionurl}}" alt="logo_canne"/>
+				<img src="{{repeat.contenuurl}}{{ urlimages[0]['url'] }}{{repeat.extensionurl}}" alt="logo_canne" class="logo_matos"/>
 				<div class="matos_container">
 					<div class="matos_box">
-						<div class="matos_titre">
-							<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
-							<h3>Longueur</h3>
+						<div class="box-infos">
+							<div class="matos_titre">
+								<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
+								<h3>Longueur</h3>
+							</div>
+							<p>{{ materiel.cannes[0].longueur}}</p>
 						</div>
-						<p>{{ materiel.cannes[0].longueur}}</p>
+						<div class="button-infos">
+							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number1" alt="logo infos">
+						</div>
 					</div>
 					<div class="matos_box">
-						<div class="matos_titre">
-							<img src="{{repeat.contenuurl}}{{ urlimages[5]['url'] }}{{repeat.extensionurl}}" alt="logo_puissance"/>
-							<h3>Puissance</h3>
+						<div class="box-infos">
+							<div class="matos_titre">
+								<img src="{{repeat.contenuurl}}{{ urlimages[5]['url'] }}{{repeat.extensionurl}}" alt="logo_puissance"/>
+								<h3>Puissance</h3>
+							</div>
+							<p>{{ materiel.cannes[0].poidsMini ~ "g - " ~ materiel.cannes[0].poidsMaxi ~ "g"}}</p>
 						</div>
-						<p>{{ materiel.cannes[0].poidsMini ~ "g - " ~ materiel.cannes[0].poidsMaxi ~ "g"}}</p>
+						<div class="button-infos">
+							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number2" alt="logo infos">
+						</div>
 					</div>
 					<div class="matos_box action">
-						<div class="matos_titre">
-							<img src="{{repeat.contenuurl}}{{ urlimages[4]['url'] }}{{repeat.extensionurl}}" alt="logo_action"/>
-							<h3>Action</h3>
+						<div class="box-infos">
+							<div class="matos_titre">
+								<img src="{{repeat.contenuurl}}{{ urlimages[4]['url'] }}{{repeat.extensionurl}}" alt="logo_action"/>
+								<h3>Action</h3>
+							</div>
+							<p>{{ materiel.cannes[0].action}}</p>
 						</div>
-						<p>{{ materiel.cannes[0].action}}</p>
+						<div class="button-infos">
+							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number3" alt="logo infos">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -54,45 +71,66 @@
 						<h3 class="nom_matos moulinet">MOULINET</h3>
 					</div>
 				</div>
-				<img src="{{repeat.contenuurl}}{{ urlimages[1]['url'] }}{{repeat.extensionurl}}" alt="logo_moulinet"/>
+				<img src="{{repeat.contenuurl}}{{ urlimages[1]['url'] }}{{repeat.extensionurl}}" alt="logo_moulinet" class="logo_matos"/>
 				<div class="matos_container">
 					<div class="matos_box">
-						<div class="matos_titre">
-							<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
-							<h3>Taille bobine</h3>
+						<div class="box-infos">
+							<div class="matos_titre">
+								<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
+								<h3>Taille bobine</h3>
+							</div>
+							<p>{{ materiel.moulinets[0].tailleBobine}}</p>
 						</div>
-						<p>{{ materiel.moulinets[0].tailleBobine}}</p>
+						<div class="button-infos">
+							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number4" alt="logo infos">
+						</div>
 					</div>
 					<div class="matos_box">
-						<div class="matos_titre">
-							<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[8]['url'] }}{{repeat.extensionurl}}" alt="logo_ratio_moulinet"/>
-							<h3>Ratio</h3>
+						<div class="box-infos">
+							<div class="matos_titre">
+								<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[8]['url'] }}{{repeat.extensionurl}}" alt="logo_ratio_moulinet"/>
+								<h3>Ratio</h3>
+							</div>
+							<p>{{ materiel.moulinets[0].ratio}}</p>
 						</div>
-						<p>{{ materiel.moulinets[0].ratio}}</p>
+						<div class="button-infos">
+							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number5" alt="logo infos">
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="matos_detail">
+				<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos info-mater" data-target="info_number8" alt="logo infos">
 				<div class="nom_materiel_container">
 					<div class="nom_materiel">
 						<h3 class="nom_matos fil">FIL</h3>
 					</div>
 				</div>
-				<img src="{{repeat.contenuurl}}{{ urlimages[3]['url'] }}{{repeat.extensionurl}}" alt="logo_fil"/>
+				<img src="{{repeat.contenuurl}}{{ urlimages[3]['url'] }}{{repeat.extensionurl}}" alt="logo_fil" class="logo_matos fil"/>
 				<div class="matos_container">
 					<div class="matos_box">
-						<div class="matos_titre fil">
-							<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
-							<h3 class="titre_fil">Diamètre Tresse</h3>
+						<div class="box-infos">
+							<div class="matos_titre fil">
+								<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
+								<h3 class="titre_fil">Diamètre Tresse</h3>
+							</div>
+							<p>{{ materiel.fils[0].epaisseurDeTresse}}</p>
 						</div>
-						<p>{{ materiel.fils[0].epaisseurDeTresse}}</p>
+						<div class="button-infos">
+							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number6" alt="logo infos">
+						</div>
 					</div>
 					<div class="matos_box">
-						<div class="matos_titre fil">
-							<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
-							<h3 class="titre_fil">Diamètre Fluorocarbone</h3>
+						<div class="box-infos">
+							<div class="matos_titre fil">
+								<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
+								<h3 class="titre_fil">Diamètre Fluorocarbone</h3>
+							</div>
+							<p>{{ materiel.fils[0].epaisseurDeFluorocarbone}}</p>
 						</div>
-						<p>{{ materiel.fils[0].epaisseurDeFluorocarbone}}</p>
+						<div class="button-infos">
+							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number7" alt="logo infos">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -102,7 +140,7 @@
 						<h3 class="nom_matos leurres">LEURRES</h3>
 					</div>
 				</div>
-				<img class="leurre" src="{{repeat.contenuurl}}{{ urlimages[2]['url'] }}{{repeat.extensionurl}}" alt="logo_leurre"/>
+				<img class="leurre" src="{{repeat.contenuurl}}{{ urlimages[2]['url'] }}{{repeat.extensionurl}}" alt="logo_leurre" class="logo_matos"/>
 				<div class="leurre_container">
 					{% for leurre in materiel.leurres %}
 						<div class="leurre-box">
@@ -115,5 +153,24 @@
 				</div>
 			</div>
 		</section>
+
+		{% for info in infos %}
+			<div id="info_number{{info.id}}" class="infos-box">
+				<i class="fa-solid fa-2xl fa-xmark closeinfos"></i>
+				<h2>{{info.caracteristiques}}</h2>
+				<div class="schema-scroll-zone number{{info.id}}">
+					<div class="visuel_explication">
+						<img src="{{repeat.contenuurl}}{{info.image}}{{repeat.extensionurl}}" alt="{{info.caracteristiques}}" class="infos-image number{{info.id}}">
+					</div>
+					<p class="infos-p number{{info.id}}">{{info.description | raw}}</p>
+				</div>
+			</div>
+		{% endfor %}
+
 	</main>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="materiel.js"></script>
+	{{ parent() }}
 {% endblock %}

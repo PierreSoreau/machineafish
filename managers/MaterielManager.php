@@ -201,7 +201,7 @@ class MaterielManager extends AbstractManager
         INNER JOIN canne_milieu_aquatique ON canne_leurre.canne_id = canne_milieu_aquatique.canne_id
         INNER JOIN canne ON canne_leurre.canne_id = canne.id
 
-        WHERE poisson_leurre.poisson_id = :idPoisson -- Optionnel si tu as l'ID
+        WHERE poisson_leurre.poisson_id = :idPoisson 
         AND canne_milieu_aquatique.milieu_id = :idMilieu
         AND :pref BETWEEN canne.poids_mini AND canne.poids_maxi
         AND canne.action IN $arraysqlaction
@@ -240,5 +240,16 @@ class MaterielManager extends AbstractManager
 
 
         return $materiel;
+    }
+
+    public function findInfos()
+    {
+        $query = $this->db->prepare("SELECT analyse_materiel.id, analyse_materiel.description, analyse_materiel.caracteristiques, analyse_materiel.image 
+        FROM analyse_materiel");
+        $query->execute();
+
+        $infos = $query->fetchAll(PDO::FETCH_CLASS, 'Analyse_Materiel');
+
+        return $infos;
     }
 }
