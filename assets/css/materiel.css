@@ -28,6 +28,49 @@ main h1{
   padding: 0px 0px 20px 0px;
 }
 
+.precedent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;  
+    background-color: rgba(255, 255, 255, 0.1); /* Fond blanc transparent (effet verre) */
+    padding: 10px 20px;   /* Espace interne */
+    border-radius: 50px;  /* Bords très arrondis */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile */
+    
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width:250px;
+    margin: 0px auto 10px auto;
+}
+
+.precedent p {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    text-transform: uppercase; /* Met le texte en majuscule pour faire "Bouton" */
+    font-weight: 600;
+    margin: 0;
+}
+
+.precedent i {
+    color: #ff4757;
+    font-size: 18px;
+}
+
+/* Effet au survol */
+.precedent:hover {
+    background-color: white; /* Le fond devient blanc */
+    transform: translateY(-2px); /* Le bouton remonte légèrement */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Ombre portée */
+}
+
+.precedent:hover p {
+    color: #333; /* Le texte devient sombre pour le contraste sur fond blanc */
+}
+
+
 #matos {
   display: grid;
   grid-template-columns: 1fr;
