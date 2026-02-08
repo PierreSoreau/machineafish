@@ -37,7 +37,7 @@
 								<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
 								<h3>Longueur</h3>
 							</div>
-							<p>{{ materiel.cannes[0].longueur}}</p>
+							<p>{{ canne.longueur}}</p>
 						</div>
 						<div class="button-infos">
 							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number1" alt="logo infos">
@@ -49,7 +49,7 @@
 								<img src="{{repeat.contenuurl}}{{ urlimages[5]['url'] }}{{repeat.extensionurl}}" alt="logo_puissance"/>
 								<h3>Puissance</h3>
 							</div>
-							<p>{{ materiel.cannes[0].poidsMini ~ "g - " ~ materiel.cannes[0].poidsMaxi ~ "g"}}</p>
+							<p>{{ canne.poids_mini ~ "g - " ~ canne.poids_maxi ~ "g"}}</p>
 						</div>
 						<div class="button-infos">
 							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number2" alt="logo infos">
@@ -61,7 +61,7 @@
 								<img src="{{repeat.contenuurl}}{{ urlimages[4]['url'] }}{{repeat.extensionurl}}" alt="logo_action"/>
 								<h3>Action</h3>
 							</div>
-							<p>{{ materiel.cannes[0].action}}</p>
+							<p>{{ canne.action}}</p>
 						</div>
 						<div class="button-infos">
 							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number3" alt="logo infos">
@@ -83,7 +83,7 @@
 								<img src="{{repeat.contenuurl}}{{ urlimages[6]['url'] }}{{repeat.extensionurl}}" alt="logo_longueur"/>
 								<h3>Taille bobine</h3>
 							</div>
-							<p>{{ materiel.moulinets[0].tailleBobine}}</p>
+							<p>{{ moulinet.taille_bobine}}</p>
 						</div>
 						<div class="button-infos">
 							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number4" alt="logo infos">
@@ -95,7 +95,7 @@
 								<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[8]['url'] }}{{repeat.extensionurl}}" alt="logo_ratio_moulinet"/>
 								<h3>Ratio</h3>
 							</div>
-							<p>{{ materiel.moulinets[0].ratio}}</p>
+							<p>{{ moulinet.ratio}}</p>
 						</div>
 						<div class="button-infos">
 							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number5" alt="logo infos">
@@ -118,7 +118,7 @@
 								<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
 								<h3 class="titre_fil">Diamètre Tresse</h3>
 							</div>
-							<p>{{ materiel.fils[0].epaisseurDeTresse}}</p>
+							<p>{{ fil.epaisseur_de_tresse}}</p>
 						</div>
 						<div class="button-infos">
 							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number6" alt="logo infos">
@@ -130,7 +130,7 @@
 								<img class="logo_fil" src="{{repeat.contenuurl}}{{ urlimages[7]['url'] }}{{repeat.extensionurl}}" alt="logo_type_fil"/>
 								<h3 class="titre_fil">Diamètre Fluorocarbone</h3>
 							</div>
-							<p>{{ materiel.fils[0].epaisseurDeFluorocarbone}}</p>
+							<p>{{ fil.epaisseur_de_fluorocarbone}}</p>
 						</div>
 						<div class="button-infos">
 							<img src="{{repeat.contenuurl}}v1770053329/info_iaivj2{{repeat.extensionurl}}" class="infos" data-target="info_number7" alt="logo infos">
@@ -146,9 +146,9 @@
 				</div>
 				<img class="leurre" src="{{repeat.contenuurl}}{{ urlimages[2]['url'] }}{{repeat.extensionurl}}" alt="logo_leurre" class="logo_matos"/>
 				<div class="leurre_container">
-					{% for leurre in materiel.leurres %}
+					{% for leurre in leurres %}
 						<div class="leurre-box">
-							<img class="photo_leurre" src="{{repeat.contenuurl}}{{leurre.url}}{{repeat.extensionurl}}" alt="visuel_leurre"/>
+							<img class="photo_leurre" src="{{repeat.contenuurl}}{{leurre.photo}}{{repeat.extensionurl}}" alt="visuel_leurre"/>
 							<div class="matos_titre leurre">
 								<h3 class="nom_leurre">{{leurre.nom}}</h3>
 							</div>

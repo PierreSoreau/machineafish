@@ -172,41 +172,36 @@ class UserController extends AbstractController
 
             $userId = session_id();
 
-            $mappingMilieux = [
-                "petite étendue d'eau" => 1,
-                "grande étendue d'eau" => 2,
-            ];
-
-            $mappingpoisson = [
-                "sandre" => 1,
-                "brochet" => 2,
-                "silure" => 3,
-                "perche" => 4
-            ];
-
-            // On récupère le texte et on trouve l'ID correspondant
-            $nomMilieu = $answers[1]; // ex: "Lac"
-            $milieuId  = $mappingMilieux[$nomMilieu] ?? 1; // 1 par défaut si non trouvé
-
-            $nomPoisson = $answers[2];
-            $poissonId = $mappingpoisson[$nomPoisson] ?? 1;
 
             $donneesQuiz = [
-                'milieu_id' => $milieuId, // On envoie maintenant un chiffre !
-                'poisson'  => $poissonId,
-                'poisson_nom' => $answers[2] ?? "Brochet",
-                'taille'    => $answers[3] ?? 0,
-                'saison'    => $answers[4] ?? "Été",
-                'courant'   => $answers[5] ?? "Faible",
+                'etendue_eau' => $answers[1],
+                'profondeur'  => $answers[2],
+                'poisson_nom' => $answers[3],
+                'taille'    => $answers[4],
+                'saison'    => $answers[5],
+                'courant'   => $answers[6],
+                'obstacle'   => $answers[7],
 
             ];
 
+            //On enregistre les réponses
             $datareponses = new ReponsesUtilisateursManager;
-            $datamateriel = new MaterielManager;
-
-
             $datareponses->saveAll($answers, $userId);
-            $resultats = $datamateriel->selection_matos($donneesQuiz);
+
+            $dataleurres = new LeurresManager;
+            $datacanne = new CannesManager;
+            $datamoulinet = new MoulinetManager;
+            $datafil = new FilManager;
+            $leurres = $dataleurres->leurres($donneesQuiz);
+            // // --- AJOUTE CECI POUR VOIR TOUS TES LEURRES ---
+            // echo "<pre style='background: #222; color: #0f0; padding: 20px; z-index:9999; position:relative;'>";
+            // echo "<h1>DEBUG DES LEURRES</h1>";
+            // print_r($leurres); // Affiche tout le tableau
+            // echo "</pre>";
+            // die("Arrêt temporaire du script");
+            $canne = $datacanne->cannes($donneesQuiz, $leurres);
+            $moulinet = $datamoulinet->moulinets($donneesQuiz, $canne);
+            $fil = $datafil->fil($donneesQuiz);
 
 
             // --- STOCKAGE EN SESSION parce qu'on va utiliser les données sur une autre page que la page question 
@@ -215,7 +210,10 @@ class UserController extends AbstractController
             //vu que les données proviennent d'une autre page pas le choix que de les enregistrer via SESSION
 
             $_SESSION['resultats_quiz'] = [
-                'materiel'  => $resultats,
+                'leurres'  => $leurres,
+                'canne' => $canne,
+                'moulinet' => $moulinet,
+                'fil' => $fil,
                 'name_fish' => $donneesQuiz['poisson_nom']
             ];
 
@@ -233,7 +231,7 @@ class UserController extends AbstractController
         $dataFromSession = $_SESSION['resultats_quiz'];
 
         $dataphoto = new UrlManager;
-        $datamateriel = new MaterielManager;
+        $datamateriel = new AnalyseMaterielManager;
 
         $urlimages = $dataphoto->findImageByPage("materiel");
         $infos = $datamateriel->findInfos();
@@ -241,7 +239,10 @@ class UserController extends AbstractController
 
 
         $this->render('materiel.html.twig', [
-            "materiel" => $dataFromSession["materiel"],
+            "leurres" => $dataFromSession["leurres"],
+            "canne" => $dataFromSession["canne"],
+            "moulinet" => $dataFromSession["moulinet"],
+            "fil" => $dataFromSession["fil"],
             "name_fish" => $dataFromSession["name_fish"],
             "urlimages" => $urlimages,
             "infos" => $infos,
@@ -253,133 +254,154 @@ class UserController extends AbstractController
     public function recherche()
     {
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+            $searchdata = new SearchManager();
+
+
+
+
+            $globalsearchtable = [];
+
+
+            //BASE DE DONNEES PAGE MATERIEL
+            $materiel = [
+                // --- Ton matériel de base ---
+                "canne",
+                "cannes",
+                "puissance",
+                "light",
+                "medium-light",
+                "medium",
+                "medium-heavy",
+                "heavy",
+                "extra-heavy",
+                "extra-extra-heavy",
+                "action",
+                "fast",
+                "regular",
+                "longueur",
+                "taille",
+                "poids",
+                "fils",
+                "fil",
+                "tresse",
+                "tresses",
+                "fluorocarbone",
+                "moulinet",
+                "moulinets",
+                "bobine",
+                "bobines",
+                "ratio",
+                "leurre",
+                "leurres",
+
+
+                "tube-bait",
+                "tube-baits",
+                "minnow",
+                "minnows",
+                "shad",
+                "shads",
+                "rubberjig",
+                "rubberjigs",
+                "crankbait",
+                "crankbaits",
+                "worm",
+                "worms",
+                "cuillère tournante",
+                "cuillères tournantes",
+                "cuillère",
+                "spintail",
+                "spintails",
+                "stickbait",
+                "stickbaits",
+                "jerkbait",
+                "jerkbaits",
+                "lipless",
+                "jig",
+                "jigs",
+                "swimbait",
+                "swimbaits",
+                "crawler",
+                "crawlers",
+                "lame-vibrante",
+                "lames-vibrantes",
+                "lame",
+                "leurre à hélice",
+                "leurres à hélice",
+                "popper",
+                "poppers",
+                "frog",
+                "frogs",
+                "glidebait",
+                "glidebaits",
+                "spinnerbait",
+                "spinnerbaits",
+                "spinner",
+                "chatterbait",
+                "chatterbaits",
+                "chatter",
+                "creature",
+                "creatures",
+                "grub",
+                "grubs"
+            ];
+
+            $horsdatabase = ["alimentation", "reproduction", "morphologie", "habitat", "spot", "pêche", "poisson", "carnassier"];
+
+            //BASE DE DONNEES PAGES POISSON
+            $poissons = $searchdata->TriForPoissonPages();
+
+            foreach ($poissons as $nomDuPoisson => $motsActuels) {
+                // On fusionne les mots spécifiques du poisson avec les mots génériques
+                // $poissons[$nomDuPoisson] va être mis à jour réellement
+                $poissons[$nomDuPoisson] = array_merge($motsActuels, $horsdatabase);
+
+                // On enlève les doublons au cas où un mot générique serait déjà présent
+                $poissons[$nomDuPoisson] = array_unique($poissons[$nomDuPoisson]);
+
+                //On réindexe proprement
+                $poissons[$nomDuPoisson] = array_values($poissons[$nomDuPoisson]);
+            }
+
+
+
+            //BASE DE DONNEES PAGES TUTOS
+            $tutos = $searchdata->TriForTutosPage();
+
+            //assemblages des données dans le tabeau globalsearchtable
+
+            $globalsearchtable["tutoriels"] = $tutos;
+
+            $globalsearchtable["materiel"] = $materiel;
+
+            //array merge permet d'ajouter le tableau poisson dans global searchtable à la suite en gardant ses clés
+            $globalsearchtable = array_merge($globalsearchtable, $poissons);
+
+            //on récupère le ou les mots de l'utilisateur
+            $searchuser = $_POST['searchresults'] ?? "[]";
+
+            $_SESSION['searchresults'] = [
+                'searchuser' => $searchuser,
+                'globalsearchtable' => $globalsearchtable
+
+            ];
+
+            //redirection vers la page recherche avec les données obtenues de la barre de recherche
+            header('Location: index.php?route=recherche');
+            exit;
+        }
+
+
+        $sessionform = $_SESSION['searchresults'];
+
         $searchdata = new SearchManager();
 
 
 
-
-        $globalsearchtable = [];
-
-
-        //BASE DE DONNEES PAGE MATERIEL
-        $materiel = [
-            // --- Ton matériel de base ---
-            "canne",
-            "cannes",
-            "puissance",
-            "light",
-            "medium-light",
-            "medium",
-            "medium-heavy",
-            "heavy",
-            "extra-heavy",
-            "extra-extra-heavy",
-            "action",
-            "fast",
-            "regular",
-            "longueur",
-            "taille",
-            "poids",
-            "fils",
-            "fil",
-            "tresse",
-            "tresses",
-            "fluorocarbone",
-            "moulinet",
-            "moulinets",
-            "bobine",
-            "bobines",
-            "ratio",
-            "leurre",
-            "leurres",
-
-
-            "tube-bait",
-            "tube-baits",
-            "minnow",
-            "minnows",
-            "shad",
-            "shads",
-            "rubberjig",
-            "rubberjigs",
-            "crankbait",
-            "crankbaits",
-            "worm",
-            "worms",
-            "cuillère tournante",
-            "cuillères tournantes",
-            "cuillère",
-            "spintail",
-            "spintails",
-            "stickbait",
-            "stickbaits",
-            "jerkbait",
-            "jerkbaits",
-            "lipless",
-            "jig",
-            "jigs",
-            "swimbait",
-            "swimbaits",
-            "crawler",
-            "crawlers",
-            "lame-vibrante",
-            "lames-vibrantes",
-            "lame",
-            "leurre à hélice",
-            "leurres à hélice",
-            "popper",
-            "poppers",
-            "frog",
-            "frogs",
-            "glidebait",
-            "glidebaits",
-            "spinnerbait",
-            "spinnerbaits",
-            "spinner",
-            "chatterbait",
-            "chatterbaits",
-            "chatter",
-            "creature",
-            "creatures",
-            "grub",
-            "grubs"
-        ];
-
-        $horsdatabase = ["alimentation", "reproduction", "morphologie", "habitat", "spot", "pêche", "poisson", "carnassier"];
-
-        //BASE DE DONNEES PAGES POISSON
-        $poissons = $searchdata->TriForPoissonPages();
-
-        foreach ($poissons as $nomDuPoisson => $motsActuels) {
-            // On fusionne les mots spécifiques du poisson avec les mots génériques
-            // $poissons[$nomDuPoisson] va être mis à jour réellement
-            $poissons[$nomDuPoisson] = array_merge($motsActuels, $horsdatabase);
-
-            // On enlève les doublons au cas où un mot générique serait déjà présent
-            $poissons[$nomDuPoisson] = array_unique($poissons[$nomDuPoisson]);
-
-            //On réindexe proprement
-            $poissons[$nomDuPoisson] = array_values($poissons[$nomDuPoisson]);
-        }
-
-
-
-        //BASE DE DONNEES PAGES TUTOS
-        $tutos = $searchdata->TriForTutosPage();
-
-        //assemblages des données dans le tabeau globalsearchtable
-
-        $globalsearchtable["tutoriels"] = $tutos;
-
-        $globalsearchtable["materiel"] = $materiel;
-
-        //array merge permet d'ajouter le tableau poisson dans global searchtable à la suite en gardant ses clés
-        $globalsearchtable = array_merge($globalsearchtable, $poissons);
-
-        //on récupère le ou les mots de l'utilisateur
-        $searchuser = $_POST['searchresults'] ?? "[]";
-
-        $categories = $searchdata->comparaisonWords($searchuser, $globalsearchtable);
+        $categories = $searchdata->comparaisonWords($sessionform['searchuser'], $sessionform['globalsearchtable']);
 
         $datacards = $searchdata->findSpecificCards($categories);
 

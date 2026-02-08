@@ -1,56 +1,57 @@
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof allQuestions !== 'undefined' && allQuestions.length > 0) {
-        showQuestion();
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof allQuestions !== "undefined" && allQuestions.length > 0) {
+    showQuestion();
+  }
 });
 let currentIndex = 0;
 let answers = {};
-const beginurl="https://res.cloudinary.com/dgzbdoozf/image/upload/";
-const endurl=".webp";
-
+const beginurl = "https://res.cloudinary.com/dgzbdoozf/image/upload/";
+const endurl = ".webp";
 
 //Fonction qui permet d'afficher les questions + choix de réponse
 function showQuestion() {
-    const question = allQuestions[currentIndex];
-    //récupération du titre
-    document.getElementById('questions_title').textContent = question.contenu_question;
-    //avancée de la barre de progression
-    document.getElementById('progress_title').textContent = `Question ${currentIndex + 1} / ${allQuestions.length}`;
-    const progress = ((currentIndex + 1) / (allQuestions.length)) * 100;
-    document.getElementById('progress_bar').style.width = progress + `%`;
-    //MAJ des options
+  const question = allQuestions[currentIndex];
+  //récupération du titre
+  document.getElementById("questions_title").textContent =
+    question.contenu_question;
+  //avancée de la barre de progression
+  document.getElementById("progress_title").textContent =
+    `Question ${currentIndex + 1} / ${allQuestions.length}`;
+  const progress = ((currentIndex + 1) / allQuestions.length) * 100;
+  document.getElementById("progress_bar").style.width = progress + `%`;
+  //MAJ des options
 
-    const options = document.getElementById('options-container');
-    options.innerHTML = "";
-    //pour retirer les guillemets du tableau du json de la clé options 
-    //{ "id": 1, "contenu_question": "Quel poisson recherches-tu ?","options": "[\"Brochet\", \"Sandre\", \"Perche\"]", "type_reponse": "radio" }
-    //on fait un parse optionsarray=["brochet","sandre","perche"] par exemple
-    const optionsarray = JSON.parse(question.options);
-    optionsarray.forEach(opt => {
-        opt = opt.trim();//permet de supprimer des espace ou sauts à la ligne dans le contenu
-        const card = document.createElement('div');
-        card.classList.add('answer-card');        
-        //on vérifie si le nom du poisson ou de la saison correspondent à opt
-        const poissondata = allPoissons.find(p => p.nom === opt);
-        console.log("voici le tableau:", poissondata)
-        const saisondata = allSaisons.find(s => s.saison === opt);
-        let imageHtml = "";
-        if (poissondata) {
-            const poissonurl = poissondata.logo;
-            imageHtml = `<img src="${beginurl}${poissonurl}${endurl}" alt="${opt}" class="img-logo">`;
-        }
+  const options = document.getElementById("options-container");
+  options.innerHTML = "";
+  //pour retirer les guillemets du tableau du json de la clé options
+  //{ "id": 1, "contenu_question": "Quel poisson recherches-tu ?","options": "[\"Brochet\", \"Sandre\", \"Perche\"]", "type_reponse": "radio" }
+  //on fait un parse optionsarray=["brochet","sandre","perche"] par exemple
+  const optionsarray = JSON.parse(question.options);
+  optionsarray.forEach((opt) => {
+    opt = opt.trim(); //permet de supprimer des espace ou sauts à la ligne dans le contenu
+    const card = document.createElement("div");
+    card.classList.add("answer-card");
+    //on vérifie si le nom du poisson ou de la saison correspondent à opt
+    const poissondata = allPoissons.find((p) => p.nom === opt);
+    console.log("voici le tableau:", poissondata);
+    const saisondata = allSaisons.find((s) => s.saison === opt);
+    let imageHtml = "";
+    if (poissondata) {
+      const poissonurl = poissondata.logo;
+      imageHtml = `<img src="${beginurl}${poissonurl}${endurl}" alt="${opt}" class="img-logo">`;
+    }
 
-        if (saisondata) {
-            const saisonurl = saisondata.logo;
-            imageHtml = `<img src="${beginurl}${saisonurl}${endurl}" alt="${opt}" class="img-logo">`;
-        }
+    if (saisondata) {
+      const saisonurl = saisondata.logo;
+      imageHtml = `<img src="${beginurl}${saisonurl}${endurl}" alt="${opt}" class="img-logo">`;
+    }
 
-        const imgClass = imageHtml === "" ? "no-img" : ""; //est-ce que imageHtml est vide si oui alors imgClass="no-img" sinon imgClass=""
-        if (imgClass !== "") {
-            card.classList.add(imgClass);
-        }       
+    const imgClass = imageHtml === "" ? "no-img" : ""; //est-ce que imageHtml est vide si oui alors imgClass="no-img" sinon imgClass=""
+    if (imgClass !== "") {
+      card.classList.add(imgClass);
+    }
 
-        card.innerHTML = `<div id="card-content" class="card">
+    card.innerHTML = `<div id="card-content" class="card">
                             <div class="card-img">
 	                            ${imageHtml}
                             </div>
@@ -59,36 +60,46 @@ function showQuestion() {
                             </div>
                           </div>`;
 
-        
-        ///avant de cliquer il faut que le questionnaire s'affiche donc on ajoute tous les boutons
-        options.append(card);
+    ///avant de cliquer il faut que le questionnaire s'affiche donc on ajoute tous les boutons
+    options.append(card);
 
-        //au clique on change de question
-        card.addEventListener('click', () => suiteQuestionnaire(question.id, opt));
-        
-        
-    });
-
-
-
+    //au clique on change de question
+    card.addEventListener("click", () => suiteQuestionnaire(question.id, opt));
+  });
 }
 
-//fonction qui permet d'enchaîner sur la suite du questionnaire ou d'envoyer les réponses du questionnaire à la base de données via le formulaire caché
+//fonction qui permet d'enchaîner sur la suite du questionnaire ou d'envoyer
+// les réponses du questionnaire à la base de données via le formulaire caché
 function suiteQuestionnaire(questionId, choice) {
-    answers[questionId] = choice;
+  // 1. On enregistre la réponse
+  answers[questionId] = choice;
 
-    if (currentIndex < allQuestions.length - 1) {
-        currentIndex++;
-        showQuestion();
-    } else {
-        // On transforme les réponses en texte
-        const fluxDeDonnees = JSON.stringify(answers);
+  // 2. EST-CE LA DERNIÈRE QUESTION ?
+  // Si l'index actuel est égal au dernier index possible (Total - 1)
+  if (currentIndex === allQuestions.length - 1) {
+    // --- C'EST LA FIN, ON LANCE LE LOADER ---
 
-        // On met ce texte dans le champ caché du formulaire
-        document.getElementById('results-input').value = fluxDeDonnees;
+    // A. On prépare les données
+    const fluxDeDonnees = JSON.stringify(answers);
+    document.getElementById("results-input").value = fluxDeDonnees;
 
-        // On "clique" sur envoyer automatiquement
-        document.getElementById('hidden-quiz-form').submit();
+    // B. On sélectionne les éléments
+    const quiz = document.querySelector(".quiz");
+    const loader = document.querySelector(".loader");
+    const form = document.getElementById("hidden-quiz-form");
 
-    }
+    // C. On gère l'affichage (Masquer Quiz / Afficher Loader)
+    if (quiz) quiz.style.display = "none";
+    if (loader) loader.style.display = "block"; // Assure-toi que ton CSS .loader a bien z-index: 9999
+
+    // On "clique" sur envoyer le formulaire en cliquant sur la dernière réponse du questionnaire mais on laisse 2 secondes
+    // pour le sumit de manière à laisser le temps de faire disparaitre le visuel de la page quiz et apparaitre le loader
+    setTimeout(() => {
+      form.submit();
+    }, 100);
+  } else {
+    // --- CE N'EST PAS FINI, QUESTION SUIVANTE ---
+    currentIndex++;
+    showQuestion();
+  }
 }

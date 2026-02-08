@@ -38,12 +38,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Masquage du menu burger et logo du site
     // Curseur directement dans barre de recherche
 
-    searchbutton.addEventListener("click", () => {
-      barrerecherche.classList.add("show");
-      menu.classList.remove("show");
-      logo_site.classList.remove("show");
-      container.classList.add("show"); //le conteneur qui contient le logo recherche plus la barre de recherche prend une width de 100%
-      barrerecherche.focus(); // sert à mettre le curseur directement dans la barre de recherche sans avoir besoin de cliquer dans la barre
+    searchbutton.addEventListener("click", (e) => {
+      if (!barrerecherche.classList.contains("show")) {
+        e.preventDefault(); // STOP ! On n'envoie pas le formulaire, ça évite qu'au clic du bouton recherche si la barre de recherche n'est pas visible
+        // ça envoie un formulaire pour rien
+        barrerecherche.classList.add("show");
+        menu.classList.remove("show");
+        logo_site.classList.remove("show");
+        container.classList.add("show"); //le conteneur qui contient le logo recherche plus la barre de recherche prend une width de 100%
+        barrerecherche.focus(); // sert à mettre le curseur directement dans la barre de recherche sans avoir besoin de cliquer dans la barre
+      } else {
+        if (barrerecherche.value.trim() === "") {
+          e.preventDefault();
+          barrerecherche.focus();
+        } else {
+        }
+      }
     });
 
     // Au clic du menu burger affichage de la barre de menu verticale
@@ -94,11 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const container = document.getElementById("search-container");
 
-    searchbutton.addEventListener("click", () => {
-      barrerecherche.classList.add("show");
-      logo_site.classList.remove("show");
-      container.classList.add("show");
-      navmenu.classList.remove("show_");
+    searchbutton.addEventListener("click", (e) => {
+      if (!barrerecherche.classList.contains("show")) {
+        e.preventDefault();
+        barrerecherche.classList.add("show");
+        logo_site.classList.remove("show");
+        container.classList.add("show");
+        navmenu.classList.remove("show_");
+        barrerecherche.focus();
+      } else {
+        if (barrerecherche.value.trim() === "") {
+          e.preventDefault();
+          barrerecherche.focus();
+        } else {
+        }
+      }
     });
 
     document.addEventListener("click", (e) => {
@@ -138,6 +158,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function comportementDesktop() {
     // On nettoie les clics pour éviter des bugs si on passe de tablette à ordi
     resetElements();
+    barrerecherche.focus();
+    searchbutton.addEventListener("click", (e) => {
+      if (barrerecherche.value.trim() === "") {
+        e.preventDefault();
+      } else {
+      }
+    });
 
     // 1. On récupère l'URL complète de la page actuelle
     // ex: http://localhost/index.php?route=poissons

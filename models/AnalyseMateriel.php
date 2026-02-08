@@ -1,5 +1,5 @@
 <?php
-class Analyse_Materiel
+class AnalyseMateriel
 {
 
     private ?int $id = null;

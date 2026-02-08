@@ -178,7 +178,6 @@ nav.show {
 #menu.show {
   display: flex;
   align-items: center;
-  position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -226,6 +225,9 @@ nav.show {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
   gap: 10px;
 }
 
@@ -314,6 +316,12 @@ nav.show {
 
   #searchelement.show {
     width: 80%;
+  }
+
+  #search-container {
+    position: static; /* Annule 'absolute' et remet l'élément dans le flux normal */
+    left: auto; /* Annule 'left: 50%' */
+    transform: none;
   }
 }
 

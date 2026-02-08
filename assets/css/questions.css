@@ -139,8 +139,24 @@ main {
     display: none;
 }
 
+/*css pour le logo de chargement avant le résultat du matériel*/
 
-/* --- Responsive --- */
+.loader {
+display: none;
+  border: 8px solid #f3f3f3; /* Gris clair (le fond du cercle) */
+  border-top: 8px solid #3498db; /* Bleu (la partie qui tourne) */
+  border-radius: 50%; 
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; /* Nom, durée, type, répétition */
+}
+
+/* L'animation elle-même */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @media (min-width: 600px) {
     .quiz {       
         padding: 20px;
