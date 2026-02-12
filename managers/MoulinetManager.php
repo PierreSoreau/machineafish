@@ -12,13 +12,22 @@ class MoulinetManager extends AbstractManager
         }
 
         $canneid = $canne['id'];
-
-
         $saison = $donneesQuiz['saison'];
+
+        // 2. LA SÉCURITÉ "MONSTRE"
+        // On définit une taille minimale obligatoire selon l'espèce
+        $tailleMinimaleRequise = 0;
+
+        if ($donneesQuiz['poisson_nom'] === 'silure') {
+            $tailleMinimaleRequise = 5000; // Silure = Minimum 5000 (Pour encaisser la tresse épaisse)
+        } elseif ($donneesQuiz['poisson_nom'] === 'brochet' && $donneesQuiz['taille'] === 'spécimen record') {
+            $tailleMinimaleRequise = 4000; // Gros Brochet = Minimum 4000
+        }
 
         $paramsmoulinet = [
             "canneid" => $canneid,
-            "saison" => $saison
+            "saison" => $saison,
+            "taille_min" => $tailleMinimaleRequise
 
         ];
 
@@ -34,8 +43,10 @@ class MoulinetManager extends AbstractManager
         JOIN saison_moulinet sm ON m.id = sm.moulinet_id
         JOIN saison s ON sm.saison_id = s.saison
         WHERE s.saison = :saison
-        AND c.id = :canneid
-               
+        AND c.id = :canneid 
+        AND m.taille_bobine >= :taille_min
+
+        ORDER BY m.taille_bobine ASC       
         LIMIT 1 
     ';
 

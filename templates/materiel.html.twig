@@ -16,8 +16,14 @@
 {% block main %}
 	<main>
 		<h2>Voici la sélection idéale pour pêcher</h2>
-		<h1>le
-			{{name_fish}}</h1>
+		{% if name_fish == "perche" %}{
+			<h1>la
+				{{name_fish}}</h1>
+			}
+		{% else %}
+			<h1>le
+				{{name_fish}}</h1>
+		{% endif %}
 		<a class="precedent" href="index.php?route=questions">
 			<i class="fa-solid fa-circle-chevron-left fa-3x"></i>
 			<p>Revenir aux questions</p>
@@ -146,18 +152,87 @@
 				</div>
 				<img class="leurre" src="{{repeat.contenuurl}}{{ urlimages[2]['url'] }}{{repeat.extensionurl}}" alt="logo_leurre" class="logo_matos"/>
 				<div class="leurre_container">
-					{% for leurre in leurres %}
-						<div class="leurre-box">
-							<img class="photo_leurre" src="{{repeat.contenuurl}}{{leurre.photo}}{{repeat.extensionurl}}" alt="visuel_leurre"/>
+					{% for nom, infos in leurres %}
+
+						<div class="leurre-box" data-target="{{nom}}">
+							<img class="photo_leurre" src="{{repeat.contenuurl}}{{infos.url}}{{repeat.extensionurl}}" alt="visuel leurre">
 							<div class="matos_titre leurre">
-								<h3 class="nom_leurre">{{leurre.nom}}</h3>
+								<h3 class="nom_leurre">{{nom}}</h3>
 							</div>
 						</div>
 					{% endfor %}
+
 				</div>
 			</div>
 		</section>
+		{# popup informations sur les leurres#}
+		{% for nom, infos in leurres %}
+			<div id="{{nom}}" class="popup-leurres infos-box">
+				<i class="fa-solid fa-2xl fa-xmark closeinfos"></i>
+				<h3 class="titre_popup">{{nom}}</h3>
+				<img src="{{repeat.contenuurl}}{{infos.url}}{{repeat.extensionurl}}" alt="{{nom}}" class="image_detail_leurre">
+				<p>Voici le détail du ou des leurre(s) adapté(s) pour votre usage:</p>
+				<table class="table-responsive">
+					<thead>
+						<tr>
+							<th>Longueur(cm)</th>
+							<th>Type leurre</th>
+							<th>Poids leurre(g)</th>
+							{% if infos.famille != 'dur' %}
+								<th>Type montage</th>
+								<th>Poids tête plombée(g)</th>
+								<th>Longeur hameçon</th>
+								<th>Gap hameçon</th>
+							{% endif %}
+							<th>Taille agrafe</th>
+						</tr>
+					</thead>
 
+					<tbody>
+
+						{% for info in infos.donnees %}
+							<tr>
+								<td data-label="Longueur(cm)">{{info.taille}}</td>
+								<td data-label="Type leurre">leurre
+									{{infos.famille}}</td>
+								<td data-label="Poids leurre(g)">{{info.poids_leurre}}</td>
+								{% if infos.famille != "dur" %}
+									<td data-label="Type montage">{{info.type_montage}}</td>
+									<td data-label="Poids tête plombée(g)">{{info.poids_tp}}</td>
+									<td data-label="Longeur hameçon">{{info.taille_hamecon}}</td>
+									<td data-label="Gap hameçon">
+										{% if info.gap != "Non applicable" %}
+											{{ info.gap }}
+										{% else %}
+											-
+										{% endif %}
+									</td>
+								{% endif %}
+								<td data-label="Taille agrafe">{{info.taille_agrafe}}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<p>{{infosleurres[3].description | raw}}</p>
+				<img
+				src="{{repeat.contenuurl}}{{infosleurres[3].image}}{{repeat.extensionurl}}" alt="{{infosleurres[3].caracteristiques}}" class="schema_matos">
+				{# le set permet de définir une variable #}
+				{% set type_montage_actuel = infos.donnees[0].type_montage|default('')|lower %}
+
+
+				{% if infos.famille == 'souple' and type_montage_actuel == 'texan' %}
+					<p>{{infosleurres[0].description| raw}}</p>
+					<img src="{{repeat.contenuurl}}{{infosleurres[0].image}}{{repeat.extensionurl}}" alt="{{infosleurres[0].caracteristiques}}" class="schema_matos">
+					<p>{{infosleurres[2].description| raw}}</p>
+					<img src="{{repeat.contenuurl}}{{infosleurres[2].image}}{{repeat.extensionurl}}" alt="{{infosleurres[2].caracteristiques}}" class="schema_matos">
+				{% elseif infos.famille == 'souple' %}
+					<p>{{infosleurres[1].description| raw}}</p>
+					<img src="{{repeat.contenuurl}}{{infosleurres[1].image}}{{repeat.extensionurl}}" alt="{{infosleurres[1].caracteristiques}}" class="schema_matos">
+				{% endif %}
+
+			</div>
+		{% endfor %}
+		{# popup informations sur la canne, le moulinet, les fils #}
 		{% for info in infos %}
 			<div id="info_number{{info.id}}" class="infos-box">
 				<i class="fa-solid fa-2xl fa-xmark closeinfos"></i>
@@ -166,14 +241,13 @@
 					<div class="visuel_explication">
 						<img src="{{repeat.contenuurl}}{{info.image}}{{repeat.extensionurl}}" alt="{{info.caracteristiques}}" class="infos-image number{{info.id}}">
 					</div>
+					{# le raw permet de prendre en compte les espaces présents dans la cellule de la base de donées#}
 					<p class="infos-p number{{info.id}}">{{info.description | raw}}</p>
 				</div>
 			</div>
 		{% endfor %}
-
 	</main>
 {% endblock %}
-
 {% block javascripts %}
 	<script src="materiel.js"></script>
 	{{ parent() }}

@@ -32,4 +32,16 @@ class QuestionsManager extends AbstractManager
 
         return $questions;
     }
+
+    public function findAllQuestionsImages()
+    {
+
+        $query = $this->db->prepare("SELECT * FROM imagesautres WHERE imagesautres.page='questions' ORDER BY imagesautres.ordre ASC");
+
+
+        $query->execute();
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results;
+    }
 }

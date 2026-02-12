@@ -26,30 +26,17 @@ function showQuestion() {
   //pour retirer les guillemets du tableau du json de la clé options
   //{ "id": 1, "contenu_question": "Quel poisson recherches-tu ?","options": "[\"Brochet\", \"Sandre\", \"Perche\"]", "type_reponse": "radio" }
   //on fait un parse optionsarray=["brochet","sandre","perche"] par exemple
-  const optionsarray = JSON.parse(question.options);
+  const optionsarray = JSON.parse(question.options);  
   optionsarray.forEach((opt) => {
     opt = opt.trim(); //permet de supprimer des espace ou sauts à la ligne dans le contenu
     const card = document.createElement("div");
     card.classList.add("answer-card");
     //on vérifie si le nom du poisson ou de la saison correspondent à opt
-    const poissondata = allPoissons.find((p) => p.nom === opt);
-    console.log("voici le tableau:", poissondata);
-    const saisondata = allSaisons.find((s) => s.saison === opt);
+    const images = allimages.find((i) => i.theme === opt );    
     let imageHtml = "";
-    if (poissondata) {
-      const poissonurl = poissondata.logo;
-      imageHtml = `<img src="${beginurl}${poissonurl}${endurl}" alt="${opt}" class="img-logo">`;
-    }
-
-    if (saisondata) {
-      const saisonurl = saisondata.logo;
-      imageHtml = `<img src="${beginurl}${saisonurl}${endurl}" alt="${opt}" class="img-logo">`;
-    }
-
-    const imgClass = imageHtml === "" ? "no-img" : ""; //est-ce que imageHtml est vide si oui alors imgClass="no-img" sinon imgClass=""
-    if (imgClass !== "") {
-      card.classList.add(imgClass);
-    }
+    if(images) {      
+      imageHtml = `<img src="${beginurl}${images.url}${endurl}" alt="${images.alt}" class="img-logo">`;
+    }    
 
     card.innerHTML = `<div id="card-content" class="card">
                             <div class="card-img">

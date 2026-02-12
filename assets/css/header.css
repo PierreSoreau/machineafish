@@ -189,6 +189,8 @@ nav.show {
 #menu_burger {
   background: none !important;
   border: none !important;
+  position:absolute;
+  left:5px;
 }
 
 .fleche.show,
@@ -204,8 +206,11 @@ nav.show {
 
 #logo1.show {
   display: flex;
-  width: 100px;
+  width: 60px;
   height: 5vh;
+  position: absolute;
+  left:50%;
+  transform: translate(-50%);
 }
 
 #logo1 {
@@ -226,8 +231,7 @@ nav.show {
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+  right:0px;  
   gap: 10px;
 }
 
@@ -288,6 +292,12 @@ nav.show {
     display: none;
   }
 
+  #logo1.show {
+  position:static;  
+  transform: translate(0%);
+}
+
+
   nav.show_ {
     display: flex;
     gap: 20px;
@@ -339,7 +349,8 @@ nav.show {
 
   #logo1.show {
     height: 7vh;
-    width: 120px;
+    width: 80px;
+    margin-left:10px;
   }
 
   #rechercher {

@@ -5,90 +5,100 @@ class CannesManager extends AbstractManager
 
     function cannes(array $donneesQuiz, array $leurres): array
     {
-
         if (empty($leurres)) {
             return [];
         }
 
-
-        if ($donneesQuiz['etendue_eau'] === "petite étendue d'eau") {
-            $etendue_eau = 1;
-        } else {
-            $etendue_eau = 2;
-        }
-
-        //On évalue le poids minimal et maximal que la canne doit dépasser qui correspond au poids de tous les leurres dispos
-
-        $poidsleurremax = $leurres[0]['poids_leurre'];
-        $poidsleurremin = $leurres[0]['poids_leurre'];
-
-        foreach ($leurres as $leurre) {
-
-            if ($leurre['poids_leurre'] > $poidsleurremax) {
-                $poidsleurremax = $leurre['poids_leurre'];
-            }
-
-            if ($leurre['poids_leurre'] < $poidsleurremin) {
-                $poidsleurremin = $leurre['poids_leurre'];
-            }
-        }
-
+        // 1. Préparation des critères de base (Lieu + Espèce)
+        $etendue_eau = ($donneesQuiz['etendue_eau'] === "petite étendue d'eau") ? 1 : 2;
         $espece = $donneesQuiz['poisson_nom'];
 
-        $paramscannes = [
-            "etendue_eau" => $etendue_eau,
+
+        // CORRECTION PUISSANCE MINIMALE POUR SILURE
+        // Si c'est du Silure, on interdit les cannes qui finissent en dessous de 80g de puissance max
+        // Quitte à ce que la plage basse soit "mauvaise" pour le leurre (on lancera moins loin, mais on sortira le poisson)
+
+        $minPuissanceMax = 0;
+        if ($espece === 'silure') {
+            $minPuissanceMax = 80; // La canne doit pouvoir monter au moins à 80g (ex: une 30-80g ou 40-100g)
+        }
+
+        // 2. On récupère TOUTES les cannes qui ont la bonne ACTION et la bonne LONGUEUR
+        // (On ne filtre pas encore par poids)
+        $sql = '
+            SELECT DISTINCT
+                c.id,
+                c.action,
+                c.poids_mini,
+                c.poids_maxi,
+                c.longueur,
+                c.puissance
+            FROM canne c
+            JOIN regles_especes_canne re ON c.action = re.action
+            WHERE re.espece_cible = :espece
+              AND c.etendue_eau = :etendue_eau
+              AND c.poids_maxi >= :min_puissance_max 
+        ';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
             "espece" => $espece,
-            "poidsleurremin" => $poidsleurremin,
-            "poidsleurremax" => $poidsleurremax
-        ];
+            "etendue_eau" => $etendue_eau,
+            "min_puissance_max" => $minPuissanceMax
+        ]);
 
-        echo "<pre style='background: #fff; color: #000; padding: 20px;'>";
-        echo "<h3>DEBUG CONTRAINTES CANNE</h3>";
-        echo "Espèce : " . $espece . "<br>";
-        echo "Étendue d'eau (1=Petite, 2=Grande) : " . $etendue_eau . "<br>";
-        echo "<strong>Poids Leurre le plus léger (Min) : </strong>" . $poidsleurremin . " g<br>";
-        echo "<strong>Poids Leurre le plus lourd (Max) : </strong>" . $poidsleurremax . " g<br>";
-        echo "</pre>";
-        die(); // On arrête ici pour voir le résultat
+        $cannesCandidates = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        //obtention de la base de données des cannes      
-        $sqlCannes = '
-        SELECT 
-            c.id,
-            c.action,
-            c.poids_mini,
-            c.poids_maxi,
-            c.longueur,
-            -- Calcul de "l excédent de puissance" pour sélectionner la canne la plus optimal 
-            -- cest à dire celle qui a le plus faible écart par rapport au poids max du leurre
-            (c.poids_maxi - :poidsleurremax) as marge_haute           
-            
-        FROM canne c        
-        JOIN regles_especes_canne re    ON c.action = re.action
-        WHERE re.espece_cible = :espece
-        AND c.etendue_eau = :etendue_eau
-        
-        -- 1. Sécurité MAX : La canne doit absolument pouvoir lancer le plus lourd
-        AND c.poids_maxi >= :poidsleurremax 
-        
-        -- 2. Tolérance MIN : On accepte que la canne soit un peu "trop puissante" en bas
-        -- On dit : Le poids min de la canne doit être <= (Poids leurre min + 20%)
-        -- Ex: Si leurre min = 18g, on accepte une canne qui commence à 21.6g (18 * 1.2)
-        AND c.poids_mini <= (:poidsleurremin * 1.2)
-        
-        ORDER BY 
-            -- On privilégie la canne qui colle le mieux au poids MAX (sécurité et sensation)
-            (c.poids_maxi - :poidsleurremax) ASC,
-            (:poidsleurremin - c.poids_mini) ASC
-        
-        LIMIT 1 -- On ne prend que la plus optimisée qui correspond à la première du tableau
-    ';
+        // ALGO QUI PERMET DE SELECTIONNER PARMI LES CANNES SELECTIONNEES PAR SQL, CELLE QUI ENGLOBE LE PLUS DE LEURRE DANS SA PLAGE DE PUISSANCE
+        // ET AVEC LA PUISSANCE MINIMALE LA PLUS PROCHE DU POIDS LE PLUS FAIBLE DES LEURRES (parce quon cherche toujours à avoir des leurres les moins lourds possibles) 
+        $bestCanne = [];
+        $maxScore = -1;
+        $bestDiffMin = 9999; // Pour départager sur le poids mini
 
-        $query = $this->db->prepare($sqlCannes);
-        $query->execute($paramscannes);
+        // On calcule le poids min global des leurres pour le départage
+        $poidsLeurreMinGlobal = 9999;
+        foreach ($leurres as $typeLeurre => $infosType) {
+            if (isset($infosType['donnees']) && is_array($infosType['donnees'])) {
+                foreach ($infosType["donnees"] as $donnee) {
+                    if ($donnee['poids_leurre'] < $poidsLeurreMinGlobal) $poidsLeurreMinGlobal = $donnee['poids_leurre'];
+                }
+            }
+        }
 
-        $canne = $query->fetch(PDO::FETCH_ASSOC);
+        foreach ($cannesCandidates as $canne) {
+            $score = 0; // Nombre de leurres compatibles
 
-        return $canne ?: [];
+            foreach ($leurres as $typeLeurre => $infosType) {
+                if (isset($infosType['donnees']) && is_array($infosType['donnees'])) {
+                    foreach ($infosType["donnees"] as $donnee) {
+                        $poids = $donnee['poids_leurre'];
+                        // Est-ce que cette canne peut lancer ce leurre ?
+                        if ($poids >= $canne['poids_mini'] && $poids <= $canne['poids_maxi']) {
+                            $score++;
+                        }
+                    }
+                }
+            }
+
+            // Calcul de la proximité avec le leurre le plus léger (pour départager)
+            $diffMin = abs($canne['poids_mini'] - $poidsLeurreMinGlobal);
+
+            // EST-CE LA MEILLEURE CANNE ?
+            // Critère 1 : Celle qui couvre le plus de leurres
+            if ($score > $maxScore) {
+                $maxScore = $score;
+                $bestCanne = $canne;
+                $bestDiffMin = $diffMin;
+            }
+            // Critère 2 (si égalité) : Celle qui est la plus proche du poids mini demandé
+            elseif ($score === $maxScore) {
+                if ($diffMin < $bestDiffMin) {
+                    $bestCanne = $canne;
+                    $bestDiffMin = $diffMin;
+                }
+            }
+        }
+
+        return $bestCanne ?: [];
     }
 }

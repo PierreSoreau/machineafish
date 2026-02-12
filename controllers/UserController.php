@@ -143,15 +143,14 @@ class UserController extends AbstractController
 
         $dataquestions = new QuestionsManager;
         $allquestions = $dataquestions->findAll();
+        $allimages = $dataquestions->findAllQuestionsImages();
         $datapoissons = new PoissonManager;
         $allpoissons = $datapoissons->findAll();
-        $datasaisons = new SaisonManager;
-        $allsaisons = $datasaisons->findAll();
 
         $this->render('questions.html.twig', [
             'questions' => $allquestions,
             'poissons' => $allpoissons,
-            'saisons' => $allsaisons
+            'allimages' => $allimages
         ]);
     }
 
@@ -193,13 +192,58 @@ class UserController extends AbstractController
             $datamoulinet = new MoulinetManager;
             $datafil = new FilManager;
             $leurres = $dataleurres->leurres($donneesQuiz);
+
             // // --- AJOUTE CECI POUR VOIR TOUS TES LEURRES ---
             // echo "<pre style='background: #222; color: #0f0; padding: 20px; z-index:9999; position:relative;'>";
             // echo "<h1>DEBUG DES LEURRES</h1>";
             // print_r($leurres); // Affiche tout le tableau
             // echo "</pre>";
             // die("Arrêt temporaire du script");
+
+
             $canne = $datacanne->cannes($donneesQuiz, $leurres);
+
+            // 2. LE FILTRAGE DES LEURRES CLIVANTS
+            // Si on a trouvé une canne, on ne garde que les leurres qu'elle peut lancer
+            if (!empty($canne)) {
+                $poidsMinCanne = $canne['poids_mini'];
+                $poidsMaxCanne = $canne['poids_maxi'];
+
+                $leurresFiltres = [];
+
+                foreach ($leurres as $typeLeurres => $infosType) {
+
+                    $leurreConserve = [
+                        'url'     => $infosType['url'],
+                        'famille' => $infosType['famille'],
+                        'donnees' => [] // On vide la liste des tailles pour la remplir proprement
+                    ];
+
+                    // 2. On vérifie qu'il y a bien des variantes
+                    if (isset($infosType['donnees']) && is_array($infosType['donnees'])) {
+
+                        foreach ($infosType['donnees'] as $donnee) {
+
+                            if ($donnee["poids_leurre"] >= $poidsMinCanne && $donnee["poids_leurre"] <= $poidsMaxCanne) {
+                                $leurreConserve['donnees'][] = $donnee;
+                            }
+                        }
+                    }
+
+                    if (!empty($leurreConserve['donnees'])) {
+                        $leurresFiltres[$typeLeurres] = $leurreConserve;
+                    }
+                }
+
+                $leurres = $leurresFiltres;
+            }
+
+
+
+
+
+
+
             $moulinet = $datamoulinet->moulinets($donneesQuiz, $canne);
             $fil = $datafil->fil($donneesQuiz);
 
@@ -235,6 +279,14 @@ class UserController extends AbstractController
 
         $urlimages = $dataphoto->findImageByPage("materiel");
         $infos = $datamateriel->findInfos();
+        $infosleurres = $datamateriel->findInfosLeurres();
+
+        // // --- AJOUTE CECI POUR VOIR TOUS TES LEURRES ---
+        // echo "<pre style='background: #222; color: #0f0; padding: 20px; z-index:9999; position:relative;'>";
+        // echo "<h1>DEBUG DES LEURRES</h1>";
+        // print_r($infosleurres); // Affiche tout le tableau
+        // echo "</pre>";
+        // die("Arrêt temporaire du script");
 
 
 
@@ -246,6 +298,7 @@ class UserController extends AbstractController
             "name_fish" => $dataFromSession["name_fish"],
             "urlimages" => $urlimages,
             "infos" => $infos,
+            "infosleurres" => $infosleurres,
 
         ]);
     }

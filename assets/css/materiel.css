@@ -12,64 +12,69 @@ main {
   padding-top: 60px;
 }
 
-main h2, main h1 {
+main h2,
+main h1 {
   color: white;
   font-family: "Inter", cursive;
   font-size: 20px;
   padding: 20px 0;
 }
 
-main h2{
-padding: 20px 0;
+main h2 {
+  padding: 20px 0;
 }
 
-main h1{
-  text-transform:uppercase; 
+main h1 {
+  text-transform: uppercase;
   padding: 0px 0px 20px 0px;
 }
 
 .precedent {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;  
-    background-color: rgba(255, 255, 255, 0.1); /* Fond blanc transparent (effet verre) */
-    padding: 10px 20px;   /* Espace interne */
-    border-radius: 50px;  /* Bords très arrondis */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile */
-    
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    width:250px;
-    margin: 0px auto 10px auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Fond blanc transparent (effet verre) */
+  padding: 10px 20px; /* Espace interne */
+  border-radius: 50px; /* Bords très arrondis */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile */
+
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 250px;
+  margin: 0px auto 10px auto;
 }
 
 .precedent p {
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    text-transform: uppercase; /* Met le texte en majuscule pour faire "Bouton" */
-    font-weight: 600;
-    margin: 0;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase; /* Met le texte en majuscule pour faire "Bouton" */
+  font-weight: 600;
+  margin: 0;
 }
 
 .precedent i {
-    color: #ff4757;
-    font-size: 18px;
+  color: #ff4757;
+  font-size: 18px;
 }
 
 /* Effet au survol */
 .precedent:hover {
-    background-color: white; /* Le fond devient blanc */
-    transform: translateY(-2px); /* Le bouton remonte légèrement */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Ombre portée */
+  background-color: white; /* Le fond devient blanc */
+  transform: translateY(-2px); /* Le bouton remonte légèrement */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Ombre portée */
 }
 
 .precedent:hover p {
-    color: #333; /* Le texte devient sombre pour le contraste sur fond blanc */
+  color: #333; /* Le texte devient sombre pour le contraste sur fond blanc */
 }
-
 
 #matos {
   display: grid;
@@ -196,7 +201,7 @@ main h1{
   justify-content: center;
   max-width: 1400px;
   width: 95%;
-  max-height: 80vh;  
+  max-height: 80vh;
   background-color: #1a1a1a;
   z-index: 20;
   border-radius: 10px;
@@ -207,15 +212,11 @@ main h1{
   overflow-y: auto;
 }
 
-
-
-
 .schema-scroll-zone {
   width: 100%; /* Prend toute la largeur du popup noir */
-   /* Active le scroll horizontal SI l'image dépasse */
+  /* Active le scroll horizontal SI l'image dépasse */
   border-radius: 8px;
   margin-bottom: 10px;
-  
 }
 
 /* Cible la zone de scroll */
@@ -248,7 +249,6 @@ main h1{
   font-size: 30px;
 }
 
-
 /* IMPORTANT : Ton parent doit être relative pour que le absolute fonctionne */
 .schema-scroll-zone {
   position: relative;
@@ -263,10 +263,10 @@ main h1{
 }
 
 .infos-box img {
-  display:none;
+  display: none;
   width: 100%;
   height: 400px;
-  max-width: none; /* Sécurité pour empêcher le navigateur de la réduire */  
+  max-width: none; /* Sécurité pour empêcher le navigateur de la réduire */
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -363,7 +363,7 @@ main h1{
   display: flex;
   align-items: center;
   justify-content: center;
-  position: static;
+  position: absolute;
   right: 10px;
   margin: 5px 0px;
   float: right;
@@ -419,7 +419,8 @@ main h1{
 
 .photo_leurre {
   width: 80px !important;
-  height: auto;
+  height: 80px;
+  object-fit: contain;
 }
 
 .leurre_container {
@@ -429,6 +430,8 @@ main h1{
   justify-content: center;
   gap: 10px;
   padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .leurre-box {
@@ -437,16 +440,133 @@ main h1{
   align-items: center;
   justify-content: center;
   gap: 10px;
+  /* 1. L'ÉLÉVATION : On prend un gris plus clair que ton fond #1a1a1a */
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px 10px; /* Un bon espace pour le doigt sur mobile */
+  margin-bottom: 15px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #e5e7eb;
+  /* Un léger renforcement en bas pour donner une sensation de "poids" physique */
+  border-bottom: 2px solid #d1d5db;
+
+  /* 3. L'OMBRE PORTÉE */
+  /* Une ombre noire très diffuse et très transparente (8% d'opacité) */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+
+  /* Animation fluide pour le clic */
+  transition: all 0.2s ease-out;
+}
+
+/* --- LE FEEDBACK TACTILE (Quand l'utilisateur pose son doigt) --- */
+.leurre-box:active {
+  /* La carte s'enfonce physiquement */
+  transform: scale(0.96);
+
+  /* Elle s'éloigne de la lumière, donc elle redevient plus sombre (proche du #1a1a1a) */
+  background-color: #f3f4f6;
+
+  /* La lumière ne tape plus sur la tranche du haut, on assombrit la bordure */
+  border-top: 1px solid #d1d5db;
+
+  /* Comme la carte est "écrasée" contre le fond, l'ombre devient toute petite et dure */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.popup-leurres {
+  display: none;
+  font-family: "Inter", cursive;
+}
+
+.titre_popup {
+  color: white;
+  text-transform: uppercase;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.image_detail_leurre {
+  display: block !important;
+  width: 150px !important;
+  height: auto !important;
+}
+
+.table-responsive {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Inter", cursive;
+  margin: 20px auto 10px auto;
+}
+
+/* On cache l'en-tête (les <th>) sur mobile car on va lire de haut en bas */
+.table-responsive thead {
+  display: none;
+}
+
+/* On casse le comportement tableau : tout devient des blocs verticaux */
+.table-responsive tbody,
+.table-responsive tr,
+.table-responsive td {
+  display: block;
+  width: 100%;
+}
+
+/* Chaque "ligne" devient une petite carte pour un modèle de leurre */
+.table-responsive tr {
+  margin-bottom: 20px;
+  border-radius: 8px; /* Bords arrondis */
+  padding: 16px 20px;
+  background-color: #fcfcfc;
+  box-shadow:
+    0 10px 20px -10px rgba(255, 255, 255, 0.1),
+    0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+/* On aligne le label à gauche et la valeur à droite avec Flexbox */
+.table-responsive td {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  text-align: right;
+  color: #111827;
+}
+
+/* On retire la ligne de séparation sous le dernier élément de la carte */
+.table-responsive td:last-child {
+  border-bottom: none;
+}
+
+/* On affiche le contenu de l'attribut data-label="" */
+.table-responsive td::before {
+  content: attr(data-label);
+  font-weight: bold;
+  text-align: left;
+  color: #444;
+  padding-right: 15px;
+}
+
+.schema_matos{
+  width:300px !important;
+  height:auto !important;
+  display:block !important;
+  margin: 20px auto !important;
+
 }
 
 .matos_titre.leurre {
   justify-content: center;
   width: 80px !important;
   height: 50px;
+  background-color: #444;
 }
 
 .matos_titre.leurre h3 {
   font-size: 13px !important;
+  color: white;
 }
 
 @media (min-width: 600px) {
@@ -463,12 +583,23 @@ main h1{
     width: 100px !important;
   }
 
+  .popup-leurres {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+    overflow-y: auto;
+    width: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
   .matos_titre.leurre {
     width: 100px !important;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   #matos {
     grid-template-rows: 1fr;
     grid-template-columns: repeat(4, 1fr);
@@ -476,7 +607,11 @@ main h1{
 
   .matos_detail {
     width: 100%;
-  }  
+  }
+
+  .leurre-box:hover {
+    transform: scale(1.1);
+  }
 
   .infos-box {
     top: 50%;
@@ -485,28 +620,23 @@ main h1{
     max-height: 80vh;
     overflow-y: auto;
     width: auto;
-    padding-left:40px;
+    padding-left: 40px;
     padding-right: 40px;
-    
-  }
-  
-
-  .infos-box img{
-    display:block;
-    width:800px;
-    height:auto;
   }
 
-  
+  .infos-box img {
+    display: block;
+    width: 800px;
+    height: auto;
+  }
 
-  .schema-scroll-zone {  
-  width: 800px;  
-}
+  .schema-scroll-zone {
+    max-width: 800px;
+  }
 
-.schema-scroll-zone.number1 {
-  width: 400px;
-}
-  
+  .schema-scroll-zone.number1 {
+    width: 400px;
+  }
 
   .infos {
     transition: transform 0.5s ease;
@@ -517,8 +647,8 @@ main h1{
     transform: scale(1.2);
   }
 
-  main h2,  main h1 {
+  main h2,
+  main h1 {
     font-size: 30px;
   }
-  
 }
