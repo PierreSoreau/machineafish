@@ -125,13 +125,6 @@ class UserController extends AbstractController
 
 
 
-    public function notFound(): void
-    {
-        $this->render('notfound.html.twig', []);
-    }
-
-
-
     public function questions(): void
     {
         //le if est nécessaire dans le cas ou l'utilisateur recommence 
@@ -463,5 +456,31 @@ class UserController extends AbstractController
             "categories" => $categories
 
         ]);
+    }
+
+    public function erreur404()
+    {
+        // 1. On signale au navigateur que c'est une erreur 404 (important pour Google/SEO)
+        http_response_code(404);
+
+        // 2. Au lieu de rediriger, on affiche direct le template
+        // (Vérifie bien que le chemin vers ton fichier twig est correct)
+        $this->render('erreur404.html.twig', []);
+    }
+
+    public function mentionslegales()
+    {
+
+        // 2. Au lieu de rediriger, on affiche direct le template
+        // (Vérifie bien que le chemin vers ton fichier twig est correct)
+        $this->render('mentions_legales.html.twig', []);
+    }
+
+    public function apropos()
+    {
+
+        // 2. Au lieu de rediriger, on affiche direct le template
+        // (Vérifie bien que le chemin vers ton fichier twig est correct)
+        $this->render('a_propos.html.twig', []);
     }
 }

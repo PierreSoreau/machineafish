@@ -1,93 +1,99 @@
-<!DOCTYPE html>
-<html>
+{% extends 'layout.html.twig' %}
 
-<head>
-    <meta charset="UTF-8">
-    <!--lien vers la bibliotheque de supabase-->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <!--lien vers le site Font Awesome d'icône-->
-    <script src="https://kit.fontawesome.com/22a319c99e.js" crossorigin="anonymous"></script>
-    <!--lien entre css et html-->
-    <link rel="stylesheet" href="visuel.css">
-    <!--liens écritures-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
-        rel="stylesheet">
-    <!--permet à ce que le visuel du site suive la largeur de l'écran, quelque soit la taille de l'écran-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentions légales</title>
-    <meta name="description" content="page des mentions légales du site">
-</head>
+{% block stylesheets %}
+	<link rel="stylesheet" href="assets/css/mentions_legales.css">
+	{{parent()}}
+{% endblock %}
 
-<body>
-    <section id="nav-placeholder"></section>
-    <main id="page_mentions_legales">
+{% block title %}
+	Mentions Légales & Politique de Confidentialité
+{% endblock %}
 
-        <section id="mentions-legales" class="mentions">
-            <h2>Mentions légales</h2><br>
-            <p>Nom du site : machine@fish</p>
-            <p>Propriétaire : Pierre SOREAU</p>
-            <p>Contact : <a href="mailto:machineafish@gmail.com">machineafish@gmail.com</a></p>
-            <p>Hébergeur : [Nom de ton hébergeur, adresse, téléphone]</p>
-            <p>Responsable de publication : Pierre SOREAU</p>
-        </section>
+{% block description %}
+	Mentions Légales & Politique de Confidentialité
+{% endblock %}
 
-        <section id="cookies1" class="mentions">
-            <h2>Cookies et traceurs</h2><br>
-            <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site et pour des statistiques
-                anonymes.</p>
-            <p>Vous pouvez accepter ou refuser les cookies via le bandeau affiché à l'ouverture du site ou dans les paramètres de votre
-                navigateur.</p>            
-        </section>
+{% block main %}
+	<main class="legal-page-wrapper">
+		<section class="legal-content">
+			<h1>Mentions Légales & Politique de Confidentialité</h1>
 
-        <script>
-            function acceptCookies() {
-                document.cookie = "cookies_accepted=true; path=/; max-age=" + 60 * 60 * 24 * 365;
-                document.getElementById('cookies').style.display = 'none'; // ferme le bandeau
-            }
+			<article>
+				<h2>1. Éditeur du site</h2>
+				<p>
+					Le site
+					<strong>Machine@Fish</strong>
+					est édité à titre personnel par :<br>
+					<strong>Pierre Soreau</strong><br>
+					Contact :
+					<a href="mailto:machineafish@gmail.com">machineafish@gmail.com</a><br>
+					Statut : Particulier
+				</p>
+			</article>
 
-            function declineCookies() {
-                document.cookie = "cookies_accepted=false; path=/; max-age=" + 60 * 60 * 24 * 365;
-                document.getElementById('cookies').style.display = 'none'; // ferme le bandeau
-            }
-        </script>
+			<article>
+				<h2>2. Hébergement</h2>
+				<p>
+					Le site est hébergé par :<br>
+					<strong>[Nom de l'hébergeur]</strong><br>
+					Adresse : [Adresse complète]<br>
+					Site web :
+					<a href="#" target="_blank">[Lien vers l'hébergeur]</a>
+				</p>
+			</article>
 
-        <section id="protection-donnees" class="mentions">
-            <h2>Protection des données personnelles</h2><br>
-            <p>Conformément au RGPD, nous collectons uniquement les données nécessaires pour :</p>
-            <ul>
-                <li>Répondre à vos messages via le formulaire de contact</li>
-                <li>Gérer votre compte utilisateur : nom, email, mot de passe et préférences associées</li>
-            </ul><br>
-            <p>Vos données de compte sont stockées en toute sécurité et utilisées uniquement pour vous permettre de vous
-                connecter et profiter des fonctionnalités du site.</p>
-            <p>Vous pouvez à tout moment :</p>
-            <ul>
-                <li>Modifier vos informations personnelles depuis votre compte</li>
-                <li>Supprimer votre compte et toutes vos données associées</li>
-            </ul><br>
+			<article>
+				<h2>3. Propriété Intellectuelle</h2>
+				<p>
+					L'ensemble de ce site (code, design, textes) relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Toute reproduction, même partielle, est interdite sans l'accord de l'éditeur.
+				</p>
+			</article>
 
-            <p>Pour toute demande de modification ou de suppression, contactez-nous à <a href="mailto:machineafish@gmail.com">machineafish@gmail.com</a>.</p>
-        </section>
+			<article>
+				<h2>4. Données Personnelles (RGPD)</h2>
+				<p>
+					Le site
+					<strong>Machine@Fish</strong>
+					respecte la vie privée de ses utilisateurs.
+				</p>
 
+				<h3>Collecte de données</h3>
+				<p>
+					Le site ne collecte
+					<strong>aucune donnée nominative</strong>
+					(pas de nom, pas d'email, pas de numéro de téléphone).
+															                L'utilisation du formulaire de "Recherche de matériel" entraîne l'enregistrement des réponses au questionnaire dans une base de données.
+				</p>
 
+				<ul>
+					<li>
+						<strong>Nature des données :</strong>
+						Préférences de pêche (type d'eau, poisson visé, etc.).</li>
+					<li>
+						<strong>Finalité :</strong>
+						Ces données servent uniquement à l'algorithme pour proposer le matériel adapté.</li>
+					<li>
+						<strong>Anonymat :</strong>
+						Ces données sont liées à un identifiant technique anonyme. Elles ne permettent pas d'identifier physiquement une personne.</li>
+				</ul>
+			</article>
 
-    </main>
+			<article>
+				<h2>5. Cookies</h2>
+				<p>
+					Ce site utilise un unique type de cookie : les
+					<strong>cookies de session</strong>
+					(techniquement appelés
+					<code>PHPSESSID</code>).
+				</p>
+				<p>
+					Ces cookies sont strictement nécessaires au bon fonctionnement du site (pour mémoriser vos réponses au quiz d'une page à l'autre). 
+															                Conformément aux recommandations de la CNIL, ces cookies techniques sont
+					<strong>exemptés de consentement préalable</strong>. 
+																		                Ils ne sont utilisés ni pour la publicité, ni pour le traçage commercial.
+				</p>
+			</article>
 
-    <section id="footer-placeholder"></section>
-
-    <!--<div id="cookies_background">
-    <div id="cookies">        
-    </div> 
-    </div>    
-
-    <!--lien vers le script js qui gère les cookies google analytics-->
-    <!--<script src="script_gestion_cookies.js"></script>-->
-
-    <script src="script_nav_footer_barrederecherche.js"></script>
-
-</body>
-
-</html>
+		</section>
+	</main>
+{% endblock %}

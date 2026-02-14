@@ -1,0 +1,127 @@
+/* =========================================
+   BASE : MOBILE (Téléphones)
+   ========================================= */
+
+/* Le fond global de la page */
+.legal-page-wrapper {
+    background-color: #f8f9fa; /* Gris très léger */    
+    padding: 20px 15px; /* Un peu de marge sur les bords du téléphone */
+    font-family: "Inter", Helvetica, Arial, sans-serif;
+    color: #2c3e50; /* Gris foncé lisible */
+    line-height: 1.6; /* Espacement des lignes pour la lecture */
+}
+
+/* Le conteneur du texte */
+.legal-content {
+    width: 100%;
+    margin: 60px auto auto auto;
+    background-color: #ffffff; /* Fond blanc */
+    /* Pas de bordure ni d'ombre sur mobile pour maximiser l'espace */
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* --- TYPOGRAPHIE --- */
+
+/* Titre principal H1 */
+.legal-content h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+/* Titres de section H2 */
+.legal-content h2 {
+    font-size: 1.2rem;
+    color: #3498db; /* Ton bleu */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 4px solid #3498db; /* Barre latérale bleue */
+}
+
+/* Sous-titres H3 */
+.legal-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #34495e;
+}
+
+/* Paragraphes */
+.legal-content p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Listes à puces */
+.legal-content ul {
+    background-color: #f1f4f8; /* Fond bleuté très léger pour la liste */
+    padding: 20px 20px 20px 40px; /* Espace à gauche pour les puces */
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.legal-content li {
+    margin-bottom: 10px;
+    list-style-type: disc;
+}
+
+/* Liens */
+.legal-content a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dotted #3498db;
+}
+
+.legal-content a:hover {
+    color: #1d6fa5;
+    border-bottom: 1px solid #1d6fa5;
+}
+
+/* Code (PHPSESSID) */
+.legal-content code {
+    background-color: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #c0392b; /* Rouge technique */
+}
+
+/* =========================================
+   TABLETTES ET DESKTOP (min-width: 768px)
+   ========================================= */
+
+@media (min-width: 768px) {
+    
+    .legal-page-wrapper {
+        padding: 50px 0; /* Plus d'espace haut/bas */
+    }
+
+    .legal-content {
+        max-width: 800px; /* On limite la largeur pour la lecture */
+        padding: 50px; /* Aère le contenu */
+        border-radius: 8px; /* Coins arrondis */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Ombre portée douce (Effet papier) */
+        margin-top: 50px;
+    }
+
+    .legal-content h1 {
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+    }
+
+    .legal-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .legal-content p {
+        text-align: justify; /* Justifié sur grand écran c'est plus joli */
+    }
+}

@@ -54,8 +54,16 @@ class Router
                 $this->uc->recherche();
                 break;
 
+            case 'mentions_legales':
+                $this->uc->mentionslegales();
+                break;
+
+            case 'a_propos':
+                $this->uc->apropos();
+                break;
+
             default:
-                $this->uc->descriptionPoisson();
+                $this->uc->erreur404();
                 break;
         }
     }

@@ -1,0 +1,269 @@
+/* =========================================
+   BASE & MOBILE FIRST (Téléphone par défaut)
+   ========================================= */
+
+/* Fond global de la page */
+.about-page-wrapper {
+    background-color: #f4f7f6; /* Gris très léger, moderne */
+    height: auto;
+    padding: 40px 20px;
+    font-family: "Inter", Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    line-height: 1.6;
+    margin:60px 0px auto 0px;
+}
+
+/* Conteneur pour centrer les blocs (Mission & Auteur) */
+.about-container {
+    max-width: 900px; /* Largeur max sur PC */
+    margin: 0 auto 60px auto; /* Centré + Marge en bas */
+}
+
+/* --- SECTION 1 : MISSION --- */
+
+.section-mission h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
+    line-height: 1.2;
+}
+
+/* Le texte en bleu "enfin accessible" */
+.highlight {
+    color: #3498db; /* Ton bleu Machine@Fish */
+    display: block; /* Passe à la ligne sur mobile pour l'impact */
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #555;
+    padding: 0 10px;
+}
+
+/* --- LISTE DES FONCTIONNALITÉS (Les cartes) --- */
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espace entre les cartes */
+}
+
+.features-list li {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Ombre légère */
+    display: flex;
+    flex-direction: column; /* Mobile : Icone au dessus du texte */
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.features-list li:hover {
+    transform: translateY(-5px); /* Petit effet de lévitation au survol */
+}
+
+/* Le rond bleu autour de l'icône */
+.icon-box {
+    background-color: #eaf6fc; /* Bleu très pâle */
+    color: #3498db;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    flex-shrink: 0; /* Empêche l'icône de s'écraser */
+}
+
+.feature-text h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.feature-text p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Les liens dans les cartes */
+.feature-text a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px solid #eaf6fc;
+    transition: border-color 0.3s;
+}
+
+.feature-text a:hover {
+    border-color: #3498db;
+}
+
+/* --- SECTION 2 : AUTEUR (La carte bio) --- */
+
+.author-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden; /* Pour que l'image ne dépasse pas des bords arrondis */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column; /* Mobile : Image en haut, texte en bas */
+    margin-bottom: 40px;
+}
+
+.author-image-wrapper {
+    width: 100%;
+    height: 300px; /* Hauteur fixe pour la photo sur mobile */
+    position: relative;
+}
+
+.author-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Important : l'image remplit la zone sans être déformée */
+    object-position: center top; /* On cadre sur le haut (le visage) */
+}
+
+.author-bio {
+    padding: 30px;
+}
+
+.author-bio h2 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #3498db;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* Ton nom en police manuscrite */
+.author-name {
+    font-family: "Kaushan Script", cursive; 
+    font-size: 2.2rem;
+    margin: 0 0 20px 0;
+    color: #2c3e50;
+    line-height: 1.2;
+}
+
+.author-bio p {
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 1rem;
+}
+
+.signature {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #3498db;
+    font-size: 1.2rem;
+    font-family: "Kaushan Script", cursive;
+}
+
+/* --- NOUVEAU BLOC CONTACT --- */
+
+#contact {
+    text-align: center;
+    padding: 20px;
+    background-color: #eaf6fc; /* Petit fond bleu pâle pour le distinguer */
+    border-radius: 12px;
+}
+
+#contact h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+#contact a {
+    display: inline-block;
+    color: #3498db;
+    font-weight: 700;
+    text-decoration: none;    
+    padding: 10px 20px;
+    border: 2px solid #3498db;
+    border-radius: 50px; /* Forme de bouton rond */
+    transition: all 0.3s ease;
+}
+
+#contact a:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+
+/* =========================================
+   DESKTOP & TABLETTES (min-width: 992px)
+   ========================================= */
+
+@media (min-width: 992px) {
+    
+    .about-page-wrapper {
+        padding-top: 60px;
+    }
+
+    .highlight {
+        display: inline; /* Sur PC, on remet le texte sur la même ligne */
+    }
+
+    .section-mission h1 {
+        font-size: 3rem;
+    }
+
+    /* La liste passe en mode horizontal (Icône à gauche, texte à droite) */
+    .features-list li {
+        flex-direction: row; 
+        text-align: left;
+        align-items: flex-start;
+        padding: 30px;
+    }
+
+    .icon-box {
+        margin-right: 25px;
+        margin-bottom: 0;
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+
+    /* Carte Auteur : Image à gauche, texte à droite */
+    .author-card {
+        flex-direction: row;
+        align-items: stretch; /* Étire les deux côtés à la même hauteur */
+    }
+
+    .author-image-wrapper {
+        width: 40%; /* L'image prend 40% de la largeur */
+        height: auto; /* La hauteur s'adapte au texte */
+        min-height: 450px; /* Hauteur mini pour que ce soit joli */
+    }
+
+    .author-bio {
+        width: 60%;
+        padding: 50px; /* Plus d'espace intérieur */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centre le texte verticalement */
+    }
+
+    /* Contact un peu plus discret sur PC ou intégré différemment */
+    #contact {
+        background: transparent;
+        margin-top: 20px;
+    }
+
+    #contact a{
+    font-size: 1.1rem;
+    }
+}

@@ -1,0 +1,101 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="assets/css/a_propos.css">
+	{{parent()}}
+{% endblock %}
+
+{% block title %}
+	A propos
+{% endblock %}
+
+{% block description %}
+	Description du sujet du site et description de l'éditeur du site
+{% endblock %}
+
+{% block main %}
+	<main class="about-page-wrapper">
+
+		<section class="about-container section-mission">
+			<div class="text-content">
+				<h1>La pêche aux leurres,
+					<span class="highlight">enfin accessible.</span>
+				</h1>
+				<p class="intro-text">
+					<strong>Machine@Fish</strong>
+					est né d'un constat simple : débuter la pêche ne devrait pas être un casse-tête. 
+																																							                    Fini les heures perdues à chercher des infos contradictoires. Ici, on va droit au but.
+				</p>
+
+				<ul class="features-list">
+					<li>
+						<div class="icon-box">
+							<i class="fa-solid fa-fish-fins"></i>
+						</div>
+						<div class="feature-text">
+							<h3>Comprendre les prédateurs</h3>
+							<p>Les
+								<a href="index.php?route=poissons">Carnassiers</a>
+								n'auront plus de secrets pour vous : morphologie, habitats, alimentation, reproduction.</p>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon-box">
+							<i class="fa-solid fa-wand-magic-sparkles"></i>
+						</div>
+						<div class="feature-text">
+							<h3>L'équipement parfait, sans effort</h3>
+							<p>Ne gaspillez plus votre argent. En répondant
+								<a href="index.php?route=poissons">à un questionnaire personnalisé</a>
+								vous aurez la liste exacte du type de matériel que vous pouvez acheter (canne, moulinet, fils, leurres) adapté à
+								<em>votre</em>
+								lieu de pêche.</p>
+						</div>
+					</li>
+
+					<li>
+						<div class="icon-box">
+							<i class="fa-brands fa-youtube"></i>
+						</div>
+						<div class="feature-text">
+							<h3>Apprendre en visionnant</h3>
+							<p>Des nœuds aux animations de leurres, formez-vous rapidement avec la sélection de
+								<a href="index.php?route=tutoriels">Tutoriels vidéos</a>
+								essentiels pour débuter.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="about-container section-author">
+			<div class="author-card">
+				<div class="author-image-wrapper">
+					<img src="assets/images/pierre_soreau.webp" alt="Pierre Soreau, créateur de Machine@Fish" class="author-img">
+				</div>
+
+				<div class="author-bio">
+					<h2>Qui suis-je?</h2>
+					<p class="author-name">Pierre Soreau</p>
+					<p>
+						La pêche aux leurres est ma passion depuis l'enfance, mais je n'ai pas oublié mes débuts.
+						<strong>J'ai connu la galère :</strong>
+						les bredouilles, le matériel inadapté, le jargon incompréhensible et les informations introuvables.
+					</p>
+					<p>
+						J'ai créé
+						<strong>Machine@Fish</strong>
+						pour être le guide que j'aurais rêvé avoir à mes débuts. Mon objectif est simple : vous faire gagner du temps pour que vous puissiez sortir votre premier poisson le plus vite possible, sans vous perdre dans la technique.
+					</p>
+					<div class="signature">Bonne pêche ! 🎣</div>
+				</div>
+			</div>
+			<div id="contact">
+				<h3>Me contacter</h3>
+				<a href="mailto:machineafish@gmail.com">machineafish@gmail.com</a>
+			</div>
+		</section>
+
+	</main>
+{% endblock %}
