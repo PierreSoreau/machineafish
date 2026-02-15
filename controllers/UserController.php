@@ -436,7 +436,7 @@ class UserController extends AbstractController
             ];
 
             //redirection vers la page recherche avec les données obtenues de la barre de recherche
-            header('Location: index.php?route=recherche');
+            header('Location: /recherche-peche');
             exit;
         }
 
