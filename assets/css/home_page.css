@@ -1,6 +1,22 @@
 main {
     margin-top: 60px;
+}
 
+/* On enlève le flex qui centrait tout, on laisse les blocs s'empiler */
+#home_page {
+    display: block;
+    width: 100%;
+}
+
+/* --- PARTIE HAUTE (VIDEO) --- */
+
+.home-intro {
+    position: relative; /* Indispensable pour que la vidéo reste dans cette boite */
+    height: 450px;      /* On force une hauteur pour voir la vidéo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .video_background {
@@ -9,19 +25,9 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     z-index: 0;
-
 }
 
-#home_page {
-    position: relative;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* On ajoute un filtre noir semi-transparent PAR DESSUS la vidéo */
 .video_background::after {
     content: "";
     position: absolute;
@@ -29,48 +35,74 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    /* 60% d'opacité noire */
-    z-index: 2;
-    /* Doit être au-dessus de la balise <video> mais sous le menu*/
-    pointer-events: none;
-    /* Permet de cliquer à travers si besoin */
+    background: rgba(0, 0, 0, 0.5); /* Le filtre noir */
+    z-index: 1;
 }
 
 .video_background video {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
 }
 
+/* Le Texte par dessus la vidéo */
+.intro-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    max-width: 900px;
+}
+
+.intro-content h1 {
+    font-size: 40px; /* Taille en px comme tu aimes */
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+.highlight {
+    color: #3498db;
+    display: block;
+}
+
+.intro-text {
+    font-size: 18px; /* Taille standard */
+    line-height: 1.5;
+    color: #f1f1f1;
+    font-family: "Inter", sans-serif;
+}
+
+
+/* --- PARTIE BASSE (MENU) --- */
+
 .menu_visuel {
+    background-color: white; /* Fond blanc demandé */
+    padding: 50px 0;         /* Un peu d'espace en haut et en bas */
+    
+    /* Ta grille habituelle */
     display: grid;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: center; 
+    justify-content: center;
     grid-template-columns: 1fr;    
     gap: 20px;
-    width: 100%;    
-    
-
+    width: 100%;
 }
 
 .lien-menu {
     position: relative;
     display: block;
-    border: 2px solid white;
+    
+    /* Changement important : Bordure grise ou bleue car le fond est blanc */
+    border: 4px solid #3498db; 
+    
     border-radius: 20px;
     text-decoration: none;
-    width:200px;
+    width: 200px;
     margin: 0 auto;
-    
+    overflow: hidden;
 }
 
-/* Création du voile sombre */
 .lien-menu::after {
     content: "";
     position: absolute;
@@ -78,20 +110,17 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* 0.4 pour un assombrissement efficace */
-    z-index: 1; /* Place le voile au-dessus de l'image */
-    border-radius: 20px;     
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;   
 }
+
 .lien-menu img {
     width: 100%;
     height: 100%;
-    display: block;/* Supprime l'espace vide sous l'image */    
+    display: block; 
     object-fit: cover; 
-    z-index: 0;
-    border-radius: 20px;     
+    z-index: 0;  
 }
-
-
 
 .titre-menu {
     position: absolute;
@@ -104,102 +133,59 @@ main {
     font-family: "Inter", cursive; 
     text-align: center;
     z-index: 2;
-      
+    width: 90%;
 }
 
 
+/* --- TES MEDIA QUERIES (Adaptées) --- */
 
 @media(min-width:576px) {
-    .menu_visuel {
-        grid-template-columns: 1fr; 
-    }
-    
     .titre-menu {        
         font-size: 30px;
-       
     }
 
     .lien-menu {
-         border: 3px solid white;
-         width:250px;
-         margin: 0 auto;         
+         width: 250px;
     }
-
-
-
-
+    .home-intro {
+        height: 50vh; 
+    }
 }
 
 @media(min-width:992px) {
 
-    .video_background {
-        grid-column: 1;
-        grid-row: 1/2;
-        height: 100%;
+    /* Sur PC, on agrandit la zone vidéo */
+    .home-intro {
+        height: 60vh; 
+    }
+
+    .intro-content h1 {
+        font-size: 60px; /* Plus gros sur PC */
+    }
+
+    .highlight {
+        display: inline;
     }
 
     .menu_visuel {
-        grid-template-columns: repeat(auto-fit, 300px); 
-        gap:40px;
-        
+        grid-template-columns: repeat(3, 300px); 
+        gap: 40px;
     }
 
-    
-    
     .titre-menu {        
         font-size: 40px;
-       
     }
 
     .lien-menu {
-         border: 4px solid white;
-         transition: all 0.3s ease;
+        /* On remet une transition pour l'effet de survol */
+        transition: all 0.3s ease;
+        width: 300px;
+        height: 300px;
     }
 
     .lien-menu:hover {
-         border: 4px solid white;
          transform: scale(1.05);
+         /* Optionnel : changer la couleur de bordure au survol */
+         border-color: #3498db;
     }
-
-
-    .lien {
-        width: 300px;
-        height: 300px;
-        margin: auto auto;
-        border: 4px solid white;
-        transition: all 0.3s ease;
-        font-size: 40px;
-
-    }
-
-    .lien:hover {
-        transform: scale(1.05);
-    }
-
-    
-
-    #home_page {
-        position: relative;
-        /* Important pour que la vidéo absolue se cale par rapport à lui */
-        display: flex;
-        /* Active le mode Flexbox */
-        justify-content: center;
-        /* Centre horizontalement */
-        align-items: center;
-        /* Centre verticalement (C'est ça que tu veux !) */
-        min-height: 80vh;
-        /* Force une hauteur mini pour bien voir l'effet (ajuste selon la taille de ton header/footer) */
-        overflow: hidden;
-        /* Coupe ce qui dépasse*/
-
-    }
-
-}
-
-@media(min-width:1200px) {
-    
-}
-
-@media(min-width:1400px) {
-    
 }

@@ -1,0 +1,17 @@
+# Fichier qui permet d'avoir un url propre en haut du site
+# Dans le cas où l'utilisateur rentre le nom exact de l'image on affiche directement l'image à l'écran 
+
+Options +FollowSymLinks
+RewriteEngine On
+
+#j'ai configuré xamp de manière à ce que la racine ne soit plus htdocs mais machineafish donc la base est / seulement du coup
+RewriteBase /
+
+# Si le fichier (-d) ou le dossier (-f)  demandé existe vraiment (ex: une image, le css) 
+# dans la mémoire des dossiers du site, on le sert directement, c'est à dire une image qui a une src=assets/images/..... 
+# va être prise en compte directe et affichée sur le site dans le flux au lieu de faire planter le site si htaccess part sur index.php/...
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Sinon, on redirige tout vers index.php en passant la fin de l'URL dans la variable 'route'
+RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]

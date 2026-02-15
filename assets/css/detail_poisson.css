@@ -1,1720 +1,946 @@
 main {
-    background-color: black;
-    margin-top: 60px;
+  background-color: #f4f4f4;
+  margin-top: 60px;
+  color: #333;
 }
 
-/*PARTIE MORPHOLOGIE*/
-
-#pres_poisson {
-    width: 100%;
-    height: auto;
-    padding-top: 10px;
-}
-
-#pres_poisson h1 {
-    color: white;
-    font-family: "Inter", cursive;
-    text-align: center;
-    font-size: 25px;
-}
-
-#pres_poisson img {
-    max-width: 80%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    margin: 10px auto;
-
-}
-
+/* --- NAVIGATION HAUTE (Sticky) --- */
 #navig_poisson {
-    display: flex;
-    font-size: 16px;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    /* Cache la barre de défilement sur Firefox */
-    white-space: nowrap;
-    /*anti retour à la ligne*/
-    max-width: 100vw;
-    position: sticky;
-    top: 60px;
-    z-index: 900;
-    background-color: black;
-
+  display: flex;
+  font-size: 16px;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  white-space: nowrap;
+  max-width: 100vw;
+  position: sticky;
+  top: 60px;
+  z-index: 900;
+  background-color: #f4f4f4;
+  border-bottom: 3px solid #3498db;
 }
 
+/* Bouton de navigation actif (CORRIGÉ : Bleu sur Blanc) */
 .filter-btn.active {
-    color: black !important;
-    border: none !important;
-    backdrop-filter: none !important;
-    background: white !important;
+  background-color: #3498db !important; /* Bleu */
+  color: white !important;
+  border: 1px solid #3498db !important;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
 }
 
-#navig_fish {
-    display: flex;
-    /* On le colle en bas */
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    gap: 10px;
-    position: fixed;
-    z-index: 1000;
-
-    /* Design de la barre */
-    width: 100%;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.05);
-    /* Fond semi-transparent pour lire */
-    backdrop-filter: blur(5px);
-    /* Effet flou moderne (optionnel) */
-    border-top: 1px solid #ccc;
-
-    /* Gestion du scroll horizontal */
-    justify-content: center;
-    padding: 10px;
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
-}
-
-
-#navig_fish img {
-    width: 60px;
-    /* Taille fixe en px c'est mieux que vw ici */
-    height: 60px;
-    /* L'image remplit bien le rond sans s'écraser */
-    border-radius: 50%;
-
-
-}
-
-.poisson_actif {
-    border: 3px solid red;
-    /* Le cercle rouge */
-    transform: scale(1.1);
-    /* Un petit zoom pour la mettre en valeur */
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    /* Une petite lueur rouge */
-}
-
-/* Cache la barre de défilement sur Chrome/Safari */
 #navig_poisson::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 #navig_poisson li {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    /*l'ensemble des animations sont faites en 0.3s avec une accélération (0.4,0)/décélération (0.2,1) en courbe de bezier*/
-    padding: 3px;
-    list-style: none;
-
-
+  padding: 3px;
+  list-style: none;
 }
 
 #navig_poisson li a {
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
-    /* Blanc légèrement transparent */
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Bordure fine et discrète */
-    background: rgba(255, 255, 255, 0.05);
-    /* Fond très légèrement grisé */
-    padding: 8px 20px;
-    border-radius: 50px;
-    /* Forme pilule moderne */
-    backdrop-filter: blur(5px);
-    /* Effet flou derrière le bouton */
-    font-weight: 500;
-    font-family: "Inter", cursive;
-}
-
-#navig_poisson li:hover {
-    transform: scale(1.1);
-
+  display: block;
+  color: white;
+  text-decoration: none;
+  border: 3px solid #3498db;
+  background: #1a1a1a;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-family: "Inter", cursive;
+  transition: all 0.3s ease;
 }
 
 #navig_poisson li a:hover {
-    color: #ffffff;
-    border-color: #2ecc71;
-    background: rgba(46, 204, 113, 0.1);
-    /*Lueur verte:
-    0 c'est le centrage horizontal de l'ombre
-    5px c'est le centrage vertical de l'ombre
-    15px c'est l'épaisseur
-    dans le rgba 0.3 permet d'avoir une couleur qui n'est pas totalement opaque au-dessus de 0.3 ça devient trop opaque*/
-    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+/* --- NAVIGATION BASSE (Autres poissons) --- */
+#navig_fish {
+  display: flex;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  gap: 10px;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  border-top: 3px solid #3498db;
+  justify-content: center;
+  padding: 10px;
+}
+
+#navig_fish img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 0;
+  display: block;
+}
+
+.poisson_actif {
+  box-shadow: 0 0 0 3px #3498db;
+  transform: scale(1.1);
+}
+
+/* --- PRESENTATION GENERALE --- */
+#pres_poisson {
+  width: 100%;
+  padding-top: 10px;
+}
+
+#pres_poisson h1 {
+  color: #2c3e50;
+  font-family: "Inter", cursive;
+  text-align: center;
+  font-size: 25px;
+}
+
+#pres_poisson img {
+  max-width: 80%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+
+/* --- TITRES DES SECTIONS (DESIGN ARRONDIS) --- */
+
+.sous_partie.nb1 {
+  border-top: none;
 }
 
 .sous_partie {
-    border-top: solid 2px white;
+  border-top: solid 3px #3498db;
+  padding-top: 30px;
 }
-
 
 .sous_partie h3 {
-    color: white;
-    margin-left: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-family: "Inter", cursive;
-    letter-spacing: 1.5px;
+  display: inline-block; /* Le bloc s'adapte à la taille du texte */
+  background-color: #3498db; /* Fond bleu */
+  color: white; /* Texte blanc */
+  padding: 8px 25px; /* Espace autour du texte */
+  border-radius: 50px; /* Bords très arrondis */
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Petite ombre */
+  margin-left: 10px;
 }
 
+/* --- PARTIE MORPHOLOGIE --- */
 
 #taille_poisson {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 #taille_poisson img {
-    border-radius: 20px;
-    max-width: 80%;
-    object-fit: cover;
-    margin: 10px auto;
+  border-radius: 20px;
+  max-width: 80%;
+  object-fit: cover;
+  margin: 10px auto;
+
+  /* BORDURE DEMANDÉE */
+  border: 4px solid #3498db;
 }
 
-
 #morpho_container {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr;
-
-
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
 }
 
 #resetBtn {
-    display: none;
-    text-align: center;
-    padding: 10px;
-    background-color: white;
-    border: none;
-    border-radius: 20px;
-    font-weight: bold;
-    width: 100%;
+  display: none;
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  width: 100%;
 }
 
 .photo_morpho {
-    max-width: 100%;
-    margin: auto 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid #333333;
-    background-color: #1a1a1a;
-    padding: 20px;
-    border-radius: 10px;
+  max-width: 100%;
+  margin: auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 10px;
+
+  /* FOND DEMANDÉ #1a1a1a */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
 }
 
-.morpho_box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 10px;
+.morpho_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
 }
-
 
 .morpho {
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border: 3px solid white;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #3498db;
 }
-
 
 .description {
-    text-align: justify;
-    color: white;
-    font-family: "Inter", cursive;
-    font-size: 16px;
+  text-align: justify;
+  font-family: "Inter", cursive;
+  font-size: 16px;
+  /* Texte blanc sur fond noir */
+  color: white;
 }
 
+/* SYNTHESE */
 .synthese {
-    display: block;
-    background-color: black;
-    color: white;
-    padding-top: 20px;
-    padding-bottom: 30px;
+  display: block;
+  background-color: #f4f4f4;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  margin-top: 20px;
 }
-
 
 .titre_synthese {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: bold;
-    margin-bottom: 10px;
-
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
 }
 
 .titre_synthese h4 {
-    font-size: 20px;
-    font-family: "Inter", cursive;
+  font-size: 20px;
+  font-family: "Inter", cursive;
+  color: #2c3e50;
+}
+.titre_synthese i {
+  color: #2c3e50 !important;
 }
 
 .contenu_synthese {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    border: 1px solid #333333;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    width: auto;
-    margin: auto 10px;
-    overflow: hidden;
-    /*permet de tronquer l'angle du border de la case qui dépasse de contenu synthese*/
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  border-radius: 10px;
+  width: auto;
+  margin: auto 10px;
+  overflow: hidden;
+
+  /* FOND DEMANDÉ #1a1a1a */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
 }
 
 .ligne_contenu {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    border: 1px solid #333333;
-    padding: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #333;
+  padding: 20px;
 }
 
 .ligne_contenu i {
-    background: rgba(99, 230, 190, 0.1);
-    /* Cercle léger autour du check */
-    padding: 10px;
-    border-radius: 8px;
-    margin-right: 15px;
-    color: #63E6BE;
+  background: rgba(46, 204, 113, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 15px;
+  color: #2ecc71;
 }
-
-
 
 .ligne_contenu p {
-    font-family: "Inter", cursive;
-    font-size: 16px;
+  font-family: "Inter", cursive;
+  font-size: 16px;
+  color: white; /* Texte blanc */
 }
 
-/*FIN PARTIE MORPHOLOGIE*/
-
-/*DEBUT PARTIE HABITATS*/
+/* --- PARTIE HABITATS --- */
 
 .fa-water,
 .fa-wind,
 .fa-temperature-three-quarters,
 .fa-location-dot {
-    color: white;
+  color: #3498db;
 }
 
 .habitat_title {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
 }
 
-h4 {
-    color: white;
-    font-family: "Inter", cursive;
-    letter-spacing: 1.5px;
+/* CORRIGÉ : Titres habitats (Température, Intensité) visibles */
+.habitat_title h4 {
+  color: white; /* Blanc sur fond #1a1a1a */
+  font-family: "Inter", cursive;
+  letter-spacing: 1px;
 }
 
+/* Le titre "Milieu Aquatique" est hors bloc noir, donc foncé */
+.sous_partie > .habitat_title h4 {
+  color: #2c3e50;
+}
+
+/* Grille types d'eau */
 .milieu_aquatique {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
-    width: 95%;
-    margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  width: 95%;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 .type_eau {
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    gap: 10px;
-
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: auto;
 }
-
 .type_eau img {
-    border-radius: 10px;
-
-
+  border-radius: 10px;
 }
-
 .type_eau p {
-    color: white;
-    font-family: "Inter", cursive;
-    font-size: 20px;
+  color: #333;
+  font-family: "Inter", cursive;
+  font-size: 20px;
 }
 
-
+/* Blocs Habitats (Température / Courant) */
 .box_habitat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #333333;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 95%;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 95%;
+  margin-top: 30px;
+  border-radius: 10px;
+
+  /* FOND DEMANDÉ #1a1a1a */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  margin: 0 auto;
+}
+
+/* Pour forcer les titres DANS les box_habitat en blanc */
+.box_habitat h4 {
+  color: white !important;
 }
 
 .graph {
-    width: 280px;
-    height: 280px;
-    position: relative;
+  width: 280px;
+  height: 280px;
+  position: relative;
 }
 
-
 .condi_habitat {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
 #jauge_courant {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .temp-label {
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: sans-serif;
-    background: rgba(255, 255, 255, 0.1);
-    /* Fond très léger */
-    backdrop-filter: blur(4px);
-    /* Effet de flou derrière */
-    padding: 4px 8px;
-    border-radius: 12px;
-    /* Bords très arrondis */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 11px;
+  position: absolute;
+  font-weight: bold;
+  font-family: sans-serif;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  color: black;
+  background: white;
+  border: 2px solid #3498db;
 }
 
 .temp-label.temp1 {
-    left: -5%;
-    bottom: 38%;
+  left: -5%;
+  bottom: 38%;
 }
-
 .temp-label.temp2 {
-    left: 19%;
-    top: 23%;
+  left: 19%;
+  top: 23%;
 }
-
 .temp-label.temp3 {
-    left: 72%;
-    top: 26%;
+  left: 72%;
+  top: 26%;
 }
-
 .temp-label.temp4 {
-    right: -7%;
-    top: 53%;
+  right: -7%;
+  top: 53%;
 }
-
 
 #visuelspot {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
 }
 
 .pea,
 .hiver {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.pea img, .hiver img{
-    width: 300px;
-    height:170px;
-    border-radius: 10px;
+.pea img,
+.hiver img {
+  width: 300px;
+  height: 170px;
+  border-radius: 10px;
 }
-
 .animation_saison {
-    position: relative;
-    width: 300px;
-    height:170px;     
-    overflow: hidden;
+  width: 300px;
+  height: 170px;
+  position: relative;
+  overflow: hidden;
 }
-
 .animation_saison img {
-    width: 100%;
-    display: block;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
-
 .image-anim {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* On lie l'animation définie plus bas */
-    animation: mimeVideo 2s infinite alternate ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: mimeVideo 2s infinite alternate ease-in-out;
 }
 
-/* Définition du mouvement ou du changement */
 @keyframes mimeVideo {
-    0% {
-        opacity: 0;
-        
-    }
-    100% {
-        opacity: 1;
-        
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .pea {
-    display: flex;
-   
+  display: flex;
 }
-
 .hiver {
-    display: none;
-    
+  display: none;
 }
-
-
 
 .hiver p,
 .pea p {
-    color: white;
-    text-align: center;
-    font-family: "Inter", cursive;
-    font-size: 16px;
+  color: #333;
+  text-align: center;
+  font-family: "Inter", cursive;
+  margin-top: 5px;
+  font-weight: 700;
 }
-
-
 
 .season-switcher {
-    border: 1px solid #333333;
-    background-color: #1a1a1a;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    margin: 10px auto;
-    gap: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  gap: 10px;
+  border-radius: 10px;
+
+  /* FOND DEMANDÉ #1a1a1a */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
 }
 
-/* On cache les ronds des boutons radio */
 .season-switcher input[type="radio"] {
-    display: none;
+  display: none;
 }
 
-/* Le design des étiquettes (labels) */
 .season-switcher label {
-    padding: 8px 16px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #888;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    font-family: "Inter", cursive;
-    width: 230px;
-    text-align: center;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: "Inter", cursive;
+  width: 230px;
+  text-align: center;
+  color: #aaa; /* Gris clair sur fond noir */
 }
 
-/* Style quand le bouton est sélectionné (coché) */
-.season-switcher input[type="radio"]:checked+label {
-    color: #fff;
-
+.season-switcher input[type="radio"]:checked + label {
+  color: #fff;
 }
-
-#saison-pea:checked+label {
-    background-color: #2ecc71;
-    margin-top: 10px;
+#saison-pea:checked + label {
+  background-color: #2ecc71;
+  margin-top: 10px;
 }
-
-/* Style spécial pour le bouton Hiver quand coché */
-#saison-hiver:checked+label {
-    background-color: #3498db;
-    margin-bottom: 10px;
+#saison-hiver:checked + label {
+  background-color: #3498db;
+  margin-bottom: 10px;
 }
 
 .aqua1,
 .season-switcher,
 #box-selectspot {
-    padding-left: 0;
+  padding-left: 0;
 }
 
-/* PARTIE ALIMENTATION*/
+/* --- PARTIE ALIMENTATION --- */
 
 #detail_food p {
-    color: white;
-    font-family: "Inter", cursive;
-    font-size: 16px;
-    text-align: left;
+  font-family: "Inter", cursive;
+  font-size: 16px;
+  text-align: left;
+  color: white; /* Texte blanc */
 }
 
 #detail_food {
-    width: 95%;
-    margin: 0 auto;
-    border: 1px solid #333333;
-    background-color: #1a1a1a;
-    border-radius: 15px;
-    margin: 10px auto;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    border-left: 5px solid #007bff;
-    background: linear-gradient(145deg, #1a1a1a, #222222);
-    /* Léger dégradé */
+  width: 95%;
+  margin: 10px auto;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 
+  /* FOND DEMANDÉ #1a1a1a */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
 
+  /* BORDURE BLEUE DEMANDÉE */
+  border-left: 5px solid #007bff;
 }
 
 .video_fish {
-    width: 95%;
-    padding-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+  width: 95%;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
-
 .ma-video {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .prev,
 .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(49, 49, 49, 0.6);
-    color: white;
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    z-index: 100;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border: 1px solid #bbb;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 100;
+  border-radius: 5px;
 }
-
 .next {
-    right: 5%;
+  right: 5%;
 }
-
 .prev {
-    left: 5%;
+  left: 5%;
 }
 
 #container_food {
-    width: 100%;
-    transition: transform 0.5s ease;
-    display: flex;
-    position: relative;
+  width: 100%;
+  transition: transform 0.5s ease;
+  display: flex;
+  position: relative;
 }
 
 #box_food {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-x: hidden;
-    width: 95%;
-    border: 1px solid #333333;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    padding: 10px 0px;
-    margin: 10px auto;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+  width: 95%;
+  padding: 10px 0px;
+  margin: 10px auto;
+  position: relative;
+  border-radius: 10px;
 
+  /* FOND DEMANDÉ #1a1a1a */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
 }
 
 .food {
-    display: flex;
-    flex: 0 0 100%;
-    /* le premier 0 veut dire impossible d'agrandir le contenu dans le cas ou il reste de la place dans le conteneur
-    le deuxième 0 veut dire impossible de rétrécir pour que tout passe dans box_food*/
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
+  display: flex;
+  flex: 0 0 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-
 .food img {
-    width: 90%;
-    height: auto;
-    border-radius: 10px;
-
+  width: 90%;
+  height: auto;
+  border-radius: 10px;
 }
-
 .food p {
-    color: white;
-    text-align: center;
-    font-family: "Inter", cursive;
-    font-size: 16px;
-    width: 100%;
-    margin-top: 10px;
+  text-align: center;
+  font-family: "Inter", cursive;
+  margin-top: 10px;
+  color: white; /* Texte blanc */
 }
 
-/* PARTIE REPRODUCTION*/
-
-
-
+/* --- PARTIE REPRODUCTION --- */
 
 #box_reprod {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 95%;
-    max-width: 750px;
-    border: 1px solid #333333;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin: 10px auto;
-    gap: 30px;
-    height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 95%;
+  max-width: 750px;
+  padding: 10px 20px;
+  margin: 10px auto;
+  gap: 30px;
+  height: auto;
+  border-radius: 10px;
+
+  /* FOND DEMANDÉ #1a1a1a */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
 }
 
 .progress-track {
-    position: relative;
-    width: 10px;
-    background: #333;
-    /* Barre grise */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 10px;
-    margin-left: 10px;
-    gap: 10px;
-    height: 280px;
+  position: relative;
+  width: 10px;
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 10px;
+  gap: 10px;
+  height: 280px;
 }
 
 .progress-bar-fill {
-    position: absolute;
-    top: 2%;
-    width: 10px;
-    background: #3498db;
-    /* Bleu qui progresse */
-    height: 0%;
-    /* Sera piloté par le JS */
-    transition: height 0.5s ease;
+  position: absolute;
+  top: 2%;
+  width: 10px;
+  background: #3498db;
+  height: 0%;
+  transition: height 0.5s ease;
 }
 
 .step-bulle {
-    width: 35px;
-    height: 35px;
-    background: #1a1a1a;
-    border: 2px solid #333;
-    border-radius: 50%;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    font-family: "Inter", cursive;
-    font-size: 16px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: "Inter", cursive;
+  font-weight: bold;
+
+  background: #1a1a1a;
+  border: 2px solid #555;
+  color: white;
 }
 
 .step-bulle.active {
-    border-color: #3498db;
-    background: #3498db;
+  border-color: #3498db;
+  background: #3498db;
+  color: white;
 }
 
 .slider-window {
-    overflow-x: hidden;
-    flex: 1;
-    /*occupe toute la place restante à droite de la barre de progression*/
-    display: flex;
-    position: relative;
+  overflow-x: hidden;
+  flex: 1;
+  display: flex;
+  position: relative;
 }
-
 #container_reprod {
-    width: 100%;
-    transition: transform 0.5s ease;
-    display: flex;
-
+  width: 100%;
+  transition: transform 0.5s ease;
+  display: flex;
 }
-
-
 .next.reprod {
-    right: 0px;
-    top: 30%;
+  right: 0px;
+  top: 30%;
 }
-
 .prev.reprod {
-    left: 0px;
-    top: 30%;
+  left: 0px;
+  top: 30%;
 }
 
 .step_reprod {
-    flex: 0 0 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    max-height: 500px;
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-height: 500px;
 }
-
 .step_reprod img {
-    width: 200px;
-    border-radius: 10px;
-    height: 200px;
-    object-fit: cover;
-
+  width: 200px;
+  border-radius: 10px;
+  height: 200px;
+  object-fit: cover;
 }
-
 .step_reprod p {
-    color: white;
-    text-align: center;
-    font-family: "Inter", cursive;
-    font-size: 16px;
-    width: 100%;
-    margin-top: 10px;
+  text-align: center;
+  font-family: "Inter", cursive;
+  width: 100%;
+  margin-top: 10px;
+  color: white; /* Texte blanc */
 }
 
+/* --- MEDIA QUERIES --- */
 
-
-
-
-
-/*.habitat p {
-    color: white;
-}
-
-.condi_habitat {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 200px;
-}
-
-.titre {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-}
-
-
-
-.titre img {
+@media (min-width: 600px) {
+  #taille_poisson img {
     width: 400px;
-    height: 300px;
-}
-
-.milieu_aquatique {
-    display: flex;
-    gap: 30px;
-    color: white;
+  }
+  #pres_poisson img {
+    width: 400px;
+  }
+  #navig_fish {
+    gap: 50px;
+  }
+  #navig_poisson {
     justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
+  }
 
-#temperature_brochet {
-    width: 300px;
-    height: auto;
-}
-
-.saisonselect {
-    text-align: center;
-    text-align-last: center;
-    font-family: Roboto Flex;
-    font-size: 20px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-#visuelspot {
-    color: white;
-}
-
-#visuelspotpea,
-#visuelspoth {
-    display: none;
-}
-
-#visuelspotpea {
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    display: flex;
-
-}
-
-#visuelspoth {
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
-.spot1 p {
-    text-align: center;
-    font-size: 16px;
-    color: white;
-    width: 300px;
-    height: auto;
-
-
-
-}
-
-.spot1 {
-    display: flex;
-    justify-content: center;
+  .photo_morpho {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .morpho_box {
     flex-direction: column;
-    margin-bottom: 10px;
+    min-width: 120px;
+  }
 
+  .graph {
+    width: 450px;
+    height: 450px;
+  }
+  .temp-label.temp1 {
+    left: -2%;
+    bottom: 38%;
+  }
+  .temp-label.temp2 {
+    left: 19%;
+    top: 27%;
+  }
+  .temp-label.temp3 {
+    left: 72%;
+    top: 28%;
+  }
+  .temp-label.temp4 {
+    right: -2%;
+    top: 53%;
+  }
 
-
-}
-
-.spot2 img {
-    max-width: 300px;
-    max-height: 300px;
-
-    /* évite un petit espace blanc sous l'image 
-
-}
-
-.spot2 {
-    background-color: white;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.spot2 video {
-    max-width: 100%;
-    height: auto;
-    /* évite un petit espace blanc sous l'image
-
-
-
-.video_alimentation {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-#visuel_animaux {
-    display: flex;
-    gap: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.animal1 {
-    text-align: center;
-    display: block;
-    font-size: 20px;
-    color: white;
-    margin-top: 20px;
-    padding-bottom: 20px;
-}
-
-.animal2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    margin-bottom: 10px;
-}
-
-.animal2 img {
-    width: 300px;
-    height: 300px;
-}*/
-
-
-
-@media(min-width:600px) {
-
-    #taille_poisson img {
-        width: 400px;
-    }
-
-    #pres_poisson img {
-        width: 400px;
-    }
-
-    #navig_fish {
-        gap: 50px;
-    }
-
-    /*PARTIE MORPHOLOGIE*/
-    #navig_poisson {
-        justify-content: center;
-    }
-
-
-    .photo_morpho {
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-
-    .morpho_box{
-        flex-direction: column;
-        min-width: 120px;      
-    }
-
-    /*PARTIE HABITATS*/
-
-    .graph {
-        width: 450px;
-        height: 450px;
-    }
-
-    .temp-label.temp1 {
-        left: -2%;
-        bottom: 38%;
-    }
-
-    .temp-label.temp2 {
-        left: 19%;
-        top: 27%;
-    }
-
-    .temp-label.temp3 {
-        left: 72%;
-        top: 28%;
-    }
-
-    .temp-label.temp4 {
-        right: -2%;
-        top: 53%;
-    }
-
-    #visuelspot {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-
-    }
-
-    .pea img, .hiver img{
+  #visuelspot {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    margin-bottom: 20px;
+  }
+  .pea img,
+  .hiver img {
     width: 350px;
-    height:200px;
-}
-
-    .animation_saison {
-        width: 350px;
-        height: 200px;
-    }
-
-    /* PARTIE ALIMENTATION*/
-    .video_fish {
-        max-width: 600px;
-    }
-
-    #box_food {
-        max-width: 600px;
-    }
-
-
-    /*PARTIE REPRODUCTION*/
-
-    .next.reprod {       
-        right:40px;
-        
-
-    }
-
-    .prev.reprod {       
-       left:40px
-    }
-
-    .ma-video{
-        max-width: 750px;
-    }
-
-    .video_fish.reprod {
-        max-width: 750px;
-    }
-
-    
-}
-
-@media(min-width:992px) {
-
-    #pres_poisson h1 {
-        font-size: 40px;
-    }
-
-    #pres_poisson img {
-        max-width: 70% !important;
-    }
-
-    #navig_fish {
-        gap: 100px;
-    }
-
-    #navig_fish img {
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    }
-
-    #navig_fish a:hover img {
-        transform: scale(1.15);
-
-    }
-
-    /*PARTIE MORPHOLOGIE*/
-
-
-    .btn-retour-cercle {
-        /* --- Nettoyage du bouton par défaut --- */
-        appearance: none;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 0;
-        outline: none;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        height: 50px;
-        border-radius: 50%;
-        color: white;
-        backdrop-filter: blur(10px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        font-family: "Inter", cursive;
-        margin: auto 0;
-        width: 10% !important;
-    }
-
-    .btn-retour-cercle:hover {
-        background: rgba(46, 204, 113, 0.1);
-        border-color: #2ecc71;
-        box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
-        transform: scale(1.1);
-    }
-
-    .fa-arrow-left {
-        color: red !important;
-
-    }
-
-
-    .btn-retour-cercle:hover .fleche {
-        color: #2ecc71;
-    }
-
-    #morpho_container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /*classe mode focus qui permet de changer le grid de morpho container en flex lorsque l'on clic sur une photo*/
-    #morpho_container.mode-focus {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        width: 100%;
-    }
-
-
-    .morpho {
-        width: 150px;
-        height: 150px;
-        transition: transform 0.5s ease;
-        cursor: pointer;
-    }
-
-    .morpho:hover {
-        transform: scale(1.05);
-    }
-
-
-
-    .photo_morpho {
-        border: none;
-        background-color: transparent;
-        border-radius: 0px;
-        margin: 0px;
-        padding: 20px 0.5vw;
-        justify-self: center;
-
-    }
-
-    .morpho_box{
-        flex-direction: row;
-        gap: 1vw;  
-        min-width: 300px;       
-    }
-
-    
-    
-
-
-    .photo_morpho.active {
-        max-width: 90%;
-        margin: 20px 20px 20px 0px !important;
-        border: 1px solid #333333;
-        background-color: #1a1a1a;
-        padding: 10px;
-        border-radius: 10px;
-        display: flex !important;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-
-    }
-
-    .description {
-        display: none;
-    }
-
-    .contenu_synthese {
-        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    }
-
-
-
-
-    /*PARTIE HABITATS*/
-
-
-    .box_habitat {
-        width: 47%;
-    }
-
-    .condi_habitat {
-        gap: 20px;
-        flex-direction: row;
-    }
-
-
-    /* PARTIE ALIMENTATION*/
-
-    .prev,
-    .next {
-        display: none;
-    }
-
-    #container_food {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 10px;
-    }
-
-    #box_food {
-        justify-content: center;
-        overflow: visible;
-        width: 100%;
-        border: none;
-        background-color: black;
-        border-radius: 0px;
-        padding: 0px 0px;
-        max-width: none;
-    }
-
-    .food {
-        flex: none;
-        width: 100%;
-    }
-
-    .food img {
-        width: 300px;
-        height: 300px;
-    }
-
-
-
-
-
-    /*PARTIE REPRODUCTION*/
-    .next.reprod {
-        display:block;       
-
-    }
-
-    .prev.reprod {
-       display:block;       
-
-}
-
-}
-
-
-
-
-
-
-
-
-/*@media(min-width:992px) {
-
-    #navig_poisson li {
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-
-    #navig_poisson li:hover {
-        transform: scale(1.05);
-        background-color: white;
-        color: black;
-
-
-    }
-
-
-    /*.synthese {
-    display: block;
-    background-color: black;
-    color: white;
-    padding-top: 20px;
-    padding-bottom: 30px;
-}
-
-
-.titre_synthese {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.titre_synthese p {
-    font-size: 20px;
-}
-
-.contenu_synthese {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.contenu_synthese_1 {
-    max-width: 400px;
-    border: 3px solid white;
-    padding: 10px;
-
-}
-
-#contenu_synthese_2 {
-    max-width: 400px;
-    border: 3px solid white;
-    padding: 10px;
-
-}
-
-.ligne_contenu {
-    display: flex;
-    margin-bottom: 20px;
-    gap: 10px;
-    align-items: center;
-}
-
-.sous_partie {
-    background-color: black;
-    padding-top: 5px;
-    border-top: 5px solid white;
-    scroll-margin-top: 160px;
-}
-
-h4 {
-    color: white;
-}
-
-.habitat p {
-    color: white;
-}
-
-.condi_habitat {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 200px;
-}
-
-.titre {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-}
-
-.titre i {
-    color: white;
-}
-
-.titre img {
-    width: 400px;
-    height: 300px;
-}
-
-.milieu_aquatique {
-    display: flex;
-    gap: 30px;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-#temperature_brochet {
-    width: 300px;
-    height: auto;
-}
-
-.saisonselect {
-    text-align: center;
-    text-align-last: center;
-    font-family: Roboto Flex;
-    font-size: 20px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-#visuelspot {
-    color: white;
-}
-
-#visuelspotpea,
-#visuelspoth {
-    display: none;
-}
-
-#visuelspotpea {
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    display: flex;
-
-}
-
-#visuelspoth {
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
-.spot1 p {
-    text-align: center;
-    font-size: 16px;
-    color: white;
-    width: 300px;
-    height: auto;
-
-
-
-}
-
-.spot1 {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 10px;
-
-
-
-}
-
-.spot2 img {
-    max-width: 300px;
-    max-height: 300px;
-
-    /* évite un petit espace blanc sous l'image 
-
-}
-
-.spot2 {
-    background-color: white;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.spot2 video {
-    max-width: 100%;
-    height: auto;
-    /* évite un petit espace blanc sous l'image 
-}
-
-
-
-.video_alimentation {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-#visuel_animaux {
-    display: flex;
-    gap: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.animal1 {
-    text-align: center;
-    display: block;
-    font-size: 20px;
-    color: white;
-    margin-top: 20px;
-    padding-bottom: 20px;
-}
-
-.animal2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    margin-bottom: 10px;
-}
-
-.animal2 img {
-    width: 300px;
-    height: 300px;
-}
-
-/*visuel sous partie reproduction de la page brochet
-
-.circle-container {
-    position: relative;
-    margin: 30px auto;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.cycle {
-    width: 800px;
-    height: 800px;
-}
-
-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotate(-90deg);
-
-}
-
-circle.track {
-    stroke: white;
-    stroke-width: 4;
-    fill: none;
-}
-
-circle.progress {
-    stroke: #2a8;
-    stroke-width: 4;
-    fill: none;
-    /*centre du cercle transparent
-    stroke-dasharray: 1633;
-    /*le cercle au complet
-    /* ~2πr with r = 260 
-    stroke-dashoffset: 1633;
-    /*le cercle progressif
-    transition: stroke-dashoffset 0.6s ease;
-}
-
-.bubble {
-    position: absolute;
-    width: 200px;
     height: 200px;
-    border-radius: 50%;
-    border: 3px solid #2a8;
-    overflow: hidden;
-    /*cache tout ce qui dépasse de la bulle
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.bubble img:hover {
-    transform: scale(1.1);
-}
-
-.bubble p {
-    font-size: 20px;
-    position: absolute;
-    color: white;
-    top: 50%;
-    /* centre verticalement 
-    left: 50%;
-    /* centre horizontalement 
-    transform: translate(-50%, -50%);
-    /* centre exact 
-    font-weight: bold;
-    text-shadow: 2px 2px 4px black;
-    /* pour que ça reste lisible 
-    z-index: 3;
-    margin: 0;
-}
-
-.bubble img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.2s;
-
-}
-
-.bubble.clicked {
-    border-color: #555;
-    transform: scale(0.95);
-    pointer-events: none;
-    opacity: 0.6;
-}
-
-.info-box {
-    margin-top: 20px;
-    padding: 10px;
-    min-height: 60px;
-    font-size: 16px;
+  }
+  .animation_saison {
+    width: 350px;
+    height: 200px;
+  }
+  .video_fish {
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+  }
+  #box_food {
+    max-width: 600px;
+    font-size: 25px;
+  }
+  .next.reprod {
+    right: 40px;
+  }
+  .prev.reprod {
+    left: 40px;
+  }
+  .ma-video {
+    max-width: 750px;
+  }
+  .video_fish.reprod {
+    max-width: 750px;
+  }
 }
 
-.commentaires p {
-    margin-bottom: 20px;
-}
-
-.commentaires {
-    border: 3px solid white;
-}
-
-.undo-button {
-    margin-top: 15px;
-    padding: 8px 16px;
-    background-color: #2a8;
-    color: white;
-    border: none;
-    border-radius: 6px;
+@media (min-width: 992px) {
+  #pres_poisson h1 {
+    font-size: 40px;
+  }
+  #pres_poisson img {
+    max-width: 70% !important;
+  }
+  #navig_fish {
+    gap: 100px;
+  }
+  #navig_fish img {
     cursor: pointer;
-    font-size: 14px;
-}
+    transition: all 0.3s;
+  }
+  #navig_fish a:hover img {
+    transform: scale(1.15);
+  }
 
-#video_reproduction {
-    display: flex;
+  .btn-retour-cercle {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #333;
+    backdrop-filter: blur(10px);
+    margin: auto 0;
+    width: 10% !important;
+    appearance: none;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    height: 50px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-family: "Inter", cursive;
+  }
+  .btn-retour-cercle:hover {
+    background: rgba(46, 204, 113, 0.1);
+    border-color: #2ecc71;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.2);
+    transform: scale(1.1);
+  }
+  .fa-arrow-left {
+    color: #e74c3c !important;
+  }
+
+  #morpho_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #morpho_container.mode-focus {
+    display: flex;
+    width: 100%;
+  }
+
+  .morpho {
+    width: 150px;
+    height: 150px;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
+  .morpho:hover {
+    transform: scale(1.2);
+  }
+
+  .photo_morpho {
     border: none;
-    max-width: 400px;
-    margin: 0 auto 15px;
-    flex-direction: column;
+    background-color: transparent;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 20px 0.5vw;
+    justify-self: center;
+    box-shadow: none;
+  }
 
-}
+  .morpho_box {
+    flex-direction: row;
+    gap: 1vw;
+    min-width: 300px;
+  }
 
-#video_reproduction p {
-    font-size: 20px;
-    color: white;
-}
-
-.Leurre {
-    display: block;
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-
-}
-
-.visuel_animation_leurre {
-    display: flex;
-    gap: 10px;
+  .photo_morpho.active {
+    max-width: 90%;
+    margin: 20px 20px 20px 0px !important;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex !important;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-}
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
-.leurre {
-    height: 400px;
-    width: 400px;
-    overflow: hidden;
-    background-size: contain;
-    /* ou cover si tu veux remplir 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: white;
-    align-items: center;
-    justify-content: flex-end;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    /* FOND NOIR sur la version active PC */
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+  }
 
+  .description {
+    display: none;
+  }
+  .photo_morpho.active .description {
+    display: block;
+  }
+  .contenu_synthese {
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  }
+  .box_habitat {
+    width: 47%;
+  }
+  .condi_habitat {
+    gap: 20px;
+    flex-direction: row;
+  }
+  .prev,
+  .next {
+    display: none;
+  }
+  #container_food {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    margin: 0 10px 20px 10px;
+  }
 
-}
-
-.leurre h3 {
-    color: black;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.8);
-    /* fond blanc semi-transparent 
-    margin: 0;
+  #box_food {
+    justify-content: center;
+    overflow: visible;
     width: 100%;
-    padding: 10px;
-    text-align: center;
-    font-size: 1rem;
-    z-index: 2;
-}
+    border: none;
+    background-color: transparent;
+    border-radius: 0px;
+    padding: 0px 0px;
+    max-width: none;
+  }
 
-
-.animation {
-    position: absolute;
-    top: 0;
-    left: 0;
+  /* Food items en PC: Fond Noir également */
+  .food {
+    flex: none;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    pointer-events: none;
-
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+  }
+  .food img {
+    width: 300px;
+    height: 300px;
+  }
+  .next.reprod {
+    display: block;
+  }
+  .prev.reprod {
+    display: block;
+  }
 }
-
-@media(min-width:992px){
-
-#navig_poisson li{
-    cursor:pointer;
-    transition: transform 0.2s;
-}
-
-#navig_poisson li:hover {
-    transform: scale(1.05);
-    background-color: white;
-    color: black;    
-
-
-}*/

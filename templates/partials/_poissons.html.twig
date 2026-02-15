@@ -1,7 +1,7 @@
 <div id="navig_fish">
 
 	{% for detailpoisson in detailallpoissons %}
-		<a href="index.php?route={{detailpoisson.nom}}">
+		<a href="/{{detailpoisson.nom}}">
 			<img class="{{ namepoisson == detailpoisson.nom ? 'poisson_actif' : '' }}" src="{{contenuurl}}{{detailpoisson.image}}{{extensionurl}}" alt="{{detailpoisson.nom}}"/>
 		</a>
 	{% endfor %}

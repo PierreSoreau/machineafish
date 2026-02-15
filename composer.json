@@ -1,5 +1,5 @@
 {
-  "name": "groupe/faircount",
+  "name": "machineafish/site",
   "require": {
     "vlucas/phpdotenv": "^5.6",
     "symfony/var-dumper": "^7.0",

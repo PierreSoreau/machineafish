@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 let currentIndex = 0;
 let answers = {};
-const beginurl = "https://res.cloudinary.com/dgzbdoozf/image/upload/";
+const beginurl = "assets/images/";
 const endurl = ".webp";
 
 //Fonction qui permet d'afficher les questions + choix de réponse

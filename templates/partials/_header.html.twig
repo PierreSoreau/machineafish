@@ -16,22 +16,22 @@
 	<nav id="nav_menu" class="show_">
 		<ul class="puce">
 			<li>
-				<a href="index.php" class="navi1">Accueil</a>
+				<a href="/accueil" class="navi1">Accueil</a>
 			</li>
 			<li>
-				<a href="index.php?route=poissons" class="navi1">Les Poissons</a>
+				<a href="/poissons-carnassiers" class="navi1">Les Poissons</a>
 			</li>
 			<li>
-				<a href="index.php?route=questions" class="navi1">Matériel</a>
+				<a href="/questions-materiel" class="navi1">Matériel</a>
 			</li>
 			<li>
-				<a href="index.php?route=tutoriels" class="navi1">Tutos vidéos</a>
+				<a href="/tutoriels-peche" class="navi1">Tutos vidéos</a>
 			</li>
 		</ul>
 	</nav>
 
 	<div id="search-container">
-		<form method="POST" action="index.php?route=recherche">
+		<form method="POST" action="/recherche-peche">
 			<input type="text" name="searchresults" id="searchelement" placeholder="Rechercher">
 			<button id="rechercher" type="submit">
 				<img src="{{repeat.contenuurl}}{{repeat.logorechercher}}{{repeat.extensionurl}}" alt="logo rechercher" class="logorecherche">

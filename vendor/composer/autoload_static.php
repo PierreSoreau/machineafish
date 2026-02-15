@@ -91,7 +91,7 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'Canne' => __DIR__ . '/../..' . '/models/Canne.php',
         'CanneMoulinet' => __DIR__ . '/../..' . '/models/CanneMoulinet.php',
         'CannesManager' => __DIR__ . '/../..' . '/managers/CannesManager.php',
-        'Catalogue_leurres' => __DIR__ . '/../..' . '/models/CatalogueLeurres.php',
+        'CatalogueLeurres' => __DIR__ . '/../..' . '/models/CatalogueLeurres.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'ContenuCards' => __DIR__ . '/../..' . '/models/ContenuCards.php',
         'DefaultController' => __DIR__ . '/../..' . '/controllers/DefaultController.php',

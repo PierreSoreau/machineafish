@@ -3,7 +3,7 @@ body {
   height: auto !important;
 }
 main {
-  background-color: black;
+  background-color: white;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -22,11 +22,14 @@ main h1 {
 
 main h2 {
   padding: 20px 0;
+  color:black;
 }
 
 main h1 {
   text-transform: uppercase;
   padding: 0px 0px 20px 0px;
+  font-weight: 900;
+  color: #3498db;
 }
 
 .precedent {
@@ -34,15 +37,10 @@ main h1 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* Fond blanc transparent (effet verre) */
+  background-color: #1a1a1a;
   padding: 10px 20px; /* Espace interne */
   border-radius: 50px; /* Bords très arrondis */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile */
+  border: 2px solid #3498db; /* Bordure subtile */
 
   text-decoration: none;
   transition: all 0.3s ease;
@@ -93,7 +91,7 @@ main h1 {
   gap: 10px;
   background-color: #1a1a1a;
   border-radius: 10px;
-  border: 2px solid green;
+  border: 3px solid #3498db;
   width: 80%;
   margin: 0 auto;
   position: relative;

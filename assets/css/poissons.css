@@ -1,7 +1,24 @@
+/* =========================================
+   BASE
+   ========================================= */
 
 #page_carnassiers {
-    position: relative;
     margin-top: 60px;
+    display: block;
+    width: 100%;
+}
+
+/* =========================================
+   SECTION HAUTE : INTRO (VIDEO)
+   ========================================= */
+
+.poissons-intro {
+    position: relative;
+    height: 450px; /* Hauteur fixe pour mobile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .video_background {
@@ -10,12 +27,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     z-index: 0;
-
 }
 
-/* On ajoute un filtre noir semi-transparent PAR DESSUS la vidéo */
 .video_background::after {
     content: "";
     position: absolute;
@@ -23,145 +37,162 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    /* 60% d'opacité noire */
-    z-index: 2;
-    /* Doit être au-dessus de la balise <video> mais sous le menu*/
-    pointer-events: none;
-    /* Permet de cliquer à travers si besoin */
+    background: rgba(0, 0, 0, 0.5); /* Filtre noir */
+    z-index: 1;
 }
 
 .video_background video {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
 }
 
-.menu_visuel {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, auto);
-    padding: 10px 0px;
-    gap: 10px;
+/* Texte par dessus la vidéo */
+.intro-content {
     position: relative;
-    z-index: 3;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    max-width: 800px;
+}
 
+.intro-content h1 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+.highlight {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.intro-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #f1f1f1;
+    font-family: "Inter", sans-serif;
+}
+
+/* =========================================
+   SECTION BASSE : LISTE POISSONS (MENU)
+   ========================================= */
+
+.menu_visuel {
+    background-color: white;
+    padding: 50px 0;
+    
+    display: grid;
+    grid-template-columns: 1fr; /* 1 colonne mobile */
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
 }
 
 .lien {
-    width: 150px;
-    height: 150px;   
-    display: block;
-    color: white;
-    text-align: center;
     position: relative;
-    justify-content: flex-start;
-    font-size: 25px;
-    border-radius: 20px;
-    text-decoration: none;
-    z-index: 1;
+    display: block;
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
-    border: 2px solid white;
+    text-decoration: none;
+    
+    /* Bordure grise et fond gris pour éviter le liseré blanc */
+    border: 4px solid #3498db;
+    background-color: #333;
+    
+    border-radius: 20px;
+    overflow: hidden; /* Coupe l'image */
 }
 
-.lien::after{
-    content:"";
-    background-color: rgba(0, 0, 0, 0.3);
+.lien::after {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width:100%;
+    width: 100%;
     height: 100%;
-    display: block;
-    object-fit: cover;
-    border-radius: 20px;
-    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.3); /* Voile sombre */
+    z-index: 1;
 }
 
-.lien img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width:100%;
+.lien img {
+    width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
-    z-index: 2;
-    border-radius: 20px;
-
+    z-index: 0;
 }
 
 .lien p {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%);    
-    z-index: 4;
+    transform: translate(-50%, -50%); /* Centrage parfait */
+    z-index: 2; /* Au dessus du voile */
     margin: 0;
     padding: 0;
+    color: white;
     font-family: "Inter", cursive;
+    font-size: 25px;
+    text-align: center;
+    width: 90%;
 }
 
+/* =========================================
+   MEDIA QUERIES
+   ========================================= */
 
 @media(min-width:576px) {
     .lien {
-        width: 300px;
-        height: 300px;
-        font-size: 30px;
-        border: 3px solid white;
+        width: 250px;
+        height: 250px;
     }
-
-
+    .poissons-intro {
+        height: 50vh;
+    }
+    
+    .lien p {
+        font-size: 30px;
+    }
 }
 
 @media(min-width:992px) {
 
-    .video_background {
-        height: 100%;
+    /* Agrandissement zone vidéo PC */
+    
+
+    .intro-content h1 {
+        font-size: 60px;
     }
 
+    /* Grille PC (4 colonnes comme avant) */
+    .menu_visuel {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding: 50px 20px;
+    }
 
     .lien {
         width: 200px;
         height: 200px;
-        margin: auto auto;
-        border: 4px solid white;
         transition: all 0.3s ease;
-        font-size: 40px;
-
     }
 
     .lien:hover {
         transform: scale(1.05);
+        border-color: #3498db; /* Optionnel : effet bleu au survol */
+    }
+    
+    .lien p {
+        font-size: 25px; /* Ajusté pour la taille 200px */
     }
 
-    .menu_visuel {
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: auto;
-        padding: 10px 10px;
-        gap: 50px;
-    }    
-
-    #page_carnassiers {
-        position: relative;
-        /* Important pour que la vidéo absolue se cale par rapport à lui */
-        display: flex;
-        /* Active le mode Flexbox */
-        justify-content: center;
-        /* Centre horizontalement */
-        align-items: center;
-        /* Centre verticalement (C'est ça que tu veux !) */
-        min-height: 80vh;
-        /* Force une hauteur mini pour bien voir l'effet (ajuste selon la taille de ton header/footer) */
-        overflow: hidden;
-        /* Coupe ce qui dépasse*/
-
+    .poissons-intro {
+        height: 60vh;
     }
-
 }
 
 @media(min-width:1200px) {
@@ -169,7 +200,10 @@
         width: 250px;
         height: 250px;
     }
-
+    
+    .lien p {
+        font-size: 30px;
+    }
 }
 
 @media(min-width:1400px) {
@@ -177,5 +211,4 @@
         width: 300px;
         height: 300px;
     }
-
 }

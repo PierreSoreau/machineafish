@@ -100,7 +100,7 @@ class UserController extends AbstractController
 
         if (!$imagePoisson && empty($descriptionPoisson)) {
             // On redirige vers l'accueil 
-            header('Location: index.php');
+            header('Location: /accueil');
             exit();
         }
 
@@ -255,12 +255,12 @@ class UserController extends AbstractController
             ];
 
             //redirection vers la page materiel avec les données obtenues de questions
-            header('Location: index.php?route=materiel');
+            header('Location: /materiel-peche');
             exit;
         }
 
         if (!isset($_SESSION['resultats_quiz'])) {
-            header('Location: index.php?route=questions');
+            header('Location: /questions-materiel');
             exit;
         }
 

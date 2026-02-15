@@ -16,20 +16,34 @@
 {% block main %}
 
 	<main id="page_carnassiers">
-		<div class="video_background">
-			<video autoplay muted loop playsinline preload="auto">
-				<source src="{{contenuvideo}}{{urlpage}}{{extensionvideo}}" type="video/webm"/>
-				Votre navigateur ne supporte pas la vidéo
-			</video>
-		</div>
+
+		<section class="poissons-intro">
+
+			<div class="video_background">
+				<video autoplay muted loop playsinline preload="auto">
+					<source src="{{contenuvideo}}{{urlpage}}{{extensionvideo}}" type="video/webm"/>
+					Votre navigateur ne supporte pas la vidéo
+				</video>
+			</div>
+
+			<div class="intro-content">
+				<h1>Comprendre les prédateurs</h1>
+				<p class="intro-text">
+					Les
+					<span class="highlight">Carnassiers</span>
+					n'auront plus de secrets pour vous : morphologie, habitats, alimentation, reproduction.
+				</p>
+			</div>
+		</section>
 
 		<section class="menu_visuel">
 			{% for poisson in detailallpoissons %}
-				<a href="index.php?route={{poisson.nom}}" class="lien">
+				<a href="/{{poisson.nom}}" class="lien">
 					<img src="{{contenuimage}}{{poisson.image}}{{extensionimage}}" alt="{{poisson.nom}}">
 					<p>{{poisson.nom|capitalize}}</p>
 				</a>
 			{% endfor %}
 		</section>
+
 	</main>
 {% endblock %}

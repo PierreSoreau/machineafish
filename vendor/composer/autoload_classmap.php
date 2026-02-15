@@ -17,7 +17,7 @@ return array(
     'Canne' => $baseDir . '/models/Canne.php',
     'CanneMoulinet' => $baseDir . '/models/CanneMoulinet.php',
     'CannesManager' => $baseDir . '/managers/CannesManager.php',
-    'Catalogue_leurres' => $baseDir . '/models/CatalogueLeurres.php',
+    'CatalogueLeurres' => $baseDir . '/models/CatalogueLeurres.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'ContenuCards' => $baseDir . '/models/ContenuCards.php',
     'DefaultController' => $baseDir . '/controllers/DefaultController.php',

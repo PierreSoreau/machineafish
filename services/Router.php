@@ -12,22 +12,22 @@ class Router
 
     public function handleRequest(): void
     {
-        $route = $_GET['route'] ?? 'home'; // Par défaut 'home'
+        $route = $_GET['route'] ?? 'accueil'; // Par défaut 'home'
 
         switch ($route) {
-            case 'home':
+            case 'accueil':
                 $this->uc->home();
                 break;
 
-            case 'poissons':
+            case 'poissons-carnassiers':
                 $this->uc->poissons();
                 break;
 
-            case 'materiel':
+            case 'materiel-peche':
                 $this->uc->result();
                 break;
 
-            case 'questions':
+            case 'questions-materiel':
                 $this->uc->questions();
                 break;
 
@@ -47,18 +47,18 @@ class Router
                 $this->uc->descriptionPoisson();
                 break;
 
-            case 'tutoriels':
+            case 'tutoriels-peche':
                 $this->uc->tutoriels();
                 break;
-            case 'recherche':
+            case 'recherche-peche':
                 $this->uc->recherche();
                 break;
 
-            case 'mentions_legales':
+            case 'mentions-legales':
                 $this->uc->mentionslegales();
                 break;
 
-            case 'a_propos':
+            case 'a-propos':
                 $this->uc->apropos();
                 break;
 
