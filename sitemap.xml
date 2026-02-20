@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://machineafish.fr/</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/accueil</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/poissons-carnassiers</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/questions-materiel</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/tutoriels-peche</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/mentions-legales</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/a-propos</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/silure</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/perche</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/sandre</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://machineafish.fr/brochet</loc>
+  <lastmod>2026-02-20T18:44:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
