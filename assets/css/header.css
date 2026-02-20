@@ -189,8 +189,8 @@ nav.show {
 #menu_burger {
   background: none !important;
   border: none !important;
-  position:absolute;
-  left:5px;
+  position: absolute;
+  left: 5px;
 }
 
 .fleche.show,
@@ -209,7 +209,7 @@ nav.show {
   width: 60px;
   height: 5vh;
   position: absolute;
-  left:50%;
+  left: 50%;
   transform: translate(-50%);
 }
 
@@ -231,7 +231,7 @@ nav.show {
   align-items: center;
   justify-content: center;
   position: absolute;
-  right:0px;  
+  right: 0px;
   gap: 10px;
 }
 
@@ -293,10 +293,9 @@ nav.show {
   }
 
   #logo1.show {
-  position:static;  
-  transform: translate(0%);
-}
-
+    position: static;
+    transform: translate(0%);
+  }
 
   nav.show_ {
     display: flex;
@@ -350,7 +349,7 @@ nav.show {
   #logo1.show {
     height: 7vh;
     width: 80px;
-    margin-left:10px;
+    margin-left: 10px;
   }
 
   #rechercher {

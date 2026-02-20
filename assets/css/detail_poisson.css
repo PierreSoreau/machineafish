@@ -542,12 +542,12 @@ main {
 .prev,
 .next {
   position: absolute;
-  top: 50%;
+  top: 92%;
   transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0.9);
   color: #333;
   border: 1px solid #bbb;
-  padding: 15px;
+  padding: 5px;
   cursor: pointer;
   z-index: 100;
   border-radius: 5px;
