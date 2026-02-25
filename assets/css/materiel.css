@@ -22,7 +22,7 @@ main h1 {
 
 main h2 {
   padding: 20px 0;
-  color:black;
+  color: black;
 }
 
 main h1 {
@@ -365,6 +365,7 @@ main h1 {
   right: 10px;
   margin: 5px 0px;
   float: right;
+  cursor: pointer;
 }
 
 .matos_box.action {
@@ -547,12 +548,11 @@ main h1 {
   padding-right: 15px;
 }
 
-.schema_matos{
-  width:300px !important;
-  height:auto !important;
-  display:block !important;
+.schema_matos {
+  width: 300px !important;
+  height: auto !important;
+  display: block !important;
   margin: 20px auto !important;
-
 }
 
 .matos_titre.leurre {
