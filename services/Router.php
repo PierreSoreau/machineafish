@@ -12,9 +12,14 @@ class Router
 
     public function handleRequest(): void
     {
-        $route = $_GET['route'] ?? 'accueil'; // Par défaut 'home'
+        $route = $_GET['route'] ?? ''; // Par défaut 'home'
 
         switch ($route) {
+
+            case '':
+                $this->uc->home();
+                break;
+
             case 'accueil':
                 $this->uc->home();
                 break;
