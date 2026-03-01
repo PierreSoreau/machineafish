@@ -123,27 +123,27 @@ header {
   width: 100%;
 }
 
-/* --- EXCEPTION UNIQUEMENT POUR IOS (iPhone / iPad) --- */
+/* --- EXCEPTION UNIQUEMENT POUR IOS (iPhone / iPad) --- 
 
 @supports (-webkit-touch-callout: none) {
   header {
-    /* On force la marge pour l'heure de l'iPhone */
+    /* On force la marge pour l'heure de l'iPhone
     padding-top: max(env(safe-area-inset-top), 45px);
     height: calc(60px + max(env(safe-area-inset-top), 45px));
 
-    /* Stabilité Safari */
+    /* Stabilité Safari 
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     backface-visibility: hidden;
   }
 
-  /* On décale les icônes vers le bas uniquement sur iPhone */
+  /* On décale les icônes vers le bas uniquement sur iPhone 
   #menu_burger,
   #logo1.show,
   #search-container {
     top: calc(max(env(safe-area-inset-top), 45px) + 30px);
   }
-}
+}*/
 
 .background {
   position: absolute;
