@@ -1,6 +1,6 @@
 # Machine@Fish
 
-<img width="307" height="137" alt="logo_site_ machine@fishbis" src="https://github.com/user-attachments/assets/a3d9e989-7be1-4b7e-83c4-f70f4dec470a" />
+<div align="center"><img width="207" height="137" alt="logo_site_ machine@fishbis" src="https://github.com/user-attachments/assets/a3d9e989-7be1-4b7e-83c4-f70f4dec470a" alt="logo machineafish" /></div>
 
 **Machine@Fish** est né d'un constat simple : débuter la pêche ne devrait pas être un casse-tête. Fini les heures perdues à chercher des infos contradictoires. Ici, on va droit au but.
 
