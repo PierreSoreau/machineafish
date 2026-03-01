@@ -1,5 +1,6 @@
 <div align="center"><img width="207" height="137" alt="logo_site_ machine@fishbis" src="https://github.com/user-attachments/assets/a3d9e989-7be1-4b7e-83c4-f70f4dec470a" alt="logo machineafish" /></div>
 
+# Découvrez le site en direct : [Visiter Machine@Fish](https://machineafish.fr)
 
 **Machine@Fish** est né d'un constat simple : débuter la pêche ne devrait pas être un casse-tête. Fini les heures perdues à chercher des infos contradictoires. Ici, on va droit au but.
 
@@ -11,8 +12,6 @@ Ne gaspillez plus votre argent. En répondant **à un questionnaire personnalis�
 
 ### 🎥 Apprendre en visionnant
 Des nœuds aux animations de leurres, formez-vous rapidement avec la sélection de **Tutoriels vidéos** essentiels pour débuter.
-
-# Découvrez le site en direct : # [Visiter Machine@Fish](https://machineafish.fr)
 
 ### 🎓 Contexte du projet
 
