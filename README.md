@@ -12,7 +12,7 @@ Ne gaspillez plus votre argent. En répondant **à un questionnaire personnalis�
 ### 🎥 Apprendre en visionnant
 Des nœuds aux animations de leurres, formez-vous rapidement avec la sélection de **Tutoriels vidéos** essentiels pour débuter.
 
-**Découvrez le site en direct :** [Visiter Machine@Fish](https://machineafish.fr)
+# Découvrez le site en direct : # [Visiter Machine@Fish](https://machineafish.fr)
 
 ### 🎓 Contexte du projet
 
@@ -20,7 +20,7 @@ Ce site a été développé dans le cadre de ma **première année de Bachelor C
 
 La réalisation de **Machine@Fish** m'a notamment permis de mettre en application :
 
-* **La Programmation Orientée Objet (POO)
+* **La Programmation Orientée Objet (POO)**
 * **L'Architecture MVC (Modèle-Vue-Controller)**
 * **UX-UI**
 * **Le déploiement et la mise en production**
