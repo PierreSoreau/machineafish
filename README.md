@@ -12,7 +12,7 @@ Ne gaspillez plus votre argent. En répondant **à un questionnaire personnalis�
 ### 🎥 Apprendre en visionnant
 Des nœuds aux animations de leurres, formez-vous rapidement avec la sélection de **Tutoriels vidéos** essentiels pour débuter.
 
-Voir le site:
+**Découvrez le site en direct :** [Visiter Machine@Fish](https://machineafish.fr)
 
 ### 🎓 Contexte du projet
 
