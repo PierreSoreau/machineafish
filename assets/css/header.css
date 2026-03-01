@@ -121,18 +121,28 @@ header {
   align-items: center;
   height: 60px;
   width: 100%;
+}
 
-  /* Ces lignes permettent d'éviter que sur Safari le header ne reste pas en place tout en haut*/
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* --- EXCEPTION UNIQUEMENT POUR IOS (iPhone / iPad) --- */
 
-  /* On ajoute une marge interne en haut pour compenser l'encoche */
-  /* Si Safari renvoie 0, on force un minimum de 45px pour l'heure */
-  padding-top: max(env(safe-area-inset-top), 45px);
+@supports (-webkit-touch-callout: none) {
+  header {
+    /* On force la marge pour l'heure de l'iPhone */
+    padding-top: max(env(safe-area-inset-top), 45px);
+    height: calc(60px + max(env(safe-area-inset-top), 45px));
 
-  /* On augmente la hauteur totale pour que le fond couvre la zone de l'heure */
-  height: calc(60px + max(env(safe-area-inset-top), 45px));
+    /* Stabilité Safari */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* On décale les icônes vers le bas uniquement sur iPhone */
+  #menu_burger,
+  #logo1.show,
+  #search-container {
+    top: calc(max(env(safe-area-inset-top), 45px) + 30px);
+  }
 }
 
 .background {
@@ -203,8 +213,6 @@ nav.show {
   border: none !important;
   position: absolute;
   left: 5px;
-  top: calc(max(env(safe-area-inset-top), 45px) + 30px);
-  transform: translateY(-50%);
 }
 
 .fleche.show,
