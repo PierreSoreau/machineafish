@@ -128,10 +128,11 @@ header {
   backface-visibility: hidden;
 
   /* On ajoute une marge interne en haut pour compenser l'encoche */
-  padding-top: env(safe-area-inset-top);
+  /* Si Safari renvoie 0, on force un minimum de 45px pour l'heure */
+  padding-top: max(env(safe-area-inset-top), 45px);
 
   /* On augmente la hauteur totale pour que le fond couvre la zone de l'heure */
-  height: calc(60px + env(safe-area-inset-top));
+  height: calc(60px + max(env(safe-area-inset-top), 45px));
 }
 
 .background {
@@ -202,6 +203,8 @@ nav.show {
   border: none !important;
   position: absolute;
   left: 5px;
+  top: calc(max(env(safe-area-inset-top), 45px) + 30px);
+  transform: translateY(-50%);
 }
 
 .fleche.show,
