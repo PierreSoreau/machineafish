@@ -35,7 +35,7 @@ ol[role="list"] {
 /* Set core body defaults */
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   line-height: 1.5;
   margin: 0;
   scroll-padding-top: 120px;
@@ -44,7 +44,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
   margin: 0;
 }
 
@@ -120,7 +120,18 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  width: 100vw;
+  width: 100%;
+
+  /* Ces lignes permettent d'éviter que sur Safari le header ne reste pas en place tout en haut*/
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  /* On ajoute une marge interne en haut pour compenser l'encoche */
+  padding-top: env(safe-area-inset-top);
+
+  /* On augmente la hauteur totale pour que le fond couvre la zone de l'heure */
+  height: calc(60px + env(safe-area-inset-top));
 }
 
 .background {
