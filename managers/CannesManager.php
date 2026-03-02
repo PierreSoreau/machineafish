@@ -50,55 +50,52 @@ class CannesManager extends AbstractManager
         $cannesCandidates = $query->fetchAll(PDO::FETCH_ASSOC);
 
         // ALGO QUI PERMET DE SELECTIONNER PARMI LES CANNES SELECTIONNEES PAR SQL, CELLE QUI ENGLOBE LE PLUS DE LEURRE DANS SA PLAGE DE PUISSANCE
-        // ET AVEC LA PUISSANCE MINIMALE LA PLUS PROCHE DU POIDS LE PLUS FAIBLE DES LEURRES (parce quon cherche toujours à avoir des leurres les moins lourds possibles) 
-        $bestCanne = [];
-        $maxScore = -1;
-        $bestDiffMin = 9999; // Pour départager sur le poids mini
+        // ET AVEC L'ECART LE PLUS FAIBLE EN POIDS ENTRE 
+        //LE POIDS DU LEURRE LE PLUS LOURD ET LE POIDSMAX QUE LA CANNE ACCEPTE
 
-        // On calcule le poids min global des leurres pour le départage
+        // 1. On identifie le besoin RÉEL (Leurre le plus léger et Leurre le plus lourd)
         $poidsLeurreMinGlobal = 9999;
+        $poidsLeurreMaxGlobal = -1;
+
         foreach ($leurres as $typeLeurre => $infosType) {
             if (isset($infosType['donnees']) && is_array($infosType['donnees'])) {
                 foreach ($infosType["donnees"] as $donnee) {
-                    if ($donnee['poids_leurre'] < $poidsLeurreMinGlobal) $poidsLeurreMinGlobal = $donnee['poids_leurre'];
+                    $poids = $donnee['poids_leurre'];
+                    if ($poids < $poidsLeurreMinGlobal) $poidsLeurreMinGlobal = $poids;
+                    if ($poids > $poidsLeurreMaxGlobal) $poidsLeurreMaxGlobal = $poids;
                 }
             }
         }
+
+        // 2. On cherche la canne parfaite
+        $bestCanne = [];
+        $meilleurEcartMax = 9999; // On cherche la canne dont le max est juste au-dessus de notre besoin
 
         foreach ($cannesCandidates as $canne) {
-            $score = 0; // Nombre de leurres compatibles
+            // CRITÈRE N°1 ABSOLU : La canne DOIT pouvoir lancer le leurre le plus lourd (Sinon elle casse)
+            if ($canne['poids_maxi'] >= $poidsLeurreMaxGlobal) {
 
-            foreach ($leurres as $typeLeurre => $infosType) {
-                if (isset($infosType['donnees']) && is_array($infosType['donnees'])) {
-                    foreach ($infosType["donnees"] as $donnee) {
-                        $poids = $donnee['poids_leurre'];
-                        // Est-ce que cette canne peut lancer ce leurre ?
-                        if ($poids >= $canne['poids_mini'] && $poids <= $canne['poids_maxi']) {
-                            $score++;
-                        }
-                    }
-                }
-            }
+                // On calcule l'écart entre ce que la canne peut faire au max, et notre leurre le plus lourd
+                $ecartMax = $canne['poids_maxi'] - $poidsLeurreMaxGlobal;
 
-            // Calcul de la proximité avec le leurre le plus léger (pour départager)
-            $diffMin = abs($canne['poids_mini'] - $poidsLeurreMinGlobal);
-
-            // EST-CE LA MEILLEURE CANNE ?
-            // Critère 1 : Celle qui couvre le plus de leurres
-            if ($score > $maxScore) {
-                $maxScore = $score;
-                $bestCanne = $canne;
-                $bestDiffMin = $diffMin;
-            }
-            // Critère 2 (si égalité) : Celle qui est la plus proche du poids mini demandé
-            elseif ($score === $maxScore) {
-                if ($diffMin < $bestDiffMin) {
+                // CRITÈRE N°2 : On prend celle qui est la plus "ajustée" (l'écart le plus petit)
+                if ($ecartMax < $meilleurEcartMax) {
+                    $meilleurEcartMax = $ecartMax;
                     $bestCanne = $canne;
-                    $bestDiffMin = $diffMin;
                 }
             }
         }
 
-        return $bestCanne ?: [];
+        // Si aucune canne ne peut lancer le leurre le plus lourd, on prend la plus puissante disponible en secours
+        if (empty($bestCanne) && !empty($cannesCandidates)) {
+            $bestCanne = $cannesCandidates[0];
+            foreach ($cannesCandidates as $canne) {
+                if ($canne['poids_maxi'] > $bestCanne['poids_maxi']) {
+                    $bestCanne = $canne;
+                }
+            }
+        }
+
+        return $bestCanne;
     }
 }

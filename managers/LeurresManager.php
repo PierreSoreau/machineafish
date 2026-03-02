@@ -7,13 +7,15 @@ class LeurresManager extends AbstractManager
     {
 
 
-        $etendue_eau = $donneesQuiz['etendue_eau'];
-        $profondeur = $donneesQuiz['profondeur'];
-        $espece = $donneesQuiz['poisson_nom'];
-        $taille = $donneesQuiz['taille'];
-        $saison = $donneesQuiz['saison'];
-        $courant = $donneesQuiz['courant'];
-        $obstacle = $donneesQuiz['obstacle'];
+        // On nettoie les variables (minuscules + suppression des espaces) 
+        // pour que le SQL ne fasse pas d'erreurs de casse !
+        $etendue_eau = strtolower(trim($donneesQuiz['etendue_eau']));
+        $profondeur  = strtolower(trim($donneesQuiz['profondeur']));
+        $espece      = strtolower(trim($donneesQuiz['poisson_nom']));
+        $taille      = strtolower(trim($donneesQuiz['taille']));
+        $saison      = strtolower(trim($donneesQuiz['saison']));
+        $courant     = strtolower(trim($donneesQuiz['courant']));
+        $obstacle    = strtolower(trim($donneesQuiz['obstacle']));
 
         $paramsleurre = [
             "etendue_eau" => $etendue_eau,
@@ -52,12 +54,17 @@ class LeurresManager extends AbstractManager
         ) as champions ON c.type_leurre = champions.type_leurre
 
         JOIN regle_especes re ON (
-             (re.selectivite != 'spécimen record' AND c.taille_equivalente = re.taille_equivalente_cm)
-             OR
-             (re.selectivite = 'spécimen record' AND (
-                 c.taille_equivalente >= re.taille_equivalente_cm
-                 OR (c.taille_equivalente = champions.max_taille_dispo AND c.taille_equivalente >= 12)
-             ))
+             
+             /* 1. Le leurre correspond exactement à la taille demandée (ex: 15cm ou 18cm) */
+             (c.taille_equivalente = re.taille_equivalente_cm)
+             
+             OR              
+             
+             (
+                 c.taille_equivalente = champions.max_taille_dispo 
+                 AND champions.max_taille_dispo < re.taille_equivalente_cm 
+                 AND champions.max_taille_dispo >= 10
+             )
         )
 
         JOIN calendrier_peche cp ON (
@@ -76,17 +83,7 @@ class LeurresManager extends AbstractManager
           AND (p.compatible_encombre = 'oui' OR :obstacle_param = 'non')          
           AND rg.courant            = :courant
           
-          AND (
-              p.type_leurre IN ('Popper', 'Stickbait', 'Crawler', 'Frog', 'Leurre à hélice')
-              OR 
-              re.selectivite = 'spécimen record'
-              OR 
-              (
-                  (p.famille = 'dur' AND c.poids_leurre_g <= (rg.poids_max_g * 3))
-                  OR 
-                  (p.famille != 'dur' AND (c.poids_leurre_g + rg.poids_max_g) <= (rg.poids_max_g * 3))
-              )
-          )
+          
         ";
 
         $query = $this->db->prepare($sqlLeurres);
