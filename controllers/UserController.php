@@ -204,6 +204,8 @@ class UserController extends AbstractController
 
                 $leurresFiltres = [];
 
+                $poidsMinTolere = $poidsMinCanne * 0.8;
+
                 foreach ($leurres as $typeLeurres => $infosType) {
 
                     $leurreConserve = [
@@ -217,7 +219,7 @@ class UserController extends AbstractController
 
                         foreach ($infosType['donnees'] as $donnee) {
 
-                            if ($donnee["poids_leurre"] >= $poidsMinCanne && $donnee["poids_leurre"] <= $poidsMaxCanne) {
+                            if ($donnee["poids_leurre"] >= $poidsMinTolere && $donnee["poids_leurre"] <= $poidsMaxCanne) {
                                 $leurreConserve['donnees'][] = $donnee;
                             }
                         }
