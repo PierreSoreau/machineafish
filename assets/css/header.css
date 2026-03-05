@@ -115,13 +115,12 @@ textarea:not([rows]) {
 
 @supports (-webkit-touch-callout: none) {
   #hack-apple {
-    display: block; /* On l'affiche pour l'iPhone */
+    display: block;
     position: fixed;
     left: 0;
     width: 100%;
     bottom: 100vh;
 
-    /* LA CORRECTION : La taille de ton header (60px) + la taille de l'encoche Apple */
     height: 120px;
 
     transform: translateY(100%);
