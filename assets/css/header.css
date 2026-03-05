@@ -110,17 +110,30 @@ textarea:not([rows]) {
 }
 
 #hack-apple {
-  position: fixed;
-  height: 100px;
-  bottom: 100vh;
-  background-color: white;
-  z-index: 9000;
-  width: 100%;
+  display: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+  #hack-apple {
+    display: block; /* On l'affiche pour l'iPhone */
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 100vh;
+
+    /* LA CORRECTION : La taille de ton header (60px) + la taille de l'encoche Apple */
+    height: 120px;
+
+    transform: translateY(100%);
+    background-color: white;
+    z-index: 900;
+    pointer-events: none;
+  }
 }
 
 header {
   position: fixed;
-  z-index: 1000;
+  z-index: 10000;
   top: 0;
   left: 0;
   right: 0;
