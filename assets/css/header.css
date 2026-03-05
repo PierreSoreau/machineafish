@@ -109,6 +109,15 @@ textarea:not([rows]) {
   box-sizing: border-box;
 }
 
+#hack-apple {
+  position: fixed;
+  height: 100px;
+  bottom: 100vh;
+  background-color: white;
+  z-index: 9000;
+  width: 100%;
+}
+
 header {
   position: fixed;
   z-index: 1000;
