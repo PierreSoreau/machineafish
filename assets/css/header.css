@@ -121,7 +121,7 @@ textarea:not([rows]) {
     width: 100%;
     bottom: 100vh;
 
-    height: 40px;
+    height: 60px;
 
     transform: translateY(100%);
     background-color: white;
