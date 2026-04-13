@@ -526,7 +526,7 @@ class SearchManager extends AbstractManager
     {
 
         if (empty($categories)) {
-            return ["titre" => "Aucun résultat pour la recherche", "image" => "lose_search", "alt" => "logo aucun résultat", "lien" => "/accueil"];
+            return ["titre" => "Aucun résultat pour la recherche", "image" => "lose_search", "alt" => "logo aucun résultat", "lien" => "/"];
         }
 
         //on créé une chaîne de caractère de points d'interrogations "?,?,?" 

@@ -100,7 +100,7 @@ class UserController extends AbstractController
 
         if (!$imagePoisson && empty($descriptionPoisson)) {
             // On redirige vers l'accueil 
-            header('Location: /accueil');
+            header('Location: /');
             exit();
         }
 

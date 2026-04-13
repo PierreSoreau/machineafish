@@ -20,10 +20,6 @@ class Router
                 $this->uc->home();
                 break;
 
-            case 'accueil':
-                $this->uc->home();
-                break;
-
             case 'poissons-carnassiers':
                 $this->uc->poissons();
                 break;
