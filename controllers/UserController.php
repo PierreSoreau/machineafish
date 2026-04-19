@@ -485,4 +485,55 @@ class UserController extends AbstractController
         // (Vérifie bien que le chemin vers ton fichier twig est correct)
         $this->render('a_propos.html.twig', []);
     }
+
+    public function recettes()
+    {
+
+        $recepies = new RecettesManager;
+
+        //On récupère le nom du poisson obtenu après analyse de 
+        //la photo de l'utilisateur qu'Angular nous a envoyé via l'url
+
+        $fishName = $_GET["poisson"] ?? null;
+
+        //si on récupère aucun nom de poisson dans ce cas on va le dire à Angular
+
+        if ($fishName === null) {
+
+            // On indique au client (Angular ou le navigateur) le format exact des données (JSON).
+            // Cela permet à Angular de "parser" (traduire) automatiquement ce texte 
+            // en un véritable tableau TypeScript utilisable, sans provoquer d'erreur de lecture.
+            // Sans ça le texte peut être affiché bêtement par le navigateur
+
+            header("Content-Type:application/json");
+            echo json_encode(['erreur' => "Aucun nom de poisson envoyé"]);
+
+            //le exit permet d'arrêter la lecture du code pile à ce moment là
+            //ça évite que php continue à lire la suite du code 
+            //qui pourrait perturber les infos transmises à Angular et induire une erreur côté Angular
+            exit;
+        }
+
+        $recepiesValues = $recepies->findRecepiesByFishName($fishName);
+
+        // On indique au client (Angular ou le navigateur) le format exact des données (JSON).
+        // Cela permet à Angular de "parser" (traduire) automatiquement ce texte 
+        // en un véritable tableau TypeScript utilisable, sans provoquer d'erreur de lecture.
+        // Sans ça le texte peut être affiché bêtement par le navigateur
+
+        header("Content-Type: application/json");
+
+        // C'est un laissez-passer de sécurité (CORS).
+        // Il dit au navigateur web (Chrome/Firefox) d'autoriser notre application Angular (port 4200) 
+        // à lire les données envoyées par notre serveur Apache (port 80). 
+        // Sans ça, le navigateur bloque la réponse par sécurité.
+
+        header("Access-Control-Allow-Origin:*");
+        echo json_encode($recepiesValues);
+
+        //le exit permet d'arrêter la lecture du code pile à ce moment là
+        //ça évite que php continue à lire la suite du code 
+        //qui pourrait perturber les infos transmises à Angular et induire une erreur côté Angular
+        exit;
+    }
 }
