@@ -486,10 +486,11 @@ class UserController extends AbstractController
         $this->render('a_propos.html.twig', []);
     }
 
-    public function recettes()
+    public function listRecipes()
     {
 
         $recepies = new RecettesManager;
+
 
         //On récupère le nom du poisson obtenu après analyse de 
         //la photo de l'utilisateur qu'Angular nous a envoyé via l'url
@@ -516,24 +517,63 @@ class UserController extends AbstractController
 
         $recepiesValues = $recepies->findRecepiesByFishName($fishName);
 
-        // On indique au client (Angular ou le navigateur) le format exact des données (JSON).
-        // Cela permet à Angular de "parser" (traduire) automatiquement ce texte 
-        // en un véritable tableau TypeScript utilisable, sans provoquer d'erreur de lecture.
-        // Sans ça le texte peut être affiché bêtement par le navigateur
 
-        header("Content-Type: application/json");
 
         // C'est un laissez-passer de sécurité (CORS).
         // Il dit au navigateur web (Chrome/Firefox) d'autoriser notre application Angular (port 4200) 
         // à lire les données envoyées par notre serveur Apache (port 80). 
         // Sans ça, le navigateur bloque la réponse par sécurité.
 
-        header("Access-Control-Allow-Origin:*");
+        header("Access-Control-Allow-Origin: http://localhost:4200");
+
+        // Le badge d'accès : Même si Angular est sur la liste VIP, on limite ce qu'il a le droit de faire.
+        //Ici, on l'autorise uniquement à lire des données (GET). 
+        //S'il essaie d'envoyer un ordre de suppression (DELETE) ou de modification (POST) à ta base de données,
+        //ce sera bloqué. L'OPTIONS est obligatoire car 
+        //Chrome fait toujours une petite vérification invisible avant de lancer le vrai GET.
+
+        header("Access-Control-Allow-Methods: GET, OPTIONS");
+
+        // La fouille à l'entrée : Ça autorise Angular à préciser le format de l'enveloppe
+        // qu'il t'envoie (par exemple, pour dire "je t'envoie du texte" ou "je t'envoie un fichier").
+
+        header("Access-Control-Allow-Headers: Content-Type");
+
+        // L'emballage de sortie : Ce n'est pas de la sécurité (pas du CORS), c'est de la courtoisie. 
+        //Ton PHP prévient Angular : "Attention, je ne t'envoie pas une page web HTML classique, 
+        //je t'envoie des données brutes au format JSON avec les bons accents français (UTF-8)". 
+        //Ça évite qu'Angular essaie de lire les données de travers.
+
+        header("Content-Type: application/json. charset=UTF-8");
+
+
         echo json_encode($recepiesValues);
+
+
 
         //le exit permet d'arrêter la lecture du code pile à ce moment là
         //ça évite que php continue à lire la suite du code 
         //qui pourrait perturber les infos transmises à Angular et induire une erreur côté Angular
         exit;
+    }
+
+    public function listFish()
+    {
+        header("Access-Control-Allow-Origin: http://localhost:4200");
+        header("Access-Control-Allow-Methods: GET, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type");
+        header("Content-Type: application/json ; charset=UTF-8");
+
+        $fishNamesTable = new PoissonManager;
+
+        $listFishNames = $fishNamesTable->findListFishName();
+
+        echo json_encode($listFishNames);
+        exit;
+    }
+
+    public function recipes()
+    {
+        $this->render("recipes.html.twig", []);
     }
 }

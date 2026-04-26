@@ -63,6 +63,17 @@ class Router
                 $this->uc->apropos();
                 break;
 
+            case "api-poissons":
+                $this->uc->listFish();
+                break;
+
+            case "listRecipes":
+                $this->uc->listRecipes();
+                break;
+            case "recipes":
+                $this->uc->recipes();
+                break;
+
             default:
                 $this->uc->erreur404();
                 break;

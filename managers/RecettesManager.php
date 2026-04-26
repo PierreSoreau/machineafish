@@ -153,15 +153,16 @@ $finalRecepiesTable = [
         ]
     ]
 ];*/
+        }
+        $finalList = [];
 
-            $finalRecepiesTable = array_values($finalRecepiesTable);
-
-            foreach ($finalRecepiesTable as $recette) {
-                $recette["ingredients"] = array_values($recette["ingredients"]);
-                $recette["ustensiles"] = array_values($recette["ustensiles"]);
-            }
+        foreach ($finalRecepiesTable as $recette) {
+            $recette["ingredients"] = array_values($recette["ingredients"]);
+            $recette["ustensiles"] = array_values($recette["ustensiles"]);
+            $finalList[] = $recette;
         }
 
-        return $finalRecepiesTable;
+
+        return $finalList;
     }
 }

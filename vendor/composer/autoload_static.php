@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
+class ComposerStaticInit569d30c9446fb90df759f82b722908a8
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -86,7 +86,6 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'AnalyseMateriel' => __DIR__ . '/../..' . '/models/AnalyseMateriel.php',
         'AnalyseMaterielManager' => __DIR__ . '/../..' . '/managers/AnalyseMaterielManager.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
-        'AuthController' => __DIR__ . '/../..' . '/controllers/AuthController.php',
         'CalendrierPeche' => __DIR__ . '/../..' . '/models/CalendrierPeche.php',
         'Canne' => __DIR__ . '/../..' . '/models/Canne.php',
         'CanneMoulinet' => __DIR__ . '/../..' . '/models/CanneMoulinet.php',
@@ -94,7 +93,6 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'CatalogueLeurres' => __DIR__ . '/../..' . '/models/CatalogueLeurres.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'ContenuCards' => __DIR__ . '/../..' . '/models/ContenuCards.php',
-        'DefaultController' => __DIR__ . '/../..' . '/controllers/DefaultController.php',
         'Fil' => __DIR__ . '/../..' . '/models/Fil.php',
         'FilManager' => __DIR__ . '/../..' . '/managers/FilManager.php',
         'Habitat' => __DIR__ . '/../..' . '/models/Habitat.php',
@@ -110,6 +108,7 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
         'ProprietesLeurres' => __DIR__ . '/../..' . '/models/ProprietesLeurres.php',
         'Questions' => __DIR__ . '/../..' . '/models/Questions.php',
         'QuestionsManager' => __DIR__ . '/../..' . '/managers/QuestionsManager.php',
+        'RecettesManager' => __DIR__ . '/../..' . '/managers/RecettesManager.php',
         'RegleEspeces' => __DIR__ . '/../..' . '/models/RegleEspeces.php',
         'RegleEspecesCanne' => __DIR__ . '/../..' . '/models/ReglesEspecesCanne.php',
         'RegleGrammages' => __DIR__ . '/../..' . '/models/RegleGrammages.php',
@@ -137,9 +136,9 @@ class ComposerStaticInit1563689cb0cfd32488cf45b6250d9732
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1563689cb0cfd32488cf45b6250d9732::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1563689cb0cfd32488cf45b6250d9732::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit1563689cb0cfd32488cf45b6250d9732::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit569d30c9446fb90df759f82b722908a8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit569d30c9446fb90df759f82b722908a8::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit569d30c9446fb90df759f82b722908a8::$classMap;
 
         }, null, ClassLoader::class);
     }

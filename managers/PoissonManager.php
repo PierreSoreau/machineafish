@@ -43,4 +43,19 @@ class PoissonManager extends AbstractManager
 
         return $result;
     }
+
+    public function findListFishName(): array
+    {
+        // On sélectionne uniquement la colonne 'nom'
+        $query = $this->db->prepare("SELECT poisson.nom FROM poisson");
+
+        $query->execute();
+
+        // FETCH_COLUMN est crucial ici : il extrait directement la valeur 
+        // de la première colonne pour chaque ligne.
+        // Résultat JSON pour Angular : ["Brochet", "Sandre", "Silure"]
+        $listFishName = $query->fetchAll(PDO::FETCH_COLUMN);
+
+        return $listFishName;
+    }
 }

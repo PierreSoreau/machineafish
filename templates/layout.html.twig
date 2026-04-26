@@ -50,6 +50,7 @@ return u.toString(1) + ".people (stub)"
 g(u, o[n]);
 
 
+
 e._i.push([i, s, a])
 }, e.__SV = 1)
 }(document, window.posthog || []);
@@ -62,18 +63,18 @@ maskTextSelector: ".privé" // OPTION : masquer des zones précises du site
 });
 		</script>
 		<!--Ce script permet que google accepte la vidéo sur son site pour 
-						qu'elle soit indexée et visible sur leur plateforme(notamment dans l'onglet vidéo). 
-						Là c'est la vidéo vu drone de la page d'accueil-->
+										qu'elle soit indexée et visible sur leur plateforme(notamment dans l'onglet vidéo). 
+										Là c'est la vidéo vu drone de la page d'accueil-->
 		<script type="application/ld+json">
 			{
-						  				"@context": "https://schema.org",
-						  				"@type": "VideoObject",
-						  				"name": "Vidéo d'accueil Machine à Fish",
-						  				"description": "Vidéo d'arrière-plan de la page d'accueil de Machine à Fish, dévoilant un paysage de campagne, une rivière et une immersion dans les fonds aquatiques",
-						  				"thumbnailUrl": "https://machineafish.fr/assets/images/vignette_accueil.webp",
-						  				"uploadDate": "2023-10-01T08:00:00+02:00",
-						  				"contentUrl": "https://machineafish.fr/assets/videos/video_accueil.webm"
-									}
+												  				"@context": "https://schema.org",
+												  				"@type": "VideoObject",
+												  				"name": "Vidéo d'accueil Machine à Fish",
+												  				"description": "Vidéo d'arrière-plan de la page d'accueil de Machine à Fish, dévoilant un paysage de campagne, une rivière et une immersion dans les fonds aquatiques",
+												  				"thumbnailUrl": "https://machineafish.fr/assets/images/vignette_accueil.webp",
+												  				"uploadDate": "2023-10-01T08:00:00+02:00",
+												  				"contentUrl": "https://machineafish.fr/assets/videos/video_accueil.webm"
+															}
 		</script>
 		<title>
 			{% block title %}
@@ -91,22 +92,25 @@ maskTextSelector: ".privé" // OPTION : masquer des zones précises du site
 		rel="icon" href="https://machineafish.fr/assets/images/favicon.png" type="image/png" sizes="96x96">
 
 		<!--Ces balises meta permettent aux réseaux sociaux de savoir quoi 
-						mettre sur la petite feuille du lien qui s'affiche quand on partage un lien dans une conversation (image et texte sous l'image)-->
+										mettre sur la petite feuille du lien qui s'affiche quand on partage un lien dans une conversation (image et texte sous l'image)-->
 		<meta property="og:title" content="MachineAFish | La pêche aux leurres accessible à tous"/>
 
 		<meta property="og:description" content="Découvrez MachineAFish, le guide ultime pour débuter la pêche aux leurres en eau douce.
-								Découverte des carnassiers, tutoriels techniques et matériel conseillés pour vos premières sorties."/>
+														Découverte des carnassiers, tutoriels techniques et matériel conseillés pour vos premières sorties."/>
 
 		<meta property="og:image" content="https://machineafish.fr/assets/images/vignette_accueil.webp"/>
 
 		<meta
 		property="og:type" content="website"/>
 		<!-- le link sert à dire à google "Écoute, si jamais tu trouves ce contenu sur une autre adresse (/accueil, www, etc.), 
-				ignore-les. La seule et unique adresse que je veux que tu affiches dans tes résultats 
-				de recherche, c'est https://machineafish.fr/ ". ça évite que le site se retrouve relayé très loin dans les pages de recherche 
-				et qu'il y ait un lien de merde pour le site en dessous de son titre dans les contenus écris de recherche
-				ex: machineafish.fr/accueil -->
-		<link rel="canonical" href="https://machineafish.fr/"/>
+								ignore-les. La seule et unique adresse que je veux que tu affiches dans tes résultats 
+								de recherche, c'est https://machineafish.fr/ ". ça évite que le site se retrouve relayé très loin dans les pages de recherche 
+								et qu'il y ait un lien de merde pour le site en dessous de son titre dans les contenus écris de recherche
+								ex: machineafish.fr/accueil -->
+		<link
+		rel="canonical" href="https://machineafish.fr/"/>
+		<!--permet à angular de savoir ou est la racine du site-->
+		<base href="/">
 	</head>
 
 	<body>
