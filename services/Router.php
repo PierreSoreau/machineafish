@@ -70,7 +70,7 @@ class Router
             case "listRecipes":
                 $this->uc->listRecipes();
                 break;
-            case "recipes":
+            case "recettes":
                 $this->uc->recipes();
                 break;
 

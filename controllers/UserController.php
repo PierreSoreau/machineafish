@@ -574,6 +574,6 @@ class UserController extends AbstractController
 
     public function recipes()
     {
-        $this->render("recipes.html.twig", []);
+        $this->render("recettes.html.twig", []);
     }
 }
